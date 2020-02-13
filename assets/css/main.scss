@@ -936,12 +936,6 @@ div.tooltip-inner { /* Overrided BS4 Tooltip */
 
 }
 
-@media all and (min-width: 577px) and (max-width: 830px) {
-  footer .license {
-    padding-left: 1rem;
-  }
-}
-
 
 /* Sidebar is visibal */
 @media all and (min-width: 831px) {
@@ -1160,6 +1154,11 @@ div.tooltip-inner { /* Overrided BS4 Tooltip */
   #search-results>div {
     max-width: 700px;
   }
+
+  footer>.d-flex>div {
+    width: 312px;
+  }
+
 }
 
 
