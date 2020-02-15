@@ -9,3 +9,5 @@ title: About
 ---
 
 > **Note**: Add Markdown syntax content to file `tabs/about.md` and it will show up on this page.
+
+This Jekyll template totally compatible with Markdown syntax. Now, let's take a look for the text and typography in this theme.
