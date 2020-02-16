@@ -77,7 +77,7 @@ first_run: 2020
 #
 #     dark   - Use the dark color scheme
 #
-theme_mode: light
+theme_mode: dual
 
 # boolean type, global switch for ToC in posts.
 toc: true
