@@ -6,9 +6,3 @@ tags: [IGAWorks, Competition]
 toc : true
 comments: true
 ---
-
-현재 포스트에서는 tags가 여러개 달리기 위해서는 어떻게 해야하는지 알아보겠습니다.
-
-```
-tags: [IGAWorks, Competition]
-```
