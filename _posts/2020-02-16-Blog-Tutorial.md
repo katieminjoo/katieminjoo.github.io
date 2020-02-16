@@ -21,7 +21,7 @@ comments: true
 <kbd>키보드</kbd>에 있는 자판처럼 보이고 싶다면, kbd를 활용하자.
 
 ## image
-![Desktop View]({{ "/assets/img/sample/hh.jpg" | relative_url }})
+![Desktop View]({{ "/assets/img/sample/image.png" | relative_url }})
 
 ## Reverse Footnote
 [^footnote]: [**원본**](https://github.com/cotes2020/jekyll-theme-chirpy/)  
