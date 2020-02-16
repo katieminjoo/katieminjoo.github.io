@@ -19,37 +19,21 @@ comments: true
 + Click the hook will locate the footnote[^footnote].  
 + Click the hook will locate the footnote[^locate].  
 + what if user wanna put the hook[^hook]. in the middle of the sentences?  
++ is it mandatory[^mandatory] to write sentence mark to use the hook in the middle of the sentence?    
 + 중간에 english 있기만 하다면 되는 것 같다[^english].  
 + 위와 동일한데 문장부호 position 각주보다 먼저 끝난다면?[^position]  
-+ 만약 english와 한글이 같이 있다면[^english와]?  
-+ 순전한 한국말[^한국말]?  
-+ 각주 내용에 link[^link]를 단다면?  
-+ 모든 포스팅은 원본[^원본]을 조금씩 수정해서 만들었습니다.  
-+ 각주에 bold체 링크[^링크]를 다는 것도 가능할까?  
-+ 모든 포스팅은 원본을 조금씩 수정해서 만들었습니다[^수정].
-+ 모든 포스팅은 원본을 조금씩 수정해서 만들었습니다[^만들었습니다.].
 
 ![Desktop View]({{ "/assets/img/sample/hh.jpg" | relative_url }})
 
 ## Reverse Footnote
-[^footnote]: The footnote source.
+[^footnote]: [**전부 다 영어인 경우**](https://github.com/cotes2020/jekyll-theme-chirpy/)  
 
 [^locate]: 각주는 각주인데, 해당되는 각주 바로 뒤에 따라나오지 않은 경우.
 
 [^hook]: 문장 중간의 단어에 각주를 붙이고, 바로 그 뒤에 집어넣은 경우.  
 
+[^mandatory]: 아마 잘 뜰 거임. 왜냐하면 position의 예에서 확인했듯이, ? 뒤에 각주를 달아도 살아남았기 때문에.  
+
 [^english]: 영어와 한글이 섞여있는 문장 속에서 영어를 각주로 땀.
 
 [^position]: 문장부호가 먼저 끝나는 경우.  
-
-[^english와]: 영어 한글이 섞인 경우.
-
-[^한국말]: 순전한 한국말에다가 가장 끝 위치에 각주를 단다면?
-
-[^link] : [**전부 다 영어인 경우**](https://github.com/cotes2020/jekyll-theme-chirpy/)  
-
-[^원본] : [**한글**](https://github.com/cotes2020/jekyll-theme-chirpy/)  
-
-[^**링크**] : [**bold체로 각주를 다는게 가능할까?**](https://github.com/cotes2020/jekyll-theme-chirpy/)  
-
-[^수정] : 중간에 있는 단어에다가 footnote를 붙이고 싶은데, 만약 그 문장 끝에다가 붙인다면 가능할까?
