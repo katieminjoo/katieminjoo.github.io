@@ -2,7 +2,7 @@
 title: "[MD] Text and Typography"
 date: 2020-02-16 17:46:00 +0800
 categories: [Markdown, Text]
-tags: [github pages, markdown, footnote, text and typograhy, line, kbd, image]
+tags: [github pages, markdown, footnote, kbd, image]
 toc : true
 comments: true
 ---
