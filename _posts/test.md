@@ -1,0 +1,1684 @@
+
+
+```python
+import pandas as pd
+aud = pd.read_csv("data/[label] aud_wo_install&house.csv")
+aud.head(3)
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>device_ifa</th>
+      <th>age</th>
+      <th>gender</th>
+      <th>marry</th>
+      <th>cate_code</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1648210</td>
+      <td>6</td>
+      <td>M</td>
+      <td>M</td>
+      <td>20008:5,21001:1,01003:2,14004:2,06009:2,03003:...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1885479</td>
+      <td>6</td>
+      <td>F</td>
+      <td>M</td>
+      <td>09001:1,13002:3,01003:1,16004:3,18002:1,21007:...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1289369</td>
+      <td>7</td>
+      <td>F</td>
+      <td>M</td>
+      <td>16002:5,19001:4,04011:1,p0011:1,18004:3,p0010:...</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+#### 앞으로 하게될 long과 short의 컬럼작업을 저장하면, 모두 string으로 바뀐다. 이는 원자료인 cate_code 값이 그 자체로 string이기 때문이다.  
+문제는 이렇게 되면, 오랜 시간 걸려서 long/short 작업을 저장해도 다시 열어보면, int가 아닌 string 값으로 반환이 되어 있기 때문에 난관에 봉착한다.  
+> 따라서 저장한 csv 파일을 다시 사용할 때, 모든 값을 int로 쉽게 바꾸기 위해서, <b>isdigit()</b>의 결과로 False가 나오는 값들을 사전에 확인해보았다.  
+>> 과정은 ipynb 가장 하단에 첨부하였다.  
+
+> 그 결과 해당 값들은 모두 p로 시작하는 특징이 있다.  
+> 그렇기 때문에 아래의 cell에서는 'p'를 제거하는 작업을 진행할 것이다.
+
+
+```python
+tmp = aud['cate_code'].str.cat(sep='\\\\')
+len(tmp)
+```
+
+
+
+
+    326886482
+
+
+Series.str.cat(sep = "#연결첨자")
+> 모든 row에 대해서 p를 없애주는 작업을 <b>반복하기 힘드므로,</b> 모든 row를 한데 합쳐준다.  
+> 다만 합쳐줄 때, 나중에 다시 뗄 수 있도록 sep의 첨자를 꼭 기억해둔다.
+
+
+```python
+Tmp = tmp.replace("p", "")
+len(Tmp)
+```
+
+
+
+
+    325038543
+
+
+
+> 아주 간단하세 모든 p가 사라져서, 갯수가 꽤 많이 줄어든 것을 확인할 수 있다.
+
+
+```python
+TMP = Tmp.split('\\\\')
+len(TMP)
+```
+
+
+
+
+    812780
+
+
+
+> split으로 간단하게 이전과 같이 돌릴 수가 있다.
+
+
+```python
+aud['cate_code'] = pd.DataFrame(TMP, columns= ["cate"])
+aud.head(3)
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>device_ifa</th>
+      <th>age</th>
+      <th>gender</th>
+      <th>marry</th>
+      <th>cate_code</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1648210</td>
+      <td>6</td>
+      <td>M</td>
+      <td>M</td>
+      <td>20008:5,21001:1,01003:2,14004:2,06009:2,03003:...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1885479</td>
+      <td>6</td>
+      <td>F</td>
+      <td>M</td>
+      <td>09001:1,13002:3,01003:1,16004:3,18002:1,21007:...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1289369</td>
+      <td>7</td>
+      <td>F</td>
+      <td>M</td>
+      <td>16002:5,19001:4,04011:1,0011:1,18004:3,0010:1,...</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+<hr>
+
+
+```python
+def long(x):
+    return x[::2]
+
+def short(x):
+    return x[1::2]
+```
+
+
+```python
+aud["cc_list"] = aud["cate_code"].str.findall(r"[\w']+")
+aud["long"] = aud["cc_list"].apply(long)
+aud["short"] = aud["cc_list"].apply(short)
+
+aud.head(3)
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>device_ifa</th>
+      <th>age</th>
+      <th>gender</th>
+      <th>marry</th>
+      <th>cate_code</th>
+      <th>cc_list</th>
+      <th>long</th>
+      <th>short</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1648210</td>
+      <td>6</td>
+      <td>M</td>
+      <td>M</td>
+      <td>20008:5,21001:1,01003:2,14004:2,06009:2,03003:...</td>
+      <td>[20008, 5, 21001, 1, 01003, 2, 14004, 2, 06009...</td>
+      <td>[20008, 21001, 01003, 14004, 06009, 03003, 130...</td>
+      <td>[5, 1, 2, 2, 2, 5, 1, 1, 2, 3, 3, 2, 2, 4, 3, ...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1885479</td>
+      <td>6</td>
+      <td>F</td>
+      <td>M</td>
+      <td>09001:1,13002:3,01003:1,16004:3,18002:1,21007:...</td>
+      <td>[09001, 1, 13002, 3, 01003, 1, 16004, 3, 18002...</td>
+      <td>[09001, 13002, 01003, 16004, 18002, 21007, 080...</td>
+      <td>[1, 3, 1, 3, 1, 4, 3, 5, 1, 3, 3, 2, 4, 4, 2, ...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1289369</td>
+      <td>7</td>
+      <td>F</td>
+      <td>M</td>
+      <td>16002:5,19001:4,04011:1,0011:1,18004:3,0010:1,...</td>
+      <td>[16002, 5, 19001, 4, 04011, 1, 0011, 1, 18004,...</td>
+      <td>[16002, 19001, 04011, 0011, 18004, 0010, 19002...</td>
+      <td>[5, 4, 1, 1, 3, 1, 4, 1, 1, 4, 4, 4, 3, 3, 4, ...</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+<hr>
+
+<hr>
+
+## 기본적인 EDA
+
+> 공통질문을 고를 때, 응답한 질문 갯수가 극히 적은 audience까지 고려하게되면  
+> 충분히 좋은 질문임에도 불구하고 커버리지가 작거나, 너무 많은 missing value를 채워야하는 것처럼 보여질 수 있다.  
+> 따라서 <b>너무 작은 질문에 답변을 한 outlier들은 과감히 고려하지 않아도 괜찮다.
+
+
+```python
+aud['counts'] = aud['long'].str.len()
+```
+
+
+```python
+import seaborn as sns
+import matplotlib.pyplot as plt
+ 
+f, (ax_box, ax_hist) = plt.subplots(2, sharex=True, gridspec_kw={"height_ratios": (.15, .85)})
+ 
+sns.boxplot(aud.counts, ax=ax_box)
+sns.distplot(aud.counts, ax=ax_hist)
+ 
+ax_box.set(xlabel='')
+```
+
+
+
+
+    [Text(0.5, 0, '')]
+
+
+
+
+```python
+Q1 = aud.counts.quantile(0.25)
+Q3 = aud.counts.quantile(0.75)
+IQR = Q3 - Q1
+
+lower = Q1 - 1.5 * IQR
+upper = Q3 + 1.5 * IQR
+print("{}보다 작은 경우 : lower outliers \n{}보다 큰 경우 : high outliers".format(lower, upper))
+```
+
+    11.5보다 작은 경우 : lower outliers 
+    87.5보다 큰 경우 : high outliers
+    
+
+
+```python
+out = aud[aud.counts.values < lower]
+norm = aud[aud.counts.values >= lower]
+
+print("공통질문지를 찾을 때 고려해주지 않아도 될 {}개 observations".format(len(out)))
+print("그 외의 경우 : {}".format(len(norm)))
+```
+
+    공통질문지를 찾을 때 고려해주지 않아도 될 734개 observations
+    그 외의 경우 : 812046
+    
+
+> out 중에도 복구할 수 있는 친구들이 있을 수 있다. 따라서 이들을 나중에 다시 한번 봐줄 필요가 있기도 하다.
+
+
+```python
+from collections import Counter
+from  itertools import chain
+
+vc = pd.Series(Counter(chain(*aud.long))).sort_index().rename_axis('value').reset_index(name='counts')
+vc = vc.sort_values(by =['counts'] , ascending = False)
+vc['ratio'] = vc['counts'] / len(aud)
+vc.head(3)
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>value</th>
+      <th>counts</th>
+      <th>ratio</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>152</th>
+      <td>14004</td>
+      <td>812687</td>
+      <td>0.999886</td>
+    </tr>
+    <tr>
+      <th>202</th>
+      <td>20008</td>
+      <td>810422</td>
+      <td>0.997099</td>
+    </tr>
+    <tr>
+      <th>156</th>
+      <td>15003</td>
+      <td>810370</td>
+      <td>0.997035</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+```python
+criteria = []
+
+for i in range(13) : 
+    criteria.append(vc.head(i+1).value.tolist())
+```
+
+
+```python
+criteria[:3]
+```
+
+
+
+
+    [['14004'], ['14004', '20008'], ['14004', '20008', '15003']]
+
+
+
+
+```python
+cnt = 0
+pct = []     # 밑에서 그래프를 그리기 위한 percent
+exc = []     # nested_list로 사용하기 위함으로, 각각의 내부 리스트는 기준에 부합하는 index를 포함하게된다.
+for cri in criteria :
+    cnt += 1
+    tmp = []
+    for i in norm.index :
+        if all(elem in norm.long[i] for elem in cri) :
+            tmp.append(norm.device_ifa[i])
+    exc.append(tmp)
+    pct.append( len(tmp) / len(norm) )
+    print("상위 {}개의 공통질문 커버리지 : {}".format(cnt, len(tmp) / len(norm)))
+```
+
+    상위 1개의 공통질문 커버리지 : 0.9999051777854949
+    상위 2개의 공통질문 커버리지 : 0.9971245471315664
+    상위 3개의 공통질문 커버리지 : 0.9945471069372918
+    
+
+
+    ---------------------------------------------------------------------------
+
+    KeyboardInterrupt                         Traceback (most recent call last)
+
+    <ipython-input-108-9e357b428eae> in <module>
+          6     tmp = []
+          7     for i in norm.index :
+    ----> 8         if all(elem in norm.long[i] for elem in cri) :
+          9             tmp.append(i)
+         10     exc.append(tmp)
+    
+
+    <ipython-input-108-9e357b428eae> in <genexpr>(.0)
+          6     tmp = []
+          7     for i in norm.index :
+    ----> 8         if all(elem in norm.long[i] for elem in cri) :
+          9             tmp.append(i)
+         10     exc.append(tmp)
+    
+
+    KeyboardInterrupt: 
+
+상위 1개의 공통질문 커버리지 : 0.9999051777854949
+상위 2개의 공통질문 커버리지 : 0.9971245471315664
+상위 3개의 공통질문 커버리지 : 0.9945471069372918
+상위 4개의 공통질문 커버리지 : 0.9914844725545104
+상위 5개의 공통질문 커버리지 : 0.9865155422229775
+상위 6개의 공통질문 커버리지 : 0.9694475436120614
+상위 7개의 공통질문 커버리지 : 0.9290791408368492
+상위 8개의 공통질문 커버리지 : 0.8853439337180407
+상위 9개의 공통질문 커버리지 : 0.8346017343845054
+상위 10개의 공통질문 커버리지 : 0.7901276528669559
+상위 11개의 공통질문 커버리지 : 0.747868963088298
+상위 12개의 공통질문 커버리지 : 0.7126825327629223
+상위 13개의 공통질문 커버리지 : 0.6684288821076638
+> 92%의 audience들은 상위 7개의 질문을 모두 가지고 있다.  
+> 96%의 audience들은 상위 6개의 질문을 모두 가지고 있다.
+
+
+```python
+import matplotlib.pyplot as plt
+
+x = list(range(1,14))
+y = pct
+plt.plot(x, y)
+plt.show()
+```
+
+
+```python
+#코랩에서 run하여 얻은 결과값 복사 붙여넣기.
+from PIL import Image
+import glob
+image_list = []
+for filename in glob.glob('download.png'): #assuming gif
+    im=Image.open(filename)
+    image_list.append(im)
+```
+
+
+```python
+im
+```
+
+
+
+
+![png](test_files/test_27_0.png)
+
+
+
+
+```python
+#nested-list(상위 n개의 공통질문지별, device_ifa list)를 바탕으로 만들어진 dataframe.
+tmp = pd.DataFrame(exc)
+t = pd.DataFrame(None)
+
+t['IDs'] = tmp.fillna(0).values.astype('Int64').tolist()
+t.to_csv("ID_wrt_Q.csv", index = False)
+t.head(3)
+```
+
+> nested_list에서 dataframe 만드는 방법 : <b>from_records
+cnt = 0
+for cri in criteria :
+    cnt += 1
+    exc = []
+    for i in norm.index :
+        if all(not elem in norm.long[i] for elem in cri) :
+            exc.append(i)
+    print("상위 {}개를 모두 가지고 있지 않는 경우 : {}".format(cnt, len(exc)))
+    if len(exc) == 0 :
+        print("\t{}까지만 확인하겠습니다.".format(cri))
+        break상위 1개를 모두 가지고 있지 않는 경우 : 77
+상위 2개를 모두 가지고 있지 않는 경우 : 13
+상위 3개를 모두 가지고 있지 않는 경우 : 1
+상위 4개를 모두 가지고 있지 않는 경우 : 0
+<hr>
+
+##### [cate2-1]
+1. 질문 답변을 그 자체로 피쳐로 사용하는 경우.  
+
+> Hyperparameter : 90% 이상의 보존률을 유지하는 공통질문지 중에 몇 개를 고를 것인가.  
+> Ex) 상위 7개 --> 92% 보존률  
+
+##### [cate2-2]
+2. SOM을 활용해서 클러스터링을 피쳐로 쓰는 경우  
+
+> (1) <b>missing value 활용</b>  
+>> 선택하는 질문지 갯수에 따라서 missing value의 갯수분포를 확인할 필요가 있다.  
+>> <b>missing value가 너무 많아서 자의적으로 판단해야하는 경우가 지나치게 많다면 좋은 작업이 아니다.</b>  
+
+> (2) missing value 무시  
+>> 1번 방법인데 SOM에 집어넣은 경우로, 마찬가지로 공통질문지 중 몇 개를 고를 것인지 문제가 남아있다.
+
+<hr>
+
+<hr>
+
+## 어떤 방식이든, 우선 전체 aud에 대해 13개 공통질문과 응답을 갖는 데이터프레임을 만들자.
+
+> 만약 쉽게 위의 데이터프레임을 만들 수가 있다면, 위의 모든 cell은 삭제를 해도 무방하다.  
+
+#### 방법 1 : 기존에 65%만 사용하던 방식
+
+
+```python
+res = []
+prefixes = criteria[-1]
+for i in aud.index :
+    for ind in aud['cate_code'][i].split(",") :
+        if ind.startswith(tuple(prefixes)) :
+            res.append(ind)
+```
+
+
+```python
+res[:100]
+```
+
+
+
+
+    ['20008:5',
+     '14004:2',
+     '06009:2',
+     '23005:1',
+     '21007:3',
+     '14005:3',
+     '15001:4',
+     '06001:2',
+     '15004:1',
+     '19003:5',
+     '15003:3',
+     '19001:2',
+     '06006:5',
+     '21007:4',
+     '06001:3',
+     '15003:2',
+     '20008:2',
+     '19003:2',
+     '06009:3',
+     '14004:2',
+     '15001:1',
+     '19001:2',
+     '06006:2',
+     '14005:1',
+     '15004:3',
+     '19001:4',
+     '19003:1',
+     '15003:4',
+     '21007:3',
+     '23005:5',
+     '06001:5',
+     '14005:2',
+     '20008:4',
+     '06006:2',
+     '15004:3',
+     '06009:3',
+     '14004:3',
+     '15001:1',
+     '14005:4',
+     '19001:2',
+     '20008:3',
+     '14004:3',
+     '06001:2',
+     '21007:1',
+     '19003:2',
+     '06006:1',
+     '15004:3',
+     '06009:1',
+     '15003:4',
+     '23005:5',
+     '20008:3',
+     '19001:1',
+     '15004:2',
+     '06001:4',
+     '15001:2',
+     '19003:5',
+     '15003:1',
+     '23005:5',
+     '14004:1',
+     '06006:3',
+     '14005:1',
+     '06009:4',
+     '21007:3',
+     '21007:1',
+     '19001:1',
+     '19003:1',
+     '06001:4',
+     '15003:2',
+     '14005:2',
+     '15001:3',
+     '20008:1',
+     '06009:1',
+     '14004:3',
+     '15004:2',
+     '06006:1',
+     '23005:5',
+     '21007:4',
+     '06009:1',
+     '15004:4',
+     '19001:3',
+     '06006:1',
+     '23005:4',
+     '20008:1',
+     '15003:3',
+     '14005:5',
+     '19003:2',
+     '15001:3',
+     '14004:4',
+     '06001:2',
+     '19003:3',
+     '19001:1',
+     '06009:1',
+     '15004:1',
+     '21007:2',
+     '15003:2',
+     '20008:1',
+     '15001:3',
+     '14004:3',
+     '06001:1',
+     '06006:1']
+
+
+
+
+```python
+len(res)
+```
+
+
+
+
+    10073943
+
+
+
+
+```python
+vc[:13].counts.sum()
+```
+
+
+
+
+    10073943
+
+
+
+> 잘 들어갔음을 확인할 수 있다.
+composite_list = [res[x:x+13] for x in range(0, len(res),13)]
+for i in range(len(composite_list)) : 
+    composite_list[i].sort()
+> 위에는 원본 재현용.  
+>> 하지만 현재는 각 row가 모두 13개씩 가지고 있지 않기 때문에 함부로 끊을 수 없음. 
+
+o90.sort()
+common_q = pd.DataFrame.from_records(composite_list, index = exc, columns = o90)
+common_q.head(3)
+<hr>
+
+#### 방법 2 : Dict로부터 dataframe 만들기
+
+
+```python
+good = criteria[-1]
+trash = list(set(vc.value) - set(criteria[-1]))
+```
+
+
+```python
+Li = []
+```
+
+
+```python
+for i in range(len(aud)) :
+    tmp_dict = dict(sorted(dict(zip(aud['long'][i], aud['short'][i])).items()))
+    [tmp_dict.pop(key, None) for key in trash]
+    Li.append(tmp_dict)
+```
+
+> 1. 두 개의 리스트로부터 dict 도출  
+> 2. 도출한 dict을 알파벳 순서로 sort  
+> 3. 이를 list에 추가함으로써 저장
+
+
+```python
+len(Li)
+```
+
+
+
+
+    812780
+
+
+
+> Li에는 따라서 13개의 공통질문에 대한 응답과 질문이 dict 형태로 모두 들어와있다.
+
+
+```python
+Li[0]
+```
+
+
+
+
+    {'06001': '2',
+     '06006': '5',
+     '06009': '2',
+     '14004': '2',
+     '14005': '3',
+     '15001': '4',
+     '15003': '3',
+     '15004': '1',
+     '19001': '2',
+     '19003': '5',
+     '20008': '5',
+     '21007': '3',
+     '23005': '1'}
+
+
+
+
+```python
+TMP = pd.DataFrame(columns = None)
+for i in range(len(Li)) : 
+    tmp = pd.DataFrame(Li[i], index=[aud.device_ifa[i]])
+    TMP = TMP.append(tmp)
+
+TMP.shape
+```
+
+    C:\Users\13Z970-G.AR30K\Anaconda3\lib\site-packages\pandas\core\frame.py:6692: FutureWarning: Sorting because non-concatenation axis is not aligned. A future version
+    of pandas will change to not sort by default.
+    
+    To accept the future behavior, pass 'sort=False'.
+    
+    To retain the current behavior and silence the warning, pass 'sort=True'.
+    
+      sort=sort)
+    
+
+
+    ---------------------------------------------------------------------------
+
+    MemoryError                               Traceback (most recent call last)
+
+    <ipython-input-21-01cf696afb0b> in <module>
+          2 for i in range(len(Li)) :
+          3     tmp = pd.DataFrame(Li[i], index=[aud.device_ifa[i]])
+    ----> 4     TMP = TMP.append(tmp)
+          5 
+          6 TMP.shape
+    
+
+    ~\Anaconda3\lib\site-packages\pandas\core\frame.py in append(self, other, ignore_index, verify_integrity, sort)
+       6690         return concat(to_concat, ignore_index=ignore_index,
+       6691                       verify_integrity=verify_integrity,
+    -> 6692                       sort=sort)
+       6693 
+       6694     def join(self, other, on=None, how='left', lsuffix='', rsuffix='',
+    
+
+    ~\Anaconda3\lib\site-packages\pandas\core\reshape\concat.py in concat(objs, axis, join, join_axes, ignore_index, keys, levels, names, verify_integrity, sort, copy)
+        226                        keys=keys, levels=levels, names=names,
+        227                        verify_integrity=verify_integrity,
+    --> 228                        copy=copy, sort=sort)
+        229     return op.get_result()
+        230 
+    
+
+    ~\Anaconda3\lib\site-packages\pandas\core\reshape\concat.py in __init__(self, objs, axis, join, join_axes, keys, levels, names, ignore_index, verify_integrity, copy, sort)
+        290 
+        291             # consolidate
+    --> 292             obj._consolidate(inplace=True)
+        293             ndims.add(obj.ndim)
+        294 
+    
+
+    ~\Anaconda3\lib\site-packages\pandas\core\generic.py in _consolidate(self, inplace)
+       5154         inplace = validate_bool_kwarg(inplace, 'inplace')
+       5155         if inplace:
+    -> 5156             self._consolidate_inplace()
+       5157         else:
+       5158             f = lambda: self._data.consolidate()
+    
+
+    ~\Anaconda3\lib\site-packages\pandas\core\generic.py in _consolidate_inplace(self)
+       5136             self._data = self._data.consolidate()
+       5137 
+    -> 5138         self._protect_consolidate(f)
+       5139 
+       5140     def _consolidate(self, inplace=False):
+    
+
+    ~\Anaconda3\lib\site-packages\pandas\core\generic.py in _protect_consolidate(self, f)
+       5125         """
+       5126         blocks_before = len(self._data.blocks)
+    -> 5127         result = f()
+       5128         if len(self._data.blocks) != blocks_before:
+       5129             self._clear_item_cache()
+    
+
+    ~\Anaconda3\lib\site-packages\pandas\core\generic.py in f()
+       5134 
+       5135         def f():
+    -> 5136             self._data = self._data.consolidate()
+       5137 
+       5138         self._protect_consolidate(f)
+    
+
+    ~\Anaconda3\lib\site-packages\pandas\core\internals\managers.py in consolidate(self)
+        922         bm = self.__class__(self.blocks, self.axes)
+        923         bm._is_consolidated = False
+    --> 924         bm._consolidate_inplace()
+        925         return bm
+        926 
+    
+
+    ~\Anaconda3\lib\site-packages\pandas\core\internals\managers.py in _consolidate_inplace(self)
+        927     def _consolidate_inplace(self):
+        928         if not self.is_consolidated():
+    --> 929             self.blocks = tuple(_consolidate(self.blocks))
+        930             self._is_consolidated = True
+        931             self._known_consolidated = True
+    
+
+    ~\Anaconda3\lib\site-packages\pandas\core\internals\managers.py in _consolidate(blocks)
+       1897     for (_can_consolidate, dtype), group_blocks in grouper:
+       1898         merged_blocks = _merge_blocks(list(group_blocks), dtype=dtype,
+    -> 1899                                       _can_consolidate=_can_consolidate)
+       1900         new_blocks = _extend_blocks(merged_blocks, new_blocks)
+       1901     return new_blocks
+    
+
+    ~\Anaconda3\lib\site-packages\pandas\core\internals\blocks.py in _merge_blocks(blocks, dtype, _can_consolidate)
+       3147 
+       3148         argsort = np.argsort(new_mgr_locs)
+    -> 3149         new_values = new_values[argsort]
+       3150         new_mgr_locs = new_mgr_locs[argsort]
+       3151 
+    
+
+    MemoryError: 
+
+
+
+```python
+TMP.head(3)
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>06001</th>
+      <th>06006</th>
+      <th>06009</th>
+      <th>14004</th>
+      <th>14005</th>
+      <th>15001</th>
+      <th>15003</th>
+      <th>15004</th>
+      <th>19001</th>
+      <th>19003</th>
+      <th>20008</th>
+      <th>21007</th>
+      <th>23005</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1648210</th>
+      <td>2</td>
+      <td>5</td>
+      <td>2</td>
+      <td>2</td>
+      <td>3</td>
+      <td>4</td>
+      <td>3</td>
+      <td>1</td>
+      <td>2</td>
+      <td>5</td>
+      <td>5</td>
+      <td>3</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1885479</th>
+      <td>3</td>
+      <td>2</td>
+      <td>3</td>
+      <td>2</td>
+      <td>1</td>
+      <td>1</td>
+      <td>2</td>
+      <td>3</td>
+      <td>2</td>
+      <td>2</td>
+      <td>2</td>
+      <td>4</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1289369</th>
+      <td>5</td>
+      <td>2</td>
+      <td>3</td>
+      <td>3</td>
+      <td>2</td>
+      <td>NaN</td>
+      <td>4</td>
+      <td>3</td>
+      <td>4</td>
+      <td>1</td>
+      <td>4</td>
+      <td>3</td>
+      <td>5</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+```python
+TMP.shape
+```
+
+
+
+
+    (88875, 13)
+
+
+
+> 한참을 돌려도 도저히 끝이 나지 않을 방법이다. 방법1에서 해결 실마리를 찾아보자.
+
+
+```python
+res = pd.DataFrame.from_records(Li, index = aud.device_ifa.values)
+res.head(3)
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>06001</th>
+      <th>06006</th>
+      <th>06009</th>
+      <th>14004</th>
+      <th>14005</th>
+      <th>15001</th>
+      <th>15003</th>
+      <th>15004</th>
+      <th>19001</th>
+      <th>19003</th>
+      <th>20008</th>
+      <th>21007</th>
+      <th>23005</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1648210</th>
+      <td>2</td>
+      <td>5</td>
+      <td>2</td>
+      <td>2</td>
+      <td>3</td>
+      <td>4</td>
+      <td>3</td>
+      <td>1</td>
+      <td>2</td>
+      <td>5</td>
+      <td>5</td>
+      <td>3</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1885479</th>
+      <td>3</td>
+      <td>2</td>
+      <td>3</td>
+      <td>2</td>
+      <td>1</td>
+      <td>1</td>
+      <td>2</td>
+      <td>3</td>
+      <td>2</td>
+      <td>2</td>
+      <td>2</td>
+      <td>4</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1289369</th>
+      <td>5</td>
+      <td>2</td>
+      <td>3</td>
+      <td>3</td>
+      <td>2</td>
+      <td>NaN</td>
+      <td>4</td>
+      <td>3</td>
+      <td>4</td>
+      <td>1</td>
+      <td>4</td>
+      <td>3</td>
+      <td>5</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+```python
+res.to_csv("[label][cate] QnA score.csv", index_label = False)
+```
+
+> 위에처럼 중요한 label이 index로 들어가있는 경우, index_labe = False를 사용한다.
+
+
+```python
+res.isna().sum().sort_values()
+```
+
+
+
+
+    14004       93
+    20008     2358
+    15003     2410
+    19001     2744
+    15004     4974
+    21007    15494
+    06009    42790
+    15001    44463
+    19003    61747
+    06006    74025
+    23005    79563
+    14005    80651
+    06001    80885
+    dtype: int64
+
+
+
+
+```python
+res.T.isna().sum().sort_values(ascending = False)
+```
+
+
+
+
+    260810     13
+    1557472    13
+    557734     12
+    1424307    12
+    1236680    12
+    959458     11
+    1343504    11
+    411121     11
+    684247     11
+    133521     11
+    457953     11
+    617488     11
+    40308      11
+    1130469    11
+    1827877    11
+    1279062    11
+    1009712    10
+    1471006    10
+    82140      10
+    1640665    10
+    776774     10
+    358571     10
+    1763596    10
+    447737     10
+    370977     10
+    1964495    10
+    1052128    10
+    41178      10
+    1792487    10
+    468354     10
+               ..
+    1636063     0
+    1793880     0
+    547860      0
+    579747      0
+    339194      0
+    595021      0
+    128461      0
+    1875843     0
+    1081781     0
+    1684900     0
+    1012638     0
+    130963      0
+    1807969     0
+    610476      0
+    960973      0
+    1689057     0
+    667049      0
+    1126465     0
+    534767      0
+    1434426     0
+    1949912     0
+    1050377     0
+    1357911     0
+    1966975     0
+    1624460     0
+    176874      0
+    1757124     0
+    1628440     0
+    413988      0
+    1648210     0
+    Length: 812780, dtype: int64
+
+
+
+
+```python
+aud[aud.device_ifa.values == 260810]
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>device_ifa</th>
+      <th>age</th>
+      <th>gender</th>
+      <th>marry</th>
+      <th>cate_code</th>
+      <th>cc_list</th>
+      <th>long</th>
+      <th>short</th>
+      <th>counts</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>240150</th>
+      <td>260810</td>
+      <td>6</td>
+      <td>M</td>
+      <td>S</td>
+      <td>21013:1</td>
+      <td>[21013, 1]</td>
+      <td>[21013]</td>
+      <td>[1]</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+> 13개 전부가 나와서 당황할 수 있다. 그러나, 위에서 알 수 있듯이, 앞에서 정한 outlier에 속하는 경우임을 확인할 수 있다.
+
+
+```python
+out.head(3)
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>device_ifa</th>
+      <th>age</th>
+      <th>gender</th>
+      <th>marry</th>
+      <th>cate_code</th>
+      <th>cc_list</th>
+      <th>long</th>
+      <th>short</th>
+      <th>counts</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>509</th>
+      <td>1297041</td>
+      <td>6</td>
+      <td>M</td>
+      <td>M</td>
+      <td>15004:5,02003:4,20008:4,23005:1,06009:4,14004:...</td>
+      <td>[15004, 5, 02003, 4, 20008, 4, 23005, 1, 06009...</td>
+      <td>[15004, 02003, 20008, 23005, 06009, 14004, 190...</td>
+      <td>[5, 4, 4, 1, 4, 5, 2, 5, 5]</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <th>1787</th>
+      <td>581869</td>
+      <td>9</td>
+      <td>M</td>
+      <td>S</td>
+      <td>06009:1,15003:1,15004:4,01011:1,21007:1,06001:...</td>
+      <td>[06009, 1, 15003, 1, 15004, 4, 01011, 1, 21007...</td>
+      <td>[06009, 15003, 15004, 01011, 21007, 06001, 090...</td>
+      <td>[1, 1, 4, 1, 1, 1, 1, 1, 3, 3, 1]</td>
+      <td>11</td>
+    </tr>
+    <tr>
+      <th>5791</th>
+      <td>1600676</td>
+      <td>8</td>
+      <td>F</td>
+      <td>S</td>
+      <td>20008:5,15004:2,21015:1,0010:3,19001:4,09006:4...</td>
+      <td>[20008, 5, 15004, 2, 21015, 1, 0010, 3, 19001,...</td>
+      <td>[20008, 15004, 21015, 0010, 19001, 09006, 0401...</td>
+      <td>[5, 2, 1, 3, 4, 4, 2, 1, 3, 5, 4]</td>
+      <td>11</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+```python
+ol = out.device_ifa.tolist()
+ol[:5]
+```
+
+
+
+
+    [1297041, 581869, 1600676, 1279784, 610976]
+
+
+
+outlier 빼고 보면 이렇다.
+
+
+```python
+res_wo_out = res.drop(ol, axis = 0)
+res_wo_out.shape
+```
+
+
+
+
+    (812046, 13)
+
+
+
+
+```python
+res_wo_out.T.isna().sum().sort_values(ascending = False)
+```
+
+
+
+
+    133521     11
+    1948558    10
+    586189     10
+    748243     10
+    651011     10
+    1897436    10
+    1009712    10
+    1792487    10
+    456088     10
+    190738     10
+    780022     10
+    41178      10
+    535892     10
+    888287     10
+    231222     10
+    306619     10
+    1562329    10
+    468354     10
+    1824891    10
+    449517     10
+    952784     10
+    759998      9
+    1793042     9
+    733387      9
+    1260869     9
+    327660      9
+    1345782     9
+    80305       9
+    1079628     9
+    78391       9
+               ..
+    1545446     0
+    871763      0
+    1493574     0
+    531139      0
+    1237100     0
+    271033      0
+    479092      0
+    1375574     0
+    1867568     0
+    1910091     0
+    1700622     0
+    1637326     0
+    1743910     0
+    1167447     0
+    1306895     0
+    1860162     0
+    324045      0
+    135130      0
+    204593      0
+    476494      0
+    1423142     0
+    874784      0
+    657826      0
+    1630349     0
+    847802      0
+    1023588     0
+    1738509     0
+    529724      0
+    213290      0
+    1648210     0
+    Length: 812046, dtype: int64
+
+
+
+outlier까지 보면 이렇다.
+
+
+```python
+res_only_out = res.loc[ol,:]
+res_only_out.head()
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>06001</th>
+      <th>06006</th>
+      <th>06009</th>
+      <th>14004</th>
+      <th>14005</th>
+      <th>15001</th>
+      <th>15003</th>
+      <th>15004</th>
+      <th>19001</th>
+      <th>19003</th>
+      <th>20008</th>
+      <th>21007</th>
+      <th>23005</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1297041</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>4</td>
+      <td>5</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>5</td>
+      <td>5</td>
+      <td>2</td>
+      <td>NaN</td>
+      <td>4</td>
+      <td>NaN</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>581869</th>
+      <td>1</td>
+      <td>NaN</td>
+      <td>1</td>
+      <td>1</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>1</td>
+      <td>4</td>
+      <td>3</td>
+      <td>NaN</td>
+      <td>3</td>
+      <td>1</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1600676</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>5</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>4</td>
+      <td>2</td>
+      <td>4</td>
+      <td>NaN</td>
+      <td>5</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1279784</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>4</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>3</td>
+      <td>4</td>
+      <td>NaN</td>
+      <td>4</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>610976</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>5</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>5</td>
+      <td>4</td>
+      <td>5</td>
+      <td>NaN</td>
+      <td>2</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+```python
+res_only_out.T.isna().sum().sort_values()
+```
+
+
+
+
+    1133884     4
+    1443306     4
+    207916      4
+    408255      4
+    93991       4
+    1790447     4
+    993797      4
+    1207702     4
+    1435029     4
+    1397153     4
+    263271      4
+    74330       4
+    1541195     5
+    221333      5
+    403738      5
+    1029269     5
+    226458      5
+    880815      5
+    1362086     5
+    1266486     5
+    1472702     5
+    1957532     5
+    827006      5
+    1439086     5
+    235474      5
+    326792      5
+    731217      5
+    1098602     5
+    1370135     5
+    1720963     5
+               ..
+    728318     10
+    1052128    10
+    358571     10
+    1249332    10
+    447737     10
+    1964495    10
+    1328702    10
+    1763596    10
+    1527340    10
+    974673     10
+    1678560    10
+    370977     10
+    1471006    10
+    1202917    10
+    1015635    10
+    457953     11
+    1827877    11
+    40308      11
+    684247     11
+    1130469    11
+    1343504    11
+    959458     11
+    617488     11
+    1279062    11
+    411121     11
+    557734     12
+    1424307    12
+    1236680    12
+    1557472    13
+    260810     13
+    Length: 734, dtype: int64
+
+
+
+
+```python
+res[res.index.values == 1133884]
+```
+
+> 역시나 out이라고 무시할 수 있는 것이 결코 아님을 알 수 있다.
+
+<hr>
+
+## isdigit을 통해 int로 변환이 되지 않는 string 찾아내기
+stri = []
+for i in vc.value :
+    if i.isdigit() == False :
+        stri.append(i)stri
