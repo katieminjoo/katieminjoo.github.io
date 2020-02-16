@@ -27,7 +27,6 @@ comments: true
 [^footnote]
 ```
 + 해당 글의 원본을 각주(footnote[^footnote])처리하였습니다.
-+ 현재까지 한글단어에 각주를 집어넣는 것은 지원이 안되는 것처럼 보입니다. 대신에 다음과 같은 방법[^ ]으로 대체할 수 있을지 모릅니다.
 + caret을 없애고, URL을 집어넣은 괄호를 연달아 써준다면, 하이퍼링크가 된다.
 
 
@@ -40,4 +39,3 @@ comments: true
 
 ## Reverse Footnote
 [^footnote]: [**원본**](https://github.com/cotes2020/jekyll-theme-chirpy/)  
-[^ ]: empty space
