@@ -1,14 +1,11 @@
 ---
-title: "Blog Tutorial"
-date: 2020-02-16 08:04:00 +0800
-categories: [CheatSheet, Markdown]
-tags: [github pages, markdown]
+title: "[MD] Text and Typography"
+date: 2020-02-16 17:46:00 +0800
+categories: [Markdown, Text]
+tags: [github pages, markdown, footnote, text and typograhy, line, kbd, image]
 toc : true
 comments: true
 ---
-
-## footnote
-+ 해당 글의 원본을 각주(footnote[^footnote])처리하였습니다.
 
 
 ## 글자 편집
@@ -25,8 +22,19 @@ comments: true
 <kbd>키보드</kbd>에 있는 자판처럼 보이고 싶다면, kbd를 활용하자.
 
 
+## footnote
+```
+[^footnote]
+```
++ 해당 글의 원본을 각주(footnote[^footnote])처리하였습니다.
++ caret을 없애고, URL을 집어넣은 괄호를 연달아 써준다면, 하이퍼링크가 된다.
+
+
 ## image
 ![Desktop View]({{ "/assets/img/sample/image.png" | relative_url }})
+```
+![Desktop View]({{ "/assets/img/sample/image.png" | relative_url }})
+```
 
 
 ## Reverse Footnote
