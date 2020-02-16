@@ -2,7 +2,7 @@
 title: "Blog Tutorial"
 date: 2020-02-16 08:04:00 +0800
 categories: [Blogging, Tutorial]
-tags: [깃헙 블로그]
+tags: [깃헙 블로그, github pages]
 toc : true
 comments: true
 ---
