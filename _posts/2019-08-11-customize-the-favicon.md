@@ -10,8 +10,6 @@ In [**Chirpy**](https://github.com/cotes2020/jekyll-theme-chirpy/), the image fi
 
 Whit a square image (PNG, JPG or GIF) in hand, open the site [*Favicon & App Icon Generator*](https://www.favicon-generator.org/) and upload your original image.
 
-![upload-image]({{ "/assets/img/sample/upload-image.png" | relative_url }})
-
 Click button <kbd>Create Favicon</kbd> and wait a moment for the website to generate the icons of various sizes automatically.
 
 ![download-icons]({{ "/assets/img/sample/download-icons.png" | relative_url }})
