@@ -8,7 +8,7 @@ comments: true
 ---
 
 깃헙 블로그에는 다양한 방식으로 글을 올릴 수가 있다.
-이번 글에서는 jupyter notebook[^notebook]을 이용한 간단한 방법을 소개한다.
+이번 글에서는 jupyter notebook[^notebook] 을 이용한 간단한 방법을 소개한다.
 
 1. ipynb -> md
 포스팅하길 희망하는 ipynb 파일과 동일한 위치에 있는 ipynb 파일에서 아래와 같이 작성한다.
@@ -20,9 +20,12 @@ comments: true
 
 
 2. ipload a markdown file
-위에서 생성된 md 파일을 posting 형식에 맞추어 올려주면 끝난다.
+위에서 생성된 md 파일을 posting 형식에 맞추어 올려준다.
+단, 기존에 있던 ipynb 파일의 시각자료들이 보여지지 않는 경우가 많다.
+이때에는 생성된 폴더에 이미지들을 함께 올려주면 된다.
+
 
 
 
 ## footnote
-[^notebook][링크](https://www.timlrx.com/2018/03/25/uploading-jupyter-notebook-files-to-blogdown/)의 자료를 참고하였다.
+[^notebook] [링크](https://www.timlrx.com/2018/03/25/uploading-jupyter-notebook-files-to-blogdown/)의 자료를 참고하였다.
