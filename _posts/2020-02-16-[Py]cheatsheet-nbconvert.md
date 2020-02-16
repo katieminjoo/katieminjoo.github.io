@@ -16,7 +16,13 @@ comments: true
 !jupyter nbconvert --to markdown USERNAME.ipynb
 ```
 위의 코드를 실행하면, 새로운 MD 파일 하나와 폴더가 생성된다.
-바꾸고자 했던 ipynb 파일명에 `_files`가 추가된 폴더에는 해당 ipynb안에 들어있던 이미지들이 포함되어있다.
+바꾸고자 했던 ipynb 파일명에 `_files`가 추가된 폴더에는 해당 ipynb안에서 그려지거나 사용되었던 시각자료와 이미지들이 모두 들어가있다.
+
+
+2. ipload a markdown file
+위에서 생성된 md 파일을 posting 형식에 맞추어 올려주면 끝난다.
+
+
 
 ## footnote
 [^notebook][링크](https://www.timlrx.com/2018/03/25/uploading-jupyter-notebook-files-to-blogdown/)의 자료를 참고하였다.
