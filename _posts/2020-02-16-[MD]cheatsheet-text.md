@@ -21,16 +21,17 @@ comments: true
 
 ## image
 ### github에 저장한 이미지 불러오기
-![Desktop View](/assets/img/sample/round_avartar.png)
+![image1](/assets/img/sample/round_avatar.png)
 ```
-![Desktop View](/assets/img/sample/image.png)
+![image1](/assets/img/sample/image.png)
 ```
 ### image address 활용하기
-![Desktop View](https://e-playonline.com/wp-content/uploads/2019/05/ngu.jpg)
+![image2](https://e-playonline.com/wp-content/uploads/2019/05/ngu.jpg)
 ```
-![Desktop View](https://e-playonline.com/wp-content/uploads/2019/05/ngu.jpg)
+![image2](https://e-playonline.com/wp-content/uploads/2019/05/ngu.jpg)
 ```
-> 마크다운에서는 <kbd>"</kbd>를 쓰는 경우가 거의 없습니다. 이미지로 불러올 때, 링크를 걸 때 모두 마찬가지입니다.
+> 마크다운에서는 <kbd>"</kbd>를 쓰는 경우가 거의 없습니다. 이미지로 불러올 때, 링크를 걸 때 모두 마찬가지입니다.  
+
 ***
 
 ## Link
