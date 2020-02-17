@@ -2,7 +2,7 @@
 title: "[MD] Text and Typography"
 date: 2020-02-16 17:46:00 +0800
 categories: [Markdown, Text]
-tags: [github pages, markdown, footnote, kbd, image]
+tags: [github pages, markdown, cheatsheet]
 toc : true
 comments: true
 ---
@@ -25,15 +25,16 @@ comments: true
 
 ## image
 ### github에 저장한 이미지 불러오기
-![Desktop View](/assets/img/sample/image.png)
+![Desktop View](/assets/img/sample/round_avartar.png)
 ```
 ![Desktop View](/assets/img/sample/image.png)
 ```
 ### image address 활용하기
-![Desktop View](http://bit.ly/3bJgu9R)
+![Desktop View](https://e-playonline.com/wp-content/uploads/2019/05/ngu.jpg)
 ```
-![Desktop View](http://bit.ly/3bJgu9R)
+![Desktop View](https://e-playonline.com/wp-content/uploads/2019/05/ngu.jpg)
 ```
+> 마크다운에서는 <kbd>"</kbd>를 쓰는 경우가 거의 없습니다. 이미지로 불러올 때, 링크를 걸 때 모두 마찬가지입니다.
 ***
 
 
@@ -62,7 +63,7 @@ Footnote는 마크다운에서 글을 쓰는 순서와 상관없이 항상 글 �
 [**링크**](https://haehwan.github.io/)  
 ```
 이미지로 링크 연결하기.
-[![Desktop View]("/assets/img/sample/[comp]igaworks.png")](https://haehwan.github.io/)
+[![Desktop View](/assets/img/sample/round_avatar.png)](https://haehwan.github.io/)
 
 최종적으로 위에서 만들었던 각주는 다음과 같이 만들었습니다.
 ```
