@@ -13,7 +13,7 @@ url: 'https://haehwan.github.io'
 
 author: Lee HaeHwan
 
-avatar: /assets/img/sample/avatar.jpg   # support internet resources
+avatar: /assets/img/sample/round_avatar.jpg   # support internet resources
 
 github:
   username: HaeHwan
@@ -78,7 +78,6 @@ paginate: 5
 
 markdown: kramdown
 mathjax: true
-#mathjax: true <- 수식 기호를 쓸려고 덧붙인 거임.
 
 highlighter: rouge
 
