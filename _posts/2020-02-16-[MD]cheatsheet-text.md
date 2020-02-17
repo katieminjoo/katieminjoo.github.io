@@ -30,7 +30,8 @@ comments: true
 ```
 ![image2](https://e-playonline.com/wp-content/uploads/2019/05/ngu.jpg)
 ```
-> 마크다운에서는 <kbd>"</kbd>를 쓰는 경우가 거의 없습니다. 이미지로 불러올 때, 링크를 걸 때 모두 마찬가지입니다.  
+> 마크다운에서는 <kbd>"</kbd>를 쓰는 경우가 거의 없습니다.
+> 이미지로 불러올 때, 링크를 걸 때 모두 마찬가지입니다.  
 
 ***
 
