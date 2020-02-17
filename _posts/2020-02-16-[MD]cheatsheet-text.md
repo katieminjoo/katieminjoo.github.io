@@ -44,15 +44,16 @@ comments: true
 
 ### 이미지로 링크 연결하기
 이미지 첨부와 링크 연결을 순차적으로 대입하면 됩니다. 아래의 이미지를 클릭하면 저의 깃헙 블로그로 새로고침됩니다.  
-[![Desktop View](/assets/img/sample/round_avatar48.png)](https://haehwan.github.io/)
+[![](/assets/img/sample/round_avatar72.png)](https://haehwan.github.io/)
 ```
-[![Desktop View](/assets/img/sample/round_avatar48.png)](https://haehwan.github.io/)
+[![image3](/assets/img/sample/round_avatar48.png)](https://haehwan.github.io/)
 ```
 
 ***
 
 ## footnote
 각주 사용법은 링크와 유사합니다. 각주로 처리할 단어 앞에 caret[^caret]을 넣어주면 됩니다.
+[^caret]: [**caret**](https://en.wikipedia.org/wiki/Caret)
 ```
 [^caret]
 ```
