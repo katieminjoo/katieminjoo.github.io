@@ -23,11 +23,11 @@ comments: true
 
 
 ## footnote
++ 해당 글의 원본을 각주(footnote[^footnote])처리하였습니다.
 ```
 [^footnote]
 ```
-+ 해당 글의 원본을 각주(footnote[^footnote])처리하였습니다.
-+ caret을 없애고, URL을 집어넣은 괄호를 연달아 써준다면, 하이퍼링크가 된다.
+
 
 ### Reverse Footnote
 [^footnote]: [**원본**](https://github.com/cotes2020/jekyll-theme-chirpy/)  
@@ -35,7 +35,7 @@ comments: true
 ```
 [^footnote]: [**원본**](https://github.com/cotes2020/jekyll-theme-chirpy/)  
 ```
-
+> caret을 없애고, URL을 집어넣은 괄호를 연달아 써준다면, 하이퍼링크 기능을 사용할 수 있습니다.
 
 ## image
 
