@@ -1,8 +1,8 @@
 ---
 title: "[MD] Text and Typography"
 date: 2020-02-16 17:46:00 +0800
-categories: [Markdown, Text]
-tags: [github pages, markdown, cheatsheet]
+categories: [Markdown, Tutorial]
+tags: [github pages, markdown, tutorial]
 toc : true
 comments: true
 ---
