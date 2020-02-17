@@ -24,7 +24,7 @@ you can use an inline formula $$\forall x \in R$$ like this one
 `you can use an inline formula $$\forall x \in R$$ like this one  `
 
 ## example 2
-Here is an example MathJax inline rendering \\( 1/x^{2} \\), and here is a block rendering: \\[ \frac{1}{n^{2}} \\]
+Here is an example MathJax inline rendering \\( 1/x^{2} \\), and here is a block rendering: \\[ \frac{1}{n^{2}} \\]  
 `Here is an example MathJax inline rendering \\( 1/x^{2} \\), and here is a block rendering: \\[ \frac{1}{n^{2}} \\]`
 
 $$
@@ -34,3 +34,6 @@ x_{21} & x_{22} & \ldots \\
 \vdots & \vdots & \ldots \\
 \end{array} \right)
 $$
+
+### Reverse Footnote
+[^footnote][**http://themicronaut.github.io/theme-setup/**](http://themicronaut.github.io/theme-setup/)
