@@ -13,7 +13,7 @@ url: 'https://haehwan.github.io'
 
 author: Lee HaeHwan
 
-avatar: /assets/img/sample/round_avatar.jpg   # support internet resources
+avatar: /assets/img/sample/round_avatar.png   #확장자 유의
 
 github:
   username: HaeHwan
