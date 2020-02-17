@@ -36,7 +36,7 @@ comments: true
 ```
 ![Desktop View]({{ "/assets/img/sample/image.png" | relative_url }})
 ```
-> 링크를 클릭하면 URL을 타고 이동이 가능하다.
+> 사진을 클릭하면 URL을 타고 이동이 가능하다.
 ```
 ![Desktop View](/assets/img/sample/image.png)
 ```
