@@ -53,8 +53,8 @@ comments: true
 
 ## footnote
 각주 사용법은 링크와 유사합니다. 각주로 처리할 단어 앞에 caret[^caret]을 넣어주면 됩니다.  
-
-[^caret]: [**caret**](https://en.wikipedia.org/wiki/Caret)  
+  
+[^caret]: [**caret**](https://en.wikipedia.org/wiki/Caret)이란?  
 
 ```
 [^caret]
