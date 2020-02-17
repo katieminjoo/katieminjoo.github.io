@@ -416,10 +416,10 @@ body {
 /*--- main wrapper ---*/
 
 #main-wrapper {
-  background-color: rgb(27, 27, 30);//var(--main-wrapper-bg, white); //rgb(27, 27, 30);
+  background-color: var(--main-wrapper-bg, white); //rgb(27, 27, 30);
   position: relative;
   min-height: 100%;
-  padding-bottom: 6rem; /* equals to or greatter than footer's height */
+  padding-bottom: 0; /*6rem; /* equals to or greatter than footer's height */
   padding-left: 0;
   padding-right: 0;
   margin-left: 260px;
