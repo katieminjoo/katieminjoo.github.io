@@ -1,0 +1,17 @@
+---
+layout: post
+title: "[Comp] Click-through rate(CTR) prediction"
+date: 2020-02-16 18:13:00 +0800
+categories: [Competition, CTR prediction]
+tags: [IGAWorks, CTR prediction]
+toc : true
+comments: true
+---
+
+$$
+M = \left( \begin{array}{ccc}
+x_{11} & x_{12} & \ldots \\
+x_{21} & x_{22} & \ldots \\
+\vdots & \vdots & \ldots \\
+\end{array} \right)
+$$
