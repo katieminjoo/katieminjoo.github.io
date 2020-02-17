@@ -22,26 +22,28 @@ config.yml에서 kramdown을 사용하고 있는 것을 확인했다면, 그 밑
 
 
 ## 3. Implement MathJax with Jekyll
-kramdown이 기본적으로 MathJax를 사용하기는 하지만, 포스팅할 페이지를 자동적으로 MathJax 라이브러리에 연결시켜주지는 않습니다. MathJax는 언제까지나 자바스크립트 언어로 쓰여진 라이브러리의 일종이기 때문에 이를 사용하고 싶다면 포스팅할 페이지에서 아래와 같은 링크를 입력해주어야합니다.
+kramdown이 기본적으로 MathJax를 사용하기는 하지만, 포스팅할 페이지를 자동적으로 MathJax 라이브러리에 연결시켜주지는 않습니다. MathJax는 언제까지나 자바스크립트 언어로 쓰여진 라이브러리의 일종이기 때문에 이를 사용하고 싶다면 포스팅할 페이지에서 아래와 같은 링크를 입력해주어야합니다.  
 `<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>`  
 > 위의 내용은 입력해도 포스팅에서는 보여지지가 않습니다.
 
   
 본격적으로 사용방법은 참고자료의 예시를 통해 확인하겠습니다.
 
+
 ### example 1 : `$$...$$`
 you can use an inline formula $$\forall x \in R$$ like this one  
-`you can use an inline formula $$\forall x \in R$$ like this one`
+`you can use an inline formula $$\forall x \in R$$ like this one`   
+
 
 ### example 2 : `\\(...\\)` 
 Here is an example MathJax inline rendering \\( 1/x^{2} \\)  
 `Here is an example MathJax inline rendering \\( 1/x^{2} \\)`
 
+
 ### example 3 : `\\[...\\]`
 Here is a block rendering: \\[ \frac{1}{n^{2}} \\]  
 `Here is a block rendering: \\[ \frac{1}{n^{2}} \\]`
 
-$$M = \left( \begin{array}{ccc}x_{11} & x_{12} & \ldots \\x_{21} & x_{22} & \ldots \\\vdots & \vdots & \ldots \\\end{array} \right)$$
 
 ### Reverse Footnote
 [^footnote]: [**참고자료1**](http://themicronaut.github.io/theme-setup/)
