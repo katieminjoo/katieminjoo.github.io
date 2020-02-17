@@ -31,7 +31,9 @@ comments: true
 
 ### Reverse Footnote
 [^footnote]: [**원본**](https://github.com/cotes2020/jekyll-theme-chirpy/)  
-
+`
+[^footnote]: [**원본**](https://github.com/cotes2020/jekyll-theme-chirpy/)  
+`
 
 
 ## image
