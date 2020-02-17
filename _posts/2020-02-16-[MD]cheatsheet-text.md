@@ -55,14 +55,16 @@ Footnote는 마크다운에서 글을 쓰는 순서와 상관없이 항상 글 �
 ```
 [^footnote]: ...
 ```
-> <kbd>:</kbd> 을 빼먹을 때가 많으므로 유의하자.
+> <kbd>:</kbd> 을 빼먹을 때가 많으므로 유의해야합니다.
 
-본 글에서는 각주내용으로 링크를 달았습니다. 링크도 각주와 유사한 방법으로 달 수 있습니다. caret을 없애고, URL을 집어넣은 괄호를 연달아 써주기만 하면 됩니다.
+본 글에서는 각주내용으로 [링크](https://haehwan.github.io/)를 달았습니다. 링크도 각주와 유사한 방법으로 달 수 있습니다. caret을 없애고, URL을 집어넣은 괄호를 연달아 써주기만 하면 됩니다.
 ```
-[**참고글**](https://github.com/cotes2020/jekyll-theme-chirpy/)  
+[**링크**](https://haehwan.github.io/)  
 ```
+이미지로 링크 연결하기.
+[![Desktop View]("/assets/img/sample/[comp]igaworks.png")](https://haehwan.github.io/)
 
-최종적으로 아래의 각주는 다음과 같은 글을 통해 완성할 수 있습니다.
+최종적으로 위에서 만들었던 각주는 다음과 같이 만들었습니다.
 ```
 [^footnote]: [**참고글**](https://github.com/cotes2020/jekyll-theme-chirpy/)
 ```
