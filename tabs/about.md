@@ -2,7 +2,7 @@
 title: About HaeHwan Lee
 ---
 
-Welcome to Jinwon’s git blog!
+Welcome to HaeHwan’s git blog! ![image3](/assets/img/sample/round_avatar72.png)
 
 I would like to introduce myself and share what I have studied through this website.
 
