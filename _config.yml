@@ -29,7 +29,10 @@ social:
     - https://www.linkedin.com/in/hae-hwan-lee-b90aa8166/
 
 google_site_verification: google_meta_tag_verification # change to your verification string
-
+#Google Analytics and Webmaster Tools
+#Google Analytics UA and Webmaster Tool verification tags can be entered under owner in _config.yml.
+#For more information on obtaining these meta tags check Google Webmaster Tools and Bing Webmaster Tools support.
+#(https://support.google.com/webmasters/answer/9008080?hl=en&visit_id=637175212580711126-1161304517&rd=1)
 #--------------------------
 
 # if your site type is Project Pages site, change below value to '/projectname'
