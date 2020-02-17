@@ -23,19 +23,21 @@ comments: true
 
 
 ## footnote
-+ 해당 글의 원본을 각주(footnote[^footnote])처리하였습니다.
++ 해당 글은 각주(footnote[^footnote])의 글을 참고하여 제작되었습니다.
 ```
 [^footnote]
 ```
 
 
-### Reverse Footnote
-[^footnote]: [**원본**](https://github.com/cotes2020/jekyll-theme-chirpy/)  
+### Reverse Footnote & 
+[^footnote]: [**참고글**](https://github.com/cotes2020/jekyll-theme-chirpy/)  
 
 ```
-[^footnote]: [**원본**](https://github.com/cotes2020/jekyll-theme-chirpy/)  
+[^footnote]: [**참고글**](https://github.com/cotes2020/jekyll-theme-chirpy/)  
 ```
 > caret을 없애고, URL을 집어넣은 괄호를 연달아 써준다면, 하이퍼링크 기능을 사용할 수 있습니다.
+
+
 
 ## image
 
