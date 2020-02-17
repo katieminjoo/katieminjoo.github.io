@@ -9,8 +9,8 @@ comments: true
 ---
 
 깃헙 페이지에 때로는 수학식을 표현할 필요가 생깁니다.  
-이번 글에서는 Mathjax을 사용해서 편리하게 수학식을 사용하는 방법에 대해서 알아보겠습니다.  
-참고한 자료는 footnote[^footnote]에 남겨놨습니다.  
+이번 글은 Mathjax을 사용해서 편리하게 수학식을 사용하는 방법을 적었습니다.  
+참고한 자료는 footnote[^footnote] 에 남겨놨습니다.  
 
 ## kramdownn
 대다수 깃헙 페이지는 kramdown 마크다운을 사용하고 있습니다. kramdown은 기본 [math engine](https://kramdown.gettalong.org/converter/html.html#math-support)으로 MathJax를 사용하기 때문에 우리는 MathJax를 통해서 간편하게 수학식을 표현할 수 있습니다. 따라서 만약 여러분이 kramdown을 사용하고있는지, config.yml를 통해서 확인해야합니다. 
@@ -37,3 +37,5 @@ $$
 
 ### Reverse Footnote
 [^footnote][**http://themicronaut.github.io/theme-setup/**](http://themicronaut.github.io/theme-setup/)
+
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>  
