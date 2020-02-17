@@ -32,15 +32,17 @@ comments: true
 
 ## image
 
-![Desktop View]({{ "/assets/img/sample/image.png" | relative_url }})
+![Desktop View]({{ "/assets/img/sample/image.png" | "https://haehwan.github.io/" }})
+
 ```
 ![Desktop View]({{ "/assets/img/sample/image.png" | relative_url }})
 ```
-> 사진을 클릭하면 URL을 타고 이동이 가능하다.
+> 사진을 클릭하면 URL을 타고 이동이 가능하다.  
+
 ```
 ![Desktop View](/assets/img/sample/image.png)
 ```
-> 이미지만 간편히 올릴 수 있다.
+> 이미지만 간편히 올릴 수 있다.  
 
 ## Reverse Footnote
 [^footnote]: [**원본**](https://github.com/cotes2020/jekyll-theme-chirpy/)  
