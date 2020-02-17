@@ -1,5 +1,5 @@
 ---
-title: "[MD] Text and Typography"
+title: "[Md] Text and Typography"
 date: 2020-02-16 17:46:00 +0800
 categories: [Markdown, Tutorial]
 tags: [github pages, markdown, tutorial]
