@@ -50,7 +50,7 @@ google_analytics:
   # superProxy baseURL and URL, only valid when `google_analytics.pv` is set to 'true'
   proxy_baseurl: ''
   proxy_url: ''
-
+#Google Analytics tracking ID (get one here for free: https://marketingplatform.google.com/about/analytics/)
 
 disqus:
   comments: true  # boolean type, the global switch for posts comments.
