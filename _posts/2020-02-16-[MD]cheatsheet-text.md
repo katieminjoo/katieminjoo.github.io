@@ -22,33 +22,39 @@ comments: true
 <kbd>키보드</kbd>에 있는 자판처럼 보이고 싶다면, kbd를 활용하자.
 
 
+## image  
+![Desktop View]({{ "/assets/img/sample/image.png" | "https://haehwan.github.io/" }})  
+```
+![Desktop View]({{ "/assets/img/sample/image.png" | relative_url }})
+```
+```
+![Desktop View](/assets/img/sample/image.png)
+```
+
+
 ## footnote
-+ 해당 글은 각주(footnote[^footnote])의 글을 참고하여 제작되었습니다.
++ 해당 글은 각주(footnote[^footnote])의 글을 참고하여 제작되었습니다.  
+[^footnote]: [**참고글**](https://github.com/cotes2020/jekyll-theme-chirpy/)  
 ```
 [^footnote]
 ```
 
 
-### Reverse Footnote & 
-[^footnote]: [**참고글**](https://github.com/cotes2020/jekyll-theme-chirpy/)  
+### Reverse Footnote & Link
+Footnote는 마크다운에서 글을 쓰는 순서와 상관없이 항상 글 가장 마지막에 주석내용이 등장합니다. 이는 마크다운에서 글을 작성할 때 편의를 위한 것으로 보입니다. 즉 각주를 달고 싶은 내용이 생각나면, 바로 밑에 그 내용을 적더라도 알아서 가장 마지막에 해당 내용이 순서대로 나타나게 됩니다.  
 
+각주에 해당하는 단어를 똑같이 입력해주고 : 뒤에 내용을 적어주면 됩니다.
+`
+[^footnote]: ...
+`
+> <kbd>:</kbd> 을 빼먹을 때가 많으므로 유의하자.
+
+본 글에서는 각주내용으로 링크를 달았습니다. 링크도 각주와 유사한 방법으로 달 수 있습니다. caret을 없애고, URL을 집어넣은 괄호를 연달아 써주기만 하면 됩니다.
 ```
-[^footnote]: [**참고글**](https://github.com/cotes2020/jekyll-theme-chirpy/)  
+[**참고글**](https://github.com/cotes2020/jekyll-theme-chirpy/)  
 ```
-> caret을 없애고, URL을 집어넣은 괄호를 연달아 써준다면, 하이퍼링크 기능을 사용할 수 있습니다.
 
-
-
-## image
-
-![Desktop View]({{ "/assets/img/sample/image.png" | "https://haehwan.github.io/" }})
-
-```
-![Desktop View]({{ "/assets/img/sample/image.png" | relative_url }})
-```
-> 사진을 클릭하면 URL을 타고 이동이 가능하다.  
-
-```
-![Desktop View](/assets/img/sample/image.png)
-```
-> 이미지만 간편히 올릴 수 있다.  
+최종적으로 아래의 각주는 다음과 같은 글을 통해 완성할 수 있습니다.
+`
+[^footnote]: [**참고글**](https://github.com/cotes2020/jekyll-theme-chirpy/)
+`
