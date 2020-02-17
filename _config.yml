@@ -74,9 +74,11 @@ theme_mode: dual
 # boolean type, global switch for ToC in posts.
 toc: true
 
-paginate: 10
+paginate: 5
 
 markdown: kramdown
+mathjax: true
+#mathjax: true <- 수식 기호를 쓸려고 덧붙인 거임.
 
 highlighter: rouge
 
