@@ -11,9 +11,9 @@ comments: true
 
 깃헙 페이지에 때로는 수학식을 표현할 필요가 생깁니다.  
 이번 글은 Mathjax을 사용해서 편리하게 수학식을 사용하는 방법을 적었습니다.  
-참고한 자료는 footnote[^footnote] 에 남겨놨습니다.  
+참고한 자료는 이 곳[^footnote]에 남겨놨습니다.  
 
-## 1. kramdownn
+## 1. kramdown
 대다수 깃헙 페이지는 kramdown 마크다운을 사용합니다. kramdown은 기본 [math engine](https://kramdown.gettalong.org/converter/html.html#math-support)으로 MathJax를 사용하기 때문에 우리는 MathJax를 통해서 간편하게 수학식을 표현할 수 있습니다. 따라서 만약 여러분이 kramdown을 사용하고있는지, config.yml를 통해서 확인해야합니다. 
 
 
@@ -29,19 +29,19 @@ kramdown이 기본적으로 MathJax를 사용하기는 하지만, 포스팅할 �
   
 본격적으로 사용방법은 참고자료의 예시를 통해 확인하겠습니다.
 
-### example 1 : $$...$$
+### example 1 : `$$...$$`
 you can use an inline formula $$\forall x \in R$$ like this one  
 `you can use an inline formula $$\forall x \in R$$ like this one`
 
-### example 2 : \\(...\\) 
+### example 2 : `\\(...\\)` 
 Here is an example MathJax inline rendering \\( 1/x^{2} \\)  
 `Here is an example MathJax inline rendering \\( 1/x^{2} \\)`
 
-### example 3 : \\[...\\]
+### example 3 : `\\[...\\]`
 Here is a block rendering: \\[ \frac{1}{n^{2}} \\]  
 `Here is a block rendering: \\[ \frac{1}{n^{2}} \\]`
 
 $$M = \left( \begin{array}{ccc}x_{11} & x_{12} & \ldots \\x_{21} & x_{22} & \ldots \\\vdots & \vdots & \ldots \\\end{array} \right)$$
 
 ### Reverse Footnote
-[^footnote]: [**http://themicronaut.github.io/theme-setup/**](http://themicronaut.github.io/theme-setup/)
+[^footnote]: [**참고자료1**](http://themicronaut.github.io/theme-setup/)
