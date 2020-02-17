@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "[MD] Adding MathJax to a GitHub Pages"
+title: "[Md] Adding MathJax to a GitHub Pages"
 date: 2020-02-17 15:43:00 +0800
-categories: [Markdown, Mathjax]
+categories: [Markdown, Tutorial]
 tags: [github pages, Mathjax]
 toc : true
 comments: true
