@@ -30,20 +30,22 @@ kramdown이 기본적으로 MathJax를 사용하기는 하지만, 포스팅할 �
 본격적으로 사용방법은 참고자료의 예시를 통해 확인하겠습니다.
 
 
-### example 1 : `$$...$$`
+### example 1 : <kbd>$$...$$</kbd>
 you can use an inline formula $$\forall x \in R$$ like this one  
 `you can use an inline formula $$\forall x \in R$$ like this one`   
 
 
-### example 2 : `\\(...\\)` 
+### example 2 : <kbd>\\(...\\)</kbd>  
 Here is an example MathJax inline rendering \\( 1/x^{2} \\)  
 `Here is an example MathJax inline rendering \\( 1/x^{2} \\)`
 
 
-### example 3 : `\\[...\\]`
+### example 3 : <kbd>\\[...\\]</kbd>  
 Here is a block rendering: \\[ \frac{1}{n^{2}} \\]  
 `Here is a block rendering: \\[ \frac{1}{n^{2}} \\]`
 
-
+  
+    
+    
 ### Reverse Footnote
 [^footnote]: [**참고자료1**](http://themicronaut.github.io/theme-setup/)
