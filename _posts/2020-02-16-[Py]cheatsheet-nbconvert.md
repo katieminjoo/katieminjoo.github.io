@@ -1,5 +1,5 @@
 ---
-title: "[Python] Jupyter to Blogdown"
+title: <i class="fab fa-python"> Jupyter to Blogdown</i>
 date: 2020-02-16 19:36:00 +0800
 categories: [Python, nbconvert]
 tags: [Jupyter, github pages]
