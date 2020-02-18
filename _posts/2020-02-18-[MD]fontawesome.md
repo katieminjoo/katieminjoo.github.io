@@ -46,3 +46,9 @@ layout: post
 title: <i class="fas fa-markdown" title=" Adding icons"></i>
 ...
 ```
+
+
+## 옵션 : 
+[https://fontawesome.com/v4.7.0/examples/](https://fontawesome.com/v4.7.0/examples/)
+크기를 바꾸거나, 고정시키는 경우가 종종 필요할 때가 있습니다.
+위의 링크를 이용해서 활용할 수 있습니다.
