@@ -4,8 +4,10 @@ title: <i class="fab fa-markdown"> Adding icons</i>
 date: 2020-02-18 13:08:00 +0800
 categories: [Markdown, Tutorial]
 tags: [github pages, fontawesome]
-toc : true
+toc: true
 comments: true
+seo:
+  date_modified: 2020-02-18 18:24:09 +0900
 ---
 
 오늘은 fontawesome을 통해서 icon 이미지를 사용하는 방법에 대해 설명하려고 합니다.

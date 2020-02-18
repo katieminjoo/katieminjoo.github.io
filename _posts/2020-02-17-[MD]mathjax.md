@@ -4,8 +4,10 @@ title: <i class="fab fa-markdown"> Adding MathJax to a GitHub Pages</i>
 date: 2020-02-17 15:43:00 +0800
 categories: [Markdown, Tutorial]
 tags: [github pages, Mathjax]
-toc : true
+toc: true
 comments: true
+seo:
+  date_modified: 2020-02-18 15:03:23 +0900
 ---
 <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
 

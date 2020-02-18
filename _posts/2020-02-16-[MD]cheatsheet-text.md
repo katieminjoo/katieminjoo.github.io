@@ -3,8 +3,10 @@ title: <i class="fab fa-markdown"> Text and Typography</i>
 date: 2020-02-16 17:46:00 +0800
 categories: [Markdown, Tutorial]
 tags: [github pages, markdown, tutorial]
-toc : true
+toc: true
 comments: true
+seo:
+  date_modified: 2020-02-18 15:05:14 +0900
 ---
 
 본 글에서는 자주 쓰지만, 쉽게 외워지지 않는 마크다운 사용법들을 적어놨습니다. 많은 분들에게 도움이 되면 좋을 것 같습니다.  
