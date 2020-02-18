@@ -1,5 +1,5 @@
 ---
-title: "[Md] Text and Typography"
+title: <i class="fab fa-markdown"> Text and Typography</i>
 date: 2020-02-16 17:46:00 +0800
 categories: [Markdown, Tutorial]
 tags: [github pages, markdown, tutorial]
