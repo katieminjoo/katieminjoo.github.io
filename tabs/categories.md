@@ -49,7 +49,7 @@ title: Categories
       </span>
 
       <!-- arrow -->
-      <a href="#l_{{ category_name }}" data-toggle="collapse" aria-expanded="true" class="category-trigger hide-border-bottom">
+      <a href="#l_{{ category_name }}" data-toggle="collapse" aria-expanded="false" class="category-trigger hide-border-bottom">
         {% if sub_categories_size > 0%}
         <i class="fas fa-fw fa-angle-down"></i>
         {% else %}
@@ -61,7 +61,7 @@ title: Categories
 
     <!-- Sub-categories -->
     {% if sub_categories_size > 0 %}
-    <div id="l_{{ category_name }}" class="collapse show" aria-expanded="true">
+    <div id="l_{{ category_name }}" class="collapse show" aria-expanded="false">
       <ul class="list-group">
         {% for sub_category in sub_categories %}
         <li class="list-group-item">
