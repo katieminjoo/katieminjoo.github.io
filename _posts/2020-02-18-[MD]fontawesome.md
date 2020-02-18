@@ -1,6 +1,6 @@
 ---
 layout: post
-title: <i class="fas fa-markdown"> Adding icons</i>
+title: <i class="fab fa-markdown"> Adding icons</i>
 date: 2020-02-18 13:08:00 +0800
 categories: [Markdown, Tutorial]
 tags: [github pages, fontawesome]
@@ -36,7 +36,7 @@ fontawesome에는 우리가 상상할 수 있는 거의 모든 icon이 존재합
 
 ## 포스트 제목에 icon 집어넣기
 위와 같이 HTML과 유사한 형식으로 icon을 불러올 수 있다면, 활용을 자유롭게 할 수 있습니다.
-저의 블로그의 사이드바에 나와있는 아이콘들도 위와 같은 방식에 하이퍼링크를 입힌 것입니다.
+블로그 사이드바 밑의 아이콘들도 위와 같은 방식에 하이퍼링크를 입힌 것입니다.
 
 혹은 더 단순하게 글의 제목에도 아이콘을 집어넣을 수 있었습니다.  
 이번 글의 제목은 마크다운의 이미지를 활용해서 제목에 집어넣은 것입니다.
