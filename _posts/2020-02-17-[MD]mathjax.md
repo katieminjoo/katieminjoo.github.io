@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "[Md] Adding MathJax to a GitHub Pages"
+title: <i class="fab fa-markdown"> Adding MathJax to a GitHub Pages</i>
 date: 2020-02-17 15:43:00 +0800
 categories: [Markdown, Tutorial]
 tags: [github pages, Mathjax]
