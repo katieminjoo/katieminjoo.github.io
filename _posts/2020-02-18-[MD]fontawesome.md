@@ -1,12 +1,13 @@
 ---
 layout: post
-title: <li><i class="fab fa-linkedin"></i></li><li>Adding MathJax to a GitHub Pages</li>
+title: <i class="fab fa-markdown">Adding MathJax to a GitHub Pages</i>
 date: 2020-02-18 13:08:00 +0800
 categories: [Markdown, Tutorial]
 tags: [github pages, fontawesome]
 toc : true
 comments: true
 ---
+<a href="http://fontawesome.io/icon/address-book/" target="blank"><img src="img/facebook.png" alt="Facebook"></a>
 
 오늘은 fontawesome에 대해서 설명드리려고 합니다.
 fontawesome은 무료로 icon을 사용할 수 있는 사이트입니다.
