@@ -1,6 +1,6 @@
 ---
 layout: post
-title: <i class="fab fa-markdown" alt = "Adding icons"></i>
+title: <i class="fab fa-markdown" title=" Adding icons"></i>
 date: 2020-02-18 13:08:00 +0800
 categories: [Markdown, Tutorial]
 tags: [github pages, fontawesome]
