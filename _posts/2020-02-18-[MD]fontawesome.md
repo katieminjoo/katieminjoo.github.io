@@ -32,6 +32,7 @@ fontawesome에는 우리가 상상할 수 있는 거의 모든 icon이 존재합
 
 원하는 이미지가 어떤 스타일로 존재하는지 확신이 들지 않을 때는 [fontawesome 홈페이지](https://fontawesome.com/)에서 검색을 통해 확인가능합니다.
 
+![image1](/assets/img/sample/fontawesome.png)
 
 
 ## 포스트 제목에 icon 집어넣기
