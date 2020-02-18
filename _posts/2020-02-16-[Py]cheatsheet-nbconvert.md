@@ -6,7 +6,7 @@ tags: [Jupyter, github pages]
 toc: true
 comments: true
 seo:
-  date_modified: 2020-02-18 15:08:43 +0900
+  date_modified: 2020-02-18 23:36:14 +0900
 ---
 
 깃헙 블로그에는 다양한 방식으로 글을 올릴 수가 있습니다.  

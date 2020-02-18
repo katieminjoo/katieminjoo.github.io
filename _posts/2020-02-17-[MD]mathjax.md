@@ -6,6 +6,8 @@ categories: [Markdown, Tutorial]
 tags: [github pages, Mathjax]
 toc: true
 comments: true
+seo:
+  date_modified: 2020-02-18 23:15:52 +0900
 ---
 <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
 
