@@ -1,7 +1,7 @@
 ---
 title: <i class="fab fa-python"> Jupyter to Blogdown</i>
 date: 2020-02-16 19:36:00 +0800
-categories: [Python, nbconvert]
+categories: [Python, Tutorial]
 tags: [Jupyter, github pages]
 toc: true
 comments: true
