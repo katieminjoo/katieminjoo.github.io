@@ -15,7 +15,7 @@ seo:
 
 
 
-## 1. ipynb -> md
+## 1. ipynb <i class="fas fa-fw fa-angle-right"></i> md
 포스팅하길 희망하는 ipynb 파일과 동일한 위치에 있는 ipynb 파일에서 아래와 같이 작성한다.
 ```python
 !jupyter nbconvert --to markdown USERNAME.ipynb
