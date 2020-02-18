@@ -1,6 +1,6 @@
 ---
 layout: post
-title: <li><i class="fab fa-linkedin"></i> Adding MathJax to a GitHub Pages</li>
+title: <li><i class="fab fa-linkedin"></i></li><li>Adding MathJax to a GitHub Pages</li>
 date: 2020-02-18 13:08:00 +0800
 categories: [Markdown, Tutorial]
 tags: [github pages, fontawesome]
