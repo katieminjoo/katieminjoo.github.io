@@ -8,14 +8,20 @@ toc : true
 comments: true
 ---
 
-오늘은 fontawesome에 대해서 설명드리려고 합니다.
-fontawesome은 무료로 icon을 사용할 수 있는 사이트입니다.
+오늘은 icon 이미지를 사용하는 방법에 대해 설명하려고 합니다.
 HTML에서 간편히 사용할 수 있기 때문에, 마찬가지로 github 블로그에서도 유용히 쓸 수 있습니다.
 
-<div class="grid_5" id="social_icons">
-	<a href="http://fontawesome.io/icon/address-book/" target="blank"><img src="img/facebook.png" alt="Facebook"></a>
-	<a href="http://www.twitter.com/print3dexpert" target="blank"><img src="img/twitter.png" alt="Twitter"></a>
-	<a href="http://pinterest.com/print3dexpert" target="blank"><img src="img/pinterest.png" alt="Pininterest"></a>
-	<a href="#"><img src="img/email.png" title="Click to contact us" alt="Contact us"></a>
+## fontawesome
+fontawesome에는 우리가 상상할 수 있는 거의 모든 icon을 무료로 제공합니다.
+해당 icon을 사용하는 방법은 아래와 같습니다.
+```
+<i class="fab fa-markdown"</i>
+```
 
-  </div>
+이를 통해서 본 블로그도 사이드바에 있는 다양한 아이콘을 생성했습니다.
+
+
+## 제목에 icon 집어넣기
+```
+title: <i class="fab fa-markdown" title=" Adding icons"></i>
+```
