@@ -14,7 +14,10 @@ seo:
 HTML에서 간편히 사용할 수 있기 때문에, github 블로그에서도 유용하게 쓸 수 있습니다.
 
 ## fontawesome
-fontawesome에는 우리가 상상할 수 있는 거의 모든 icon이 존재합니다. 무료로 Solid와 Brands 스타일을 사용할 수 있기 때문에 매우 유용합니다. 사용법은 아래와 같습니다.
+fontawesome에는 우리가 상상할 수 있는 거의 모든 icon이 존재합니다. 또한 무료로 Solid와 Brands 스타일을 사용할 수 있기 때문에 매우 유용합니다.  
+
+[fontawesome 홈페이지](https://fontawesome.com/)에서 검색을 통해 원하시는 아이콘을 선택한 후, HTML을 복사해오는 방법이 제일 편리합니다.  
+
 
 <i class="fab fa-google"></i>
 <i class="fab fa-facebook"></i>
@@ -32,14 +35,12 @@ fontawesome에는 우리가 상상할 수 있는 거의 모든 icon이 존재합
 ```
 > solid style : 기타 대다수 아이콘들을 제공합니다.  
 
-그러나 위의 사용법이 확실하지 않을 때도 더러 있습니다. [fontawesome 홈페이지](https://fontawesome.com/)에서 검색을 통해 원하시는 아이콘을 선택한 후, <kbd>Start Using This Icon</kbd>을 클릭해주는게 제일 확실합니다.  
-
 ![image1](/assets/img/sample/fontawesome.PNG)
 
 
 ## 포스트 제목에 icon 집어넣기
-위와 같이 HTML과 유사한 형식으로 icon을 불러올 수 있다면, 활용을 자유롭게 할 수 있습니다.
-블로그 사이드바 밑의 아이콘들도 위와 같은 방식에 하이퍼링크를 입힌 것입니다.
+아이콘을 HTML꼴로 불러올 수 있기 때문에 활용할 수 있는 방법이 다양합니다.  
+제 블로그 사이드바에 있는 하단 아이콘들도 위와 같은 방식에 하이퍼링크를 더한 것입니다.
 
 혹은 더 단순하게 글의 제목에도 아이콘을 집어넣을 수 있었습니다.  
 이번 글의 제목은 마크다운의 이미지를 활용해서 제목에 집어넣은 것입니다.
