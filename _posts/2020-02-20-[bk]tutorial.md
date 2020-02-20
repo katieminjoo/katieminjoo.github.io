@@ -1,6 +1,6 @@
 ---
 layout: post
-title: <i class="fas fa-chart-pie"> Bokeh Pie chart</i>
+title: <i class="fab fa-medapps"> Bokeh Pie chart</i>
 date: 2020-02-20 20:12:00 +0800
 categories: [Python, Visualization]
 tags: [Bohek]
@@ -12,9 +12,6 @@ comments: true
 이번 글에서는 Python 라이브러리 중 하나로, 인터렉티브한 시각화 제작에 유리한 Bokeh를 소개하려 합니다.
 
 ## pie chart
-
-
-
 ```python
 from math import pi
 import pandas as pd
@@ -26,7 +23,6 @@ from bokeh.transform import cumsum
 from bokeh.io import output_notebook, show
 output_notebook()
 ```
-
 
 ```html
     <div class="bk-root">
