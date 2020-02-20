@@ -2,7 +2,7 @@
 layout: post
 title: <i class="far fa-chart-pie"> Bokeh Tutorial</i>
 date: 2020-02-20 20:12:00 +0800
-categories: [Python, Visulaization]
+categories: [Python, Visualization]
 tags: [Bohek]
 toc: true
 comments: true
