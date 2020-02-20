@@ -1,6 +1,6 @@
 ---
 layout: post
-title: <i class="fab fa-medapps"> Bokeh Pie chart</i>
+title: <i class="fab fa-medapps"> [Bokeh] Pie chart</i>
 date: 2020-02-20 20:12:00 +0800
 categories: [Python, Visualization]
 tags: [Bohek]
@@ -11,7 +11,7 @@ comments: true
 훌륭한 시각화는 자신의 분석내용을 전달하기 위한 가장 효과적인 방법 중 하나입니다.  
 Bokeh는 Python 라이브러리 중 하나로, 인터렉티브한 시각화 제작에 탁월합니다.  
 Bokeh의 기본 기능을 소개하는 한편, 앞으로 Bokeh를 바탕으로 제작한 프로젝트를 소개하고자 합니다.  
-이번 글에서는 그 중 가장 기본적인 pie chart 그리는 법을 소개합니다.  
+이번 글에서는 그 중 가장 기본적인 pie chart에 관한 글입니다.  
 
 ## pie chart
 ```python
