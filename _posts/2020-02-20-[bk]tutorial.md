@@ -1,6 +1,6 @@
 ---
 layout: post
-title: <i class="fa fa-bar-chart" aria-hidden="true"> Bokeh 입문</i>
+title: <i class="fas fa-bar-chart" aria-hidden="true"> Bokeh 입문</i>
 date: 2020-02-20 19:26:00 +0800
 categories: [Python, Visulaization]
 tags: [Bohek]
