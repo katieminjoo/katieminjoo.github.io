@@ -32,7 +32,7 @@ fontawesome에는 우리가 상상할 수 있는 거의 모든 icon이 존재합
 ```
 > solid style : 기타 대다수 아이콘들을 제공합니다.  
 
-원하는 이미지가 어떤 스타일로 존재하는지 확신이 들지 않을 때는 [fontawesome 홈페이지](https://fontawesome.com/)에서 검색을 통해 확인가능합니다.
+그러나 위의 사용법이 확실하지 않을 때도 더러 있습니다. [fontawesome 홈페이지](https://fontawesome.com/)에서 검색을 통해 원하시는 아이콘을 선택한 후, <kbd>Start Using This Icon</kbd>을 클릭해주는게 제일 확실합니다.  
 
 ![image1](/assets/img/sample/fontawesome.PNG)
 
