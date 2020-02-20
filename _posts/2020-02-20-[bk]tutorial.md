@@ -8,8 +8,10 @@ toc: true
 comments: true
 ---
 
-훌륭한 시각화는 자신의 분석내용을 다른 사람에게 전달하는 가장 효과적인 방법 중 하나입니다.  
-이번 글에서는 Python 라이브러리 중 하나로, 인터렉티브한 시각화 제작에 유리한 Bokeh를 소개하려 합니다.
+훌륭한 시각화는 자신의 분석내용을 전달하기 위한 가장 효과적인 방법 중 하나입니다.  
+Bokeh는 Python 라이브러리 중 하나로, 인터렉티브한 시각화 제작에 탁월합니다.  
+Bokeh의 기본 기능을 소개하는 한편, 앞으로 Bokeh를 바탕으로 제작한 프로젝트를 소개하고자 합니다.  
+이번 글에서는 그 중 가장 기본적인 pie chart 그리는 법을 소개합니다.  
 
 ## pie chart
 ```python
@@ -28,6 +30,9 @@ output_notebook()
     <a href="https://bokeh.pydata.org" target="_blank" class="bk-logo bk-logo-small bk-logo-notebook"></a>
     <span id="1001">Loading BokehJS ...</span>
 </div>
+
+***  
+  
 
 ```python
 x = { 'United States': 157, 'United Kingdom': 93, 'Japan': 89, 'China': 63,
@@ -158,10 +163,10 @@ data
     </tr>
   </tbody>
 </table>
-</div>
+</div>  
 
-
-
+***  
+  
 
 ```python
 p = figure(plot_height=350, title="Pie Chart", toolbar_location=None,
