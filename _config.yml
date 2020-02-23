@@ -1,7 +1,3 @@
-# The Site Settings
-# v2.0
-#--------------------------
-
 title: Haehwan Lee
 
 tagline: Statistics, Data Science
@@ -191,5 +187,3 @@ sitemap_exclude:  # Sitemap will exclude the following items.
     - sitemap.xml
     - robots.txt
     - redirects.json
-
-theme: jekyll-theme-dinky
