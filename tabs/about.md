@@ -2,7 +2,7 @@
 title: About HaeHwan Lee (in preparation)
 ---
 
-![image3](/assets/img/sample/avatar.png)
+![image3](/assets/img/sample/avatar.jpg)
 
 I would like to introduce myself and share what I have studied through this website.
 
