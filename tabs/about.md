@@ -21,6 +21,7 @@ My specialty has grown up with learning and applying statistical methodologies t
 ## Education
 + Yonsei University
 > Bachelor of Arts in Economics and Applied Statistics / ~ Present
+> Data Science Lab (2019~Present)
 
 
 ## Awards
