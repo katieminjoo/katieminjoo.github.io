@@ -73,6 +73,9 @@ Footnote는 마크다운에서 글을 쓰는 순서와 상관없이 항상 글 �
 > <kbd>:</kbd> 을 빼먹을 때가 많으므로 유의해야합니다.
 
 본 글에서는 각주내용에 링크와 bold체를 추가했습니다.  
+
 ```
 [^caret]: [**caret**](https://en.wikipedia.org/wiki/Caret)이란?
 ```
+  
+***
