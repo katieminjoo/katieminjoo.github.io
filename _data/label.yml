@@ -1,10 +1,10 @@
 tabs:
   - { name: "Home", icon: 'fas fa-home' }
   - { name: "Categories", path: tabs, url: categories, icon: 'fas fa-stream' }
-  - { name: "Projects", path: 'https://medicalproject1.github.io/beta/', icon: 'far fa-sticky-note' }
+  - { name: "Projects", path: tabs, url: projects, icon: 'far fa-sticky-note' }
   - { name: "Archives", path: tabs, url: archives, icon: 'fas fa-archive'}
-  - { name: "Tags", path: tabs, url: tags, icon: 'fas fa-tags' }
   - { name: "About", path: tabs, url: about, icon: 'fas fa-info'}
+  - { name: "      Tags", path: tabs, url: tags}
 
 panel:
   lastmod: "Recent Update"
