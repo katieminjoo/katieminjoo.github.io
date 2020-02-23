@@ -4,7 +4,6 @@ tabs:
   - { name: "Projects", path: tabs, url: projects, icon: 'far fa-sticky-note' }
   - { name: "Archives", path: tabs, url: archives, icon: 'fas fa-archive'}
   - { name: "About", path: tabs, url: about, icon: 'fas fa-info'}
-  - { name: "      Tags", path: tabs, url: tags}
 
 panel:
   lastmod: "Recent Update"
