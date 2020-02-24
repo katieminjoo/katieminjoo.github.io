@@ -171,10 +171,11 @@ sklearn에서 제공하는 `OneHotEncoder`는 위에서 설명한 `get_dummies()
 
 그럼에도 불구하고 OneHotEncoder는 get_dummies()가 갖지 못한 커다란 장점이 있습니다. 바로 <b>새로운 데이터에도 적용할 수 있다</b>는 사실입니다. 이는 함수가 가지고 있는 `handle_unknown` 기능 때문에 가능합니다. 앞의 겟더미는 전혀 새로운 데이터셋을 만나면 ordering뿐만 아니라, 컬럼 갯수까지 달라집니다. 따라서 이는 input 데이터가 일정해야하는 모델에서 큰 에러를 만들어냅니다. 반면 OneHotEncoder는 instance에 자신이 더미화를 한 명목형 변수의 값들을 기억하기 때문에 새로운 데이터셋을 만나더라도 이를 사용하여 처리할 수 있습니다. 따라서 새로운 값을 만나면 다음의 두 가지 방식 중 하나로 처리를 할 수 있으며 결국 전체 column의 갯수에는 변화가 없으며 ordering 순서도 유지할 수 있습니다.  
 
-> 1. handle_unknown = ‘ignore’
-> 2. handle_unknown = ‘error’
+> 1. handle_unknown = ‘error’  
+> 2. handle_unknown = ‘ignore’
 
-첫 번째 방식은 새로운 변수값을 마주할 때, 모두 0으로 처리를 하게끔 만듭니다. 반면 두 번째 방식은 error를 반환합니다.(만약 `inverse_tranform` 방법을 사용한다면 이 때에는 `None`값을 반환합니다.) 두 방식의 자세한 사용법은 저의 <b>[깃헙](https://github.com/HaeHwan/HaeHwan.github.io/blob/master/_posts/%5BEncoding%5D%20OHE/3.%20OneHotEncoding%20-%20handle_unknown.ipynb)</b>을 참고하시길 바랍니다.  
+
+첫 번째 방식은 새로운 변수값을 마주할 때 error를 반환합니다. 반면 두 번째 방식은 모두 0으로 처리를 하게끔 만듭니다. 이 경우에 `inverse_tranform` 방법을 쓰면 새로운 값들에 해당하는 0으로 이루어진 array는 `None`값을 반환합니다. 두 방식의 자세한 사용법은 저의 <b>[깃헙](https://github.com/HaeHwan/HaeHwan.github.io/blob/master/_posts/%5BEncoding%5D%20OHE/3.%20OneHotEncoding%20-%20handle_unknown.ipynb)</b>을 참고하시길 바랍니다.  
 
 ## 다중공선성 문제 해결
 마지막으로 다중공선성 문제를 짚고 넘어가야합니다. 겟더미를 해주든, OneHotEncoder를 해주든 두 방식 모두 변수가 포함하는 n개의 값만큼의 컬럼을 만들어냅니다. 문제는 이렇게 될 경우 모든 변수의 합이 언제나 1이 되기 때문에 다중공선성 문제를 일으킵니다. 다중공선성은 선형모델에서도 큰 문제일 뿐 아니라 머신러닝에서도 실제 참값을 찾아내는데 걸림돌이 됩니다. 자세한 내용은 따로 다루도록 하겠습니다.  
