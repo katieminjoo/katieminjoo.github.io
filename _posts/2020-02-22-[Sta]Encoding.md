@@ -25,14 +25,14 @@ One Hot Encoding은 범주형 자료를 0과 1로 이루어진 벡터로 바꾸�
 > 1. 범주 간 간격이 '비교적' 일정하다.  
 > 2. 그렇지 못한 경우.  
 
-만약 ordianl data의 범주 사이 간격이 일정하거나 그 차이를 어느 정도 알 수 있다면, 우리는 `sklearn.preprocessing.OrdinalEncoder`을 사용할 수 있습니다. 다음 포스팅에 더 자세히 다루겠지만, 그 상하 순서를 살려서 숫자로 변환하는 것을 의미합니다. 그러나 <b>그 간격을 알지 못하거나 확신할 수 없는 경우</b>가 많습니다. 예를 들어 low/ middle/ high는 0, 1, 2도 해당하지만, 0, 1, 100도 해당합니다. 만약 실제 응답자의 middle과 high 간격이 매우 컸다면, `sklearn.preprocessing.OrdinalEncoder`을 사용한 모델의 성능은 좋지 않을 수 밖에 없습니다. 이 때에는 아무리 순서 상의 상하 관계가 존재한다고 하여도 단순한 nominal한 범주형 자료로 봐주고 `OneHotEncoder`나 `get_dummies` 인코딩을 하는 편이 안전합니다. 물론 이렇게 하면 데이터가 담고 있는 관계성을 잃어버릴지라도 말입니다.   
+만약 ordianl data의 범주 사이 간격이 일정하거나 그 차이를 어느 정도 알 수 있다면, 우리는 `sklearn.preprocessing.OrdinalEncoder`을 사용할 수 있습니다. 다음 포스팅에 더 자세히 다루겠지만, 그 상하 순서를 살려서 숫자로 변환하는 것을 의미합니다. 그러나 <b>그 간격을 알지 못하거나 확신할 수 없는 경우</b>가 많습니다. 예를 들어 low/ middle/ high는 0, 1, 2도 해당하지만, 0, 1, 100도 해당합니다. 만약 실제 응답자의 middle과 high 간격이 매우 컸다면, `OrdinalEncoder`을 사용한 모델의 성능은 좋지 않을 수 밖에 없습니다. 이 때에는 아무리 순서 상의 상하 관계가 존재한다고 하여도 단순한 nominal한 범주형 자료로 봐주고 `OneHotEncoder`나 `get_dummies` 인코딩을 하는 편이 안전합니다. 물론 이렇게 하면 데이터가 담고 있는 관계성을 잃어버릴지라도 말입니다.   
 
 나머지 데이터의 종류에 관해서는 <b>[읽을 거리](https://towardsdatascience.com/7-data-types-a-better-way-to-think-about-data-types-for-machine-learning-939fae99a689)</b>로 대체하겠습니다. interval, ratio 등의 분류는 매우 중요하니 꼭 읽어보실 것을 추천드립니다.    
 
 ***  
   
 ## 1. get_dummies()
-`get_dummies()`는 pandas의 내장함수이니만큼 pandas의 Series나 DataFrame 등에서 사용하기 편리합니다. 특히 `sklearn.preprocessing.OneHotEncoder`가 instance라는 개념을 사용하기 때문에 처음 사용하기 어려운 반면, `get_dummies()`는 즉각적으로 값을 변환하여 주기 때문에 직관적으로 다가옵니다.
+`get_dummies()`는 pandas의 내장함수이니만큼 pandas의 Series나 DataFrame 등에서 사용하기 편리합니다. 특히 `OneHotEncoder`가 instance라는 개념을 사용하기 때문에 처음 사용하기 어려운 반면, `get_dummies()`는 즉각적으로 값을 변환하여 주기 때문에 직관적으로 다가옵니다.
 
 <div>
 <style scoped>
