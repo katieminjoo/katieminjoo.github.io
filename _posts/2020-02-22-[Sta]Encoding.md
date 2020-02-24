@@ -13,7 +13,7 @@ comments: true
 그러나 이는 생각만큼 단순한 일이 아닙니다. One-Hot-Encoding/ Ordinal-Encoding/ Label Encoding/ Target-Encoding... 등 종류도 <b>[다양](http://contrib.scikit-learn.org/categorical-encoding/index.html)</b>할 뿐더러, 비슷한 인코딩도 library에 따라 크고작은 차이가 있습니다. 인코딩 특집 글에서는 여러 인코딩 기법 중 자주 쓰이고, 중요한 방식들에 대해서 포스팅하겠습니다.  
   
   
-## One Hot Encoding
+# One Hot Encoding
 One Hot Encoding은 범주형 자료를 0과 1로 이루어진 벡터로 바꾸는  가장 기본적이고 널리 쓰이는 방식입니다. <b>scikit-learn</b>에서는 이를 위해 `sklearn.preprocessing.OneHotEncoder`를 제공합니다. 유사한 기능을 python의 내장함수, `get_dummies()`도 제공하기 때문에 `더미화`라고도 많이 부릅니다. 두 방식은 매우 흡사하지만 쓰임에 따라 장단점이 명확합니다. 오늘 글에서는 범주형 자료를 수치형으로 변환하는 두 방식의 차이와 더불어, 실제 자료에 이를 적용해보는 것으로 이번 글을 마치겠습니다.  
   
 
@@ -25,7 +25,7 @@ One Hot Encoding은 범주형 자료를 0과 1로 이루어진 벡터로 바꾸�
 > 1. 범주 간 간격이 '비교적' 일정하다.  
 > 2. 그렇지 못한 경우.  
 
-만약 ordianl data의 범주 사이 간격이 일정하거나 그 차이를 어느 정도 알 수 있다면, 우리는 `sklearn.preprocessing.OrdinalEncoder`을 사용할 수 있습니다. 다음 포스팅에 더 자세히 다루겠지만, 그 상하 순서를 살려서 숫자로 변환하는 것을 의미합니다. 그러나 <b>그 간격을 알지 못하거나 확신할 수 없는 경우</b>가 많습니다. 예를 들어 low/ middle/ high는 0, 1, 2도 해당하지만, 0, 1, 100도 해당합니다. 만약 실제 응답자의 middle과 high 간격이 매우 컸다면, `OrdinalEncoder`을 사용한 모델의 성능은 좋지 않을 수 밖에 없습니다. 이 때에는 아무리 순서 상의 상하 관계가 존재한다고 하여도 단순한 nominal한 범주형 자료로 봐주고 `OneHotEncoder`나 `get_dummies` 인코딩을 하는 편이 안전합니다. 물론 이렇게 하면 데이터가 담고 있는 관계성을 잃어버릴지라도 말입니다.   
+만약 ordianl data의 범주 사이 간격이 일정하거나 그 차이를 어느 정도 알 수 있다면, 우리는 `OrdinalEncoder`을 사용할 수 있습니다. 다음 포스팅에 더 자세히 다루겠지만, 그 상하 순서를 살려서 숫자로 변환하는 것을 의미합니다. 그러나 <b>그 간격을 알지 못하거나 확신할 수 없는 경우</b>가 많습니다. 예를 들어 low/ middle/ high는 0, 1, 2도 해당하지만, 0, 1, 100도 해당합니다. 만약 실제 응답자의 middle과 high 간격이 매우 컸다면, `OrdinalEncoder`을 사용한 모델의 성능은 좋지 않을 수 밖에 없습니다. 이 때에는 아무리 순서 상의 상하 관계가 존재한다고 하여도 단순한 nominal한 범주형 자료로 봐주고 `OneHotEncoder`나 `get_dummies` 인코딩을 하는 편이 안전합니다. 물론 이렇게 하면 데이터가 담고 있는 관계성을 잃어버릴지라도 말입니다.   
 
 나머지 데이터의 종류에 관해서는 <b>[읽을 거리](https://towardsdatascience.com/7-data-types-a-better-way-to-think-about-data-types-for-machine-learning-939fae99a689)</b>로 대체하겠습니다. interval, ratio 등의 분류는 매우 중요하니 꼭 읽어보실 것을 추천드립니다.    
 
@@ -172,7 +172,7 @@ sklearn에서 제공하는 `OneHotEncoder`는 위에서 설명한 `get_dummies()
 > 1. handle_unknown = ‘ignore’
 > 2. handle_unknown = ‘error’
 
-첫 번째 방식은 새로운 변수값을 마주할 때, 모두 0으로 처리를 하게끔 만듭니다. 반면 두 번째 방식은, None 값으로 처리를 합니다. 두 방식의 자세한 사용법은 저의 <b[깃헙]()</b>에 올려놨습니다.  
+첫 번째 방식은 새로운 변수값을 마주할 때, 모두 0으로 처리를 하게끔 만듭니다. 반면 두 번째 방식은, None 값으로 처리를 합니다. 두 방식의 자세한 사용법은 저의 <b>[깃헙]()</b>에 올려놨습니다.  
 
 ## 다중공선성 문제 해결
 마지막으로 다중공선성 문제를 짚고 넘어가야합니다. 겟더미를 해주든, OneHotEncoder를 해주든 두 방식 모두 변수가 포함하는 n개의 값만큼의 컬럼을 만들어냅니다. 문제는 이렇게 될 경우 모든 변수의 합이 언제나 1이 되기 때문에 다중공선성 문제를 일으킵니다. 다중공선성은 선형모델에서도 큰 문제일 뿐 아니라 머신러닝에서도 실제 참값을 찾아내는데 걸림돌이 됩니다. 자세한 내용은 따로 다루도록 하겠습니다.  
