@@ -18,14 +18,16 @@ One Hot Encoding은 범주형 자료를 0과 1로 이루어진 벡터로 바꾸�
   
 
 ## nominal VS ordinal
-들어가기에 앞서, 저는 앞에서 범주형 자료(categorical data)에 대한 구체적인 정의를 하지 않았습니다. 그러나 데이터는 범주형과 수치형으로만 구분하지 않습니다. 여러 기준이 존재하며 각 성질에 따라 적용해야하는 인코딩 기법 또한 달라지게 됩니다. 특히 오늘 다룰 one hot encoding을 위해서는 <b>ordinal data</b>에서 유의해야합니다. ordinal data는 범주형 자료의 일부분으로 <b>순서</b>가 존재하는 데이터를 가리킵니다. 가장 대표적인 예시가 사회학에서 응답자의 상태를 하나의 축 위의 4개 또는 5개 점으로 찍어서 표현하는 리커트 척도(Likert scale)가 있습니다. 이러한 ordinal data는 다음의 두 가지로 나누어 생각해볼 수 있습니다.  
+들어가기에 앞서, 저는 앞에서 범주형 자료(categorical data)에 대한 구체적인 정의를 하지 않았습니다. 그러나 데이터는 범주형과 수치형으로만 구분하지 않습니다. 여러 기준이 존재하며 각 성질에 따라 적용해야하는 인코딩 기법 또한 달라지게 됩니다. 특히 오늘 다룰 one hot encoding은 전적으로 nominal data에 관한 인코딩 기법입니다. 따라서 같은 범주형 자료일지라도 <b>순서가 존재하는 ordinal 데이터</b>와 구분할 수 있어야 합니다. 가장 대표적인 예시가 사회학에서 응답자의 상태를 하나의 축 위의 4개 또는 5개 점으로 찍어서 표현하는 리커트 척도(Likert scale)가 있습니다. 실제로 scikit-learn에서는 이러한 ordinal data를 위해서 `sklearn.preprocessing.OrdinalEncoder`를 제공합니다. 그러나 모든 ordinal data가 OrdinalEncoder를 쓰기 적절한 것은 아닙니다.  
 
-> 1. 간격이 일정하다.  
-> 2. 간격이 일정치 않다.  
+조금 더 구체적으로 살펴보겠습니다. 같은 ordinal data라도 아래와 같은 두 가지 경우가 있습니다. 
 
-만약 ordianl data의 범주 사이의 간격이 일정하다면 우리는 이를 그대로 굳이 0과 1의 벡터로 변환하지 않는 것이 좋습니다. 만약 low/ middle/ high와 같이 문자로 되어있는 경우에는 적당히 숫자로 바꿔준 다음에 정규화 과정 등을 거치면 큰 무리없이 사용할 수 있습니다. 문제는 간격이 일정하다고 확신할 수 없는 경우입니다. 이 때에는 아무리 순서 상의 상하 관계가 존재한다고 하여도 단순한 범주형 자료로 봐주고 인코딩을 하는 편이 안전합니다. 물론 이렇게 하면 데이터가 담고 있는 관계성을 잃어버리긴 합니다. 예를 들어 low/ middle/ high는 1, 2, 3도 해당하지만, 1, 2, 100도 해당합니다. 따라서 확실치 않은 경우 임의의 숫자로 변환해서 사용하면 모델 성능에 부정적 영향을 끼치기 쉽습니다.  
+> 1. 범주 간 간격이 '비교적' 일정하다.  
+> 2. 그렇지 못한 경우.  
 
-나머지 데이터의 종류에 관해서는 <b>[읽을 거리](https://towardsdatascience.com/7-data-types-a-better-way-to-think-about-data-types-for-machine-learning-939fae99a689)</b>로 대체하겠습니다.  
+만약 ordianl data의 범주 사이 간격이 일정하거나 그 차이를 어느 정도 알 수 있다면, 우리는 `sklearn.preprocessing.OrdinalEncoder`을 사용할 수 있습니다. 다음 포스팅에 더 자세히 다루겠지만, 그 상하 순서를 살려서 숫자로 변환하는 것을 의미합니다. 그러나 <b>그 간격을 알지 못하거나 확신할 수 없는 경우</b>가 많습니다. 예를 들어 low/ middle/ high는 0, 1, 2도 해당하지만, 0, 1, 100도 해당합니다. 만약 실제 응답자의 middle과 high 간격이 매우 컸다면, `sklearn.preprocessing.OrdinalEncoder`을 사용한 모델의 성능은 좋지 않을 수 밖에 없습니다. 이 때에는 아무리 순서 상의 상하 관계가 존재한다고 하여도 단순한 nominal한 범주형 자료로 봐주고 `OneHotEncoder`나 `get_dummies` 인코딩을 하는 편이 안전합니다. 물론 이렇게 하면 데이터가 담고 있는 관계성을 잃어버릴지라도 말입니다.   
+
+나머지 데이터의 종류에 관해서는 <b>[읽을 거리](https://towardsdatascience.com/7-data-types-a-better-way-to-think-about-data-types-for-machine-learning-939fae99a689)</b>로 대체하겠습니다. interval, ratio 등의 분류는 매우 중요하니 꼭 읽어보실 것을 추천드립니다.    
 
 ***  
   
