@@ -3,7 +3,7 @@ layout: post
 title: <i class="far fa-chart-bar"> [Encoding] 1. One Hot Encoding</i>
 date: 2020-02-22 22:28:00 +0800
 categories: [Statistics, Encoding]
-tags: [label encoding]
+tags: [One Hot Encoding]
 toc: true
 comments: true
 ---
