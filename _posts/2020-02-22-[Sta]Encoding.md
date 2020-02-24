@@ -162,7 +162,9 @@ dummy
 </div>  
   
   
-보다시피, Wealth라는 수치형 변수는 그대로 나오지만 범주형 변수에 해당하는 다른 column들은 모두 범주 갯수에 해당하는 자릿수만큼 추가적인 column이 생기고, 각 해당되는 값에 1이 찍힘을 알 수 있습니다. 주의해야할 것은 이는 pandas가 신출귀몰한 재주로 주어진 자료에서 범주형 데이터를 골라낼 수 있기 때문이 아니라 `isinstance()`라는 함수를 활용해서 <b>string일 때에 모두 더미화</b>를 시키기 때문입니다.[^isinstance] 따라서 주어진 수치형 자료가 string 형태로 들어가있지 않도록 주의해야합니다. 더불어 missing_value가 있거나, None 값이 존재하는 경우에도 `get_dummies()`는 문제가 생길 수 있습니다. 자세한 내용은 <b>[깃헙](https://github.com/HaeHwan/HaeHwan.github.io/blob/master/_posts/%5BEncoding%5D%20OHE/1.%20get_dummies%20%EB%AC%B8%EC%A0%9C%EC%A0%90.ipynb)</b>에 올려놨습니다.
+보다시피, Wealth라는 수치형 변수는 그대로 나오지만 범주형 변수에 해당하는 다른 column들은 모두 범주 갯수에 해당하는 자릿수만큼 추가적인 column이 생기고, 각 해당되는 값에 1이 찍힘을 알 수 있습니다. 주의해야할 것은 이는 pandas가 신출귀몰한 재주로 주어진 자료에서 범주형 데이터를 골라낼 수 있기 때문이 아니라 `isinstance()`라는 함수를 활용해서 <b>string일 때에 모두 더미화</b>를 시키기 때문입니다.[^isinstance] 따라서 주어진 수치형 자료가 string 형태로 들어가있지 않도록 주의해야합니다. 더불어 missing_value가 있거나, None 값이 존재하는 경우에도 `get_dummies()`는 문제가 생길 수 있습니다. 자세한 내용은 <b>[깃헙](https://github.com/HaeHwan/HaeHwan.github.io/blob/master/_posts/%5BEncoding%5D%20OHE/1.%20get_dummies%20%EB%AC%B8%EC%A0%9C%EC%A0%90.ipynb)</b>에 올려놨습니다.  
+
+[^isinstance]: https://docs.python.org/3/library/functions.html#isinstance
 
 ## sklearn.preprocessing.OneHotEncoder
 sklearn에서 제공하는 `OneHotEncoder`는 위에서 설명한 `get_dummies()`에 비해 매우 복잡하게 느껴지는 것은 사실입니다. 특히 익숙한 dataframe에 즉각적으로 표현이 잘 되지 않기 때문에 더욱 그렇습니다. 그러나 방법이 완전히 없는 것은 아닙니다. `fit_transform`과 array를 `reshape`하면 sklearn의 `OneHotEncoder`를 사용해서도 dataframe에 바로 표현이 가능합니다. 자세한 내용은 제 <b>[깃헙](https://github.com/HaeHwan/HaeHwan.github.io/blob/master/_posts/%5BEncoding%5D%20OHE/2.%20OneHotEncoder%EB%A5%BC%20%EC%9D%B4%EC%9A%A9%ED%95%B4%EC%84%9C%20pandas%20dataframe%EC%9D%84%20%EB%B0%94%EA%BF%94%EB%B3%B4%EA%B8%B0.ipynb)</b>에 올려놨습니다.  
@@ -172,7 +174,7 @@ sklearn에서 제공하는 `OneHotEncoder`는 위에서 설명한 `get_dummies()
 > 1. handle_unknown = ‘ignore’
 > 2. handle_unknown = ‘error’
 
-첫 번째 방식은 새로운 변수값을 마주할 때, 모두 0으로 처리를 하게끔 만듭니다. 반면 두 번째 방식은, error를 반환합니다.(만약 `inverse_tranform` 방법을 사용한다면 이 때에는 `None`값을 반환합니다.) 두 방식의 자세한 사용법은 저의 <b>[깃헙](https://github.com/HaeHwan/HaeHwan.github.io/blob/master/_posts/%5BEncoding%5D%20OHE/3.%20OneHotEncoding%20-%20handle_unknown.ipynb)</b>을 참고하시면 됩니다.  
+첫 번째 방식은 새로운 변수값을 마주할 때, 모두 0으로 처리를 하게끔 만듭니다. 반면 두 번째 방식은 error를 반환합니다.(만약 `inverse_tranform` 방법을 사용한다면 이 때에는 `None`값을 반환합니다.) 두 방식의 자세한 사용법은 저의 <b>[깃헙](https://github.com/HaeHwan/HaeHwan.github.io/blob/master/_posts/%5BEncoding%5D%20OHE/3.%20OneHotEncoding%20-%20handle_unknown.ipynb)</b>을 참고하시길 바랍니다.  
 
 ## 다중공선성 문제 해결
 마지막으로 다중공선성 문제를 짚고 넘어가야합니다. 겟더미를 해주든, OneHotEncoder를 해주든 두 방식 모두 변수가 포함하는 n개의 값만큼의 컬럼을 만들어냅니다. 문제는 이렇게 될 경우 모든 변수의 합이 언제나 1이 되기 때문에 다중공선성 문제를 일으킵니다. 다중공선성은 선형모델에서도 큰 문제일 뿐 아니라 머신러닝에서도 실제 참값을 찾아내는데 걸림돌이 됩니다. 자세한 내용은 따로 다루도록 하겠습니다.  
