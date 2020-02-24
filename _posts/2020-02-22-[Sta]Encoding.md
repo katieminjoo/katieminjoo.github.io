@@ -8,14 +8,17 @@ toc: true
 comments: true
 ---
 
-데이터를 처리하다보면 범주형 자료와 자주 마주칩니다. 다양한 목적과 자료의 특징에 맞추어 올바르게 인코딩한 범주형 자료는 모델의 퍼포먼스와 효율에 상당한 영향을 끼칩니다. 그러나 인코딩이 생각만큼 단순한 일이 아닙니다. get_dummies/ One-Hot-Encoding/ Ordinal-Encoding/ Label Encoding/ Target-Encoding... 등 정말 [다양한](http://contrib.scikit-learn.org/categorical-encoding/index.html) 인코딩 방법이 존재합니다. 앞으로 인코딩 특집 글에서는 여러 인코딩 기법 중에 가장 자주 쓰이고, 중요한 인코딩 방식들에 대해서 포스팅하겠습니다. 
+데이터를 처리하다보면 범주형 자료를 자주 마주합니다. 그리고 다양한 목적과 자료의 특징에 맞추어 올바르게 인코딩한 범주형 자료는 모델의 퍼포먼스와 효율에 상당한 영향을 끼칩니다. 그러나 인코딩은 생각만큼 단순한 일이 아닙니다. get_dummies/ One-Hot-Encoding/ Ordinal-Encoding/ Label Encoding/ Target-Encoding... 등 종류도 <b>[다양](http://contrib.scikit-learn.org/categorical-encoding/index.html)</b>할 뿐더러, 비슷한 인코딩도 library에 따라 크고작은 차이가 있습니다. 인코딩 특집 글에서는 여러 인코딩 기법 중 자주 쓰이고, 중요한 방식들에 대해서 포스팅하겠습니다. 
 
-들어가기에 앞서, 저는 앞에서 인코딩을 범주형 자료(categorical data)와 연관지어 편하게 언급하였습니다. 그러나 사실 데이터의 종류는 범주형과 수치형 데이터로만 나누어져있지 않습니다. 인코딩을 더욱 잘 이해하기 위해서는 데이터의 특징에 따라 정확한 분류가 선행되어야합니다. 이 부분은 <b>[읽을 거리](https://towardsdatascience.com/7-data-types-a-better-way-to-think-about-data-types-for-machine-learning-939fae99a689)</b>로 대체합니다.
+들어가기에 앞서, 저는 앞에서 인코딩을 범주형 자료(categorical data)와 연관지어 편하게 언급하였습니다. 그러나 사실 데이터의 종류는 범주형과 수치형 데이터로만 구분하지 않습니다. 데이터의 특징에 따른 정확한 분류가 선행되어야 인코딩을 더욱 잘 이해할 수 있습니다. 이 부분은 <b>[읽을 거리](https://towardsdatascience.com/7-data-types-a-better-way-to-think-about-data-types-for-machine-learning-939fae99a689)</b>로 대체하겠습니다.
 
 ## One Hot Encoding
-One Hot Encoding(OHE)은 인코딩 기법 중에 가장 간단하면서도 특히 머신러닝에서 쉽게 쓰이기 때문에 유명합니다. (그러나 가장 좋은 방법이 아닐 때가 더러 있습니다. 이는 차차 설명드리겠습니다.) OHE는 각각의 범주에다가 1의 값을 주기 때문에 자료 간의 위계관계가 전혀 없는 순수한 범주형 데이터에 적합합니다. 설명의 편의를 위해 아래 예제 데이터[^ex]를 활용하겠습니다.  
+범주형 자료를 수치형 자료로 바꿔주는 일은 매우 간단하지만 모델링에 많이 쓰이기 때문에 중요합니다. 특히 머신러닝 또는 딥러닝에서 대다수 경우 필수적입니다. 이는 모델 알고리즘이 수리적 계산을 바탕으로 행해지기 때문인데, 예를 들어 input 데이터로 '빨강'과 '파랑'이 아닌 0과 1을 사용해야 수리적 계산이 가능합니다. 
 
-[^ex]: [IGAWorks 클릭수 경진대회](https://haehwan.github.io/posts/Comp-CTR/) 자료를 일부 가공하였습니다.  
+<b>scikit-learn</b>에서는 이러한 작업을 위해 `sklearn.preprocessing.OneHotEncoder`를 제공합니다. 제가 범주형 자료를 수치형 자료로 바꾸는 것을 일컬어 One Hot Encoding 또는 OHE라고 까닭입니다. 유사한 기능을 python의 내장함수, `get_dummies()`도 제공하기 때문에 `더미화`라고도 많이 부릅니다. 두 방식은 매우 흡사하지만 쓰임에 따라 장단점이 명확합니다. 오늘 글에서는 범주형 자료를 수치형으로 변환하는 두 방식의 차이와 더불어, 실제 자료에 이를 적용해보는 것으로 이번 글을 마치겠습니다. 
+
+## 1. get_dummies()
+`get_dummies()`는 pandas의 내장함수이니만큼 pandas의 Series나 DataFrame 등에서 사용하기 편리합니다. 특히 `sklearn.preprocessing.OneHotEncoder`가 instance라는 개념을 사용하기 때문에 처음 사용하기 어려운 반면, `get_dummies()`는 즉각적으로 값을 변환하여 주기 때문에 직관적으로 다가옵니다. DataFrame을 중심으로 예를 들어보겠습니다.  
 
 
 <div>
@@ -36,72 +39,151 @@ One Hot Encoding(OHE)은 인코딩 기법 중에 가장 간단하면서도 특�
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>click</th>
-      <th>bid_id</th>
-      <th>adset_id</th>
-      <th>campaign_id</th>
-      <th>device_model</th>
-      <th>device_os</th>
-      <th>device_country</th>
+      <th>Name</th>
+      <th>Age</th>
+      <th>bld</th>
+      <th>Qual</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
-      <td>0</td>
-      <td>1b1Yz4S9wG</td>
-      <td>GdBSlETcLy</td>
-      <td>taRA9jVfVL</td>
-      <td>AsY5LC0NLu</td>
-      <td>TG14pLUXCY</td>
-      <td>PCCn9Q1m20</td>
+      <td>Jai</td>
+      <td>27</td>
+      <td>A</td>
+      <td>Msc</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0</td>
-      <td>eCYeFjnExb</td>
-      <td>GlheP2trvZ</td>
-      <td>jWRKzxzhyX</td>
-      <td>nz5kFLSj4p</td>
-      <td>TG14pLUXCY</td>
-      <td>PCCn9Q1m20</td>
+      <td>Princi</td>
+      <td>27</td>
+      <td>B</td>
+      <td>MA</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0</td>
-      <td>QHcMnYqF3h</td>
-      <td>WGJnvetv2a</td>
-      <td>DW5C3As8ij</td>
-      <td>nz5kFLSj4p</td>
-      <td>TG14pLUXCY</td>
-      <td>PCCn9Q1m20</td>
+      <td>Salah</td>
+      <td>22</td>
+      <td>A</td>
+      <td>MA</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>1</td>
-      <td>p5v9KCdjS6</td>
-      <td>FiSRHSfVaf</td>
-      <td>qR4Xa60DLl</td>
-      <td>KBowLApKOt</td>
-      <td>TG14pLUXCY</td>
-      <td>PCCn9Q1m20</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>0</td>
-      <td>aAEDD9AeIv</td>
-      <td>UASfSkWw7S</td>
-      <td>2T5sOm2MoW</td>
-      <td>nz5kFLSj4p</td>
-      <td>TG14pLUXCY</td>
-      <td>PCCn9Q1m20</td>
+      <td>Anuj</td>
+      <td>32</td>
+      <td>O</td>
+      <td>Msc</td>
     </tr>
   </tbody>
 </table>
 </div>
 
 
-위의 자료는 암호화되어서 자료의 해석을 불가능하지만, 범주형 자료임을 이해할 수 있습니다. 조금 더 자세히 분류하자면, 
+방법은 매우 간단합니다. `pandas.get_dummies()` 함수 안에 본인이 변환하고자 dataframe을 넣어주기만 하면 됩니다.  
+
+```python
+dummy = pd.get_dummies(data)
+dummy
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Age</th>
+      <th>Name_Anuj</th>
+      <th>Name_Jai</th>
+      <th>Name_Princi</th>
+      <th>Name_Salah</th>
+      <th>bld_A</th>
+      <th>bld_B</th>
+      <th>bld_O</th>
+      <th>Qual_MA</th>
+      <th>Qual_Msc</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>27</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>27</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>22</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>32</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+보다시피, age라는 수치형 변수는 그대로 나오지만 범주형 변수에 해당하는 다른 column들은 모두 범주 갯수에 해당하는 자릿수만큼의 추가적인 column이 생기고 각 해당되는 값에 1이 찍힘을 알 수 있습니다. 주의해야할 것은 이는 pandas가 신출귀몰한 재주로 주어진 자료에서 범주형 데이터를 골라낼 수 있기 때문이 아니라 `isinstance()`라는 함수를 활용해서 string일 때에 모두 더미화를 시키기 때문입니다.[^isinstance]  따라서 다음과 같은 상황에서는 주의를 할 필요가 있습니다.  
+
+[^isinstance]: 자세한 내용은 [Source](https://github.com/pandas-dev/pandas/blob/v1.0.1/pandas/core/reshape/reshape.py#L750-L936)에서 확인할 수 있습니다.  
+
+> 1. 분명 수치형 자료인데, string으로 기입된 경우.
+> 2. mi
+
+
 
 ***  
 
