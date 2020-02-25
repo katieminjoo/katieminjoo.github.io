@@ -20,8 +20,7 @@ seo:
 많은 사람들이 이용할 뿐 아니라, 제공하고 있는 함수들도 매우 유용합니다.
 <b>[저번 글](https://haehwan.github.io/posts/Sta-Encoding/)</b>에서 OneHotEncoder처럼 sklearn은 array 형태를 사용합니다.
 pandas를 쓰다보면 마주칠 일이 별로 없어서 생소할 수 있지만, 
-<b>array는 특히 list와 비교해서 메모리 사용량과 처리 속도에</b> <b>[뛰어난 강점]
-(https://webcourses.ucf.edu/courses/1249560/pages/python-lists-vs-numpy-arrays-what-is-the-difference)</b>을 보입니다.  
+<b>array는 특히 list와 비교해서 메모리 사용량과 처리 속도에</b> <b>[뛰어난 강점](https://webcourses.ucf.edu/courses/1249560/pages/python-lists-vs-numpy-arrays-what-is-the-difference)</b>을 보입니다.  
 
 따라서 연산량이 많은 머신러닝에서는 array를 사용해서 작업하는 경우가 많은데 이는 Encoding에서도 마찬가지입니다.
 특히 데이터셋이 범주형과 수치형 등으로 혼합되어서 나올 경우에 범주형에만 선택적으로 지난 시간에 배운, OneHotEncoder를 사용해줄 필요가 있습니다.
