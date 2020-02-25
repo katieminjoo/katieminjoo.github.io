@@ -872,7 +872,7 @@ house[house['sqft_living']==max(house['sqft_living'])]
 
 
 
-![image.png](attachment:image.png)
+![ima](error2.png)
 
 확인 결과, 실내에 여러 대형 훈련시설을 구비한 승마 훈련장이므로 이상치를 제거하지 않았다.
 
@@ -925,7 +925,7 @@ sns.boxplot(x='waterfront',y='price',hue='waterfront',data=house,dodge=False)
 
 해안뷰를 가진 주택의 매매가격이 대체적으로 높다.
 
-![image.png](attachment:image.png)
+![image](error3.png)
 
 확인 결과, 해안뷰를 가진 주택은 대부분 해안가에 개인 선착장을 가진 주택이었다.
 
