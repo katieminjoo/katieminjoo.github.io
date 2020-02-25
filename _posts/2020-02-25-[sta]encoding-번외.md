@@ -23,9 +23,12 @@ pandas를 쓰다보면 마주칠 일이 별로 없어서 생소할 수 있지만
 
 따라서 연산량이 많은 머신러닝에서는 array를 사용해서 작업하는 경우가 많은데 이는 Encoding에서도 마찬가지입니다.
 특히 데이터셋이 범주형과 수치형 등으로 혼합되어서 나올 경우에 범주형에만 선택적으로 지난 시간에 배운, OneHotEncoder를 사용해줄 필요가 있습니다.
-다른 수치형 자료에는 normalizing을 해주어야 하고요.
+다른 수치형 자료에는 normalizing을 해주어야 하고요.[^stand]
 이렇듯 하나의 데이터에서 array로 서로 다른 형태의 작업을 해주어야할 때 필요한 것이 <b>[ColumnTransformer](https://scikit-learn.org/stable/modules/generated/sklearn.compose.ColumnTransformer.html)</b>입니다. 
 
+  
+[^stand]: 이론적으로는 수치형 데이터를 표준화해줄 필요는 없습니다만, 실제로는 표준화작업을 거치면 더욱 빠르게 수렴하기 때문에 좋은 모델이 됩니다.
+   
 
 # ColumnTransformer
 기본적인 사용법은 아래와 같습니다. 
