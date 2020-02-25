@@ -3,6 +3,8 @@ title: Projects
 theme: jekyll-theme-dinky
 ---
 
+개별 혹은 팀 단위로 진행한 프로젝트를 볼 수 있는 곳입니다.  
+
 ![kc](/assets/img/sample/[PR][kc]title.png){:height="280px" width="176px"}
 
 ## 1. King County  
