@@ -8,7 +8,7 @@ toc: true
 comments: true
 ---
 
-```
+```html
 데이터를 처리하다보면 범주형 자료를 수치형 자료로 바꾸어야할 필요성이 많습니다.
 이러한 변환을 인코딩이라고 하는데, 다양한 목적과 자료의 특징에 맞추어 올바르게 인코딩한 범주형 자료는 모델의 퍼포먼스와 효율에 상당한 영향을 끼칩니다.
 특히 최근 각광받는 머신러닝과 딥러닝에서 범주형 자료에 대한 인코딩은 필수적입니다.
@@ -22,7 +22,7 @@ comments: true
 많은 사람들이 이용할 뿐 아니라, 제공하고 있는 함수들도 매우 유용합니다.
 <b>[저번 글](https://haehwan.github.io/posts/Sta-Encoding/)</b>에서 OneHotEncoder처럼 sklearn은 array 형태를 사용합니다.
 pandas를 쓰다보면 마주칠 일이 별로 없어서 생소할 수 있지만, 
-<b>array는 특히 list와 비교해서 메모리 사용량과 처리 속도에 [뛰어난 강점]
+<b>array는 특히 list와 비교해서 메모리 사용량과 처리 속도에</b> <b>[뛰어난 강점]
 (https://webcourses.ucf.edu/courses/1249560/pages/python-lists-vs-numpy-arrays-what-is-the-difference)</b>을 보입니다.  
 
 따라서 연산량이 많은 머신러닝에서는 array를 사용해서 작업하는 경우가 많은데 이는 Encoding에서도 마찬가지입니다.
@@ -32,4 +32,22 @@ pandas를 쓰다보면 마주칠 일이 별로 없어서 생소할 수 있지만
 
 
 # ColumnTransformer
+기본적인 사용법은 아래와 같습니다. 
 
+```
+transformer = ColumnTransformer(transformers=[('Name', OneHotEncoder(), ["Columns", "Name", "..."])])
+```  
+
+transformer라는 변수 안에, `이름/ 작업할 함수/ 선택할 컬럼` 이렇게 3개를 연달아 집어넣습니다.  
+
+만약 선택한 변수가 수치형 자료라면 아래와 같을 것입니다.
+
+```
+transformer = ColumnTransformer(transformers=[('Name','num', MinMaxScaler(), numerical_ix)
+```  
+
+***
+***
+
+# 참고자료
+https://machinelearningmastery.com/columntransformer-for-numerical-and-categorical-data/
