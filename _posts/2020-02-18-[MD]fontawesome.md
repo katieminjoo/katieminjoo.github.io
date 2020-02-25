@@ -7,7 +7,7 @@ tags: [github pages, fontawesome]
 toc: true
 comments: true
 seo:
-  date_modified: 2020-02-18 22:15:14 +0900
+  date_modified: 2020-02-20 22:40:40 +0900
 ---
 
 오늘은 fontawesome을 통해서 icon 이미지를 사용하는 방법에 대해 설명하려고 합니다.

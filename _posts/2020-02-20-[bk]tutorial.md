@@ -6,6 +6,8 @@ categories: [Python, Visualization]
 tags: [Bohek]
 toc: true
 comments: true
+seo:
+  date_modified: 2020-02-21 00:22:50 +0900
 ---
 
 훌륭한 시각화는 자신의 분석내용을 전달하기 위한 가장 효과적인 방법 중 하나입니다.  
