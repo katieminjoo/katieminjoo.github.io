@@ -3,7 +3,7 @@ title: Projects
 theme: jekyll-theme-dinky
 ---
 
-![kc](/assets/img/sample/[PR][kc]title.png=280X176)
+![kc](/assets/img/sample/[PR][kc]title.png){:height="280px" width="176px"}
 
 ## 1. King County  
 
