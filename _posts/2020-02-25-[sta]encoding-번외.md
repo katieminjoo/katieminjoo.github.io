@@ -35,7 +35,7 @@ pandas를 쓰다보면 마주칠 일이 별로 없어서 생소할 수 있지만
 기본적인 사용법은 아래와 같습니다. 
 
 ```
-transformer = ColumnTransformer(transformers=[('Name', OneHotEncoder(), ["Columns", "Name", "..."])])
+transformer = ColumnTransformer(transformers=[('Name', OneHotEncoder(), ["col1", "col2"])])
 ```  
 
 transformer라는 변수 안에, `이름/ 작업할 함수/ 선택할 컬럼` 이렇게 3개를 연달아 집어넣습니다.  
@@ -43,8 +43,33 @@ transformer라는 변수 안에, `이름/ 작업할 함수/ 선택할 컬럼` �
 만약 선택한 변수가 수치형 자료라면 아래와 같을 것입니다.
 
 ```
-transformer = ColumnTransformer(transformers=[('Name','num', MinMaxScaler(), numerical_ix)
+transformer = ColumnTransformer(transformers=[('Name','num', MinMaxScaler(), ["col3", "col4"])])
 ```  
+
+주의해야할 점은, transformer 변수 자체가 list of tuples의 형태로 입력받는다는 것입니다.
+따라서 각기 다른 변환을 원하는 columns들에 대해서 위의 3가지를 입력해준 뒤에 튜플을 씌어준다면 여러 변환을 하나의 리스트 안에 담을 수 있습니다.
+예시는 아래와 같습니다.  
+
+```
+t1 = ('Name', OneHotEncoder(), ["col1", "col2"])
+t2 = ('Name', MinMaxScaler(), ["col3", "col4"])
+t3 = ('Name', SimpleImputer(strategy='median'), ["col5", "col6"])
+t = [t1, t2, t3]
+transformer = ColumnTransformer(transformers=t)
+```  
+>  `SimpleImputer()`는 Sklearn에서 결측치를 해결해주는 함수입니다. 위에서는 median으로 채우도록 명령한 상황입니다.  
+
+***  
+
+참고로 마지막에 넣어주어야하는 column은 리스트 형태 안에 string 혹은 위치에 따른 integer을 넣어줘도 모두 가능합니다.  
+
+
+보다 자세한 예시는 [깃헙](https://github.com/HaeHwan/HaeHwan.github.io/blob/master/_posts/%5BEncoding%5D%20OHE/%EC%8B%AC%ED%99%94%EA%B3%BC%EC%A0%95/ColumnTransformer.ipynb)에 올려놨습니다.
+
+
+
+
+
 
 ***
 ***
