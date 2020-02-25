@@ -52,7 +52,7 @@ t3 = ('Name', SimpleImputer(strategy='median'), ["col5", "col6"])
 t = [t1, t2, t3]
 transformer = ColumnTransformer(transformers=t)
 ```  
->  `SimpleImputer()`는 Sklearn에서 결측치를 해결해주는 함수입니다. 위에서는 median으로 채우도록 명령한 상황입니다.  
+>  `SimpleImputer()`는 Sklearn에서 결측치를 해결해주는 함수입니다.  
 
 ***  
 
