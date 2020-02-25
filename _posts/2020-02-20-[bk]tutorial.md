@@ -3,7 +3,7 @@ layout: post
 title: <i class="fab fa-medapps"> [Bokeh] Pie chart</i>
 date: 2020-02-20 20:12:00 +0800
 categories: [Python, Visualization]
-tags: [Bohek]
+tags: [Bokeh]
 toc: true
 comments: true
 seo:
