@@ -400,7 +400,7 @@ output_file('3classes.html')
 show(layout([p], [toggle1, toggle_middle, toggle_lower]))
 ```
 
-![참고](참고/3classes.png)
+![참고](3classes.png)
 
 #### 주요도시
 1. Seattle : 핵심도시
