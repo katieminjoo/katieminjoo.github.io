@@ -1,6 +1,6 @@
 ---
 layout: post
-title: <i class="far fa-chart-bar"> [Encoding] ColumnTransformer</i>
+title: <i class="far fa-chart-bar"> [Encoding] make_column_transformer</i>
 date: 2020-02-25 14:22:00 +0800
 categories: [Statistics, Encoding]
 tags: [ColumnTransformer]
@@ -17,20 +17,45 @@ seo:
 ***  
   
 
-오늘은 Encoding과 관련해서 sklearn을 사용할 때에 유용한 팁을 전해드리려고 합니다. sklearn은 파이썬에서 사용할 수 있는 머신러닝 라이브러리입니다.
-많은 사람들이 이용할 뿐 아니라, 제공하고 있는 함수들도 매우 유용합니다.
-<b>[저번 글](https://haehwan.github.io/posts/Sta-Encoding/)</b>에서 OneHotEncoder처럼 sklearn은 array 형태를 사용합니다.
-pandas를 쓰다보면 마주칠 일이 별로 없어서 생소할 수 있지만, 
-<b>array는 특히 list와 비교해서 메모리 사용량과 처리 속도에</b> <b>[뛰어난 강점](https://webcourses.ucf.edu/courses/1249560/pages/python-lists-vs-numpy-arrays-what-is-the-difference)</b>을 보입니다.  
+<b>[저번 글](https://haehwan.github.io/posts/Sta-Encoding/)</b>에서 OneHotEncoder를 소개하면서 깃헙에서 보여드렸던 모든 예시들은 오직 범주형 자료만을 가지고 있는 상황이였습니다. 그러나 대부분 데이터셋은 범주형과 수치형 등을 모두 가지고 있습니다. 이러한 상황에서는 어떻게 가장 효율적으로 코드를 구현할 수 있을지 이번 시간에 sklearn의 함수들을 바탕으로 소개하려고 합니다.
 
-따라서 연산량이 많은 머신러닝에서는 array를 사용해서 작업하는 경우가 많은데 이는 Encoding에서도 마찬가지입니다.
-특히 데이터셋이 범주형과 수치형 등으로 혼합되어서 나올 경우에 범주형에만 선택적으로 지난 시간에 배운, OneHotEncoder를 사용해줄 필요가 있습니다.
-다른 수치형 자료에는 normalizing을 해주어야 하고요.[^stand]
-이렇듯 하나의 데이터에서 array로 서로 다른 형태의 작업을 해주어야할 때 필요한 것이 <b>[ColumnTransformer](https://scikit-learn.org/stable/modules/generated/sklearn.compose.ColumnTransformer.html)</b>입니다. 
+## make_column_transformer
+데이터를 마주해도 각 데이터의 변수마다 적합한 전처리를 해줘야 합니다. 예를 들어 범주형 자료에는 지난 시간에 배운대로 더미화를 해주어야하고, 수치형 자료는 normalizing을 해주어야 합니다.[^stand] 그리고 normalizing의 방법조차 변수마다 다르게 적용해야할 필요가 있습니다. 심지어 때로는 전혀 사용하지 않을 변수도 존재합니다. 이렇듯 변수가 많을수록 전처리의 방법은 다양해지고, 이를 작업하기 위해서 raw 데이터셋을 자르거나 합치거나 등의 작업을 여러 cell에서 수행을 하는 것은 꽤나 까다롭습니다.  
 
-  
-[^stand]: 이론적으로는 수치형 데이터를 표준화해줄 필요는 없습니다만, 실제로는 표준화작업을 거치면 더욱 빠르게 수렴하기 때문에 좋은 모델이 됩니다.
-   
+[^stand]: neural network에서 이론적으로는 수치형 데이터를 표준화해줄 필요는 없습니다만, 실제로는 표준화작업을 거치면 더욱 빠르게 수렴하기 때문에 좋은 모델이 됩니다.
+
+
+이때 정말 유용하게 쓸 수 있는 함수가 <b>[sklearn.compose.make_column_transformer](https://scikit-learn.org/stable/modules/generated/sklearn.compose.make_column_transformer.html)</b>입니다.  
+
+```
+from sklearn.compose import make_column_transformer
+```
+
+사용방법은 간단합니다. 아래와 같이 여러개의 튜플을 인수로 받으며, 각 튜플마다 다양한 인코딩 혹은 normalizing의 방법을 적용하고 싶은 column들과 같이 써주면 됩니다. 
+
+```
+preprocess = make_column_transformer(
+    (MinMaxScaler(), ["numeric"]), 
+    (OneHotEncoder(handle_unknown = "ignore"), ["categoric"]))
+```
+> OneHotEncoder 안에 지난 시간에 배운대로 새로운 범주형 피쳐를 만났을 때 모두 0으로 이루어진 벡터로 반환하도록 명령했습니다.
+
+옵션 또한 굉장히 직관적이고 다양해서 유용합니다. 제가 자주 쓰는 몇 가지를 소개하겠습니다.
+
+```
+verbose = True
+```
+작업을 할 때 걸리는 시간을 알려줍니다. 
+
+```
+remainder='passthrough'
+```
+튜플에서 정의하지 않은 변수들은 그대로 살려서 남겨놓습니다. 
+
+자세한 예시는 저의 깃헙을 참고해주시길 바랍니다.  
+
+***  
+`make_column_transformer`을 구성하는 것이 사실 ColumnTransformer입니다. 이 역시 유용한 기능이기 때문에 간략히 추가적으로 소개합니다. 보다 자세한 내용은 <b>[이곳](https://scikit-learn.org/stable/modules/generated/sklearn.compose.ColumnTransformer.html)</b>에서 확인할 수 있습니다.  
 
 # ColumnTransformer
 기본적인 사용법은 아래와 같습니다. 
