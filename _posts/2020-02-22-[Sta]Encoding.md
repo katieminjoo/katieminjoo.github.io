@@ -171,25 +171,26 @@ dummy
 ## sklearn.preprocessing.OneHotEncoder
 sklearn에서 제공하는 `OneHotEncoder`는 위에서 설명한 `get_dummies()`에 비해 매우 복잡하게 느껴지는 것은 사실입니다. 특히 익숙한 dataframe에 즉각적으로 표현이 잘 되지 않기 때문에 더욱 그렇습니다. 그러나 방법이 완전히 없는 것은 아닙니다. `fit_transform`과 array를 `reshape`하면 sklearn의 `OneHotEncoder`를 사용해서도 dataframe에 바로 표현이 가능합니다. 자세한 내용은 제 <b>[깃헙](https://github.com/HaeHwan/HaeHwan.github.io/blob/master/_posts/%5BEncoding%5D%20OHE/2.%20OneHotEncoder%EB%A5%BC%20%EC%9D%B4%EC%9A%A9%ED%95%B4%EC%84%9C%20pandas%20dataframe%EC%9D%84%20%EB%B0%94%EA%BF%94%EB%B3%B4%EA%B8%B0.ipynb)</b>에 올려놨습니다.  
 
-그럼에도 불구하고 OneHotEncoder는 get_dummies()가 갖지 못한 커다란 장점이 있습니다. 바로 <b>새로운 데이터에도 적용할 수 있다</b>는 사실입니다. 이는 함수가 가지고 있는 `handle_unknown` 기능 때문에 가능합니다. 앞의 겟더미는 전혀 새로운 데이터셋을 만나면 ordering뿐만 아니라, 컬럼 갯수까지 달라집니다. 따라서 이는 input 데이터가 일정해야하는 모델에서 큰 에러를 만들어냅니다. 반면 OneHotEncoder는 instance에 자신이 더미화를 한 명목형 변수의 값들을 기억하기 때문에 새로운 데이터셋을 만나더라도 이를 사용하여 처리할 수 있습니다. 따라서 새로운 값을 만나면 다음의 두 가지 방식 중 하나로 처리를 할 수 있으며 결국 전체 column의 갯수에는 변화가 없으며 ordering 순서도 유지할 수 있습니다.  
+그럼에도 불구하고 OneHotEncoder는 get_dummies()가 갖지 못한 커다란 장점이 있습니다. 바로 <b>새로운 데이터에도 적용할 수 있다</b>는 사실입니다. 이는 함수가 가지고 있는 `handle_unknown` 기능 때문에 가능합니다. 앞의 겟더미는 전혀 새로운 데이터셋을 만나면 ordering뿐만 아니라, 컬럼 갯수까지 달라집니다. 따라서 이는 input 데이터가 일정해야하는 많은 딥러닝 모델에서 큰 에러가 발생합니다. 반면 OneHotEncoder는 instance에 자신이 더미화한 명목형 변수의 값과 순서를 기억하기 때문에 새로운 데이터셋을 만나도 유연하게 대처할 수 있습니다. 구체적인 방식은 아래와 같습니다.
 
 > 1. handle_unknown = ‘error’  
 > 2. handle_unknown = ‘ignore’
 
+첫 번째 방식은 새로운 변수값을 마주할 때 error를 반환합니다. 이 방식은 아예 array를 생성하지 못하기 때문에 결국 문제를 해결하지 못합니다. 반면 두 번째 방식은 마주하는 새로운 명목형 변수들을 모두 0으로 처리하게끔 만듭니다. (이 경우에 `inverse_tranform` 방법을 쓰면 0으로 이루어진 새로운 값들이 모두 `None`으로 반환되는 것을 확인할 수 있습니다.) 자세한 사용법은 저의 <b>[깃헙](https://github.com/HaeHwan/HaeHwan.github.io/blob/master/_posts/%5BEncoding%5D%20OHE/3.%20OneHotEncoding%20-%20handle_unknown.ipynb)</b>에서 참고하시길 바랍니다.  
 
-첫 번째 방식은 새로운 변수값을 마주할 때 error를 반환합니다. 반면 두 번째 방식은 모두 0으로 처리를 하게끔 만듭니다. 이 경우에 `inverse_tranform` 방법을 쓰면 새로운 값들에 해당하는 0으로 이루어진 array는 `None`값을 반환합니다. 두 방식의 자세한 사용법은 저의 <b>[깃헙](https://github.com/HaeHwan/HaeHwan.github.io/blob/master/_posts/%5BEncoding%5D%20OHE/3.%20OneHotEncoding%20-%20handle_unknown.ipynb)</b>을 참고하시길 바랍니다.  
+## 다중공선성 문제
+마지막으로 다중공선성 문제를 짚고 넘어가려합니다. 더미변수를 만들어 준 뒤에 다중공선성 문제는 주로 회귀(regression) 상황에서 중요한 이슈입니다. 물론 머신러닝에서도 일정정도 걸림돌이 될 수는 있으나 아직 자세한 연구는 없는 것으로 알고 있습니다. 따라서 이 부분은 주로 선형회귀와 같은 상황에서 다루어질 내용입니다.  
 
-## 다중공선성 문제 해결
-마지막으로 다중공선성 문제를 짚고 넘어가야합니다. 겟더미를 해주든, OneHotEncoder를 해주든 두 방식 모두 변수가 포함하는 n개의 값만큼의 컬럼을 만들어냅니다. 문제는 이렇게 될 경우 모든 변수의 합이 언제나 1이 되기 때문에 다중공선성 문제를 일으킵니다. 다중공선성은 선형모델에서도 큰 문제일 뿐 아니라 머신러닝에서도 실제 참값을 찾아내는데 걸림돌이 됩니다. 자세한 내용은 따로 다루도록 하겠습니다.  
-
-이러한 문제를 해결하는 공통적인 방법은 임의로 하나의 컬럼을 제거하는 것입니다. 두 함수 모두 이를 해결하기 위해 `drop` 기능을 제공합니다. 사소하지만 두 가지 사용법은 아래와 같은 차이점이 있으니 유의할 필요가 있습니다.  
+다중공선성을 해결하는 가장 쉬운 방법은 새로 생겨난 n개의 벡터를 한 차원 낮춰주는 것입니다. `get_dummies()`와 `OneHotEncoder` 모두 이를 위한 간단한 코딩방법이 있습니다. 사소하지만 두 가지 사용법은 아래와 같은 차이점이 있으니 유의할 필요가 있습니다.  
 
 > get_dummies() : `drop_first = True`  
 > OneHotEncoder() : `drop = "First"`  
 
-
+***
   
-두 가지 방식 모두 많이 쓰입니다만, 각각의 경우 장단점을 잘 알고 활용하는 것이 중요합니다. 이것으로 첫 번째 Encoding편을 마치겠습니다.  
+두 가지 방식 모두 많이 쓰입니다만, 각각의 경우 장단점을 잘 알고 활용하는 것이 중요합니다. 특히 train 데이터셋에서 새로운 변수를 처리할 때 대다수 sklearn 방식을 많이 사용합니다. neural network를 사용할 때처럼 data 갯수가 클 경우, arrray로 처리하여 속도를 높일 뿐 아니라 train과 test 데이터를 merge할 필요도 없기 때문에 더욱 그렇습니다. 구체적인 사례는 저의 깃헙에서 확인하실 수 있습니다.    
+
+이것으로 첫 번째 Encoding편을 마치겠습니다.  
   
   
 ***
