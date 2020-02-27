@@ -65,10 +65,10 @@ transformer = ColumnTransformer(transformers=t)
 참고로 마지막에 넣어주어야하는 column은 리스트 형태 안에 string 혹은 위치에 따른 integer을 넣어줘도 모두 가능합니다.  
 
 
-보다 자세한 예시[^참고]는 [깃헙](https://github.com/HaeHwan/HaeHwan.github.io/blob/master/_posts/%5BEncoding%5D%20OHE/%EC%8B%AC%ED%99%94%EA%B3%BC%EC%A0%95/ColumnTransformer.ipynb)에 올려놨습니다.  
+보다 자세한 예시[^ref]는 [깃헙](https://github.com/HaeHwan/HaeHwan.github.io/blob/master/_posts/%5BEncoding%5D%20OHE/%EC%8B%AC%ED%99%94%EA%B3%BC%EC%A0%95/ColumnTransformer.ipynb)에 올려놨습니다.  
 
   
-[^참고]: https://machinelearningmastery.com/columntransformer-for-numerical-and-categorical-data/
+[^ref]: https://machinelearningmastery.com/columntransformer-for-numerical-and-categorical-data/
 
 
 
