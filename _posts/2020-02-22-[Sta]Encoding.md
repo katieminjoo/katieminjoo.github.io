@@ -12,7 +12,7 @@ seo:
 
 데이터를 처리하다보면 범주형 자료를 수치형 자료로 바꿔야할 때가 많습니다. 이를 <b>인코딩</b>이라고도 하는데, 다양한 목적과 자료의 특징에 맞추어 올바르게 인코딩한 범주형 자료는 모델의 퍼포먼스와 효율에 상당한 영향을 끼칩니다. 특히 최근 각광받고 있는 머신러닝과 딥러닝에서는 대다수 경우 범주형 자료에 대한 인코딩이 필수적입니다. 
 
-그러나 이는 생각만큼 단순한 일이 아닙니다. One-Hot-Encoding/ Ordinal-Encoding/ Label Encoding/ Target-Encoding... 등 종류도 <b>[다양](http://contrib.scikit-learn.org/categorical-encoding/index.html)</b>할 뿐더러, 비슷한 인코딩도 library에 따라 크고작은 차이가 있습니다. 인코딩 특집 글에서는 여러 인코딩 기법 중 자주 쓰이고, 중요한 방식들에 대해서 포스팅하겠습니다.  
+그러나 이는 생각만큼 단순한 일이 아닙니다. One-Hot-Encoding/ Ordinal-Encoding/ Label Encoding/ Target-Encoding... 등 종류도 <b>[다양](http://contrib.scikit-learn.org/categorical-encoding/index.html)</b>할 뿐더러, 비슷한 인코딩도 library에 따라 크고작은 차이가 있습니다. 인코딩 특집에서는 여러 기법 중 자주 쓰이고, 중요한 방식들에 대해서 포스팅하겠습니다.  
   
   
 # One Hot Encoding
