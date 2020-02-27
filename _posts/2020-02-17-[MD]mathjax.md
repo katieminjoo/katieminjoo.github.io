@@ -32,7 +32,7 @@ kramdown이 기본적으로 MathJax를 사용하기는 하지만, 포스팅할 �
 본격적으로 사용방법은 참고자료의 예시를 통해 확인하겠습니다.
 
 
-### example 1 : '$$'...'$$'
+### example 1 : `$$`...`$$`
 
 ```you can use an inline formula $$\forall x \in R$$ like this one```   
 you can use an inline formula $$\forall x \in R$$ like this one  
