@@ -55,16 +55,17 @@ remainder='passthrough'
 자세한 예시는 저의 <b>[깃헙](https://github.com/HaeHwan/HaeHwan.github.io/blob/master/_posts/%5BEncoding%5D%20OHE/%EC%8B%AC%ED%99%94%EA%B3%BC%EC%A0%95/make_column_transformer.md)</b>을 참고해주시길 바랍니다.  
 
 ***  
-`make_column_transformer`을 구성하는 것이 사실 ColumnTransformer입니다. 이 역시 유용한 기능이기 때문에 간략히 추가적으로 소개합니다. 보다 자세한 내용은 <b>[이곳](https://scikit-learn.org/stable/modules/generated/sklearn.compose.ColumnTransformer.html)</b>에서 확인할 수 있습니다.  
 
 # ColumnTransformer
+<b>[ColumnTransformer](https://scikit-learn.org/stable/modules/generated/sklearn.compose.ColumnTransformer.html)</b>는 `make_column_transformer`과 거의 동일하게 같은 기능을 제공합니다. 똑같이 array로 작동하며, 인스턴스에 변수들을 저장하기 때문에 새로운 데이터셋을 마주해도 똑같은 차원으로 가공을 할 수 있습니다. 따라서 두 방법 중 익숙한 방법을 선택하시면 될 겁니다.  
+
 기본적인 사용법은 아래와 같습니다. 
 
 ```
 transformer = ColumnTransformer(transformers=[('Name', OneHotEncoder(), ["col1", "col2"])])
 ```  
 
-transformer라는 변수 안에, `이름/ 작업할 함수/ 선택할 컬럼` 이렇게 3개를 연달아 집어넣습니다.  
+transformer라는 변수 안에, `이름/ 작업할 함수/ 선택할 컬럼` 이렇게 3개를 연달아 집어넣습니다. 유일한 차이점은 이름을 추가해준다는 것 정도임을 알 수 있습니다.  
 
 만약 선택한 변수가 수치형 자료라면 아래와 같을 것입니다.
 
@@ -72,9 +73,9 @@ transformer라는 변수 안에, `이름/ 작업할 함수/ 선택할 컬럼` �
 transformer = ColumnTransformer(transformers=[('Name', MinMaxScaler(), ["col3", "col4"])])
 ```  
 
-주의해야할 점은, transformer 변수 자체가 list of tuples의 형태로 입력받는다는 것입니다.
-따라서 각기 다른 변환을 원하는 columns들에 대해서 위의 3가지를 입력해준 뒤에 튜플을 씌어준다면 여러 변환을 하나의 리스트 안에 담을 수 있습니다.
-예시는 아래와 같습니다.  
+또 다른 차이점은 transformer 변수 자체가 list of tuples의 형태로 입력받는다는 것입니다. 이는 `make_column_transformer`은 따로 리스트 안에 처리할 컬럼과 적용방식을 담지 않았던 것과 차이를 보입니다.  
+
+각기 다른 변환을 원하는 columns들에 대해서 위의 3가지를 입력해준 뒤에 튜플을 씌어준다면 여러 변환을 하나의 리스트 안에 일목요연하게 담을 수 있습니다. 예시는 아래와 같습니다.  
 
 ```
 t1 = ('Name', OneHotEncoder(), ["col1", "col2"])
@@ -87,12 +88,8 @@ transformer = ColumnTransformer(transformers=t)
 
 ***  
 
-참고로 마지막에 넣어주어야하는 column은 리스트 형태 안에 string 혹은 위치에 따른 integer을 넣어줘도 모두 가능합니다.  
 
-
-보다 자세한 예시[^ref]는 [깃헙](https://github.com/HaeHwan/HaeHwan.github.io/blob/master/_posts/%5BEncoding%5D%20OHE/%EC%8B%AC%ED%99%94%EA%B3%BC%EC%A0%95/ColumnTransformer.ipynb)에 올려놨습니다.  
-  
-[^ref]: https://machinelearningmastery.com/columntransformer-for-numerical-and-categorical-data/
+보다 자세한 예시는 [깃헙](https://github.com/HaeHwan/HaeHwan.github.io/blob/master/_posts/%5BEncoding%5D%20OHE/%EC%8B%AC%ED%99%94%EA%B3%BC%EC%A0%95/ColumnTransformer.md)에 올려놨습니다.  
 
 
 
@@ -100,3 +97,4 @@ transformer = ColumnTransformer(transformers=t)
 ***
 
 # 각주 및 참고자료
+1. https://machinelearningmastery.com/columntransformer-for-numerical-and-categorical-data/
