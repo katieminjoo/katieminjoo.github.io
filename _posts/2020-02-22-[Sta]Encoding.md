@@ -20,7 +20,7 @@ seo:
     
     
 # One Hot Encoding
-One Hot Encoding은 범주형 자료를 0과 1로 이루어진 벡터로 바꾸는  가장 기본적인 방식입니다. <b>scikit-learn</b>에서는 이를 위해 `sklearn.preprocessing.OneHotEncoder`를 제공합니다. 유사한 기능을 python의 내장함수, `get_dummies()`도 제공하기 때문에 `더미화`라고도 많이 부릅니다. 두 방식은 매우 흡사하지만 쓰임에 따라 장단점이 명확합니다. 오늘 글에서는 범주형 자료를 수치형으로 변환하는 두 방식의 차이와 더불어, 실제 자료에 이를 적용해보는 것으로 이번 글을 마치겠습니다.  
+One Hot Encoding은 범주형 자료를 0과 1로 이루어진 벡터로 바꾸는  가장 기본적인 방식입니다. <b>scikit-learn</b>에서는 이를 위해 `sklearn.preprocessing.OneHotEncoder`를 제공합니다. 유사한 기능을 python의 내장함수, `get_dummies`도 제공하기 때문에 `더미화`라고도 많이 부릅니다. 두 방식은 매우 흡사하지만 쓰임에 따라 장단점이 명확합니다. 오늘 글에서는 범주형 자료를 수치형으로 변환하는 두 방식의 차이와 더불어, 실제 자료에 이를 적용해보는 것으로 이번 글을 마치겠습니다.  
   
 
 ## nominal VS ordinal
@@ -186,10 +186,10 @@ array는 <b>메모리 사용량과 처리 속도에 있어서 [뛰어난 강점]
 
 `sklearn.preprocessing.OneHotEncoder`의 첫번째 장점은 바로 array형태로 작업을 한다는 것입니다. 물론 위에서 소개한대로 모든 하이퍼파라미터를 default로 한다면 결과값이 array로 나오지 않는 것처럼 보입니다. 대신에 `sparse matrix`로 결과값이 등장을 하는데, 이 때에는 다음의 두 가지 방법으로 해결이 가능합니다.  
 
-> toarray()
+> toarray()  
 > sparse = False
 
-첫번째 방식은 최종적으로 나온 결과값에 `.toarray()`를 입력해줌으로써 sparse matrix를 사후적으로 array꼴로 만들어주는 방법입니다. 훨씬 더 간단한 방법은 두번째입니다. 이는 `OneHotEncoder`의 기본 옵션 중에 하나로 결과값을 항상 array로 보여줍니다. 따라서 아래와 같이 코딩을 한다면 수월할 것입니다.  
+첫번째 방식은 최종적으로 나온 결과값에 `.toarray()`를 추가해서 사후적으로 sparse matrix를 array꼴로 바꿔줍니다. 훨씬 더 간단한 방법은 두번째입니다. 이는 `OneHotEncoder`의 기본 옵션 중에 하나로 결과값을 항상 array로 보여줍니다. 따라서 아래와 같이 코딩을 한다면 수월할 것입니다.  
 ```
 UserName = OneHotEncoder(sparse = False)
 ```
