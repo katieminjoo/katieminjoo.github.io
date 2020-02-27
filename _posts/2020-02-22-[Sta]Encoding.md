@@ -168,14 +168,36 @@ dummy
 </div>  
   
   
-보다시피, Wealth라는 수치형 변수는 그대로 나오지만 범주형 변수에 해당하는 다른 column들은 모두 범주 갯수에 해당하는 자릿수만큼 추가적인 column이 생기고, 각 해당되는 값에 1이 찍힘을 알 수 있습니다. 주의해야할 것은 이는 pandas가 신출귀몰한 재주로 주어진 자료에서 범주형 데이터를 골라낼 수 있기 때문이 아니라 `isinstance()`라는 함수를 활용해서 <b>string일 때에 모두 더미화</b>를 시키기 때문입니다.[^isinstance] 따라서 주어진 수치형 자료가 string 형태로 들어가있지 않도록 주의해야합니다. 더불어 missing_value가 있거나, None 값이 존재하는 경우에도 `get_dummies()`는 문제가 생길 수 있습니다. 자세한 내용은 <b>[깃헙](https://github.com/HaeHwan/HaeHwan.github.io/blob/master/_posts/%5BEncoding%5D%20OHE/1.%20get_dummies%20%EB%AC%B8%EC%A0%9C%EC%A0%90.ipynb)</b>에 올려놨습니다.  
+보다시피, Wealth라는 수치형 변수는 그대로 나오지만 범주형 변수에 해당하는 다른 column들은 모두 범주 갯수에 해당하는 자릿수만큼 추가적인 column이 생기고, 각 해당되는 값에 1이 찍힘을 알 수 있습니다. 주의해야할 것은 이는 pandas가 신출귀몰한 재주로 주어진 자료에서 범주형 데이터를 골라낼 수 있기 때문이 아니라 `isinstance()`라는 함수를 활용해서 <b>string일 때에 모두 더미화</b>를 시키기 때문입니다.[^isinstance] 따라서 주어진 수치형 자료가 string 형태로 들어가있지 않도록 주의해야합니다. 더불어 missing_value가 있는 경우에도 `get_dummies()`는 문제가 생길 수 있습니다. 그러나 가장 <b>큰 단점은 새로운 데이터셋에서 작업을 할 때마다 모든 차원과 ordering이 바뀐다</b>는 점입니다. 이에 대한 자세한 내용은 <b>[깃헙](https://github.com/HaeHwan/HaeHwan.github.io/blob/master/_posts/%5BEncoding%5D%20OHE/1.%20get_dummies%20%EB%AC%B8%EC%A0%9C%EC%A0%90.ipynb)</b>에 올려놨습니다.  
 
 [^isinstance]: https://docs.python.org/3/library/functions.html#isinstance
 
 ## sklearn.preprocessing.OneHotEncoder
-sklearn에서 제공하는 `OneHotEncoder`는 위에서 설명한 `get_dummies()`에 비해 매우 복잡하게 느껴지는 것은 사실입니다. 특히 익숙한 dataframe에 즉각적으로 표현이 잘 되지 않기 때문에 더욱 그렇습니다. 그러나 방법이 완전히 없는 것은 아닙니다. `fit_transform`과 array를 `reshape`하면 sklearn의 `OneHotEncoder`를 사용해서도 dataframe에 바로 표현이 가능합니다. 자세한 내용은 제 <b>[깃헙](https://github.com/HaeHwan/HaeHwan.github.io/blob/master/_posts/%5BEncoding%5D%20OHE/2.%20OneHotEncoder%EB%A5%BC%20%EC%9D%B4%EC%9A%A9%ED%95%B4%EC%84%9C%20pandas%20dataframe%EC%9D%84%20%EB%B0%94%EA%BF%94%EB%B3%B4%EA%B8%B0.ipynb)</b>에 올려놨습니다.  
+```
+from sklearn.preprocessing import OneHotEncoder
+UserName = OneHotEncoder()
+UserName.fit_transform(UserInput)
+...
+```
+sklearn에서 제공하는 `OneHotEncoder`는 위에서 설명한 `get_dummies()`에 비해 복잡하게 느껴지는 것은 사실입니다. 특히 익숙한 dataframe에 즉각적으로 표현이 잘 되지 않을 뿐 아니라 비교적 생소한 sparse matrix나 <b>array</b> 형태로 값을 반환하기 때문입니다. 그럼에도 불구하고 저는 OneHotEncoder를 적극 추천하는 바입니다. 다양한 옵션들을 활용하면 sklearn의 단점으로 여겨지는 것들을 쉽게 해결할 수 있을 뿐아니라, 오히려 <b>강력한 장점</b> 때문에 쓰지 않을 수가 없기 때문입니다.  
 
-그럼에도 불구하고 OneHotEncoder는 get_dummies()가 갖지 못한 커다란 장점이 있습니다. 바로 <b>새로운 데이터에도 적용할 수 있다</b>는 사실입니다. 이는 함수가 가지고 있는 `handle_unknown` 기능 때문에 가능합니다. 앞의 겟더미는 전혀 새로운 데이터셋을 만나면 ordering뿐만 아니라, 컬럼 갯수까지 달라집니다. 따라서 이는 input 데이터가 일정해야하는 많은 딥러닝 모델에서 큰 에러가 발생합니다. 반면 OneHotEncoder는 instance에 자신이 더미화한 명목형 변수의 값과 순서를 기억하기 때문에 새로운 데이터셋을 만나도 유연하게 대처할 수 있습니다. 구체적인 방식은 아래와 같습니다.
+### array
+array는 <b>메모리 사용량과 처리 속도에 있어서 [뛰어난 강점](https://webcourses.ucf.edu/courses/1249560/pages/python-lists-vs-numpy-arrays-what-is-the-difference)</b>을 가집니다. 실제로 연산량이 많은 머신러닝에서는 거의 모든 모델링이 array 형태로 데이터를 입력받을 뿐 아니라, 효율적인 코드를 짜기위해서도 list나 DataFrame보다 array로 형태를 바꿔서 많이 작업합니다.   
+
+`sklearn.preprocessing.OneHotEncoder`의 첫번째 장점은 바로 array형태로 작업을 한다는 것입니다. 물론 위에서 소개한대로 모든 하이퍼파라미터를 default로 한다면 결과값이 array로 나오지 않는 것처럼 보입니다. 대신에 `sparse matrix`로 결과값이 등장을 하는데, 이 때에는 다음의 두 가지 방법으로 해결이 가능합니다.  
+
+> toarray()
+> sparse = False
+
+첫번째 방식은 최종적으로 나온 결과값에 `.toarray()`를 입력해줌으로써 sparse matrix를 사후적으로 array꼴로 만들어주는 방법입니다. 훨씬 더 간단한 방법은 두번째입니다. 이는 `OneHotEncoder`의 기본 옵션 중에 하나로 결과값을 항상 array로 보여줍니다. 따라서 아래와 같이 코딩을 한다면 수월할 것입니다.  
+```
+UserName = OneHotEncoder(sparse = False)
+```
+
+보다 자세한 예시는 제 <b>[깃헙](https://github.com/HaeHwan/HaeHwan.github.io/blob/master/_posts/%5BEncoding%5D%20OHE/2.%20OneHotEncoder%EB%A5%BC%20%EC%9D%B4%EC%9A%A9%ED%95%B4%EC%84%9C%20pandas%20dataframe%EC%9D%84%20%EB%B0%94%EA%BF%94%EB%B3%B4%EA%B8%B0.ipynb)</b>에 올려놨습니다.  
+
+### handling unknown categorical features
+`OneHotEncoder`의 가장 뛰어난 장점은 <b>새로운 데이터셋에 쉽게 적용할 수 있다</b>는 사실입니다. 위에서 `get_dummies`에서는 이것이 불가능하다고 언급했었습니다. 그러나 `OneHotEncoder`가 가지고 있는 `handle_unknown` 기능은 이를 가능케합니다. 따라서 이를 사용하면 input 데이터가 일정해야하는 많은 딥러닝 모델에서 손쉽게 사용할 수 있습니다. 이는 instance에 자신이 더미화한 명목형 변수의 값과 순서를 기억하기 때문에 새로운 데이터셋을 만나도 유연하게 대처할 수 있기 때문입니다. 구체적인 방식은 아래와 같습니다.
 
 > 1. handle_unknown = ‘error’  
 > 2. handle_unknown = ‘ignore’
