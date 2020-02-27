@@ -52,7 +52,7 @@ remainder='passthrough'
 ```
 튜플에서 정의하지 않은 변수들은 그대로 살려서 남겨놓습니다. 
 
-자세한 예시는 저의 깃헙을 참고해주시길 바랍니다.  
+자세한 예시는 저의 <b>[깃헙](https://github.com/HaeHwan/HaeHwan.github.io/blob/master/_posts/%5BEncoding%5D%20OHE/%EC%8B%AC%ED%99%94%EA%B3%BC%EC%A0%95/make_column_transformer.md)</b>을 참고해주시길 바랍니다.  
 
 ***  
 `make_column_transformer`을 구성하는 것이 사실 ColumnTransformer입니다. 이 역시 유용한 기능이기 때문에 간략히 추가적으로 소개합니다. 보다 자세한 내용은 <b>[이곳](https://scikit-learn.org/stable/modules/generated/sklearn.compose.ColumnTransformer.html)</b>에서 확인할 수 있습니다.  
@@ -69,7 +69,7 @@ transformer라는 변수 안에, `이름/ 작업할 함수/ 선택할 컬럼` �
 만약 선택한 변수가 수치형 자료라면 아래와 같을 것입니다.
 
 ```
-transformer = ColumnTransformer(transformers=[('Name','num', MinMaxScaler(), ["col3", "col4"])])
+transformer = ColumnTransformer(transformers=[('Name', MinMaxScaler(), ["col3", "col4"])])
 ```  
 
 주의해야할 점은, transformer 변수 자체가 list of tuples의 형태로 입력받는다는 것입니다.
@@ -91,7 +91,6 @@ transformer = ColumnTransformer(transformers=t)
 
 
 보다 자세한 예시[^ref]는 [깃헙](https://github.com/HaeHwan/HaeHwan.github.io/blob/master/_posts/%5BEncoding%5D%20OHE/%EC%8B%AC%ED%99%94%EA%B3%BC%EC%A0%95/ColumnTransformer.ipynb)에 올려놨습니다.  
-
   
 [^ref]: https://machinelearningmastery.com/columntransformer-for-numerical-and-categorical-data/
 
