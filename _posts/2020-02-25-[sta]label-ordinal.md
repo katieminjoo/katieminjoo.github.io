@@ -16,7 +16,6 @@ seo:
 
 ***  
 
-#  
   
   
 오늘은 Ordinal 인코딩과 Label 인코딩에 대해서 간략하게 소개하려고 합니다. 두 방식은 결과적으로 큰 차이가 존재하지 않습니다. 두 방식 모두 범주형 자료를 숫자형 자료로 바꿔주기 때문입니다. 그러나 둘 다 최근들어서 많이 쓰이지 않는 것이 사실입니다.  
@@ -40,7 +39,11 @@ Ordinal 데이터로 적합한 예시를 찾아보자면, 최종학력 정도가
 
 
 # sklearn.preprocessing.LabelEncoder
-LabelEncoder의 결과가 앞에서 설명한 Ordinal과 유사하기 때문에 크게 쓰일 일이 없을 것 같지만, 저는 개인적으로 LabelEncoder를 종종 쓰는 편입니다. 앞에서 말한 대로, 자료의 크기가 크거나 string이 많이 포함된 범주형 자료일수록 용량을 꽤나 많이 줄여줄 수 있기 때문입니다.  그리고 당연히 inverse도 손쉽게 될 뿐아니라 새로운 데이터셋에서 새로운 피쳐를 마주해도, 인코딩되어있던 ordering을 해치지 않기 때문에 유용합니다.  
+LabelEncoding의 결과가 앞에서 설명한 Ordinal과 유사하기 때문에 크게 쓰일 일이 없을 것 같지만, 저는 개인적으로 <b>[sklearn.preprocessing.LabelEncoder](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.LabelEncoder.html)</b>를 종종 쓰는 편입니다. 사용방법은 sklearn의 다른 인코딩 기법과 유사하기 때문에 쉽게 익힐 수 있을 뿐아니라, 자료의 크기가 크거나 string이 많이 포함된 범주형 자료일수록 용량을 많이 줄여주기 때문입니다. numeric한 값으로 바꿔주어도 inverse를 손쉽게 할 수 있고, 새로운 피쳐를 마주해도 인코딩되어있던 ordering을 해치지 않는다는 큰 장점 또한 중요합니다.[^fac]  
+
+[^fac]: pandas의 내장함수 `factorize` 역시 LabelEncoder와 유사한 기능을 수행하나, 이러한 점에서는 [지난 포스팅](https://haehwan.github.io/posts/Sta-Encoding/)의 `get_dummies`와 같이 해결을 하지 못합니다. 즉, 새로운 피쳐로 인해서 라벨링의 순서가 뒤바뀔 수 단점이 있습니다.   
 
 자세한 사용방법은 아래와 같습니다.
+
+
 
