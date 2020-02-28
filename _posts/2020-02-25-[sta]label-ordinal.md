@@ -23,7 +23,7 @@ seo:
 두 방법이 매우 흡사하기 때문에 Label Encoding을 주로 다룰 예정입니다.  
 
 # sklearn.preprocessing.OrdinalEncoder
-Ordinal 데이터를 숫자화하기 위해 sklearn에서 제공하는 함수입니다. ordinal한 데이터를 원핫(더미화)방식이 아닌 integer한 쌍으로 기억한다는 점만 다를 뿐, 모든 옵션과 사용 방법은 지난 시간에 포스팅했던 OneHotEncoder와 동일합니다.  
+데이터에 대한 전처리를 주로 담당하는 sklearn.preprocessing 모듈에서 Ordinal 데이터에 특화된 method입니다. ordinal한 데이터를 원핫(더미화)방식이 아닌 integer한 쌍으로 기억한다는 점만 다를 뿐, 모든 옵션과 사용 방법은 지난 시간에 포스팅했던 OneHotEncoder와 동일합니다.  
 
 그러나 주의해야될 점은, Ordinal 데이터를 함부로 숫자화할 수 없다는 점입니다. 실제로 대다수 데이터는 상하관계 혹은 피쳐 간의 차이가 샘플마다 다른 경우가 대다수입니다. 예를 들어 A에게 상과 중의 차이가 B가 느끼는 상과 중의 차이와 다를 수 있는 것입니다. 이렇듯 ordinal encoding을 실제로 사용하는 일은 굉장히 드뭅니다.  
 
