@@ -1,6 +1,6 @@
 ---
 layout: post
-title: <i class="far fa-chart-bar"> [Encoding] make_column_transformer</i>
+title: <i class="far fa-chart-bar"> [Encoding] ColumnTransformer</i>
 date: 2020-02-25 14:22:00 +0800
 categories: [Statistics, Encoding]
 tags: [ColumnTransformer]
