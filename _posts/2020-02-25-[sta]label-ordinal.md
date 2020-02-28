@@ -39,11 +39,38 @@ Ordinal 데이터로 적합한 예시를 찾아보자면, 최종학력 정도가
 
 
 # sklearn.preprocessing.LabelEncoder
-LabelEncoding의 결과가 앞에서 설명한 Ordinal과 유사하기 때문에 크게 쓰일 일이 없을 것 같지만, 저는 개인적으로 <b>[sklearn.preprocessing.LabelEncoder](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.LabelEncoder.html)</b>를 종종 쓰는 편입니다. 사용방법은 sklearn의 다른 인코딩 기법과 유사하기 때문에 쉽게 익힐 수 있을 뿐아니라, 자료의 크기가 크거나 string이 많이 포함된 범주형 자료일수록 용량을 많이 줄여주기 때문입니다. numeric한 값으로 바꿔주어도 inverse를 손쉽게 할 수 있고, 새로운 피쳐를 마주해도 인코딩되어있던 ordering을 해치지 않는다는 큰 장점 또한 중요합니다.[^fac]  
+LabelEncoding의 결과가 앞에서 설명한 Ordinal과 유사하기 때문에 크게 쓰일 일이 없을 것 같지만, 저는 개인적으로 <b>[sklearn.preprocessing.LabelEncoder](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.LabelEncoder.html)</b>를 종종 쓰는 편입니다.[^fac] 사용방법은 sklearn의 다른 인코딩 기법과 유사하기 때문에 쉽게 익힐 수 있을 뿐아니라, <b>자료의 크기가 크거나 해석할 필요가 없는 string이 많이 포함된 범주형 자료일수록 용량을 많이 줄여주기 때문</b>입니다. 당연히 numeric한 값으로 바꿔주어도 inverse를 손쉽게 할 수 있다는 점도 중요합니다.[^usage]  
 
-[^fac]: pandas의 내장함수 `factorize` 역시 LabelEncoder와 유사한 기능을 수행하나, 이러한 점에서는 [지난 포스팅](https://haehwan.github.io/posts/Sta-Encoding/)의 `get_dummies`와 같이 해결을 하지 못합니다. 즉, 새로운 피쳐로 인해서 라벨링의 순서가 뒤바뀔 수 단점이 있습니다.   
+[^fac]: pandas의 내장함수 `factorize` 역시 LabelEncoder와 유사한 기능을 수행합니다. 다만 numpy 기반의 sklearn이 속도도 더 빠를 뿐아니라 사용하기도 쉬워서 LabelEncoder만 설명드리겠습니다.   
 
-자세한 사용방법은 아래와 같습니다.
+[^usage]: 저는 LabelEncoding을 train 데이터셋에서 가장 먼저 해준 뒤에, 모든 전처리 과정을 시작합니다. 이후 모델에 적용하기 전에 다시 원형태로 돌리고 원데이터를 바탕으로 OneHotIncoder 등을 사용해서 최종적인 모델의 input 갯수를 고정합니다. 이렇게하면 새로운 테스트셋을 마주하더라도 굳이 LabelEncoding의 과정 없이 바로 결과를 받을 수 있습니다. 즉, 저는 데이터를 핸들링하기 쉬운 상태로 만들기 위한 용도로 이를 사용합니다.   
+
+자세한 사용방법은 아래와 같습니다.[^ref]  
+
+[^ref]: https://stackoverflow.com/questions/24458645/label-encoding-across-multiple-columns-in-scikit-learn  
 
 
+```python
+from sklearn.preprocessing import LabelEncoder
+from collections import defaultdict
+d = defaultdict(LabelEncoder)
+```
+collections는 python의 기본모듈입니다. [defaultdict](https://docs.python.org/2/library/collections.html#defaultdict-objects)는 해당 모듈에서 dictionary의 기능을 대신해서 부가적인 기능을 제공합니다. 이를 LabelEncoder와 함께 쓰면 매우 간편하게 사용할 수 있습니다.  
+
+LabelEncoding을 하고 싶을 때 아래와 같이 사용합니다.  
+```python
+UserDataFrame.apply(lambda x: d[x.name].fit_transform(x))
+```
+
+원래 값을 보고싶으면 아래와 같이 사용합니다.  
+```python
+UserTestDataFrame.apply(lambda x: d[x.name].inverse_transform(x))
+```
+
+자세한 예시는 저의 <b>[깃헙](https://github.com/HaeHwan/HaeHwan.github.io/blob/master/_posts/%5BEncoding%5D%20OHE/LabelEncoder.md)</b>을 참고해주시기 바랍니다.
+
+***
+***
+
+# 각주 및 참고문헌
 
