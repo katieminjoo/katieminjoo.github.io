@@ -23,7 +23,7 @@ seo:
 두 방법이 매우 흡사하기 때문에 Label Encoding을 주로 다룰 예정입니다.  
 
 # sklearn.preprocessing.OrdinalEncoder
-데이터에 대한 전처리를 주로 담당하는 sklearn.preprocessing 모듈에서 Ordinal 데이터에 특화된 method입니다. ordinal한 데이터를 원핫(더미화)방식이 아닌 integer한 쌍으로 기억한다는 점만 다를 뿐, 모든 옵션과 사용 방법은 지난 시간에 포스팅했던 OneHotEncoder와 동일합니다.  
+<b>[OrdinalEncoder](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.OrdinalEncoder.html)</b>는 데이터에 대한 전처리를 주로 담당하는 sklearn.preprocessing 모듈에서 Ordinal 데이터에 특화된 method입니다. ordinal한 데이터를 원핫(더미화)방식이 아닌 integer한 쌍으로 기억한다는 점만 다를 뿐, 모든 옵션과 사용 방법은 지난 시간에 포스팅했던 OneHotEncoder와 동일합니다.  
 
 그러나 주의해야될 점은, Ordinal 데이터를 함부로 숫자화할 수 없다는 점입니다. 실제로 대다수 데이터는 상하관계 혹은 피쳐 간의 차이가 샘플마다 다른 경우가 대다수입니다. 예를 들어 A에게 상과 중의 차이가 B가 느끼는 상과 중의 차이와 다를 수 있는 것입니다. 이렇듯 ordinal encoding을 실제로 사용하는 일은 굉장히 드뭅니다.  
 
@@ -31,7 +31,7 @@ seo:
 
 Ordinal 데이터로 적합한 예시를 찾아보자면, 최종학력 정도가 있을 수 있겠습니다. 한 나라 안에서 특정한 최종학력까지의 교육과정은 모든 샘플에 대해서 거의 유사합니다. 따라서 예컨대 고등학교 졸업과 대학교 졸업 간의 차이를 수량화할 수 있다면 이는 모든 샘플들에 대해서 일괄적으로 숫자형 자료로 변화시켜도 될 것입니다. 물론 단순하게 최종학력이 높을수록 순차적으로 1씩 증가하는 형태도 괜찮을 겁니다. 다만 어떤 간격의 숫자로 바꿔주었든, normalizing을 통해서 최종적으로 사용하면 됩니다.  
 
-예시는 <b>[sklearn의 설명](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.OrdinalEncoder.html)</b>으로 대체하겠습니다.  
+간단한 예시를 <b>[깃헙]()</b>에 올려놓았습니다.  
 
 
 
