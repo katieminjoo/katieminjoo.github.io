@@ -14,7 +14,7 @@ theme: jekyll-theme-dinky
 
 ## 2. IGAWorks CTR prediction
 
-[![kc](/assets/img/sample/[PR][CTR]title.png){:height="176px" width="357px"}](https://github.com/HaeHwan/HaeHwan.github.io/blob/master/assets/projects/KC%20house%20price/%5BHouse%5D%5Bpr2-2%5D%20%ED%81%B4%EB%9F%AC%EC%8A%A4%ED%84%B0%EB%A7%81/%5BHouse%5D%5Bpr2-2%5D%20%ED%81%B4%EB%9F%AC%EC%8A%A4%ED%84%B0%EB%A7%81.md)
+[![kc](/assets/img/sample/[PR][CTR]title.png){:height="176px" width="357px"}](https://github.com/HaeHwan/HaeHwan.github.io/tree/master/assets/projects/IGAWorks)
 
 > 대용량 train 데이터를 바탕으로 클릭율을 예측합니다. 로그로스를 낮추는 것과 빠른 시간 안에 결과를 도출하는 것이 중요한 포인트입니다. train 데이터와 함께 라벨링이 없는 audience 데이터도 활용할 수도 있습니다.
 
