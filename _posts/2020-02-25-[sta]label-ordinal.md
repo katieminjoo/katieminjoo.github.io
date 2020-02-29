@@ -45,7 +45,7 @@ LabelEncoding의 결과가 앞에서 설명한 Ordinal과 유사하기 때문에
 
 [^ex]: ![ex](/assets/img/sample/[post][encoding]size.png) [IGAWorks 경진대회](https://haehwan.github.io/posts/Comp-CTR/)에서 실제로 라벨 인코딩을 통해서 데이터 크기를 줄인 사진입니다.   
 
-[^usage]: 저는 LabelEncoding을 train 데이터셋에서 가장 먼저 해준 뒤에, 모든 전처리 과정을 시작합니다. 이후 모델에 적용하기 전에 다시 원형태로 돌리고 원데이터를 바탕으로 OneHotIncoder 등을 사용해서 최종적인 모델의 input 갯수를 고정합니다. 이렇게하면 새로운 테스트셋을 마주하더라도 굳이 LabelEncoding의 과정 없이 바로 결과를 받을 수 있습니다. 즉, 저는 데이터를 핸들링하기 쉬운 상태로 만들기 위한 용도로 이를 사용합니다.   
+[^usage]: 저는 LabelEncoding을 train 데이터셋에서 가장 먼저 해준 뒤에, 모든 전처리 과정을 시작합니다. 이후 모델에 적용하기 전에, 다시 원형태로 돌려서 OneHotIncoder 등을 사용합니다. 즉, 저는 데이터를 핸들링하기 쉬운 상태로 만들기 위한 용도로 이를 사용합니다.   
 
 자세한 사용방법은 아래와 같습니다.[^ref]  
 
@@ -69,7 +69,7 @@ UserDataFrame.apply(lambda x: d[x.name].fit_transform(x))
 UserTestDataFrame.apply(lambda x: d[x.name].inverse_transform(x))
 ```
 
-자세한 예시는 저의 <b>[깃헙](https://github.com/HaeHwan/HaeHwan.github.io/blob/master/_posts/%5BEncoding%5D%20OHE/LabelEncoder.md)</b>을 참고해주시기 바랍니다.
+간단한 예시는 저의 <b>[깃헙](https://github.com/HaeHwan/HaeHwan.github.io/blob/master/_posts/%5BEncoding%5D%20OHE/LabelEncoder.md)</b>을 참고해주시기 바랍니다. 또한 실제 데이터에서 활용한 사례는 저의 [IGAWorks 경진대회](https://haehwan.github.io/tabs/projects/) 참가 프로젝트에서 확인하실 수 있습니다.
 
 ***
 ***
