@@ -39,9 +39,11 @@ Ordinal 데이터로 적합한 예시를 찾아보자면, 최종학력 정도가
 
 
 # sklearn.preprocessing.LabelEncoder
-LabelEncoding의 결과가 앞에서 설명한 Ordinal과 유사하기 때문에 크게 쓰일 일이 없을 것 같지만, 저는 개인적으로 <b>[sklearn.preprocessing.LabelEncoder](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.LabelEncoder.html)</b>를 종종 쓰는 편입니다.[^fac] 사용방법은 sklearn의 다른 인코딩 기법과 유사하기 때문에 쉽게 익힐 수 있을 뿐아니라, <b>자료의 크기가 크거나 해석할 필요가 없는 string이 많이 포함된 범주형 자료일수록 용량을 많이 줄여주기 때문</b>입니다. 당연히 numeric한 값으로 바꿔주어도 inverse를 손쉽게 할 수 있다는 점도 중요합니다.[^usage]  
+LabelEncoding의 결과가 앞에서 설명한 Ordinal과 유사하기 때문에 크게 쓰일 일이 없을 것 같지만, 저는 개인적으로 <b>[sklearn.preprocessing.LabelEncoder](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.LabelEncoder.html)</b>를 종종 쓰는 편입니다.[^fac] 사용방법은 sklearn의 다른 인코딩 기법과 유사하기 때문에 쉽게 익힐 수 있을 뿐아니라, <b>자료의 크기가 크거나 해석할 필요가 없는 string이 많이 포함된 범주형 자료일수록 용량을 많이 줄여주기 때문</b>입니다.[^ex] 당연히 numeric한 값으로 바꿔주어도 inverse를 손쉽게 할 수 있다는 점도 중요합니다.[^usage]  
 
-[^fac]: pandas의 내장함수 `factorize` 역시 LabelEncoder와 유사한 기능을 수행합니다. 다만 numpy 기반의 sklearn이 속도도 더 빠를 뿐아니라 사용하기도 쉬워서 LabelEncoder만 설명드리겠습니다.   
+[^fac]: pandas의 내장함수 `factorize` 역시 LabelEncoder와 유사한 기능을 수행합니다. 다만 numpy 기반의 sklearn이 속도도 더 빠를 뿐아니라 사용하기도 쉬워서 LabelEncoder만 설명드리겠습니다.
+
+[^ex]: ![ex](/_posts/[Encoding] OHE/size.png) [IGAWorks 경진대회](https://haehwan.github.io/posts/Comp-CTR/)에서 실제로 라벨 인코딩을 통해서 데이터 크기를 줄인 사진입니다.   
 
 [^usage]: 저는 LabelEncoding을 train 데이터셋에서 가장 먼저 해준 뒤에, 모든 전처리 과정을 시작합니다. 이후 모델에 적용하기 전에 다시 원형태로 돌리고 원데이터를 바탕으로 OneHotIncoder 등을 사용해서 최종적인 모델의 input 갯수를 고정합니다. 이렇게하면 새로운 테스트셋을 마주하더라도 굳이 LabelEncoding의 과정 없이 바로 결과를 받을 수 있습니다. 즉, 저는 데이터를 핸들링하기 쉬운 상태로 만들기 위한 용도로 이를 사용합니다.   
 
