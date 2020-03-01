@@ -86,7 +86,6 @@ transformer = ColumnTransformer(transformers=t)
 ```  
 >  `SimpleImputer()`는 Sklearn에서 결측치를 해결해주는 함수입니다.  
 
-***  
 
 
 보다 자세한 예시는 [깃헙](https://github.com/HaeHwan/HaeHwan.github.io/blob/master/_posts/%5BEncoding%5D%20OHE/%EC%8B%AC%ED%99%94%EA%B3%BC%EC%A0%95/ColumnTransformer.md)에 올려놨습니다.  
