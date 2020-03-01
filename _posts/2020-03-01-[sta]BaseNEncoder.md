@@ -20,7 +20,7 @@ seo:
  
 <b>[OneHotEncoding](https://haehwan.github.io/posts/Sta-Encoding/)</b>은 매우 직관적이고 모든 범주형 자료에서 활용가능합니다. 하지만 차원이 피쳐의 갯수만큼 증가한다는 커다란 단점이 있습니다. 이는 로우의 갯수가 많고, 컬럼들의 피쳐가 많아질수록 필요한 연산량이 기하급수적으로 증가함을 의미합니다. 원핫인코딩 때문에 GCP를 사용한다면 여간 불편할 일일 뿐 아니라, GCP를 사용해도 데이터의 크기가 너무 크기 때문에 불편합니다.  
 
-이때 <b>N진법으로 표현</b>하는 것이 좋은 해결책입니다. 이를 BaseN Encoding이라고 하며, 그 중에서 N=2인 Binary Encoding이 가장 대표적입니다. 두 방법 모두 sklearn에서 범주형 자료에 대한 인코딩을 전문적으로 다루는 <b>[Categorical Encoding Methods](http://contrib.scikit-learn.org/categorical-encoding/)</b>의 일종입니다. 따라서 이를 위해서는 아래와 같이 라이브러리를 설치해주어야합니다.[^ce] 또한 앞으로 소개할 여러 인코딩 기법들은 이를 기반으로 작업이 가능하기 때문에 사용법을 익혀두는 것이 유용합니다.     
+이때 <b>N진법으로 표현</b>하는 것이 좋은 해결책입니다. 이를 BaseN Encoding이라고 하며, 그 중에서 N=2인 Binary Encoding이 가장 대표적입니다. 두 방법 모두 sklearn에서 범주형 자료에 대한 인코딩을 전문적으로 다루는 <b>[Categorical Encoding Methods](http://contrib.scikit-learn.org/categorical-encoding/)</b>의 일종입니다. 앞으로 소개할 여러 인코딩 기법들은 이 method로 작업하기 때문에 사용법을 익혀두는 것이 유용합니다.[^ce] 먼저 아래처럼 라이브러리를 설치합니다. 
 
 [^ce]: 물론 category_encoders에서도 OneHot과 Label 인코딩을 제공합니다만, 저 같은 경우는 두 인코딩 기법은 sklearn에 내장되어있는 함수가 더 익숙한 편입니다. 물론 `category_encoders`의 방식이 좀 더 [다양한 옵션](http://contrib.scikit-learn.org/categorical-encoding/onehot.html)들을 제공합니다.  
 
