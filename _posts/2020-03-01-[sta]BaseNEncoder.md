@@ -105,9 +105,9 @@ UserName.fit_transform(UserData)
 
 ## OneHot 인코딩과 예측 성능 비교
 
-1. http://www.willmcginnis.com/2015/11/29/beyond-one-hot-an-exploration-of-categorical-variables/  
+1. [http://www.willmcginnis.com/2015/11/29/beyond-one-hot-an-exploration-of-categorical-variables/](http://www.willmcginnis.com/2015/11/29/beyond-one-hot-an-exploration-of-categorical-variables/)  
 
-2. https://www.researchgate.net/profile/Kedar_Potdar/publication/320465713_A_Comparative_Study_of_Categorical_Variable_Encoding_Techniques_for_Neural_Network_Classifiers/links/59e6f9554585151e5465859c/A-Comparative-Study-of-Categorical-Variable-Encoding-Techniques-for-Neural-Network-Classifiers.pdf
+2. [International Journal of Computer Applications](https://www.researchgate.net/profile/Kedar_Potdar/publication/320465713_A_Comparative_Study_of_Categorical_Variable_Encoding_Techniques_for_Neural_Network_Classifiers/links/59e6f9554585151e5465859c/A-Comparative-Study-of-Categorical-Variable-Encoding-Techniques-for-Neural-Network-Classifiers.pdf)
 
 
 ## 각주
