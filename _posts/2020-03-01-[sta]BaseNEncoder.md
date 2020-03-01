@@ -18,7 +18,9 @@ seo:
 ***  
 
  
-<b>[OneHotEncoding](https://haehwan.github.io/posts/Sta-Encoding/)</b>은 매우 직관적이고 모든 범주형 자료에서 활용가능합니다. 하지만 차원이 피쳐의 갯수만큼 증가한다는 커다란 단점이 있습니다. 이는 로우의 갯수가 많고, 컬럼들의 피쳐가 많아질수록 필요한 연산량이 기하급수적으로 증가함을 의미합니다. 원핫인코딩 때문에 GCP를 사용한다면 여간 불편할 일일 뿐 아니라, GCP를 사용해도 데이터의 크기가 너무 크기 때문에 불편합니다. 그리고 무엇보다 <b>[차원의 저주](https://www.visiondummy.com/2014/04/curse-dimensionality-affect-classification/)</b>라는 문제에 봉착할 확률이 매우 높습니다.  
+<b>[OneHotEncoding](https://haehwan.github.io/posts/Sta-Encoding/)</b>은 매우 직관적이고 모든 범주형 자료에서 활용가능합니다. 하지만 차원이 피쳐의 갯수만큼 증가한다는 커다란 단점이 있습니다. 안그래도 샘플 수가 많다면, 변수의 피쳐가 많을수록 필요한 연산량이 기하급수적으로 증가함을 의미합니다. 원핫인코딩 때문에 GCP를 사용한다면 여간 불편할 일일 뿐 아니라, GCP를 사용해도 데이터의 크기가 너무 크기 때문에 불편합니다. 그리고 무엇보다 <b>[차원의 저주](https://www.visiondummy.com/2014/04/curse-dimensionality-affect-classification/)</b>라는 문제에 봉착할 확률이 매우 높습니다.[^curse]    
+
+[^curse]: 쉽게 다룰 수 있는 주제는 아니지만, 쉽게 요약은 할 수 있습니다. `설명변수가 많아질수록 모델 정확도가 떨어진다` 정도로 해석할 수 있을 겁니다. 보다 자세한 설명은 <b>[이 곳](http://www.willmcginnis.com/2015/11/29/beyond-one-hot-an-exploration-of-categorical-variables/)</b>의 글로 대체합니다.
 
 여러 해결방법이 있겠지만, <b>N진법으로 표현</b>하는 것도 그 중 하나입니다. 이를 BaseN Encoding이라고 하며, 그 중에서 N=2인 Binary Encoding이 가장 대표적입니다. 두 방법 모두 sklearn에서 범주형 자료에 대한 인코딩을 전문적으로 다루는 <b>[Categorical Encoding Methods](http://contrib.scikit-learn.org/categorical-encoding/)</b>의 일종입니다. 앞으로 소개할 여러 인코딩 기법들은 이 method로 작업하기 때문에 사용법을 익혀두는 것이 유용합니다.[^ce] 먼저 아래처럼 라이브러리를 설치합니다. 
 
