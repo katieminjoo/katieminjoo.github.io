@@ -35,7 +35,7 @@ Hash Collision이 존재하기는 하지만, 실제로 이를 마주치기는 �
 ```python
 hash('abc'), hash('ab')
 ```
-    (4359651368998010986, 8189326971213839819)  
+    (4359651368998010986, 8189326971213839819)   
 
 > 살짝만 달라져도 다른 값을 도출합니다.
 
@@ -43,7 +43,8 @@ hash('abc'), hash('ab')
 H_abc = hash('abc')
 H_abc, hash(H_abc)
 ```
-    (4359651368998010986, 2053808359784317035)  
+    (4359651368998010986, 2053808359784317035)   
+
 > 같은 값을 넣으면 동일한 값을 되풀이하지만, 원래 값을 확인할 수는 없습니다.  
 
 이러한 Hashing의 특징은 여러 분야에서 쓰이지만 대표적으로 암호화를 필요로하는 많은 필드들이 주된 사용처입니다. 제가 블록체인 산업에서 인턴으로 반년 정도 일을 했었는데, 그곳에서도 Hashing은 이런 이유로 인해서 가장 근간이되는 기술 중 하나였습니다.  
@@ -92,9 +93,264 @@ H_abc, hash(H_abc)
 
 
 # HashingEncoder
-`HashingEncoder`도 결국 위와 같은 Hashing의 성질을 이용해줍니다. 아무리 많은 피쳐를 가지는 범주형 자료를 마주하더라도, 원하는 인풋의 갯수로 
+`HashingEncoder`도 결국 위와 같은 Hashing의 성질을 이용합니다. 아무리 많은 피쳐를 가지는 범주형 자료를 마주하더라도, 원하는 차원의 갯수 내에서 표현이 가능해지기 때문입니다. 당연히 차원의 갯수가 커질수록 정확도는 높아지고, 연산량도 증가합니다. 따라서 최적의 차원을 정하기 위한 하이퍼파라미터 튜닝과정이 필요하기는 합니다. 그럼에도 불구하고 이전에 소개한 여러 인코딩 기법들이 새로운 피쳐를 마주하면 단순히 0으로만 이루어진 값으로 결과를 반환하기 때문에 피쳐에 따라 결과값이 다를 경우에 대한 피드백이 정확도가 떨어지는 반면에, HashingEncoder는 피쳐 갯수가 차원 수보다 엄청나게 커지지 않는 이상 계속해서 각 피쳐에 따른 모델학습이 가능해져서 예측력을 발전시켜나갈 수 있습니다.  
 
-`hash()` 기술을 활용해서 
+sklearn의 `category_encoders method`가 제공하는 `HashingEncoder`는 이를 위한 인코딩 기법으로 다른 category_encoders 방법들과 유사합니다. 차이점은 보통 다른 인코딩 방법이 가지고 있는 `inverse_transform`이 없다는 점일 것입니다. 이는 Hashing의 특징을 생각해보면 당연한 결과일 것입니다. 따라서 이번 글에서 `HashingEncoder`에 대한 자세한 사용법은 <b>[지난 번 포스팅](https://haehwan.github.io/posts/sta-BaseNEncoder/)</b>으로 대체합니다.
+
+추가적으로 hash를 활용한 손쉬운 예제를 통해서 인코딩하는 함수를 직접 구현할 수도 있습니다. 사용자가 입력한 임의의 숫자만큼 차원을 만들고, `hash()` 함수를 통해서 생성된 숫자를 각 벡터에 고유하게 배당하는 과정을 통해서 앞에서 설명한 스팸메일 예제와 비슷함을 알 수 있습니다.  
+
+
+
+```python
+import pandas as pd
+
+X = pd.DataFrame({'category': ['Cleaning', 'Cleaning', 'Entertainment', 'Entertainment', 'Tech', 'Tech'],
+                        'store': ['Walmart', 'Dia', 'Walmart', 'Fnac', 'Dia','Walmart']})
+```
+
+
+```python
+N = 10
+cols = ['col_%d' % d for d in range(N)]
+```
+
+
+```python
+def hash_fn(x):
+    tmp = [0 for _ in range(N)]
+    for val in x.values:
+        tmp[hash(val) % N] += 1  
+        print("{}: \t{} \t{}".format(val, hash(val), hash(val) % N))
+    
+    print("{}\n".format(tmp))
+        
+    return pd.Series(tmp, index=cols)
+```
+
+
+```python
+X
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>category</th>
+      <th>store</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Cleaning</td>
+      <td>Walmart</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Cleaning</td>
+      <td>Dia</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Entertainment</td>
+      <td>Walmart</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Entertainment</td>
+      <td>Fnac</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Tech</td>
+      <td>Dia</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Tech</td>
+      <td>Walmart</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+```python
+res = X.apply(hash_fn, axis = 1)
+```
+
+    Cleaning: 	2757853755239877974 	4
+    Walmart: 	954132345483583663 	3
+    [0, 0, 0, 1, 1, 0, 0, 0, 0, 0]
+    
+    Cleaning: 	2757853755239877974 	4
+    Walmart: 	954132345483583663 	3
+    [0, 0, 0, 1, 1, 0, 0, 0, 0, 0]
+    
+    Cleaning: 	2757853755239877974 	4
+    Dia: 	-6914920821674701215 	5
+    [0, 0, 0, 0, 1, 1, 0, 0, 0, 0]
+    
+    Entertainment: 	-8470121183086974585 	5
+    Walmart: 	954132345483583663 	3
+    [0, 0, 0, 1, 0, 1, 0, 0, 0, 0]
+    
+    Entertainment: 	-8470121183086974585 	5
+    Fnac: 	-1687995386747530867 	3
+    [0, 0, 0, 1, 0, 1, 0, 0, 0, 0]
+    
+    Tech: 	3426699838082966844 	4
+    Dia: 	-6914920821674701215 	5
+    [0, 0, 0, 0, 1, 1, 0, 0, 0, 0]
+    
+    Tech: 	3426699838082966844 	4
+    Walmart: 	954132345483583663 	3
+    [0, 0, 0, 1, 1, 0, 0, 0, 0, 0]
+    
+    
+
+
+```python
+res
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>col_0</th>
+      <th>col_1</th>
+      <th>col_2</th>
+      <th>col_3</th>
+      <th>col_4</th>
+      <th>col_5</th>
+      <th>col_6</th>
+      <th>col_7</th>
+      <th>col_8</th>
+      <th>col_9</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+위에서 구현한 방식의 특징은 범주형 자료마다 인코딩 기법이 들어가는 것이 아니라 각기 다른 범주형 자료를 모두 한꺼번에 인코딩해줄 수 있다는 장점이 있음을 확인할 수 있습니다. 이를 위한 참고자료는 하단에 첨부하였습니다.  
 
 ***
 ***
@@ -104,8 +360,4 @@ H_abc, hash(H_abc)
 1. https://contrib.scikit-learn.org/categorical-encoding/hashing.html  
 2. http://www.willmcginnis.com/2016/01/16/even-further-beyond-one-hot-hashing/
 3. https://medium.com/value-stream-design/introducing-one-of-the-best-hacks-in-machine-learning-the-hashing-trick-bf6a9c8af18f
-
-
-## 각주
-
  
