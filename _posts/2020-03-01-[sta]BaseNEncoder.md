@@ -82,6 +82,7 @@ UserName.fit_transform(UserData)
 ## transform, inverse_transform
 `transform`은 앞서 인코딩한 방식에 새로운 데이터셋을 집어넣어 같은 방식으로 변환을 해줍니다. 이때 여러 새로운 피쳐를 집어넣어도 모두 0으로 이루어진 컬럼으로 값을 반환합니다. 원래 데이터가 궁금하다면 `inverse_transform`을 해주면 됩니다. 새로운 데이터셋에 해당하는 값들은 `NaN`으로 반환합니다.  
 
+추가로 이 역시 make_column_transfer과 함께 쓰여서 하나의 데이터 안에서 일부분에만 작업을 해주는 것이 가능합니다. 자세한 예시는 저의 <b>[깃헙](https://github.com/HaeHwan/HaeHwan.github.io/blob/master/_posts/%5BEncoding%5D%20OHE/Binary%20w%20ColumnTranformer.md)</b>을 참고하시면 됩니다.
 
 # BaseN
 앞에서 Binary는 BaseN 인코딩에서 N을 2로 설정한 것과 동일함을 이야기했습니다. 조금 더 확장하면, 다음과 같을 것입니다.
