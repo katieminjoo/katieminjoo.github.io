@@ -11,30 +11,31 @@ seo:
 ---
 
 ***  
-> <b>데이터를 처리하다보면 범주형 자료를 수치형 자료로 바꾸어야할 필요성이 많습니다. 이러한 변환을 인코딩이라고 하는데, 다양한 목적과 자료의 특징에 맞추어 올바르게 인코딩한 범주형 자료는 모델의 퍼포먼스와 효율에 상당한 영향을 끼칩니다. 특히 최근 각광받는 머신러닝과 딥러닝에서 범주형 자료에 대한 인코딩은 필수적입니다. 그러나 인코딩은 생각만큼 단순하지 않습니다. *[One-Hot-Encoding/ Ordinal-Encoding/ Label Encoding/ Target Encoding... 등 종류도 다양](http://contrib.scikit-learn.org/categorical-encoding/index.html)*할 뿐더러, 비슷한 인코딩도 library에 따라 크고작은 차이가 있습니다. 인코딩 특집 글에서는 여러 인코딩 기법 중 자주 쓰이고, 중요한 방식들에 대해서 포스팅하겠습니다.</b>   
+> <b>데이터를 처리하다보면 범주형 자료를 수치형 자료로 바꾸어야할 필요성이 많습니다. 이러한 변환을 인코딩이라고 하는데, 다양한 목적과 자료의 특징에 맞추어 올바르게 인코딩한 범주형 자료는 모델의 퍼포먼스와 효율에 상당한 영향을 끼칩니다. 특히 최근 각광받는 머신러닝과 딥러닝에서 범주형 자료에 대한 인코딩은 필수적입니다. 그러나 인코딩은 생각만큼 단순하지 않습니다. *[One-Hot-Encoding/ Ordinal-Encoding/ Label Encoding/ Target Encoding... 등 종류도 다양](http://contrib.scikit-learn.org/categorical-encoding/index.html)*할 뿐더러, 비슷한 인코딩도 library에 따라 크고작은 차이가 있습니다. 인코딩 특집 글에서는 자주 쓰이고, 중요한 인코딩 방식들을 소개합니다.</b>   
 
 
 ***  
 ***  
 
  
-<b>[OneHotEncoding](https://haehwan.github.io/posts/Sta-Encoding/)</b>은 매우 직관적이고 모든 범주형 자료에서 활용가능합니다. 하지만 차원이 피쳐의 수만큼 증가한다는 커다란 단점이 있습니다. 따라서 가지고 있는 샘플 수가 많다면, 필요한 연산량과 메모리가 기하급수적으로 증가할 수 있습니다. 원핫인코딩 때문에 GCP를 사용한다면 여간 불편할 일일 뿐 아니라, GCP를 사용해도 데이터의 크기가 너무 크기 때문에 불편합니다. 그리고 무엇보다 <b>[차원의 저주](https://www.visiondummy.com/2014/04/curse-dimensionality-affect-classification/)</b>라는 문제에 봉착할 확률이 높아집니다.[^curse]    
+<b>[OneHotEncoding](https://haehwan.github.io/posts/Sta-Encoding/)</b>은 매우 직관적이고 모든 범주형 자료에서 활용가능합니다. 하지만 차원이 피쳐의 수만큼 증가한다는 커다란 단점이 있습니다. 따라서 가지고 있는 샘플 수가 많다면, 필요한 연산량과 메모리가 기하급수적으로 증가할 수 있습니다. 원핫인코딩 때문에 GCP를 사용한다면 여간 불편할 일일 뿐 아니라, GCP를 사용해도 데이터의 크기가 너무 크기 때문에 불편합니다. 그리고 무엇보다 <b>[차원의 저주](https://www.visiondummy.com/2014/04/curse-dimensionality-affect-classification/)</b>라는 문제에 봉착할 확률이 높아집니다.[^curse] 여러 해결방법이 있겠지만, <b>N진법으로 표현</b>하는 것도 그 중 하나입니다. 이를 BaseN Encoding이라고 하며, 그 중에서 N=2인 Binary Encoding이 가장 대표적입니다. 오늘은 두 방식을 소개합니다.   
 
 [^curse]: 쉽게 다룰 수 있는 주제는 아니지만, 쉽게 요약은 할 수 있습니다. `설명변수가 많아질수록 모델 정확도가 떨어진다` 정도로 해석할 수 있을 겁니다.
 
-여러 해결방법이 있겠지만, <b>N진법으로 표현</b>하는 것도 그 중 하나입니다. 이를 BaseN Encoding이라고 하며, 그 중에서 N=2인 Binary Encoding이 가장 대표적입니다. 두 방법 모두 sklearn에서 범주형 자료에 대한 인코딩을 전문적으로 다루는 <b>[Categorical Encoding Methods](http://contrib.scikit-learn.org/categorical-encoding/)</b>의 일종입니다. 앞으로 소개할 여러 인코딩 기법들은 이 method로 작업하기 때문에 사용법을 익혀두는 것이 유용합니다.[^ce] 먼저 아래처럼 라이브러리를 설치합니다. 
 
-[^ce]: 물론 category_encoders에서도 OneHot과 Label 인코딩을 제공합니다만, 저 같은 경우는 두 인코딩 기법은 sklearn에 내장되어있는 함수가 더 익숙한 편입니다. 물론 `category_encoders`의 방식이 좀 더 [다양한 옵션](http://contrib.scikit-learn.org/categorical-encoding/onehot.html)들을 제공합니다.  
+# category_encoders
+Binary와 BaseN 인코딩 모두 sklearn의 <b>[Categorical Encoding Methods](http://contrib.scikit-learn.org/categorical-encoding/)</b> 중 하나입니다. 이는 범주형 자료에 대한 인코딩을 전문적으로 다루기 때문에 앞선 포스팅에서 주로 다루었던, sklearn 기본 패키지 *(sklearn.preprocessing)* 보다 뛰어난 장점이 많습니다. 먼저 `sklearn.preprocessing`는 array형태로 값을 반환하고, 설사 이를 DataFrame으로 반환한다고 해도 컬럼의 이름이 모두 없어진 상태입니다. 이 때문에 DataFrame으로 만들더라도 0과 1로만 이루어진 결과값을 만나게 됩니다. 이에 반해 category_encoders는 DataFrame으로 컬럼 이름을 잘 정제해서 보여줍니다. 옵션도 다양할 뿐 아니라 앞으로 소개할 다양한 인코딩 기법들은 이 method로 작업하기 때문에 사용법을 익혀두는 것이 유용합니다. 먼저 아래처럼 라이브러리를 설치합니다. 
 
 ```python 
 pip install category_encoders
 import category_encoders as ce
 ```
 
+
 # BinaryEncoder
 먼저 2진법으로 표현하는 것의 장점을 간략하게 말씀드리려고 합니다. 평소에 원핫으로 인코딩을 한다는 것은, 완전히 맞는 말은 아니지만 1진법으로 표현하는 것과 유사합니다. 1진법이란, 흔히 개표를 할 때 바를 정(正)자를 써서 득표수를 쓰는 것을 의미합니다. 이 경우, 득표수만큼 획순을 더해가게 되는데, 원핫인코딩도 사실 같은 논리입니다. 다만 <b>피쳐의 갯수만큼 벡터의 길이가 늘어납니다.</b>  
 
-반면 2진법은 각 자릿수마다 0과 1의 두가지 숫자로 표현하게됩니다. 예를 들어, `100`은 `1100100`이 됩니다. 만약 100가지의 피쳐를 가지는 범주형 변수를 원핫인코딩을 한다거나, 이를 1진법으로 표현하기 위해서는 100차원의 벡터 혹은 100번의 획순이 필요한 것과 비교하면 단 7자리로 표현이 가능하니 엄청난 차원축소라고 할 수 있습니다. 따라서 원핫인코딩이 가지는 <b>[메모리 부족](https://github.com/HaeHwan/HaeHwan.github.io/blob/master/assets/projects/IGAWorks/%5Bigaworks%5D(1)%20EDA.md)[^ex]과 떨어지는 예측력의 문제도 꽤나 잘 해결</b>할 수 있습니다.[^succ]  
+반면 2진법은 각 자릿수마다 0과 1의 두가지 숫자로 표현하게됩니다. 예를 들어, `100`은 `1100100`이 됩니다. 만약 100가지의 피쳐를 가지는 범주형 변수를 원핫인코딩을 한다거나, 이를 1진법으로 표현하기 위해서는 100차원의 벡터 혹은 100번의 획순이 필요한 것과 비교하면 단 7자리로 표현이 가능하니 엄청난 차원축소라고 할 수 있습니다. 따라서 원핫인코딩이 가지는 <b>[메모리 부족](https://github.com/HaeHwan/HaeHwan.github.io/blob/master/assets/projects/IGAWorks/%5Bigaworks%5D(1)%20EDA.md)[^ex]과 차원의 저주도 꽤나 잘 해결</b>할 수 있습니다.[^succ]  
 
 [^ex]: 계속해서 피쳐들을 정리해가면서 원핫인코딩을 적용을 하려고 해도, 로컬컴퓨터와 Colab에서는 메모리 부족의 에러가 발생하는 ipynb 파일입니다.  
 
@@ -42,12 +43,12 @@ import category_encoders as ce
 
 [구체적인 과정](https://contrib.scikit-learn.org/categorical-encoding/binary.html)은 아래와 같습니다.  
 ```terminal
-1. numeric value로 바꿔주기[^ordinal]  
+1. numeric value로 바꿔주기  
 2. 이진법 숫자로 바꿔주기  
 3. 각 자릿수에 맞추어 컬럼을 만들어주기
 ```  
+> 처음에 numeric value로 바꿔줄 때는, `Ordinal Encoder`를 사용합니다. 여러 이유가 있겠지만, Label 인코딩이 0부터 시작하는 반면, Ordinal 인코딩은 1부터 시작하기 때문에 그렇습니다.   
 
-[^ordinal]: 이 때에는 Ordinal Encoder를 사용합니다. 여러 이유가 있겠지만, Label 인코딩이 0부터 시작하는 반면, Ordinal 인코딩은 1부터 시작하기 때문에 그렇습니다.   
 
 
 # BaseN
