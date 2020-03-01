@@ -1,6 +1,6 @@
 ---
 layout: post
-title: <i class="far fa-chart-bar"> [Encoding] Binary/ BaseN</i>
+title: <i class="far fa-chart-bar"> [Encoding] Binary/ BaseN encoding</i>
 date: 2020-03-01 13:42:00 +0800
 categories: [Statistics, Encoding]
 tags: [ColumnTransformer]
@@ -36,9 +36,11 @@ import category_encoders as ce
 
 구체적인 사용법은 아래와 같습니다.  
 
-  
+
+# BaseN
+
 ***
 ***
-## 각주 및 참고문헌
+# 각주 및 참고문헌
 
 참고 : https://towardsdatascience.com/smarter-ways-to-encode-categorical-data-for-machine-learning-part-1-of-3-6dca2f71b159
