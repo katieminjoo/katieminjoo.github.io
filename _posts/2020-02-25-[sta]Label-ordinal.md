@@ -55,18 +55,16 @@ LabelEncoding의 결과가 앞에서 설명한 Ordinal과 유사하기 때문에
 ```python
 from sklearn.preprocessing import LabelEncoder
 from collections import defaultdict
-d = defaultdict(LabelEncoder)
+UserName = defaultdict(LabelEncoder)
 ```
-collections는 python의 기본모듈입니다. [defaultdict](https://docs.python.org/2/library/collections.html#defaultdict-objects)는 해당 모듈에서 dictionary의 기능을 대신해서 부가적인 기능을 제공합니다. 이를 LabelEncoder와 함께 쓰면 매우 간편하게 사용할 수 있습니다.  
-
-LabelEncoding을 하고 싶을 때 아래와 같이 사용합니다.  
+[defaultdict](https://docs.python.org/2/library/collections.html#defaultdict-objects)는 새로운 key에 대해서 에러를 반환하는 것이 아니라, 초기에 설정한 값을 반환하는 기능이 추가된 dictionary입니다. 사용방법은 collections 모둘로부터 `defaultdict`를 import함으로써 가능합니다. 따라서 모든 칼럼에 대해서 각각의 LabelEncoder를 만들고 싶으면, `defaultdict`와 `apply` 함수를 이용해주면 됩니다. 자세한 방법은 아래와 같습니다.  
 ```python
-UserDataFrame.apply(lambda x: d[x.name].fit_transform(x))
+UserDataFrame.apply(lambda x: UserName[x.name].fit_transform(x))
 ```
 
-원래 값을 보고싶으면 아래와 같이 사용합니다.  
+원래 값을 보고싶을 때에는, `fit_transform` 대신에 `inverse_transform`을 쓰면 됩니다.
 ```python
-UserTestDataFrame.apply(lambda x: d[x.name].inverse_transform(x))
+UserTestDataFrame.apply(lambda x: UserName[x.name].inverse_transform(x))
 ```
 
 간단한 예시는 저의 <b>[깃헙](https://github.com/HaeHwan/HaeHwan.github.io/blob/master/_posts/%5BEncoding%5D%20OHE/LabelEncoder.md)</b>을 참고해주시기 바랍니다. 또한 실제 데이터에서 활용한 사례는 저의 [IGAWorks 경진대회](https://haehwan.github.io/tabs/projects/) 참가 프로젝트에서 확인하실 수 있습니다.
