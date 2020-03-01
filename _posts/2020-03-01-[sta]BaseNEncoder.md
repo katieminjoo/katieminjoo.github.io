@@ -18,17 +18,26 @@ seo:
 ***  
 
  
-<b>[OneHotEncoding](https://haehwan.github.io/posts/Sta-Encoding/)</b>은 매우 직관적이고 모든 범주형 자료에서 활용가능합니다. 하지만 차원이 피쳐의 수만큼 증가한다는 커다란 단점이 있습니다. 따라서 가지고 있는 샘플 수가 많다면, 필요한 연산량과 메모리가 기하급수적으로 증가할 수 있습니다. 원핫인코딩 때문에 GCP를 사용한다면 여간 불편할 일일 뿐 아니라, GCP를 사용해도 데이터의 크기가 너무 크기 때문에 불편합니다. 그리고 무엇보다 <b>[차원의 저주](https://www.visiondummy.com/2014/04/curse-dimensionality-affect-classification/)</b>라는 문제에 봉착할 확률이 높아집니다.[^curse] 여러 해결방법이 있겠지만, <b>N진법으로 표현</b>하는 것도 그 중 하나입니다. 이를 BaseN Encoding이라고 하며, 그 중에서 N=2인 Binary Encoding이 가장 대표적입니다. 오늘은 두 방식을 소개합니다.   
+<b>[OneHotEncoding](https://haehwan.github.io/posts/Sta-Encoding/)</b>은 매우 직관적이고 모든 범주형 자료에서 활용가능합니다. 하지만 차원이 피쳐의 수만큼 증가한다는 커다란 단점이 있습니다. 따라서 가지고 있는 샘플 수가 많다면, 필요한 연산량과 메모리가 기하급수적으로 증가할 수 있습니다. 원핫인코딩 때문에 GCP를 사용한다면 여간 불편할 일일 뿐 아니라, GCP를 사용해도 데이터의 크기가 너무 크기 때문에 불편합니다. 그리고 무엇보다 <b>[차원의 저주](https://www.visiondummy.com/2014/04/curse-dimensionality-affect-classification/)</b>라는 문제에 봉착할 확률이 높아집니다.[^curse] 여러 해결방법이 있겠지만, <b>N진법으로 표현</b>하는 것도 그 중 하나입니다. 이를 BaseN Encoding이라고 하며, 그 중에서 N=2인 Binary Encoding이 가장 대표적입니다. 오늘은 이 두 방식을 소개합니다.   
 
 [^curse]: 쉽게 다룰 수 있는 주제는 아니지만, 쉽게 요약은 할 수 있습니다. `설명변수가 많아질수록 모델 정확도가 떨어진다` 정도로 해석할 수 있을 겁니다.
 
 
 # category_encoders
-Binary와 BaseN 인코딩 모두 sklearn의 <b>[Categorical Encoding Methods](http://contrib.scikit-learn.org/categorical-encoding/)</b> 중 하나입니다. 이는 범주형 자료에 대한 인코딩을 전문적으로 다루기 때문에 앞선 포스팅에서 주로 다루었던, sklearn 기본 패키지 *(sklearn.preprocessing)* 보다 뛰어난 장점이 많습니다. 먼저 `sklearn.preprocessing`는 array형태로 값을 반환하고, 설사 이를 DataFrame으로 반환한다고 해도 컬럼의 이름이 모두 없어진 상태입니다. 이 때문에 DataFrame으로 만들더라도 0과 1로만 이루어진 결과값을 만나게 됩니다. 이에 반해 category_encoders는 DataFrame으로 컬럼 이름을 잘 정제해서 보여줍니다.  
+Binary와 BaseN 인코딩 모두 sklearn의 <b>[Categorical Encoding Methods](http://contrib.scikit-learn.org/categorical-encoding/)</b> 중 하나입니다. 이는 범주형 자료에 대한 인코딩을 전문적으로 다루기 때문에 앞선 포스팅에서 주로 다루었던, sklearn 기본 패키지 *(sklearn.preprocessing)* 보다 뛰어난 장점이 많습니다. 먼저 `sklearn.preprocessing`는 array형태로 값을 반환하고, 설사 이를 DataFrame으로 반환한다고 해도 컬럼의 이름이 모두 없어진 상태입니다. 이 때문에 DataFrame으로 만들더라도 0과 1로만 이루어진 결과값을 만나게 됩니다. 이에 반해 category_encoders는 DataFrame으로 결과를 반환할 뿐아니라, 컬럼에 각각 원래의 변수이름이 표현되기 때문에 편리합니다.[^TMI]  
 
-예를 들어, 아래 사진은 sklearn의 기본 데이터인 보스턴 주거가격에서 범주형 자료 *(CHAS, RAD)* 를 binary로 바꾼 모습입니다. 별다른 코드 없이도 알아서 DatFrame으로 바꿔줄 뿐 아니라 컬럼 이름까지 `get_dummies`와 유사하게 보여줍니다.  
+[^TMI]: 물론 numpy array 형태로 값을 반환할 수도 있습니다. 만약 딥러닝과 같이 곧바로 array를 인풋으로 입력받는 상황이라면 초기 설정에 `return_df = False`로 해줌으로써 가능합니다.  
+
+예를 들어, 아래 사진은 범주형 자료 *(CHAS, RAD)* 를 binary로 바꾼 모습입니다. 별다른 코드 없이도 알아서 DatFrame으로 바꿔줄 뿐 아니라 컬럼 이름까지 `get_dummies`와 유사하게 보여줍니다.  
 
 ![im1](/assets/img/sample/[post][encoding]ce.png)
+
+추가적으로 `sklearn.preprocessing`과 비교하여 인풋으로 받는 type은 다음과 같이 구별됩니다.  
+```terminal
+1. sklearn.preprocessing : DataFrame, (-1, 1) 꼴의 array  
+2. category_encoders : DataFrame, Series
+```
+
 
 옵션도 다양할 뿐 아니라 앞으로 소개할 다양한 인코딩 기법들은 이 method로 작업하기 때문에 사용법을 익혀두는 것이 유용합니다. 먼저 아래처럼 라이브러리를 설치합니다. 
 
@@ -41,7 +50,7 @@ import category_encoders as ce
 # BinaryEncoder
 먼저 2진법으로 표현하는 것의 장점을 간략하게 말씀드리려고 합니다. 평소에 원핫으로 인코딩을 한다는 것은, 완전히 맞는 말은 아니지만 1진법으로 표현하는 것과 유사합니다. 1진법이란, 흔히 개표를 할 때 바를 정(正)자를 써서 득표수를 쓰는 것을 의미합니다. 이 경우, 득표수만큼 획순을 더해가게 되는데, 원핫인코딩도 사실 같은 논리입니다. 다만 <b>피쳐의 갯수만큼 벡터의 길이가 늘어납니다.</b>  
 
-반면 2진법은 각 자릿수마다 0과 1의 두가지 숫자로 표현하게됩니다. 예를 들어, `100`은 `1100100`이 됩니다. 만약 100가지의 피쳐를 가지는 범주형 변수를 원핫인코딩을 한다거나, 이를 1진법으로 표현하기 위해서는 100차원의 벡터 혹은 100번의 획순이 필요한 것과 비교하면 단 7자리로 표현이 가능하니 엄청난 차원축소라고 할 수 있습니다. 따라서 원핫인코딩이 가지는 <b>[메모리 부족](https://github.com/HaeHwan/HaeHwan.github.io/blob/master/assets/projects/IGAWorks/%5Bigaworks%5D(1)%20EDA.md)[^ex]과 차원의 저주도 꽤나 잘 해결</b>할 수 있습니다.[^succ]  
+반면 2진법은 각 자릿수마다 0과 1의 두가지 숫자로 표현하게됩니다. 예를 들어, `100`은 `1100100`이 됩니다. 만약 100가지의 피쳐를 가지는 범주형 변수를 원핫인코딩을 한다거나, 이를 1진법으로 표현하기 위해서는 100차원의 벡터 혹은 100번의 획순이 필요한 것과 비교하면 단 7자리로 표현이 가능하니 엄청난 차원축소라고 할 수 있습니다. 따라서 원핫인코딩이 가지는 <b>[메모리 부족](https://github.com/HaeHwan/HaeHwan.github.io/blob/master/assets/projects/IGAWorks/%5Bigaworks%5D(1)%20EDA.md)[^ex]과 차원의 저주도 꽤나 잘 해결</b>할 수 있습니다.[^succ] 물론 원핫인코딩과 같이 각 컬럼이 특정한 의미를 갖는다고 말할수는 없어집니다. 단순히 어느 범주형 자료를 가공한 것인지를 표현한다고 할 수 있습니다.    
 
 [^ex]: 계속해서 피쳐들을 정리해가면서 원핫인코딩을 적용을 하려고 해도, 로컬컴퓨터와 Colab에서는 메모리 부족의 에러가 발생하는 ipynb 파일입니다.  
 
@@ -55,6 +64,24 @@ import category_encoders as ce
 ```  
 > 처음에 numeric value로 바꿔줄 때는, `Ordinal Encoder`를 사용합니다. 여러 이유가 있겠지만, Label 인코딩이 0부터 시작하는 반면, Ordinal 인코딩은 1부터 시작하기 때문에 그렇습니다.   
 
+코딩은 다음과 같이 해주면 됩니다.  
+## BinaryEncoder 불러오기
+```python
+from category_encoders import *
+
+UserName = BinaryEncoder(cols = ['RAD'], drop_invariant=True)
+UserName
+```
+자신이 원하는 옵션을 결정하는 곳입니다. 다양한 기능을 사용할 수 있지만, 대다수 default로 잘 설정이 되어있습니다. 위에 처럼만 코딩을 해주어도, 새로운 변수를 마주했을 때 모든 값을 0으로 바꿔주어서 새로운 피쳐와 마주쳐도 차원에 변화없이 문제를 잘 해결할 수 있습니다. drop_invariant는 모두 하나의 값으로만 이루어진 컬럼을 제거하는 기능을 수행합니다.   
+
+## fit_transform
+`fit`과 `transform`의 기능을 합친 것입니다. 인코딩을 원하는 데이터를 집어넣는 첫 단계이며, 결과가 위에서 생성한 instance에 저장이 됩니다. 따라서 새로운 값을 마주할 때 차원을 유지하거나, 원래 값이 궁금할 때에 손쉽게 확인할 수 있습니다.  
+```python
+UserName.fit_transform(UserData)
+```  
+
+## transform, inverse_transform
+`transform`은 앞서 인코딩한 방식에 새로운 데이터셋을 집어넣어 같은 방식으로 변환을 해줍니다. 이때 여러 새로운 피쳐를 집어넣어도 모두 0으로 이루어진 컬럼으로 값을 반환합니다. 원래 데이터가 궁금하다면 `inverse_transform`을 해주면 됩니다. 새로운 데이터셋에 해당하는 값들은 `NaN`으로 반환합니다.  
 
 
 # BaseN
