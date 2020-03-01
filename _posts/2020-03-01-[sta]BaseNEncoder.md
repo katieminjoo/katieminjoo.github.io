@@ -24,7 +24,13 @@ seo:
 
 
 # category_encoders
-Binary와 BaseN 인코딩 모두 sklearn의 <b>[Categorical Encoding Methods](http://contrib.scikit-learn.org/categorical-encoding/)</b> 중 하나입니다. 이는 범주형 자료에 대한 인코딩을 전문적으로 다루기 때문에 앞선 포스팅에서 주로 다루었던, sklearn 기본 패키지 *(sklearn.preprocessing)* 보다 뛰어난 장점이 많습니다. 먼저 `sklearn.preprocessing`는 array형태로 값을 반환하고, 설사 이를 DataFrame으로 반환한다고 해도 컬럼의 이름이 모두 없어진 상태입니다. 이 때문에 DataFrame으로 만들더라도 0과 1로만 이루어진 결과값을 만나게 됩니다. 이에 반해 category_encoders는 DataFrame으로 컬럼 이름을 잘 정제해서 보여줍니다. 옵션도 다양할 뿐 아니라 앞으로 소개할 다양한 인코딩 기법들은 이 method로 작업하기 때문에 사용법을 익혀두는 것이 유용합니다. 먼저 아래처럼 라이브러리를 설치합니다. 
+Binary와 BaseN 인코딩 모두 sklearn의 <b>[Categorical Encoding Methods](http://contrib.scikit-learn.org/categorical-encoding/)</b> 중 하나입니다. 이는 범주형 자료에 대한 인코딩을 전문적으로 다루기 때문에 앞선 포스팅에서 주로 다루었던, sklearn 기본 패키지 *(sklearn.preprocessing)* 보다 뛰어난 장점이 많습니다. 먼저 `sklearn.preprocessing`는 array형태로 값을 반환하고, 설사 이를 DataFrame으로 반환한다고 해도 컬럼의 이름이 모두 없어진 상태입니다. 이 때문에 DataFrame으로 만들더라도 0과 1로만 이루어진 결과값을 만나게 됩니다. 이에 반해 category_encoders는 DataFrame으로 컬럼 이름을 잘 정제해서 보여줍니다.  
+
+예를 들어, 아래 사진은 sklearn의 기본 데이터인 보스턴 주거가격에서 범주형 자료 *(CHAS, RAD)* 를 binary로 바꾼 모습입니다. 별다른 코드 없이도 알아서 DatFrame으로 바꿔줄 뿐 아니라 컬럼 이름까지 `get_dummies`와 유사하게 보여줍니다.  
+
+![im1](/assets/img/sample/[post][encoding]ce.png)
+
+옵션도 다양할 뿐 아니라 앞으로 소개할 다양한 인코딩 기법들은 이 method로 작업하기 때문에 사용법을 익혀두는 것이 유용합니다. 먼저 아래처럼 라이브러리를 설치합니다. 
 
 ```python 
 pip install category_encoders
