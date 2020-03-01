@@ -34,12 +34,14 @@ import category_encoders as ce
 # BinaryEncoder
 먼저 2진법으로 표현하는 것의 장점을 간략하게 말씀드리려고 합니다. 평소에 원핫으로 인코딩을 한다는 것은, 완전히 맞는 말은 아니지만 1진법으로 표현하는 것과 유사합니다. 1진법이란, 흔히 개표를 할 때 바를 정(正)자를 써서 득표수를 쓰는 것을 의미합니다. 이 경우, 득표수만큼 획순을 더해가게 되는데, 원핫인코딩도 사실 같은 논리입니다. 다만 <b>피쳐의 갯수만큼 벡터의 길이가 늘어납니다.</b>  
 
-반면 2진법은 각 자릿수마다 0과 1의 두가지 숫자로 표현하게됩니다. 예를 들어, `100`은 `1100100`이 됩니다. 만약 100가지의 피쳐를 가지는 범주형 변수를 원핫인코딩을 한다거나, 이를 1진법으로 표현하기 위해서는 100차원의 벡터 혹은 100번의 획순이 필요한 것과 비교하면 단 7자리로 표현이 가능하니 엄청난 차원축소라고 할 수 있습니다. 따라서 원핫인코딩으로 [메모리 부족](https://github.com/HaeHwan/HaeHwan.github.io/blob/master/assets/projects/IGAWorks/%5Bigaworks%5D(1)%20EDA.md)[^ex]이 생기던 문제도 말끔히 해결할 수 있게 됩니다.  
+반면 2진법은 각 자릿수마다 0과 1의 두가지 숫자로 표현하게됩니다. 예를 들어, `100`은 `1100100`이 됩니다. 만약 100가지의 피쳐를 가지는 범주형 변수를 원핫인코딩을 한다거나, 이를 1진법으로 표현하기 위해서는 100차원의 벡터 혹은 100번의 획순이 필요한 것과 비교하면 단 7자리로 표현이 가능하니 엄청난 차원축소라고 할 수 있습니다. 따라서 원핫인코딩이 가지는 <b>[메모리 부족](https://github.com/HaeHwan/HaeHwan.github.io/blob/master/assets/projects/IGAWorks/%5Bigaworks%5D(1)%20EDA.md)[^ex]과 떨어지는 예측력의 문제도 꽤나 잘 해결</b>할 수 있습니다.[^succ]  
 
 [^ex]: 계속해서 피쳐들을 정리해가면서 원핫인코딩을 적용을 하려고 해도, 로컬컴퓨터와 Colab에서는 메모리 부족의 에러가 발생하는 ipynb 파일입니다.  
 
+[^succ]: 철저한 분석방법은 아니지만, [이 곳](http://www.willmcginnis.com/2015/11/29/beyond-one-hot-an-exploration-of-categorical-variables/)의 사례를 통해서 다른 인코딩 방식들보다 Binary가 성능이 뛰어남을 확인할 수 있습니다.  
+
 [구체적인 과정](https://contrib.scikit-learn.org/categorical-encoding/binary.html)은 아래와 같습니다.  
-```html
+```terminal
 1. numeric value로 바꿔주기[^ordinal]  
 2. 이진법 숫자로 바꿔주기  
 3. 각 자릿수에 맞추어 컬럼을 만들어주기
