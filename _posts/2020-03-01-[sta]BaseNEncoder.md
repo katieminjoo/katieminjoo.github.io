@@ -18,7 +18,7 @@ seo:
 ***  
 
  
-<b>[OneHotEncoding](https://haehwan.github.io/posts/Sta-Encoding/)</b>은 매우 직관적이고 모든 범주형 자료에서 활용가능합니다. 하지만 차원이 피쳐의 갯수만큼 증가한다는 커다란 단점이 있습니다. 안그래도 샘플 수가 많다면, 변수의 피쳐가 많을수록 필요한 연산량이 기하급수적으로 증가함을 의미합니다. 원핫인코딩 때문에 GCP를 사용한다면 여간 불편할 일일 뿐 아니라, GCP를 사용해도 데이터의 크기가 너무 크기 때문에 불편합니다. 그리고 무엇보다 <b>[차원의 저주](https://www.visiondummy.com/2014/04/curse-dimensionality-affect-classification/)</b>라는 문제에 봉착할 확률이 매우 높습니다.[^curse]    
+<b>[OneHotEncoding](https://haehwan.github.io/posts/Sta-Encoding/)</b>은 매우 직관적이고 모든 범주형 자료에서 활용가능합니다. 하지만 차원이 피쳐의 수만큼 증가한다는 커다란 단점이 있습니다. 따라서 가지고 있는 샘플 수가 많다면, 필요한 연산량과 메모리가 기하급수적으로 증가할 수 있습니다. 원핫인코딩 때문에 GCP를 사용한다면 여간 불편할 일일 뿐 아니라, GCP를 사용해도 데이터의 크기가 너무 크기 때문에 불편합니다. 그리고 무엇보다 <b>[차원의 저주](https://www.visiondummy.com/2014/04/curse-dimensionality-affect-classification/)</b>라는 문제에 봉착할 확률이 높아집니다.[^curse]    
 
 [^curse]: 쉽게 다룰 수 있는 주제는 아니지만, 쉽게 요약은 할 수 있습니다. `설명변수가 많아질수록 모델 정확도가 떨어진다` 정도로 해석할 수 있을 겁니다.
 
@@ -40,12 +40,12 @@ import category_encoders as ce
 
 [구체적인 과정](https://contrib.scikit-learn.org/categorical-encoding/binary.html)은 아래와 같습니다.  
 ```html
-1. numeric value로 바꿔주기  
+1. numeric value로 바꿔주기[^ordinal]  
 2. 이진법 숫자로 바꿔주기  
 3. 각 자릿수에 맞추어 컬럼을 만들어주기
 ```  
 
-
+[^ordinal]: 이 때에는 Ordinal Encoder를 사용합니다. 여러 이유가 있겠지만, Label 인코딩이 0부터 시작하는 반면, Ordinal 인코딩은 1부터 시작하기 때문에 그렇습니다.   
 
 
 # BaseN
