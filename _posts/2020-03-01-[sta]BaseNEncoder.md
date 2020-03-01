@@ -28,7 +28,7 @@ Binary와 BaseN 인코딩 모두 sklearn의 <b>[Categorical Encoding Methods](ht
 
 [^TMI]: 물론 numpy array 형태로 값을 반환할 수도 있습니다. 만약 딥러닝과 같이 곧바로 array를 인풋으로 입력받는 상황이라면 초기 설정에 `return_df = False`로 해줌으로써 가능합니다.  
 
-예를 들어, 아래 사진은 범주형 자료 *(CHAS, RAD)* 를 binary로 바꾼 모습입니다. 별다른 코드 없이도 알아서 DatFrame으로 바꿔줄 뿐 아니라 컬럼 이름까지 `get_dummies`와 유사하게 보여줍니다.  
+예를 들어, 아래 사진은 범주형 자료 *(CHAS, RAD)* 를 binary로 바꾼 모습입니다. 별다른 코드 없이도 알아서 DatFrame으로 바꿔줄 뿐 아니라 컬럼 이름까지 `get_dummies`와 유사하게 보여줍니다.  물론 원핫인코딩처럼 각 컬럼이 특정한 의미를 갖는다고 말할수는 없어집니다. 단순히 어느 범주형 자료를 가공한 것인지를 표현한다고 할 수 있습니다.  
 
 ![im1](/assets/img/sample/[post][encoding]ce.png)
 
@@ -50,11 +50,10 @@ import category_encoders as ce
 # BinaryEncoder
 먼저 2진법으로 표현하는 것의 장점을 간략하게 말씀드리려고 합니다. 평소에 원핫으로 인코딩을 한다는 것은, 완전히 맞는 말은 아니지만 1진법으로 표현하는 것과 유사합니다. 1진법이란, 흔히 개표를 할 때 바를 정(正)자를 써서 득표수를 쓰는 것을 의미합니다. 이 경우, 득표수만큼 획순을 더해가게 되는데, 원핫인코딩도 사실 같은 논리입니다. 다만 <b>피쳐의 갯수만큼 벡터의 길이가 늘어납니다.</b>  
 
-반면 2진법은 각 자릿수마다 0과 1의 두가지 숫자로 표현하게됩니다. 예를 들어, `100`은 `1100100`이 됩니다. 만약 100가지의 피쳐를 가지는 범주형 변수를 원핫인코딩을 한다거나, 이를 1진법으로 표현하기 위해서는 100차원의 벡터 혹은 100번의 획순이 필요한 것과 비교하면 단 7자리로 표현이 가능하니 엄청난 차원축소라고 할 수 있습니다. 따라서 원핫인코딩이 가지는 <b>[메모리 부족](https://github.com/HaeHwan/HaeHwan.github.io/blob/master/assets/projects/IGAWorks/%5Bigaworks%5D(1)%20EDA.md)[^ex]과 차원의 저주도 꽤나 잘 해결</b>할 수 있습니다.[^succ] 물론 원핫인코딩과 같이 각 컬럼이 특정한 의미를 갖는다고 말할수는 없어집니다. 단순히 어느 범주형 자료를 가공한 것인지를 표현한다고 할 수 있습니다.    
+반면 2진법은 각 자릿수마다 0과 1 두가지 숫자로 표현합니다. 예를 들어, `100`은 `1100100`이 됩니다. 만약 100가지의 피쳐를 가지는 범주형 변수를 원핫인코딩을 한다거나, 이를 1진법으로 표현하기 위해서는 100차원의 벡터 혹은 100번의 획순이 필요한 것과 비교하면 단 7자리로 표현이 가능하니 엄청난 차원축소라고 할 수 있습니다. 따라서 원핫인코딩이 가지는 <b>[메모리 부족](https://github.com/HaeHwan/HaeHwan.github.io/blob/master/assets/projects/IGAWorks/%5Bigaworks%5D(1)%20EDA.md)[^ex]과 차원의 저주도 꽤나 잘 해결</b>할 수 있습니다. 두 인코딩 기법의 차이와 관련해서는 글 가장 아래 참고문헌에서 확인하실 수 있습니다.
 
 [^ex]: 계속해서 피쳐들을 정리해가면서 원핫인코딩을 적용을 하려고 해도, 로컬컴퓨터와 Colab에서는 메모리 부족의 에러가 발생하는 ipynb 파일입니다.  
-
-[^succ]: 철저한 분석방법은 아니지만, [이 곳](http://www.willmcginnis.com/2015/11/29/beyond-one-hot-an-exploration-of-categorical-variables/)의 사례를 통해서 다른 인코딩 방식들보다 Binary가 성능이 뛰어남을 확인할 수 있습니다.  
+  
 
 [구체적인 과정](https://contrib.scikit-learn.org/categorical-encoding/binary.html)은 아래와 같습니다.  
 ```terminal
@@ -104,7 +103,11 @@ UserName.fit_transform(UserData)
 ***
 # 각주 및 참고문헌
 
-## 참고 
-1. https://towardsdatascience.com/smarter-ways-to-encode-categorical-data-for-machine-learning-part-1-of-3-6dca2f71b159  
+## OneHot 인코딩과 예측 성능 비교
+
+1. http://www.willmcginnis.com/2015/11/29/beyond-one-hot-an-exploration-of-categorical-variables/  
+
+2. https://www.researchgate.net/profile/Kedar_Potdar/publication/320465713_A_Comparative_Study_of_Categorical_Variable_Encoding_Techniques_for_Neural_Network_Classifiers/links/59e6f9554585151e5465859c/A-Comparative-Study-of-Categorical-Variable-Encoding-Techniques-for-Neural-Network-Classifiers.pdf
+
 
 ## 각주
