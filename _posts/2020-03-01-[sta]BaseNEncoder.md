@@ -39,5 +39,6 @@ import category_encoders as ce
   
 ***
 ***
-## 각주 및 참고문헌  
-  
+## 각주 및 참고문헌
+
+참고 : https://towardsdatascience.com/smarter-ways-to-encode-categorical-data-for-machine-learning-part-1-of-3-6dca2f71b159
