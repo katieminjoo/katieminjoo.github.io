@@ -15,7 +15,7 @@ seo:
 
 
 ***  
-
+***  
   
   
 오늘은 Ordinal 인코딩과 Label 인코딩에 대해서 간략하게 소개하려고 합니다. 두 방식은 결과적으로 큰 차이가 존재하지 않습니다. 두 방식 모두 범주형 자료를 숫자형 자료로 바꿔주기 때문입니다. 그러나 둘 다 최근들어서 많이 쓰이지 않는 것이 사실입니다.  
@@ -47,7 +47,7 @@ LabelEncoding의 결과가 앞에서 설명한 Ordinal과 유사하기 때문에
 
 [^usage]: 저는 LabelEncoding을 train 데이터셋에서 가장 먼저 해준 뒤에, 모든 전처리 과정을 시작합니다. 이후 모델에 적용하기 전에, 다시 원형태로 돌려서 OneHotIncoder 등을 사용합니다. 즉, 저는 데이터를 핸들링하기 쉬운 상태로 만들기 위한 용도로 이를 사용합니다.   
 
-자세한 사용방법은 아래와 같습니다.[^ref]  
+자세한 사용방법은 아래와 같습니다.[^ref] 이는 모든 데이터셋이 범주형 자료일 때 쉽게 이용할 수 있습니다.  
 
 [^ref]: https://stackoverflow.com/questions/24458645/label-encoding-across-multiple-columns-in-scikit-learn  
 
@@ -61,6 +61,12 @@ UserName = defaultdict(LabelEncoder)
 ```python
 UserDataFrame.apply(lambda x: UserName[x.name].fit_transform(x))
 ```
+`name`은 Series에 적용할 수 있는 함수이며 Series의 이름을 반환합니다. 따라서 현재 UserDataFrame에 해당하는 모든 칼럼이 `UserName[칼럼이름]`으로 각각 LabelEncoding이 된 상태입니다. 궁금하다면 아래와 같은 코드로 라벨인코딩이 잘 되있음을 확인할 수 있습니다.  
+```python
+UseName['UserDataFrame_column'].transform(New_UserDataFrame)
+```
+> 단 이때의 New_UserDataFrame은 새로운 피쳐가 아니라, 기존에 인코딩된 값으로 이루어져있어야합니다.  
+
 
 원래 값을 보고싶을 때에는, `fit_transform` 대신에 `inverse_transform`을 쓰면 됩니다.
 ```python
