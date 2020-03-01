@@ -50,7 +50,12 @@ verbose = True
 ```
 remainder='passthrough'
 ```
-튜플에서 정의하지 않은 변수들은 그대로 살려서 남겨놓습니다. 
+튜플에서 정의하지 않은 변수들은 그대로 살려서 남겨놓습니다.  
+
+최종적으로는 아래와 같이 입력해줌으로써 array의 꼴로 반환받을 수 있습니다.  
+```python
+preprocess.fit_transform(UserDataFrame)
+```
 
 자세한 예시는 저의 <b>[깃헙](https://github.com/HaeHwan/HaeHwan.github.io/blob/master/_posts/%5BEncoding%5D%20OHE/%EC%8B%AC%ED%99%94%EA%B3%BC%EC%A0%95/make_column_transformer.md)</b>을 참고해주시길 바랍니다.  
 
