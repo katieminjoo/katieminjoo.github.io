@@ -3,7 +3,7 @@ layout: post
 title: <i class="far fa-chart-bar"> [Encoding] 2. Ordinal/ Label Encoding</i>
 date: 2020-02-25 14:22:00 +0800
 categories: [Statistics, Encoding]
-tags: [ColumnTransformer]
+tags: [Ordinal Encoding, Label Encoding]
 toc: true
 comments: true
 seo:
