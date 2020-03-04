@@ -3,7 +3,7 @@ layout: post
 title: <i class="far fa-chart-bar"> [Encoding] 3. Binary/ BaseN encoding</i>
 date: 2020-03-01 13:42:00 +0800
 categories: [Statistics, Encoding]
-tags: [BaseN Encoding]
+tags: [BaseN Encoding, Binary Encoding]
 toc: true
 comments: true
 seo:
