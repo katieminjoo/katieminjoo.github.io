@@ -3,7 +3,7 @@ layout: post
 title: <i class="far fa-chart-bar"> [Encoding] 4. Hash encoding</i>
 date: 2020-03-02 01:56:00 +0800
 categories: [Statistics, Encoding]
-tags: [ColumnTransformer]
+tags: [Hash Encoding]
 toc: true
 comments: true
 seo:
@@ -322,8 +322,11 @@ res
     </tr>
   </tbody>
 </table>
-</div>
+</div>  
 
+  
+   
+   
 위에서 구현한 방식의 특징은 범주형 자료마다 인코딩 기법이 들어가는 것이 아니라 각기 다른 범주형 자료를 모두 한꺼번에 인코딩해줄 수 있다는 장점이 있음을 확인할 수 있습니다. 이를 위한 참고자료는 하단에 첨부하였습니다.  
 
 ***
