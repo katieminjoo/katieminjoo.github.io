@@ -2,13 +2,16 @@
 title: <i class="fas fa-database"> Algorithm Analysis</i>
 date: 2020-03-14 09:20:00 +0800
 categories: [Programming, Algorithm]
-tags: [Algorithm Analysis, Big O]
+tags: [Algorithm Analysis, Asymptotic notation]
 toc: true
 comments: true
 sitemap :
   changefreq : daily
   priority : 1.0
 ---
+
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+
 임의의 숫자들을 크기 순서대로 재배열해주는 방법은 [Bubble sort, Quick sort, Merge sort](https://www.cs.cmu.edu/~adamchik/15-121/lectures/Sorting%20Algorithms/sorting.html) 등 다양합니다. 이들은 모두 같은 결과값을 반환하지만, 연산 방식이 달라서 걸리는 시간과 필요한 메모리 양 등이 큰 차이를 가집니다. 그리고 이는 비단 재배열 문제에 국한되는 일이 아니라, 더욱 복잡한 모델에서도 같은 현상이 나타납니다.
 
 따라서 우리는 여러 알고리즘 중에서도 좋은 알고리즘을 찾아내고 이를 계속 발전시켜나갈 필요가 있습니다. 오늘은 이에 대한 내용을 소개합니다.
@@ -72,4 +75,47 @@ asymptotic notation(점근 표기법)은 시간복잡도를 간단하게 표현�
 따라서 만약 $f(n)$이 $n^2$이라면 $g(n)$으로 가능한 값은 반드시 이차항 이상의 값이어야 합니다. 예를 들어 $g(n)$이 $n$이라면 아무리 큰 상수 $c$를 곱해줘도 결국 $n$이 커지면 제곱으로 증가하는 $f(n)$보다 커질 수 없게 되기 때문입니다. 결국 $f(n)$이 다항식이라면, 항상 $g(n)$은 다항식의 최고차항 또는 그 항보다 높은 차수의 항이 되게 됩니다.[^log] 만약 최고차항으로 쓴다는 것을 일컬어 *tight하게 잡아주었다* 고 표현합니다. 영어로는 <b>asymptotically tight</b>이라고 합니다. 사실 이미 worst-case 분석이기 때문에 굳이 더 높은 차수를 사용해서 over-estimate할 필요는 없기 때문에 이를 best answer로 취급합니다.
 
 [^log]: $f(n)$이 다항식이 아니라 $logN$ 등의 경우를 생각해보는 것도 좋은 연습이 될 것이라고 생각합니다.
+
+### growth rate  
+
+위에서 빅O 노테이션을 알아봤습니다. 빅O 노테이션은 결국, <b>$f(n)$의 성장률</b>보다 크거나 같은 $g(n)$으로 함수를 간단하게 표현하는 것을 뜻합니다. 이렇게 되면, 우리는 알고리즘이 데이터 크기 $n$에 따라서 최악의 경우 처리하게 될 시행횟수가 얼만큼 비례적으로 증가하게 되는지를 간편하게 비교할 수 있게 됩니다. 아래의 사진은 대표적인 빅O 노테이션을 보여줍니다.
+
+![big](https://res.cloudinary.com/practicaldev/image/fetch/s--NR3M1nw8--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://thepracticaldev.s3.amazonaws.com/i/z4bbf8o1ly77wmkjdgge.png)
+
+마지막으로 몇 가지 빅O 노테이션의 성질을 짚고 넘어가려고 합니다. 빅O 노테이션을 통해서 함수의 성장률을 감안해준다는 것은, 이보다 낮은 항과 최고차항의 계수를 완전히 무시해준다는 것을 뜻합니다. 이는 앞에 정의에서 $g(n)$에 $c$를 어차피 곱해준다고 했기 때문에 최고차항만 고려해주어도 손쉽게 $f(n)$ 값보다 커지도록 조정해줄 수 있기 때문입니다. 이러한 관점에서 $log$의 밑(base)도 적어주지 않아도 무방하게 됩니다. 조금 까다로운 특색은 아래와 같은 성질들입니다.
+
+> 1. If $T_1(N) = O(f(N)) and T_2(N) = O(g(N))$, then $T_1(N)+T_2(N)=max(O(f(N)), O(g(N)))$ 
+> 2. $T_1(N) * T_2(N) = O(f(N)) * O(g(N))$.
+
+새로운 표기법 $T$를 사용하긴 했지만, $T$라고 하는 알고리즘을 실행할 때 필요한 연산 횟수라고 보면 됩니다. 이러한 두 알고리즘을 동시에 사용할 때는 더하기를 통해서, 함수 안에서 다른 함수를 call하는 경우는 곱하기로 표현합니다. 예를 들어 N 길이를 가지는 리스트를 binary search tree에 집어넣는 경우를 떠올리면 후자를 쉽게 이해하실 수 있을 겁니다.[^bst] 이러한 식으로 알고리즘의 complexity를 손쉽게 확장해나갈 수 있게됩니다.
+
+[^bst]: [binary search tree](https://en.wikipedia.org/wiki/Binary_search_tree)란, 쉽게 말해서 search를 빠르게 할 수 있도록 데이터의 특성을 활용해 구조를 짜는 binary tree를 의미합니다.  
+
+<br>
+
+# polynomial time   
+위의 성장률을 보여주는 사진에서도 볼 수 있듯이, $g(n)$이 다항식인지 지수함수인지에 따라서 n이 커질수록 엄청난 차이가 존재한다는 것을 알 수 있습니다.
+
+![pn](/assets/img/algorithm/pn.png)
+
+우리는 이 빅O 노테이션 안의 함수가 <b>다항식을 뛸 때 알고리즘이 효율적</b>이라고 이야기합니다. 즉 input 크기가 늘어나는 것에 대해 실행횟수가 polynomial scale로 증가하는 알고리즘이 좋은 알고리즘이 되는 것이죠. 그리고 이들을 가리켜 polynomial time algorithm이라고 말합니다. 앞에서 설명드렸던 버블정렬 또한 $O(n^2)$이였으므로 polynomial time algorithm이라고 할 수 있으며 따라서 효율적인 알고리즘의 한 예시가 됩니다. 
+
+사실 버블정렬이 좋은 알고리즘이라는게 잘 안 와닿을 수 있습니다. 파이썬을 자주 쓰시는 분들이라면 for 구문을 nested loop로 쓰는 것이 얼만큼 느린지 경험해보신 적들이 있으실 겁니다. 그럴 때는 exponential time이 소요되는 알고리즘과 비교해보면 polynomial time algorithm이 얼마나 좋은 것인지 확인할 수 있습니다.  
+
+예컨데 $O(10^n)$인 알고리즘과 버블 정렬을 비교해보려고 합니다. 정렬해야하는 input size가 50, 100, 150으로 증가해진다면 전자의 알고리즘은 최악의 경우 각각 $10^{50}, 10^{100}, 10^{150}$의 시행횟수가 필요하지만 후자는 단 2,500, 10,000, 22,500번뿐입니다. 데이터가 3배 증가했을 뿐인데 두 알고리즘의 성능차이는 비교할 수 없게 되는 것입니다. 
+
+exponential algorithm은 실제로 쓸 수 없는 알고리즘으로 취급하는만큼, polynomial time algorithm을 개발하는 것은 매우 중요합니다. 실제로 세상에 많은 문제들은 못 푸는 경우가 아니라 아직 다항시간 알고리즘으로 개발이 되지 않은 경우인 상황이 많다고 합니다. 
+
+<br>  
+
+***
+***
+# 각주 및 추천자료
+
+## 추천자료 
+1. [시간복잡도 한국어 자료](https://s3.ap-northeast-2.amazonaws.com/inflearnattachment/algorithm/chap01_time_complexity.pdf)
+
+
+
+## 각주
 
