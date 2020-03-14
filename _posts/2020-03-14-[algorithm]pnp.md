@@ -12,7 +12,8 @@ sitemap :
 
 <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
 
-> [지난 포스팅](https://haehwan.github.io/posts/algorithm-bigO/)에서는 알고리즘 분석에 필요한 개념들을 설명했습니다. 사실 이를 배우고 싶었던 것은 오늘 다룰 <b>P, NP 등의 개념</b>을 이해하기 위함이었습니다. 이번 글은 지난 포스팅의 내용을 모두 숙지했다는 상태로 진행하겠습니다.
+> [지난 포스팅](https://haehwan.github.io/posts/algorithm-bigO/)에서는 알고리즘 분석에 필요한 개념들을 설명했습니다. 사실 이를 배우고 싶었던 것은 오늘 다룰 <b>P, NP 등의 개념</b>을 이해하기 위함이었습니다. 이번 글은 지난 포스팅의 내용을 모두 숙지했다는 상태로 진행하겠습니다.  
+
 ***
 
 <br>
