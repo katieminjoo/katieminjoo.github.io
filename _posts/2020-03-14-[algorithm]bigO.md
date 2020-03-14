@@ -1,6 +1,38 @@
 ---
-title: [데이터 구조 및 분석] Algorithm Analysis
+title: <i class="fas fa-database"> Algorithm Analysis</i>
+date: 2020-03-14 09:20:00 +0800
+categories: [Algorithm, Big O]
+tags: [Algorithm Analysis]
+toc: true
+comments: true
 ---
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  {% for post in site.posts %}
+    <url>
+      <loc>{{ site.url }}{{ post.url }}</loc>
+      {% if post.lastmod == null %}
+        <lastmod>{{ post.date | date_to_xmlschema }}</lastmod>
+      {% else %}
+        <lastmod>{{ post.lastmod | date_to_xmlschema }}</lastmod>
+      {% endif %}
+
+      {% if post.sitemap.changefreq == null %}
+        <changefreq>weekly</changefreq>
+      {% else %}
+        <changefreq>{{ post.sitemap.changefreq }}</changefreq>
+      {% endif %}
+
+      {% if post.sitemap.priority == null %}
+          <priority>0.5</priority>
+      {% else %}
+        <priority>{{ post.sitemap.priority }}</priority>
+      {% endif %}
+
+    </url>
+  {% endfor %}
+</urlset>
+
 
 임의의 숫자들을 크기 순서대로 재배열해주는 방법은 [Bubble sort, Quick sort, Merge sort](https://www.cs.cmu.edu/~adamchik/15-121/lectures/Sorting%20Algorithms/sorting.html) 등 다양합니다. 이들은 모두 같은 결과값을 반환하지만, 연산 방식이 달라서 걸리는 시간과 필요한 메모리 양 등이 큰 차이를 가집니다. 그리고 이는 비단 재배열 문제에 국한되는 일이 아니라, 더욱 복잡한 모델에서도 같은 현상이 나타납니다.
 
@@ -106,5 +138,7 @@ exponential algorithm은 실제로 쓸 수 없는 알고리즘으로 취급하�
 
 
 ## 각주
+
+
 
  
