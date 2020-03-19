@@ -12,9 +12,7 @@ sitemap :
 
 <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
 
-임의의 숫자들을 크기 순서대로 재배열해주는 방법은 [Bubble sort, Quick sort, Merge sort](https://www.cs.cmu.edu/~adamchik/15-121/lectures/Sorting%20Algorithms/sorting.html) 등 다양합니다. 이들은 모두 같은 결과값을 반환하지만, 연산 방식이 달라서 걸리는 시간과 필요한 메모리 양 등이 큰 차이를 가집니다. 그리고 이는 비단 재배열 문제에 국한되는 일이 아니라, 더욱 복잡한 모델에서도 같은 현상이 나타납니다.
-
-따라서 우리는 여러 알고리즘 중에서도 좋은 알고리즘을 찾아내고 이를 계속 발전시켜나갈 필요가 있습니다. 오늘은 이에 대한 내용을 소개합니다.
+어떤 문제를 해결하기 위한 방법은 다양합니다. 예를 들어 [Bubble sort, Quick sort, Merge sort](https://www.cs.cmu.edu/~adamchik/15-121/lectures/Sorting%20Algorithms/sorting.html)와 같은 알고리즘들은 모두 임의의 숫자들을 크기 순서대로 재배열해줍니다. 그러나 알고리즘의 작동 방식이 모두 다르기 때문에 문제해결에 필요한 시간과 메모리 양은 모두 다를 것입니다. 이러한 알고리즘 간의 차이를 이해하는 것은 프로그래밍에 매우 중요합니다. 똑같은 결과를 반환하더라도, <b>더 좋은 알고리즘</b>을 찾아내고 이를 계속 발전시켜나감으로써 더욱 어려운 문제를 해결할 수 있게 되기 때문입니다.
 
 # Algorithm Analysis
 좋은 알고리즘과 나쁜 알고리즘을 구분하는 기준은 <b>효율성</b>입니다. 효율적인 알고리즘이란 기본적으로 execution에 필요한 resources 양이 적은 프로그램을 뜻합니다. 과연 프로그램을 실행하는데 필요한 자원은 어떤 것이 있을까요? 대표적으로 아래와 같은 자원들이 필요합니다.  
