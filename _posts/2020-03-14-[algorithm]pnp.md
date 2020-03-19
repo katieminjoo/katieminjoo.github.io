@@ -40,6 +40,7 @@ k-means 클러스터링의 local optima에 관한 내용이겠거니 하고 넘�
 먼저 P, NP가 무엇인지부터 확인해보겠습니다.[^wiki]  아래의 정의에 포함된 polynomial time이 궁금하신 분은 [지난 포스팅](https://haehwan.github.io/posts/algorithm-bigO/)을 참고해주시기 바랍니다. 추가적으로 decision problem이란, 어떤 문제에 대한 대답이 yes와 no로 구분되는 문제를 의미합니다. 예를 들어서 "두 숫자 x와 y가 있을 때 y는 x로 나누어떨어지는가?" 라는 문제는 예와 아니오로 답이 존재하는 전형적인 결정문제에 해당합니다.
 
 > The general class of questions for which some algorithm can provide an answer in polynomial time is called "class P"  
+
 > NP is the set of decision problems for which the problem instances, where the answer is "yes", have proofs verifiable in polynomial time by a deterministic Turing machine.
 
 [^wiki]: https://en.wikipedia.org/wiki/NP_(complexity)
@@ -51,15 +52,11 @@ k-means 클러스터링의 local optima에 관한 내용이겠거니 하고 넘�
 > 문제가 주어지고, 해당 문제에 대해 어떤 suggested solution이 주어졌을 때, 다항시간 안에 그 solution이 맞는지 아닌지 구분할 수 있는 문제.  
 >> NP에 대한 두 정의는 표면상 달라보이지만 사실 둘은 같은 의미를 가집니다. 이에 대한 설명은 계산 복잡도 이론에 대한 공부가 더 필요한 것으로 보여집니다. 이번 글에서는 두 정의가 동일함을 받아들이고 글을 이어나가겠습니다.
 
-NP에 대한 위의 정의는 
-
-예를 들어 보도록 하겠습니다.[^ex]
-
-[^ex]: https://zeddios.tistory.com/92?category=682196
+NP에 대한 위의 정의를 예를 들어서 설명하도록 하겠습니다. 해당 예시는 [이 곳](https://zeddios.tistory.com/92?category=682196)의 블로그에서 사용한 예제입니다.  
 
 다리 건너에 보물이 가득한 섬이 있습니다. 보물들은 각각의 무게와 값어치가 표시되어 있으며, 여러분은 이를 가져올 수 있는 가방도 가지고 있습니다. 그런데 두 가지 제약 조건이 있습니다. 첫째 다리가 버틸 수 있는 무게가 100kg입니다. 둘째 가지고 와야할 보물의 값어치가 반드시 2억 이상이어야합니다. 만약 위의 조건을 모두 만족한 채 보물을 챙겨서 가지고 나올 수 있을까요?
 
-이러한 문제는 역시 결과가 yes와 no로 나뉘기 때문에 결정문제에 속합니다. 만약 이를 풀 수 있는 유일한 알고리즘이 전체 N개의 보물을 조합해가면서 제약 조건을 만족하는 보물을 일일이 찾아내는 방법뿐이라고 가정을 해보도록 하겠습니다. 이 경우에 전체 가지수는 $$2^N$$이되고 $$O(2^N)$$의 시간복잡도를 가지게 됩니다. 따라서 N이 조금이라도 커지게 되면 running time은 걷잡을 수 없이 오래 걸리는 알고리즘이고, 이는 
+이러한 문제는 역시 결과가 yes와 no로 나뉘기 때문에 결정문제에 속합니다. 만약 이를 풀 수 있는 유일한 알고리즘이 전체 N개의 보물을 조합해가면서 제약 조건을 만족하는 보물을 일일이 찾아내는 방법뿐이라고 가정을 해보도록 하겠습니다. 각각의 보물들을 가방에 넣었다가 뺐다를 반복하는 위의 알고리즘은 전체 가지수 N으로 인해 $$2^N$$의 조합 갯수를 가지게 되고, 따라서 $$O(2^N)$$의 시간복잡도를 갖습니다. 따라서 N이 조금이라도 커지게 되면 running time은 걷잡을 수 없이 오래 걸리는 알고리즘이고, 이는 
 
 그렇지만 이 문제는 
 
