@@ -12,7 +12,7 @@ sitemap :
 
 <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
 
-어떤 문제를 해결하기 위한 방법은 다양합니다. 예를 들어 [Bubble sort, Quick sort, Merge sort](https://www.cs.cmu.edu/~adamchik/15-121/lectures/Sorting%20Algorithms/sorting.html)와 같은 알고리즘들은 모두 임의의 숫자들을 크기 순서대로 재배열해줍니다. 그러나 알고리즘의 작동 방식이 모두 다르기 때문에 문제해결에 필요한 시간과 메모리 양은 모두 다를 것입니다. 이러한 알고리즘 간의 차이를 이해하는 것은 프로그래밍에 매우 중요합니다. 똑같은 결과를 반환하더라도, <b>더 좋은 알고리즘</b>을 찾아내고 이를 계속 발전시켜나감으로써 더욱 어려운 문제를 해결할 수 있게 되기 때문입니다.
+어떤 문제를 해결하기 위한 방법은 다양합니다. 예를 들어 [Bubble sort, Quick sort, Merge sort](https://www.cs.cmu.edu/~adamchik/15-121/lectures/Sorting%20Algorithms/sorting.html)와 같은 알고리즘들은 모두 임의의 숫자들을 크기 순서대로 재배열해줍니다. 그러나 알고리즘의 작동 방식이 모두 다르기 때문에, 문제해결에 필요한 시간과 메모리 양은 모두 다를 것입니다. 이러한 <b>알고리즘 간의 차이</b>를 이해하는 것은 프로그래밍에 매우 중요합니다. 똑같은 결과를 반환하더라도, 더 좋은 알고리즘을 찾아내고 이를 계속 발전시켜나감으로써 더욱 어려운 문제를 해결할 수 있게 되기 때문입니다. 
 
 # Algorithm Analysis
 좋은 알고리즘과 나쁜 알고리즘을 구분하는 기준은 <b>효율성</b>입니다. 효율적인 알고리즘이란 기본적으로 execution에 필요한 resources 양이 적은 프로그램을 뜻합니다. 과연 프로그램을 실행하는데 필요한 자원은 어떤 것이 있을까요? 대표적으로 아래와 같은 자원들이 필요합니다.  
@@ -24,9 +24,7 @@ sitemap :
 메모리와 통신 bandwidth도 중요하지만 사실 제일 중요한 것은 계산시간입니다. 메모리나 bandwidth는 돈을 주고 살 수 있지만, 시간은 돈을 주고도 살 수 없기 때문입니다. 그래서 대다수 알고리즘 분석은 <b>running time을 추측</b>(estimate)하는데 목적을 두고 있습니다. 우리는 이러한 분석을 통해서 좋은 알고리즘을 선별하고 계속해서 발전시켜 나가게 됩니다.
 
 ## time complexity
-앞서서 running time에 대한 분석을 가리켜 time complexity(시간복잡도)라고 부릅니다. 그런데 사실 계산시간을 비교하는 것은 실행환경에 크게 영향을 받습니다. 예를 들어, 컴퓨터 사양이 좋고, data set 크기가 작으면 아무리 나쁜 알고리즘이더라도 계산시간은 얼마 안 걸리기 때문입니다.
-
-따라서 running time을 estimate할 때에는 실행시간을 측정하는 대신 <b>연산의 실행 횟수</b>를 셉니다. 간단한 예제를 살펴보겠습니다.  
+앞서서 running time에 대한 분석을 가리켜 time complexity(시간복잡도)라고 부릅니다. 그런데 사실 계산시간을 비교하는 것은 실행환경에 크게 영향을 받습니다. 예를 들어, 컴퓨터 사양이 좋고, data set 크기가 작으면 아무리 나쁜 알고리즘이더라도 계산시간은 얼마 안 걸리기 때문입니다. 혹은 단순히 사용하고 있는 프로그램 언어 때문에 좋은 알고리즘의 계산시간도 커질 수 있습니다. 따라서 running time을 estimate할 때에는 실행시간을 측정하는 대신, <b>연산에 필요한 실행 횟수</b>를 계산합니다. python 언어를 바탕으로 간단한 예제를 살펴보겠습니다.  
 
 ```python
 def sum(a, b) :
