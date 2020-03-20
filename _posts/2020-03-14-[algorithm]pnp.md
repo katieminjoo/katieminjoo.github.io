@@ -72,18 +72,23 @@ NP에 대한 위의 정의를 예를 들어서 설명하도록 하겠습니다. 
 <br>  
 
 # Reduction
-다음으로 NP-Hard와 NP-Complete 문제를 이해하기 위해서는 문제들 간의 reduction 관계를 이해할 필요가 있습니다. 예를 들어 문제 X가 문제 Y로 reducible하다는 것은, <b>Y문제를 풀어주는 알고리즘을 이용해서 X를 풀 수 있는 또 다른 알고리즘을 찾아낼 수 있음</b>을 의미합니다. 따라서 X가 Y로 reduction이 된다는 것은, Y문제를 풀 수 있다면 우리는 X 문제들도 해결이 가능하다는 의미가 됩니다. 그렇기때문에 Y 문제가 보통 더 어려운 문제로 해석하게 됩니다.
+다음으로 NP-Hard와 NP-Complete 문제를 이해하기 위해서는 문제들 간의 reduction 관계를 이해할 필요가 있습니다. 예를 들어 문제 X가 문제 Y로 reducible하다는 것은, <b>Y문제를 풀어주는 알고리즘을 이용해서 X를 풀 수 있는 또 다른 알고리즘을 찾아낼 수 있음</b>을 의미합니다. 따라서 X가 Y로 reduction이 된다는 것은, Y문제를 풀 수 있다면 우리는 X 문제들도 해결이 가능하다는 의미가 됩니다. 그렇기때문에 Y 문제가 보통 더 어려운 문제로 해석하게 됩니다. 물론 reduction의 관계가 반드시 일방향으로만 존재하는 것은 아닙니다. X가 Y로 reduce될 수도 있지만 반대로 Y도 X로 reduce될 수 있는 것입니다. 이 경우에 두 문제의 난도는 동일 수준으로 해석하게 됩니다.
 
 # NP-Hard, NP-Complete
 NP-Hard 문제란, <b>NP 클래스 안에 있는 모든 문제가 reducible할 수 있는 문제</b>를 의미합니다. 즉 어떤 문제를 풀 수 있어서, 그 문제를 가지고 NP 집합 안의 모든 문제를 해결할 수 있다면 우리는 그 문제를 NP-hard라고 부르게 됩니다. 몇 가지 오해하기 쉬운 부분들을 짚고 넘어가겠습니다. 첫째, NP-Hard 문제는 여러개 존재할 수 있습니다. 예를 들어서 NP 클래스를 초등학교 수학 문제라고 가정해보겠습니다. 만약 중학교 수학문제를 풀 수 있다면, 초등학교 수학문제를 모두 풀 수 있을 것입니다. 그렇게 되면 중학교 수학문제도 NP-hard 문제가 됩니다. 당연히 고등학교, 대학교 수학문제들도 해당 집합에 포함이 될 수 있으며, 이렇듯 여러 원소를 가지는 집합으로 인식할 수 있습니다.  
 
 두번째로, NP-hard 문제 역시 NP 집합에 속할지 속하지 않을지는 알 수 없다는 사실입니다. 어떤 NP-hard 문제는 똑같이 NP 집합에 속할 수 있지만, 어떤 문제는 속하지 않을 수도 있습니다. 위에서 사용한 초등학교 예시를 이어서 설명해보겠습니다. 만약 초등학교 6학년 기말고사 수학문제를 풀 수 있으면, 초등과정의 모든 수학문제를 풀 수 있게 된다고 생각해보겠습니다. 이렇게 되면 해당 문제는 NP-hard 이면서 NP 집합에 속하게 됩니다. 반면에 중학교 이상의 문제들은 NP 집합에 속하지 않으면서 NP-hard 문제로 남게됩니다.
 
-<b>NP-Complete</b>은 바로 전자에 해당하는 경우입니다. 즉, 모든 NP를 풀 수 있는 알고리즘을 가지고 있는 NP-hard 문제 역시도 NP 집합에 속하게 될 때를 가리켜서 NP-Complete 이라고 부릅니다. 위의 설명을 하나의 그림으로 표현하면 아래와 같습니다. 
+<b>NP-Complete</b>은 바로 전자에 해당하는 경우입니다. 즉, 모든 NP를 풀 수 있는 알고리즘을 가지고 있는 NP-hard 문제 역시도 NP 집합에 속하게 될 때를 가리켜서 NP-Complete 이라고 부릅니다. 위의 설명을 하나의 그림으로 표현하면 아래와 같습니다.  
 ![nphard](https://media.springernature.com/original/springer-static/image/chp%3A10.1007%2F978-981-10-8636-6_21/MediaObjects/439154_1_En_21_Fig1_HTML.png)
 
-# 
 
+# P versus NP problem
+앞에서 NP 문제임을 보이는 것은 두번째 정의를 이용하면 매우 간단했습니다. 다항시간 안에 결과를 확인할 수 있는, 임의의 정답을 하나 찾아낼 수만 있으면 되기 때문입니다.[^nphard] 따라서 많은 NP-Hard 문제들 중에서 NP-complete임이 밝혀진 문제들이 존재합니다. 대표적으로 Travelling salesman problem 등이 있지만 [이 곳](https://en.wikipedia.org/wiki/NP-completeness#NP-complete_problems)에서 다른 많은 문제들도 확인할 수 있습니다. 만약 이 문제들 중 어느 것 하나만이라도 다항시간 내에 풀 수 있음을 증명하게 된다면, 모든 NP 문제들이 P 문제로 변환될 수 있기 때문입니다. 
+
+[^nphard]: NP-Hard가 NP-Complete임을 밝히는 과정이 상대적으로 쉬운 반면에, 어떤 문제가 NP-Hard임을 밝히는 과정은 상당히 까다롭습니다. 가장 대표적으로  Stephen Cook과 Leonid Levin가 증명해낸 Boolean satisfiability problem가 있습니다. 이 둘은 [Cook–Levin theorem](https://en.wikipedia.org/wiki/Cook%E2%80%93Levin_theorem)을 통해서 두 해당 문제가 NP-Hard 문제임을 증명해낸 바 있습니다. 
+
+![fina](https://miro.medium.com/max/3840/1*TxDOqxbSPDqExEwurg6Pmg.png)
 <br>  
 
 ***
