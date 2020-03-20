@@ -12,7 +12,7 @@ sitemap :
 
 <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
 
-> [지난 포스팅](https://haehwan.github.io/posts/algorithm-bigO/)에서는 알고리즘 분석에 필요한 개념들을 설명했습니다. 사실 이를 배우고 싶었던 것은 오늘 다룰 <b>P, NP 등의 개념</b>을 이해하기 위함이었습니다. 이번 글은 지난 포스팅의 내용을 모두 숙지했다는 상태로 진행하겠습니다.  
+> [지난 포스팅](https://haehwan.github.io/posts/algorithm-bigO/)에서는 알고리즘 분석에 필요한 개념들을 설명했습니다. 사실 이를 통해 배우고 싶었던 것은 오늘 다룰 <b>P, NP 등의 개념</b>들입니다. 이번 글은 지난 포스팅의 내용을 모두 숙지했다는 상태로 진행하겠습니다.  
 
 ***
 
@@ -29,10 +29,10 @@ sitemap :
 Pattern Recognition 학술지에 기재된 [Data clustering: 50 years beyond K-means](https://www.sciencedirect.com/science/article/abs/pii/S0167865509002323) 글을 읽다가 아래와 같은 문구를 발견했습니다.
 
 ```terminal
-*Minimizing this objective function is known to be an **NP-hard problem** (even for K = 2).*
+Minimizing this objective function is known to be an NP-hard problem(even for K = 2).
 ```
 
-k-means 클러스터링의 local optima에 관한 내용이겠거니 하고 넘어갈 수도 있지만 사실 그렇게 어물쩍 넘어가기에는 찝찝할 수밖에 없습니다. NP-hard problem은 컴퓨터 공학에서 큰 비중을 차지할 뿐만 아니라, 그 근간이 되는 시간복잡도 등의 개념은 매우 중요하기 때문입니다.  
+NP-hard 문제가 무엇인지는 모르지만, 대충 k-means 클러스터링의 local optima에 관한 내용이겠거니 추측은 할 수 있습니다. 그렇지만 어물쩍 넘어가기에는 찝찝할 수밖에 없습니다. NP-hard problem은 컴퓨터 공학에서 큰 비중을 차지할 뿐만 아니라, 그 근간은 <b>알고리즘에 대한 이해</b>에 있기 때문입니다. 따라서 비단 논문이나 학술지를 읽을 때만을 위해서가 아니라, Machine Learning을 제대로 이해하기 위해서는 P, NP 등의 개념을 배워보는 것이 꽤나 중요한 일이라고 생각합니다.  
 
 오늘은 이를 이해하기 위한 개념들을 차근차근 살펴보면서 감을 잡아보려합니다.
 
@@ -41,7 +41,7 @@ k-means 클러스터링의 local optima에 관한 내용이겠거니 하고 넘�
 # Class P/ NP
 먼저 P, NP가 무엇인지부터 확인해보겠습니다.[^wiki]  아래의 정의에 포함된 polynomial time이 궁금하신 분은 [지난 포스팅](https://haehwan.github.io/posts/algorithm-bigO/)을 참고해주시기 바랍니다. 추가적으로 decision problem이란, 어떤 문제에 대한 대답이 yes와 no로 구분되는 문제를 의미합니다. 예를 들어서 "두 숫자 x와 y가 있을 때 y는 x로 나누어떨어지는가?" 라는 문제는 예와 아니오로 답이 존재하는 전형적인 결정문제에 해당합니다.
 
-> The general class of questions for which some algorithm can provide an answer in polynomial time is called <b>"class P"</b>  
+> The general class of questions for which some algorithm can provide an answer in polynomial time is called <b>"P"</b>  
 
 > <b>NP</b> is the set of decision problems for which the problem instances, where the answer is "yes", have proofs verifiable in polynomial time by a deterministic Turing machine.
 
@@ -69,6 +69,18 @@ NP에 대한 위의 정의를 예를 들어서 설명하도록 하겠습니다. 
 
 마지막으로 한가지 집고 넘어가야할 점은, 두 번째 정의를 이용한다면 P와 NP 집단의 포함관계를 쉽게 확인할 수 있습니다. P 집합 문제는 정확한 답을 이미 다항시간 안에 풀 수 있는 문제에 해당합니다. 따라서 누군가 솔루션을 추천해준다면 이를 통해서 결과를 확인하는 것도 당연히 다항시간 안에 이뤄지게 됩니다. 따라서 결론적으로 P는 NP의 부분집합이 되게 됩니다.  
 
+<br>  
+
+# Reduction
+다음으로 NP-Hard와 NP-Complete 문제를 이해하기 위해서는 문제들 간의 reduction 관계를 이해할 필요가 있습니다. 예를 들어 문제 X가 문제 Y로 reducible하다는 것은, <b>Y문제를 풀어주는 알고리즘을 이용해서 X를 풀 수 있는 또 다른 알고리즘을 찾아낼 수 있음</b>을 의미합니다. 따라서 X가 Y로 reduction이 된다는 것은, Y문제를 풀 수 있다면 우리는 X 문제들도 해결이 가능하다는 의미가 됩니다. 그렇기때문에 Y 문제가 보통 더 어려운 문제로 해석하게 됩니다.
+
+# NP-Hard, NP-Complete
+NP-Hard 문제란, <b>NP 클래스 안에 있는 모든 문제가 reducible할 수 있는 문제</b>를 의미합니다. 즉 어떤 문제를 풀 수 있어서, 그 문제를 가지고 NP 집합 안의 모든 문제를 해결할 수 있다면 우리는 그 문제를 NP-hard라고 부르게 됩니다. 몇 가지 오해하기 쉬운 부분들을 짚고 넘어가겠습니다. 첫째, NP-Hard 문제는 여러개 존재할 수 있습니다. 예를 들어서 NP 클래스를 초등학교 수학 문제라고 가정해보겠습니다. 만약 중학교 수학문제를 풀 수 있다면, 초등학교 수학문제를 모두 풀 수 있을 것입니다. 그렇게 되면 중학교 수학문제도 NP-hard 문제가 됩니다. 당연히 고등학교, 대학교 수학문제들도 해당 집합에 포함이 될 수 있으며, 이렇듯 여러 원소를 가지는 집합으로 인식할 수 있습니다.  
+
+두번째로, NP-hard 문제 역시 NP 집합에 속할지 속하지 않을지는 알 수 없다는 사실입니다. 어떤 NP-hard 문제는 똑같이 NP 집합에 속할 수 있지만, 어떤 문제는 속하지 않을 수도 있습니다. 위에서 사용한 초등학교 예시를 이어서 설명해보겠습니다. 만약 초등학교 6학년 기말고사 수학문제를 풀 수 있으면, 초등과정의 모든 수학문제를 풀 수 있게 된다고 생각해보겠습니다. 이렇게 되면 해당 문제는 NP-hard 이면서 NP 집합에 속하게 됩니다. 반면에 중학교 이상의 문제들은 NP 집합에 속하지 않으면서 NP-hard 문제로 남게됩니다.
+
+<b>NP-Complete</b>은 바로 전자에 해당하는 경우입니다. 즉, 모든 NP를 풀 수 있는 알고리즘을 가지고 있는 NP-hard 문제 역시도 NP 집합에 속하게 될 때를 가리켜서 NP-Complete 이라고 부릅니다. 위의 설명을 하나의 그림으로 표현하면 아래와 같습니다. 
+![nphard](https://media.springernature.com/original/springer-static/image/chp%3A10.1007%2F978-981-10-8636-6_21/MediaObjects/439154_1_En_21_Fig1_HTML.png)
 
 # 
 
