@@ -27,9 +27,6 @@ sitemap :
 
 
 
-
-<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>  
-
 <b>주어진 [데이터](/assets/data/posts/[gibbs-sampler]-regression-data.html)를 활용하여 다음 모형의 계수를 추정하시오.</b>  
 
 <p align="center">$$y_i = X_i\beta+\epsilon_i$$</p>  
