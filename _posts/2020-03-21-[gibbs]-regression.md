@@ -10,6 +10,10 @@ sitemap :
   changefreq : daily
   priority : 1.0
 ---
+<script id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+
 1.  
 \documentclass{article}
 \usepackage{amsmath}
@@ -18,9 +22,6 @@ sitemap :
 2x^2 + 3(x-1)(x-2) & = 2x^2 + 3(x^2-3x+2)\\&= 2x^2 + 3x^2 - 9x + 6\\&= 5x^2 - 9x + 6
 \end{align*}
 \end{document} 
-
-
-<script type="text/javascript" src="path-to-MathJax/MathJax.js"></script>
 
 2.  
 \begin{align*}
