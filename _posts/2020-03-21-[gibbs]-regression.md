@@ -22,12 +22,27 @@ sitemap :
 
 <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>  
 
-# 
+# 주어진 데이터를 활용하여 다음 모형의 계수를 추정하시오.
+$$y_i = X_i\beta+\epsilon_i$$  $$i = {1, 2, ... N}$$,  $$\beta \sim {1, 2, ... P}$$
 
+$$\beta \sim N(0,\tau I)$$  
+$$\epsilon \sim N(0,\kappa I)$$
+
+이때 prior distribution은 다음과 같이 설정해준다.  
+$$\tau \sim IG(a,b)$$  
+$$\kappa \sim IG(c,d)$$  
+
+> <b>[데이터](/assets/data/posts/[gibbs-sampler]-regression-data.html)</b>는 다음 과정으로 생성되었습니다.  
+
+<br>
+
+# Step 1. Find a proportionality
+$$p(\beta,\tau,\kappa|Y) \propto p(Y|\beta,\kappa) p(\beta | \tau) p(\tau) p(\kappa)$$  
+
+$$p(Y|\beta,\kappa) = \prod_{i=1}^{N} \frac{1}{\sqrt{2\pi\kappa}} exp(-\frac{1}{2\kappa}(y_i-X_i\beta)^2)$$  
 
 
 # Code and result
-위에서 사용한 데이터를 생성한 과정은 [이 곳](/assets/data/posts/[gibbs-sampler]-regression-data.html)에서 확인하실 수 있습니다.
 
 ```r
 #install.packages("invgamma")
