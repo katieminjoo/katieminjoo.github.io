@@ -2,15 +2,6 @@
 layout: post
 title: <i class="far fa-chart-bar"> [bayesian inference] blocked gibbs sampler</i>
 date: 2020-03-21 16:13:00 +0800
-output: 
-  rmarkdown::html_vignette:
-    fig_width: 4
-    toc: true
-    toc_depth: 2
-vignette: >
-  %\VignetteIndexEntry{Recoding addins}
-  %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteEncoding{UTF-8}
 categories: [bayesian inference, gibbs sampling]
 tags: [bayesian inference]
 toc: true
@@ -24,13 +15,12 @@ sitemap :
 
 <b>주어진 [데이터](/assets/data/posts/[gibbs-sampler]-regression-data.html)를 활용하여 다음 모형의 계수를 추정하시오.</b>  
 
-<p align="center">$$y_i = X_i\beta+\epsilon_i$$
-where $$i = {1, 2, ... N}$$ and $$\beta \sim {1, 2, ... P}$$  
-
-$$\beta \sim N(0,\tau I),   \epsilon \sim N(0,\kappa I)$$</p>
+<p align="center">$$y_i = X_i\beta+\epsilon_i$$</p>
+<p align="center">where $$i = {1, 2, ... N}$$ and $$\beta \sim {1, 2, ... P}$$</p>  
+<p align="center">$$\beta \sim N(0,\tau I),   \epsilon \sim N(0,\kappa I)$$</p>
   
 이때 prior distribution은 다음과 같이 설정해준다.  
-<p align="center">$$\tau \sim IG(a,b),   \kappa \sim IG(c,d)$$</p>  
+<p align="center">$$\tau \sim IG(a,b)$$ and $$\kappa \sim IG(c,d)$$</p>  
 
 <br>
 
