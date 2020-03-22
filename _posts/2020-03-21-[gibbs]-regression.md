@@ -57,11 +57,12 @@ where $$\;Y\;$$ is a set of $$\;y_i\;$$ and $$\;X\;$$ is a set of $$\;X_i$$.
 
 
 <p align="center">
-  $$= \frac{1}{\sqrt{(2\pi)^P |\tau I|}} exp(-\frac{1}{2}\beta^T(\tau I)^{-1}\beta)$$[^multi]
+  $$= \frac{1}{\sqrt{(2\pi)^P |\tau I|}} exp(-\frac{1}{2}\beta^T(\tau I)^{-1}\beta)$$
   $$= ((2\pi)^P |\tau I|)^{-1/2} exp(-\frac{1}{2\tau}\beta^T\beta)$$
   
 </p>  
-  
+
+현재 $\beta$는 [^multi]
 [^multi]: ![](https://wikimedia.org/api/rest_v1/media/math/render/svg/c66e6f6abd66698181e114a4b00da97446efd3c4)
 
 ### 3. $$p(\tau)$$
