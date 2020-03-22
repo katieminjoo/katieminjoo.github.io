@@ -22,28 +22,25 @@ sitemap :
 
 <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>  
 
-# 주어진 데이터를 활용하여 다음 모형의 계수를 추정하시오.
+## 주어진 [데이터](/assets/data/posts/[gibbs-sampler]-regression-data.html)를 활용하여 다음 모형의 계수를 추정하시오.
 $$y_i = X_i\beta+\epsilon_i$$  $$i = {1, 2, ... N}$$,  $$\beta \sim {1, 2, ... P}$$
 
-$$\beta \sim N(0,\tau I)$$  
-$$\epsilon \sim N(0,\kappa I)$$
+$$\beta \sim N(0,\tau I)$$,  $$\epsilon \sim N(0,\kappa I)$$
 
 이때 prior distribution은 다음과 같이 설정해준다.  
-$$\tau \sim IG(a,b)$$  
-$$\kappa \sim IG(c,d)$$  
-
-> <b>[데이터](/assets/data/posts/[gibbs-sampler]-regression-data.html)</b>는 다음 과정으로 생성되었습니다.  
+$$\tau \sim IG(a,b)$$,  $$\kappa \sim IG(c,d)$$  
 
 <br>
 
 # Step 1. Find a proportionality
 $$p(\beta,\tau,\kappa|Y) \propto p(Y|\beta,\kappa) p(\beta | \tau) p(\tau) p(\kappa)$$  
 
+# Step 2. Find each full conditional distribution
 $$p(Y|\beta,\kappa) = \prod_{i=1}^{N} \frac{1}{\sqrt{2\pi\kappa}} exp(-\frac{1}{2\kappa}(y_i-X_i\beta)^2)$$  
 
 
-# Code and result
-
+# Step 3. Iteratively update and draw new samples with the probability
+## Code
 ```r
 #install.packages("invgamma")
 library(invgamma)
@@ -87,7 +84,10 @@ for(i in 1:num_iters){
   tau_samples[i] <- tau
   beta_samples[[i]] <- beta
 }
+```
 
+## results
+```r
 out_of_burn <- 5001:10000
 
 hist(as.numeric(lapply(beta_samples[out_of_burn], function(x) x[1])))
