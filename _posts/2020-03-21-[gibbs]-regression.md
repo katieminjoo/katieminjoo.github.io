@@ -23,24 +23,36 @@ sitemap :
 <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>  
 
 ## 주어진 [데이터](/assets/data/posts/[gibbs-sampler]-regression-data.html)를 활용하여 다음 모형의 계수를 추정하시오.
-$$y_i = X_i\beta+\epsilon_i$$  $$i = {1, 2, ... N}$$,  $$\beta \sim {1, 2, ... P}$$
+$$y_i = X_i\beta+\epsilon_i,       i = {1, 2, ... N},       \beta \sim {1, 2, ... P}$$
 
-$$\beta \sim N(0,\tau I)$$,  $$\epsilon \sim N(0,\kappa I)$$
-
+$$\beta \sim N(0,\tau I),   \epsilon \sim N(0,\kappa I)$$
+  
 이때 prior distribution은 다음과 같이 설정해준다.  
-$$\tau \sim IG(a,b)$$,  $$\kappa \sim IG(c,d)$$  
+$$\tau \sim IG(a,b),   \kappa \sim IG(c,d)$$  
 
 <br>
 
 ## Step 1. Find a proportionality
 $$p(\beta,\tau,\kappa|Y) \propto p(Y|\beta,\kappa) p(\beta | \tau) p(\tau) p(\kappa)$$  
 
+<br>
+
 ## Step 2. Find each full conditional distribution
-$$p(Y|\beta,\kappa) = \prod_{i=1}^{N} \frac{1}{\sqrt{2\pi\kappa}} exp(-\frac{1}{2\kappa}(y_i-X_i\beta)^2)$$  
+### 1. $$p(Y|\beta,\kappa)$$ 
+$$= \prod_{i=1}^{N} \frac{1}{\sqrt{2\pi\kappa}} exp(-\frac{1}{2\kappa}(y_i-X_i\beta)^2)$$  
+$$= {(2\pi\kappa)}^{(-N/2)} exp(-\frac{1}{2\kappa}(Y-X\beta)^T(Y-X\beta))$$  
+where $$Y$$ is a set of $$y_i$$ and $$X$$ is a set of $$X_i$$  
+
+### 2. $$p(\beta | \tau)$$
+$$= \frac{1}{\sqrt{(2\pi)^P |\tau I|}} exp(-\frac{1}{2}\beta^T(\tau I)^{-1}\beta)$$  
 
 
-## Step 3. Iteratively update and draw new samples with the probability
-## Code
+### 3. $$p(\tau)$$
+
+### 4. $$p(\kappa)$$
+
+<br>
+## Step 3. Iteratively update and draw new samples with the probability in R
 ```r
 #install.packages("invgamma")
 library(invgamma)
