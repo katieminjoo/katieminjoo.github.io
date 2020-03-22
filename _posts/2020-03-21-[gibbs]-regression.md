@@ -22,18 +22,20 @@ sitemap :
 
 <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>  
 
-## 주어진 [데이터](/assets/data/posts/[gibbs-sampler]-regression-data.html)를 활용하여 다음 모형의 계수를 추정하시오.
-<p align="center">$$y_i = X_i\beta+\epsilon_i,       i = {1, 2, ... N},       \beta \sim {1, 2, ... P}$$</p>
+<b>주어진 [데이터](/assets/data/posts/[gibbs-sampler]-regression-data.html)를 활용하여 다음 모형의 계수를 추정하시오.</b>  
 
-$$\beta \sim N(0,\tau I),   \epsilon \sim N(0,\kappa I)$$
+<p align="center">$$y_i = X_i\beta+\epsilon_i$$
+where $$i = {1, 2, ... N}$$ and $$\beta \sim {1, 2, ... P}$$  
+
+$$\beta \sim N(0,\tau I),   \epsilon \sim N(0,\kappa I)$$</p>
   
 이때 prior distribution은 다음과 같이 설정해준다.  
-$$\tau \sim IG(a,b),   \kappa \sim IG(c,d)$$  
+<p align="center">$$\tau \sim IG(a,b),   \kappa \sim IG(c,d)$$</p>  
 
 <br>
 
 ## Step 1. Find a proportionality
-$$p(\beta,\tau,\kappa|Y) \propto p(Y|\beta,\kappa) p(\beta | \tau) p(\tau) p(\kappa)$$  
+$$p(\beta,\tau,\kappa|Y) \propto p(Y|\beta,\kappa)p(\beta | \tau) p(\tau) p(\kappa)$$  
 
 <br>
 
