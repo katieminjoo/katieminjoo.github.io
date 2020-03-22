@@ -2,14 +2,14 @@ title: Haehwan Lee
 
 tagline: Statistics, Data Science
 
-description: >-                        # used by seo meta and the atom feed
+description: >-
   2020년 2월 처음 개설한 깃헙블로그입니다.
   
 url: 'https://haehwan.github.io'
 
 author: Lee HaeHwan
 
-avatar: /assets/img/sample/round_avatar.png   #확장자 유의
+avatar: /assets/img/sample/round_avatar.png
 
 github:
   username: HaeHwan
@@ -74,6 +74,9 @@ paginate: 5
 
 markdown: kramdown
 mathjax: true
+lsi: false
+excerpt_separator: "\n\n"
+incremental: false
 
 highlighter: rouge
 
