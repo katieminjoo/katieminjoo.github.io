@@ -11,6 +11,14 @@ sitemap :
   priority : 1.0
 ---
 
+\documentclass{article}
+\usepackage{amsmath}
+\begin{document}
+\begin{align*}
+2x^2 + 3(x-1)(x-2) & = 2x^2 + 3(x^2-3x+2)\\&= 2x^2 + 3x^2 - 9x + 6\\&= 5x^2 - 9x + 6
+\end{align*}
+\end{document} 
+
 <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>  
 
 <b>주어진 [데이터](/assets/data/posts/[gibbs-sampler]-regression-data.html)를 활용하여 다음 모형의 계수를 추정하시오.</b>  
