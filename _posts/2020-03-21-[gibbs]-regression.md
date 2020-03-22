@@ -15,12 +15,11 @@ sitemap :
 
 <b>주어진 [데이터](/assets/data/posts/[gibbs-sampler]-regression-data.html)를 활용하여 다음 모형의 계수를 추정하시오.</b>  
 
-<p align="center">$$y_i = X_i\beta+\epsilon_i$$</p>
-<p align="center">where $$i = {1, 2, ... N}$$ and $$\beta \sim {1, 2, ... P}$$</p>  
-<p align="center">$$\beta \sim N(0,\tau I),   \epsilon \sim N(0,\kappa I)$$</p>
+<p align="center">$$y_i = X_i\beta+\epsilon_i$$</p>  
+where $$i = {1, 2, ... N},\;\beta \sim {1, 2, ... P}$$,   $$\beta \sim N(0,\tau I)$$ and $$\epsilon \sim N(0,\kappa I)$$
   
 이때 prior distribution은 다음과 같이 설정해준다.  
-<p align="center">$$\tau \sim IG(a,b)$$ and $$\kappa \sim IG(c,d)$$</p>  
+<p align="center">$$\tau \sim IG(a,b)\; and \;\kappa \sim IG(c,d)$$</p>  
 
 <br>
 
