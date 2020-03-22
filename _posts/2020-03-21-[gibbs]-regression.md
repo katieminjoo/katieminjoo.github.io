@@ -32,14 +32,14 @@ $$\tau \sim IG(a,b)$$,  $$\kappa \sim IG(c,d)$$
 
 <br>
 
-# Step 1. Find a proportionality
+## Step 1. Find a proportionality
 $$p(\beta,\tau,\kappa|Y) \propto p(Y|\beta,\kappa) p(\beta | \tau) p(\tau) p(\kappa)$$  
 
-# Step 2. Find each full conditional distribution
+## Step 2. Find each full conditional distribution
 $$p(Y|\beta,\kappa) = \prod_{i=1}^{N} \frac{1}{\sqrt{2\pi\kappa}} exp(-\frac{1}{2\kappa}(y_i-X_i\beta)^2)$$  
 
 
-# Step 3. Iteratively update and draw new samples with the probability
+## Step 3. Iteratively update and draw new samples with the probability
 ## Code
 ```r
 #install.packages("invgamma")
