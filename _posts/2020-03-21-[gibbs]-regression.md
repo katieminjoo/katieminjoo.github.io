@@ -24,20 +24,22 @@ where $$i = {1, 2, ... N},\;\;\beta \sim {1, 2, ... P},\;\;\beta \sim N(0,\tau I
 <br>
 
 ## Step 1. Find a proportionality
-$$p(\beta,\tau,\kappa|Y) \propto p(Y|\beta,\kappa)\;p(\beta | \tau)\;p(\tau)\;p(\kappa)$$  
+<p align="center">$$p(\beta,\tau,\kappa|Y) \propto p(Y|\beta,\kappa)\;p(\beta | \tau)\;p(\tau)\;p(\kappa)$$</p>   
 
 <br>
 
 ## Step 2. Find each full conditional distribution
 ### 1. $$p(Y|\beta,\kappa)$$ 
-$$= \prod_{i=1}^{N} \frac{1}{\sqrt{2\pi\kappa}} exp(-\frac{1}{2\kappa}(y_i-X_i\beta)^2)$$
+<p align="center">$$= \prod_{i=1}^{N} \frac{1}{\sqrt{2\pi\kappa}} exp(-\frac{1}{2\kappa}(y_i-X_i\beta)^2)$$
 
-$$= {(2\pi\kappa)}^{(-N/2)} exp(-\frac{1}{2\kappa}(Y-X\beta)^T(Y-X\beta))$$  
+$$= {(2\pi\kappa)}^{(-N/2)} exp(-\frac{1}{2\kappa}(Y-X\beta)^T(Y-X\beta))$$</p>    
 
 where $$\;Y\;$$ is a set of $$\;y_i\;$$ and $$\;X\;$$ is a set of $$\;X_i$$.  
 
-### 2. $$p(\beta | \tau)$$
-$$= \frac{1}{\sqrt{(2\pi)^P |\tau I|}} exp(-\frac{1}{2}\beta^T(\tau I)^{-1}\beta)$$  
+### 2. $$p(\beta | \tau)$$[^multi]
+[^multi]: ![](https://wikimedia.org/api/rest_v1/media/math/render/svg/c66e6f6abd66698181e114a4b00da97446efd3c4)
+
+<p align="center">$$= \frac{1}{\sqrt{(2\pi)^P |\tau I|}} exp(-\frac{1}{2}\beta^T(\tau I)^{-1}\beta)$$  
 
 
 ### 3. $$p(\tau)$$
