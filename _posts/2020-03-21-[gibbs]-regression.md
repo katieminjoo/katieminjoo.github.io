@@ -27,7 +27,7 @@ sitemap :
 
 
 # Code and result
-위에서 사용한 데이터를 생성한 과정은 [이 곳](https://github.com/HaeHwan/modeling/blob/master/Bayesian%20Inference/Gibbs%20sampler/regression%20data.pdf)에서 확인하실 수 있습니다.
+위에서 사용한 데이터를 생성한 과정은 [이 곳](/pdfs/[gibbs-sampler]-regression-data.html)에서 확인하실 수 있습니다.
 
 ```r
 #install.packages("invgamma")
