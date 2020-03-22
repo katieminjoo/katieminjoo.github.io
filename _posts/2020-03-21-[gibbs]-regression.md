@@ -24,17 +24,17 @@ where $$i = {1, 2, ... N},\;\;\beta \sim {1, 2, ... P},\;\;\beta \sim N(0,\tau I
 <br>
 
 ## Step 1. Find a proportionality
-$$p(\beta,\tau,\kappa|Y) \propto p(Y|\beta,\kappa)\;\;p(\beta | \tau)\;\;p(\tau)\;\;p(\kappa)$$  
+$$p(\beta,\tau,\kappa|Y) \propto p(Y|\beta,\kappa)\;p(\beta | \tau)\;p(\tau)\;p(\kappa)$$  
 
 <br>
 
 ## Step 2. Find each full conditional distribution
 ### 1. $$p(Y|\beta,\kappa)$$ 
-$$= \prod_{i=1}^{N} \frac{1}{\sqrt{2\pi\kappa}} exp(-\frac{1}{2\kappa}(y_i-X_i\beta)^2)$$  
+$$= \prod_{i=1}^{N} \frac{1}{\sqrt{2\pi\kappa}} exp(-\frac{1}{2\kappa}(y_i-X_i\beta)^2)$$
 
 $$= {(2\pi\kappa)}^{(-N/2)} exp(-\frac{1}{2\kappa}(Y-X\beta)^T(Y-X\beta))$$  
 
-where $$Y\;\;$$ is a set of $$y_i\;\;$$ and $$X\;\;$$ is a set of $$X_i$$.  
+where $$\;Y\;$$ is a set of $$\;y_i\;$$ and $$\;X\;$$ is a set of $$\;X_i$$.  
 
 ### 2. $$p(\beta | \tau)$$
 $$= \frac{1}{\sqrt{(2\pi)^P |\tau I|}} exp(-\frac{1}{2}\beta^T(\tau I)^{-1}\beta)$$  
