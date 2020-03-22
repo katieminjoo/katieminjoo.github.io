@@ -53,11 +53,16 @@ $$= {(2\pi\kappa)}^{(-N/2)} exp(-\frac{1}{2\kappa}(Y-X\beta)^T(Y-X\beta))$$</p>
 
 where $$\;Y\;$$ is a set of $$\;y_i\;$$ and $$\;X\;$$ is a set of $$\;X_i$$.  
 
-### 2. $$p(\beta | \tau)$$[^multi]
+### 2. $$p(\beta | \tau)$$
+
+
+<p align="center">
+  $$= \frac{1}{\sqrt{(2\pi)^P |\tau I|}} exp(-\frac{1}{2}\beta^T(\tau I)^{-1}\beta)$$[^multi]
+  $$= ((2\pi)^P |\tau I|)^{-1/2} exp(-\frac{1}{2\tau}\beta^T\beta)$$
+  
+</p>  
+  
 [^multi]: ![](https://wikimedia.org/api/rest_v1/media/math/render/svg/c66e6f6abd66698181e114a4b00da97446efd3c4)
-
-<p align="center">$$= \frac{1}{\sqrt{(2\pi)^P |\tau I|}} exp(-\frac{1}{2}\beta^T(\tau I)^{-1}\beta)$$  
-
 
 ### 3. $$p(\tau)$$
 
