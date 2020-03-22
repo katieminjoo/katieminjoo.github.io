@@ -18,6 +18,13 @@ layout: compress
 <html lang="en" {{ prefer_mode }} >
 
   {% include head.html %}
+  
+  <head>
+    {% if page.use_math %}
+      {% include mathjax_support.html %}
+    {% endif %}
+  </head>
+    
 
   <body data-spy="scroll" data-target="#toc">
     <div id="sidebar" class="d-flex flex-column">
