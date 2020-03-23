@@ -23,9 +23,11 @@ use_math: true
 \end{document} 
 
 2.  
+$$
 \begin{align*}
 2x^2 + 3(x-1)(x-2) & = 2x^2 + 3(x^2-3x+2)\\&= 2x^2 + 3x^2 - 9x + 6\\&= 5x^2 - 9x + 6
 \end{align*}
+$$
 
 
 
@@ -58,6 +60,8 @@ where $$\;Y\;$$ is a set of $$\;y_i\;$$ and $$\;X\;$$ is a set of $$\;X_i$$.
 <p align="center">
   $$= \frac{1}{\sqrt{(2\pi)^P |\tau I|}} exp(-\frac{1}{2}\beta^T(\tau I)^{-1}\beta)$$
   $$= ((2\pi)^P |\tau I|)^{-1/2} exp(-\frac{1}{2\tau}\beta^T\beta)$$
+  $$= ((2\pi)^P det(\tau I))^{-1/2} exp(-\frac{1}{2\tau}\beta^T\beta)$$
+  $$= (det(2\pi \tau I))^{-1/2} exp(-\frac{1}{2\tau}\beta^T\beta)$$
   
 </p>  
 
