@@ -10,7 +10,7 @@ sitemap :
   priority : 1.0
 ---
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"> </script>
-
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
 ## 들어가며
 
 배워야할 것들이 수두룩하지만, 통계나 머신러닝, 딥러닝 등을 접해오면서 꽤나 확실하게 느껴온 바가 몇몇 있습니다. 특히, 어느 분야로 진출을 하더라도 전문가가 되기 위해서는 기본이 탄탄해야한다는 점은 시간이 갈수록 자주 느끼는 점입니다.
