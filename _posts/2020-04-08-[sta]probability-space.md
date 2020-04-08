@@ -11,10 +11,6 @@ sitemap :
 ---
 <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
 
-오늘은 수리통계학1에서 중요한 몇 가지 기본기들을 짚고 넘어가려고 합니다. 확률론의 내용을 포함하고 있으며, 연세대학교의 임종효 교수님 수업을 바탕으로 합니다. 추가적으로 나름의 해석학 내용을 첨부하기도 했습니다.
-
-<br>
-
 # Probability Space
 확률공간(Probability Space)이란, 확률(Probability)을 다루기 위해서 가장 기본적으로 선행되어야할 일종의 조건과 가깝습니다. 이 부분은 저의 사설이지만, 수학에서 Space가 의미하는 바를 이해한다면 조금 더 체화해서 이해할 수 있을 것 같습니다.
 
@@ -84,7 +80,7 @@ $$P$$에 대해서 이야기를 나누기 전에, 굳이 이렇게 어렵게 σ-
 
 그런데 마치 신의 계시라도 받은 듯, 우리가 3번 던진 동전 중에 나온 앞면의 갯수를 알고 있다고 가정해보겠습니다. 그렇게 되면 우리가 알고 있는 sample space를 다음처럼 disjoint한 union으로 새롭게 표현할 수 있습니다.
 
- <div align="center"> $$\Omega$$ = B0 ⊔ B1 ⊔ B2 ⊔ B3 = {HHH} ⊔ {HHT, HTH, THH} ⊔ {TTH, THT, HTT} ⊔ {TTT} </div>
+ <div align="center"> $$\Omega = B0 ⊔ B1 ⊔ B2 ⊔ B3 =$$ {HHH} ⊔ {HHT, HTH, THH} ⊔ {TTH, THT, HTT} ⊔ {TTT} </div>
 
 이를 가리켜서 parition $$\Omega$$라고 하는데, 이 경우 σ-algebra는 $$2^4$$개의 events를 포함하는 집합이 됩니다. 즉, 적어도 B0, B1, B2, B3를 조합해서 나올 수 있는 모든 경우의 수들에 대해서는 어떠한 확률값으로 결과를 말해줄 수 있기 때문입니다.
 
