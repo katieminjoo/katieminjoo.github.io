@@ -36,8 +36,8 @@ sitemap :
 
 <br> 
 
-# σ-algebra (on a sample space, $$\Omega$$)
-<b>$$\mathcal {F}$$ = collection of subsets of sample space = collection of events</b>
+# σ-algebra (on a sample space)
+<b>$$\mathcal {F}$$ = collection of subsets of sample space, $$\Omega$$ = collection of events</b>
 
 사실 위의 정의는 엄밀한 의미의 σ-algebra가 아니라, 단순히 event space라고 부르는 것이 맞습니다. σ-algebra로 불리기 위해서는 이에 더해 몇 가지 조건을 만족해야합니다. (σ-algebra는 algebra보다 조금 더 강한 조건들을 만족해야하는 subset으로 생각하면 됩니다.) 간단하게 이를 살펴보면 다음과 같습니다.
 
@@ -88,16 +88,16 @@ $$P$$에 대해서 이야기를 나누기 전에, 굳이 이렇게 어렵게 σ-
 <br>
 
 # Probability measure
-<b>$${P}$$ = A function that, to every set $A \in \mathcal {F}$, assigns a number in [0, 1], called the probability of $A$ and written P(A) and having all two of the following properties.
+<b>$${P}$$ = A function that, to every set $$A \in \mathcal {F}$$, assigns a number in [0, 1], called the probability of $$A$$ and written P(A) and having all two of the following properties.
 
-* P($\Omega$) = 1
+* P($$\Omega$$) = 1
 * countable additivity</b>  
 
 probability measure $$P$$를 완벽히 이해하기 위해서 조금 더 그 기저의 수학적 내용을 다뤄보도록 하겠습니다.
 
 ## measurable space
 
-실해석학에서는 (X, σ-algebra on X)를 가리켜서 measurable space라고 정의합니다. 자연히 확률공간의 ($$\Omega$$, $$\mathcal {F}$$) 역시 이에 해당합니다. 어떤 공간이 measurable space라는 점은 꽤나 중요합니다. <b>이 공간에서 우리는 σ-algebra의 (추상적인) 원소들에 real-numbered values를 부여할 수 있는 function을 정의</b>할 수 있기 때문입니다. 이러한 function을 가리켜서 set function 혹은 real-valued function이라고 부릅니다.
+실해석학에서는 (X, σ-algebra on X)를 가리켜서 measurable space라고 정의합니다. 자연히 확률공간의 ($$\Omega$$, $$\mathcal {F}$$) 역시 이에 해당합니다. 어떤 공간이 measurable space라는 점은 꽤나 중요합니다. 이 공간에서 우리는 <b>σ-algebra의 (추상적인) 원소들에 real-numbered values를 부여할 수 있는 function을 정의</b>할 수 있기 때문입니다. 이러한 function을 가리켜서 set function 혹은 real-valued function이라고 부릅니다.
 
 여기서 추상적이라고 표현했던 이유는 현재 집합 σ-algebra가 가지고 있는 원소들이 특정한 숫자값들이 아닐 수 있기 때문입니다. 예컨데, 집합 X가 sample space인 확률공간을 생각해본다면, σ-algebra의 원소들은 {동전의 앞면이 나온다, 동전의 뒷면이 나온다} 또는 {점의 갯수가 1개이다} 따위에 해당합니다. 이러한 abstract elements들에 실수값들을 부여할 수 있는 함수가 정의된다는 것을 큰 장점이 될 수 밖에 없습니다.
 
