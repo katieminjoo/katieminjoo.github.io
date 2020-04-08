@@ -125,7 +125,8 @@ probability measure $$P$$를 완벽히 이해하기 위해서 조금 더 그 기
 
 Probability measure는 결국 measurable space로부터 만들어졌고, 일정 조건들을 만족하고 있는 set function이라고 이해할 수 있습니다. 이렇게 Probability measure까지 정의되고 나서 우리는 3가지 구성요소를 일컬어, 확률공간이라고 정의하게 됩니다.
 
-
+<br>
+마지막으로 첨언을 하자면, 이번 글에서는 주로 σ-algebra에 대해서 다루었습니다. σ-algebra는 단지 measure space나 probability space를 정의하기 위해서만 사용되는 개념은 아닙니다. 확률과정에서 배우는, 마팅게일(Martingales)이라는 개념과도 관련이 있고 이는 또 금융공학에서 자주 등장합니다. 이처럼 σ-algebra의 정의와 목적은 확률을 이론적으로 공부하기 위해서 뿐만 아니라 기초지식으로 반드시 이해하고 있어야할 것입니다.
 
 
 <br>  
