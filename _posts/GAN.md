@@ -1,0 +1,122 @@
+---
+title: <i class="fas fa-database"> GAN</i>
+date: 2020-03-14 09:20:00 +0800
+categories: [Data Science, Machine Learning]
+tags: [Machine Learning, GAN]
+toc: true
+comments: true
+sitemap :
+  changefreq : daily
+  priority : 1.0
+---
+
+
+GAN(Generative Adversarial Network)은 2014년 이안 굿펠로우가 처음 소개한 generative model입니다. 이 글에서는 arXiv에 제출된 [Generative Adversarial Networks] 논문을 리뷰합니다. GAN이 어떤 기술이고, 어떤 원리에 의해 작동하는지 등에 대해 다루겠습니다.
+
+# Motivation: Generative model의 성능을 어떻게 높일 수 있을까?
+
+generative model뿐만 아니라 discriminative model을 동시에 반복학습시킴으로써 모델의 성능을 높이는 것이 핵심입니다. 각각의 모델은 아래와 같은 의미를 가지고 있습니다.
+
+- Generative models : 새로운 데이터를 생성하는 모델입니다. 학습 데이터와 유사한 데이터를 만들어낼 수록 성능이 좋다고 말합니다.
+
+- Discriminative models : 데이터가 가지는 서로 다른 종류를 구분하는 모델입니다. 구별을 잘 해낼수록 성능이 좋다고 말합니다.
+
+만약 주어진 데이터를 X 그리고 데이터의 라벨링 집합을 Y라고 한다면 조금 더 학술적으로 정의할 수 있습니다.
+
+- Generative models capture the joint probability p(X, Y), or just p(X) if there are no labels.
+
+- Discriminative models capture the conditional probability p(Y | X).
+
+알다시피 우리가 어떤 사건의 확률분포를 알고 있다는 것은, 해당 사건에 대해서 "알고 싶은 모든 것을 알고 있는 상황"이기도 합니다. 따라서 Generative model은 주어진 데이터 자체의 확률분포를 구함으로써 새롭게 데이터를 생성하고자 하는 모델입니다. 물론 그 방법이 쉽지 않으니 latent variable 등의 방법을 사용하면서 점차 모델이 복잡해지기도 합니다. 이는 잠시 뒤에 다루도록 하겠습니다.
+
+중요한 것은 GAN은 generative model의 한 예시이지만, discriminative한 모델을 동시에 학습시킴으로써 입력받은 데이터와 유사한 새로운 데이터를 만들어낸다고 생각할 수 있습니다.
+
+실제 논문에서는 이를 더 쉽게 설명하기 위해서 [화폐위조범과 경찰]의 예시를 들고 있습니다. 실제로도 그러하지만, 시간이 흐를수록 위조지폐는 더욱 감쪽같아지고 있습니다. 사실 이렇게 훌륭한(?) 모조품이 나오기 위해서는 역설적이게도 모조품을 잘 구분할 수 있는 경찰의 역할이 컸을 것입니다. 만약 경찰이 무능력해서 형편없는 위조지폐를 보고도 실제 화폐와 구분할 수 없다면, 진짜 같은 가짜를 만들 필요가 없어지기 때문입니다. 이처럼 경쟁적인(Adversarial) 위치에 있는 discriminative 모델을 함께 학습시킴으로써 generative model의 성능을 높이는 것이 GAN 알고리즘의 핵심이라고 할 수 있습니다.
+
+![](https://developers.google.com/machine-learning/gan/images/gan_faces.png)
+
+사진은 모두 실제 사람처럼 생겼지만, 사실은 가공의 인물들입니다.
+
+# Adversarial nets
+이 논문에서는 위와 같은 상황을 Adersarial nets으로 정의하고 아래와 같은 notation을 활용해서 간결한 목적함수를 만들었습니다. 이 부분은 논문의 내용을 그대로 차용했습니다. 
+
+To learn the generator’s distribution $$p_g$$ over data x, we define a prior on input noise variables $$p_z(z)$$, then represent a mapping to data space as $$G(z; \theta_g)$$, where $$G$$ is a differentiable function represented by a multilayer perceptron with parameters $$\theta_g$$. We also define a second multilayer perceptron $$D(x; \theta_d)$$ that outputs a single scalar. $$D(x)$$ represents the probability that $$x$$ came from the data rather than $$p_g$$.
+
+
+이를 통해서 목적함수는 아래와 같이 간단히 표현할 수 있습니다.
+
+$$\min_{G} \max_{D} V(D,G) = E_{x\sim p_{data(x)}}[logD(x)] + E_{z\sim p_z(z)}[log(1 - D(G(z)))]$$
+
+위의 식에서 우변은 두 개의 항으로 이루어져있는데 각각 training data를 보고 진짜라고 판단하는 확률값($$D(x)$$)과 generator가 만들어낸 데이터($$G(z)$$)를 보고 진짜라고 판단할 확률값($$D(G(z))$$)에 해당합니다. discriminator 관점에서 보자면, 각각의 확률값은 1과 0에 가까워질 때 성능이 좋은 것이며 이 때 목적함수 값이 최대가 됨을 알 수 있습니다.
+
+generator의 관점에서 보자면, 우변의 첫 번째 항은 $$G()$$에 대해 독립적입니다. 다시 말해, generator는 오직 자신의 데이터가 진품으로 받아들여지는 것이 중요하지, 진품을 진품으로 구분하는 일에는 관심이 없음을 의미합니다. 따라서 generator 함수는 두 번째 항에서 확률값이 1이 나오기를 기대하며 이는 목적함수의 최솟값을 의미합니다.
+
+그리고 사실 이 목적함수의 형태가 Binary Cross Entropy와 매우 유사한 꼴이라서 실제 코드로도 더욱 쉽게 구현할 수 있습니다. 뿐만 아니라 이를 통해 반복학습의 효율성도 높일 수 있습니다. 이는 Binary Cross Entropy를 사용한 목적함수의 기울기와 관련이 있습니다. 
+
+![]
+
+Binary Generator 변수를 학습시키면 원래 목적함수와 형태가 조금 다르게 됩니다. 
+
+$$\min_{G} E_{z\sim p_z(z)}[-log(D(G(z)))]$$
+
+여전히 원래 목적함수와 동일하게 $$D(G(z))$$가 1이 되도록 학습을 진행하지만, $$log(x)$$와 $$log(1-x)$$ 그래프는 $$x$$가 0에 가까운 값일 때 기울기에서 큰 차이가 나타납니다. $$x$$가 0에 가깝다는 것은 discriminator가 입력받은 데이터를 가짜라고 판별하기 쉽다는 상황인데, 이는 초반의 generator 함수의 상황가 일치합니다. 주어진 데이터를 미리 학습하는 discriminator와 달리, generator는 랜덤한 정규분포의 latent variable을 확장해가면서 데이터를 생성합니다. 따라서 초기에는 아주 쉽게 구별할 수 있는 가짜 데이터를 만들 수 밖에 없습니다. 가중치의 크기가 클수록 더욱 빠르게 최적화를 시킬 수 있는 backpropagation의 성질을 생각해볼 때, 이는 결국 초기에 generator 함수로 하여금 빠르게 성능을 높히는데에 큰 도움이 됩니다. 마찬가지로 이 역시 논문에 간결히 표현이 잘 되어있습니다.
+
+# Theoretical Results
+
+
+
+## Global Optimality
+
+
+
+
+
+
+
+
+<br>
+
+# Why it is important and What is important.
+
+마지막으로 논문에는 없지만, 우리가 이 기술을 이해하고 사용하는 것을 넘어서 생각해봐야하는 것들에 대해서 적어보았습니다.
+
+
+1. 데이터 수집의 자유로움
+
+때로는 특정한 데이터가 많이 필요할 때가 있습니다. 예를 들어 운전자의 졸음여부를 측정하기 위한 어플리케이션을 만든다면, 눈을 감고 있는 모습의 사진이 많이 필요합니다. 이런 사진은 많지가 않기 때문에 좋은 알고리즘을 가지고 있어도 데이터가 적기 때문에 정확도가 낮을 수 있습니다. 이처럼 좋은 아이디어가 있어도, 데이터를 구하지 못해서 실현불가능했던 많은 일을 가능케할 것입니다.
+
+2. 진정한 가상의 인물인가?
+
+generative model를 통해서 생성한 데이터는 그 형태가 음악이 되었든, 사진이 되었든 이전에 없던 무엇이긴 합니다. 어떤 의미에서는 새로운 것이라고도 부를 수 있습니다.
+
+이 때문에 누군가는 사용자들이 저작권과 초상권의 문제에서 벗어나 자유롭게 활동할 수 있게 된다고 할지 모릅니다. 특히 지적재산권과 같이 누군가의 창작물에 대한 권리가 강화되는 요즘 시대에 "그 누구의 것도 아닌" 가상의 음악/ 인물사진은 마음 편히 사용할 수 있는 재료가 될지도 모릅니다.
+
+그러나 모든 generative model에는 여전히 training을 위한 데이터가 필요합니다. 물론 확률적으로 조금의 차이가 있는 데이터를 생성하기는 하지만 여전히 순수한 창작물로 보기에는 어려움이 있을 수 있습니다. 특히 모델의 변수를 바꿔가면서 내가 training을 한 데이터와의 유사도를 조절할 수 있다는 사실은 우리 스스로도 training data와의 깊은 연관성을 인정하고 있는 것일지 모릅니다.
+
+이는 곧 "창의성이 과연 그 어떤 reference도 없이 탄생하는 것인가"라는 철학적인 질문으로 이어지지 않을까 싶습니다.
+
+3. classification 보다 한 차원 높은 단계
+
+기본적으로 데이터를 생성하는 것은 구분하는 일보다 어렵습니다. 예를 들어 강아지와 고양이를 구분하는 CNN 알고리즘이 있다고 생각해보겠습니다. 이 모델은 수 많은 학습을 통해서 개와 고양이를 구별지을 수 있는 class 간의 공통적인 특징을 찾아냅니다. 귀가 접혀있다거나, 코가 튀어나왔다거나 등의 특징을 바탕으로 class를 구별하는 것입니다.
+
+그러나 강아지나 고양이를 그려내는 것은 이보다 한 차원 높은 일입니다. 코나 입 등을 제 위치에 잘 배열해야하고, 픽셀 간의 색깔이나 선이 알맞게 배치가 되어 있어야하기도 합니다.
+
+특히 GAN과 같이 generative뿐만 아니라 discriminative model도 함께 학습하는 알고리즘에게, 분류는 더욱 쉬운 문제가 됩니다. 
+
+이처럼 데이터를 생성하는 일은 우리가 생각하는 많은 문제를 해결하기도, 또 다른 철학적/ 법률적 문제를 가져올지도 모르겠습니다. 이상입니다.
+
+<br>  
+
+***
+***
+# 각주 및 추천자료
+
+## 추천자료 
+1. [Generative Adversarial Networks (Ian J. Goodfellow)](https://arxiv.org/abs/1406.2661)
+
+
+
+## 각주
+
+
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
