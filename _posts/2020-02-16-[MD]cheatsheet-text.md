@@ -7,6 +7,9 @@ toc: true
 comments: true
 seo:
   date_modified: 2020-02-23 20:12:32 +0900
+sitemap :
+  changefreq : daily
+  priority : 1.0
 ---
 
 본 글에서는 자주 쓰지만, 쉽게 외워지지 않는 마크다운 사용법들을 적어놨습니다. 많은 분들에게 도움이 되면 좋을 것 같습니다.  
@@ -28,14 +31,12 @@ seo:
 ![image1](/assets/img/sample/image.png)
 ```
 ### image address 활용하기
-![image2](https://e-playonline.com/wp-content/uploads/2019/05/ngu.jpg)
+![재규어](https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Jaguar_%28Panthera_onca_palustris%29_female_Piquiri_River.JPG/375px-Jaguar_%28Panthera_onca_palustris%29_female_Piquiri_River.JPG)
 ```
-![image2](https://e-playonline.com/wp-content/uploads/2019/05/ngu.jpg)
+![재규어](https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Jaguar_%28Panthera_onca_palustris%29_female_Piquiri_River.JPG/375px-Jaguar_%28Panthera_onca_palustris%29_female_Piquiri_River.JPG)
 ```
-> 마크다운에서는 <kbd>"</kbd>를 쓰는 경우가 거의 없습니다.
-> 이미지로 불러올 때, 링크를 걸 때 모두 마찬가지입니다.  
 
-***
+<br>
 
 ## Link
 링크가 걸릴 부분을 <kbd>[...]</kbd>안에 넣어주고 바로 이어서 이동할 URL 주소를 <kbd>(...)</kbd>안에 넣어주면 됩니다. 
@@ -57,10 +58,10 @@ seo:
 ## footnote
 각주 사용법은 링크와 유사합니다. 각주로 처리할 단어 앞에 caret[^caret]을 넣어주면 됩니다.  
   
-[^caret]: [**caret**](https://en.wikipedia.org/wiki/Caret)이란?  
+[^caret]: caret의 뜻이 궁금하다면? [**caret**](https://en.wikipedia.org/wiki/Caret)  
 
 ```
-[^caret]
+[^caret]: caret의 뜻이 궁금하다면? [**caret**](https://en.wikipedia.org/wiki/Caret)  
 ```
 
 ### Reverse Footnote
