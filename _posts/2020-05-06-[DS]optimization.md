@@ -43,7 +43,7 @@ sitemap :
 |:--:| 
 |*Jacobian*|
 
-마찬가지의 이유로 Gradient와 Hessian은 비용이나 에러와 같이 하나의 값으로 값이 나오는 목적함수를 최적화할 때 등장합니다. 반면에 Jacobian은 종속변수와 설명변수 간의 관계식을 설정하는 회귀에서 주로 등장하게 됩니다. Jacobian과 Hessian은 모두 메트릭스 형태입니다. 차이점은 전자가 여러 함수들을 각각의 변수들로 한 번 편미분했다라고 하면, 후자는 하나의 함수를 각각의 변수들로 두 번씩 편미분했다는 차이가 있습니다. 전자는 일반적으로 non-symmetric하지만, 후자는 이차미분이 가능하다는 연속성이 미분 순서와 무관하다는 <b>Schwarz's [^theorem]</b>으로인해 대칭행렬입니다.
+마찬가지의 이유로 Gradient와 Hessian은 비용이나 에러와 같이 하나의 값으로 값이 나오는 목적함수를 최적화할 때 등장합니다. 반면에 Jacobian은 종속변수와 설명변수 간의 관계식을 설정하는 회귀에서 주로 등장하게 됩니다. Jacobian과 Hessian은 모두 메트릭스 형태입니다. 차이점은 전자가 여러 함수들을 각각의 변수들로 한 번 편미분했다라고 하면, 후자는 하나의 함수를 각각의 변수들로 두 번씩 편미분했다는 차이가 있습니다. 전자는 일반적으로 non-symmetric하지만, 후자는 이차미분이 가능하다는 연속성이 미분 순서와 무관하다는 <b>Schwarz's theorem[^theorem]</b>으로인해 대칭행렬입니다.
 
 [^theorem]: ![](https://wikimedia.org/api/rest_v1/media/math/render/svg/95a77cd12b3aecb529136f302305f28abff19977)
 
@@ -61,15 +61,21 @@ sitemap :
 1. 하이퍼파라미터($$\lambda$$)를 지정해주어야합니다.
 2. minimum 값에서 급격히 무뎌집니다.
 
-1번, $$\lambda$$는 한번에 얼만큼 내려올 것인가를 정하는 step size로 생각할 수 있습니다. 만약에 임의의 점에서 기울기가 어느 방향이든지간에 가파른 상태라면, 아무리 반복을 해도 수렴하지 못하게 됩니다. 오히려 반복을 할수록 실제 local minimum에서 멀어지는 일까지 발생할 수 있습니다. (통계학적으로 말한다면, 피셔정보량이 크기 때문에 계산하기 좋은 비용함수 -optimum에서 첨도가 작은 함수- 임에도 불구하고 오히려 값을 찾지 못하는 경우라고 할 수 있겠네요.)
+1번, $$\lambda$$는 한번에 얼만큼 내려올 것인가를 정하는 step size로 생각할 수 있습니다. 만약에 임의의 점에서 기울기가 어느 방향이든지간에 가파른 상태라면, 아무리 반복을 해도 수렴하지 못하게 됩니다. 오히려 반복을 할수록 실제 local minimum에서 멀어지는 일까지 발생할 수 있습니다. (통계학적으로 말한다면, 피셔정보량이 크기 때문에 계산하기 좋은 비용함수 - *optimum에서 곡률이 작은 함수* - 임에도 불구하고 오히려 값을 못 찾는 경우라고 할 수 있겠네요.)
 
 ![](https://www.jeremyjordan.me/content/images/2018/02/Screen-Shot-2018-02-24-at-11.47.09-AM.png)
 
-2번은 꽤나 중요한 문제입니다. gradient descent는 1차 미분을 활용하기 때문에 local minimum 근처에서 미분값이 0에 가까워집니다. 따라서 그 전까지 잘 내려오다가 정작 minimum 근처에서는 매우 조심스럽게 내려오는 태도를 보인다고 할 수 있습니다. 만약 첨도가 큰 함수라면, 답을 찾아내기 위해서 많은 반복시행을 요구하게 됩니다.
 
-두 문제 모두, 비용함수의 첨도와 관련이 되있습니다. 첨도가 큰 함수라면, minimum 근처에서 수렴하기 어렵기 때문에 step-size가 커져야할 것입니다. 반대로 작은 함수라면 큰 step-size가 발산을 일으킬 수도 있기 때문에 조심해야합니다. 물론 이러한 논의는 가능한 모든 범위 안에서의 목적함수 모양을 모두 알고 있다는 가정 하에서 적절한 step-size를 추정하는 일이 될 것입니다. 결국 하이퍼파라미터를 사용자가 정해야한다는 점에는 여전히 큰 단점을 가지고 있는 것은 분명합니다.
+|![](https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Osculating_circle.svg/375px-Osculating_circle.svg.png)|
+|:--:|
+|curvature, 곡률, 피셔 정보량|
 
-물론 이를 위한 해결방법이 많이 연구되었습니다. 대표적으로 [line search](https://en.wikipedia.org/wiki/Line_search) 방법을 활용한, backtracking line search나 golden section search 방법 등이 있습니다. 이와 관련해서는 아래 [^참고문헌]을 확인하시면 됩니다.
+
+2번은 꽤나 중요한 문제입니다. gradient descent는 1차 미분을 활용하기 때문에 local minimum 근처에서 미분값이 0에 가까워집니다. 따라서 그 전까지 잘 내려오다가 정작 minimum 근처에서는 매우 조심스럽게 내려오는 태도를 보인다고 할 수 있습니다. 만약 곡률이 큰 함수라면, 답을 찾아내기 위해서 많은 반복시행을 요구하게 됩니다.
+
+두 문제 모두, 비용함수의 곡률과 관련이 되있습니다. 곡률이 큰 함수라면, minimum 근처에서 수렴하기 어렵기 때문에 step-size가 커져야할 것입니다. 반대로 작은 함수라면 큰 step-size가 발산을 일으킬 수도 있기 때문에 조심해야합니다. 물론 이러한 논의는 가능한 모든 범위 안에서의 목적함수 모양을 모두 알고 있다는 가정 하에서 적절한 step-size를 추정하는 일이 될 것입니다. 결국 하이퍼파라미터를 사용자가 정해야한다는 점에는 여전히 큰 단점을 가지고 있는 것은 분명합니다.
+
+물론 이를 위한 해결방법이 많이 연구되었습니다. 대표적으로 [line search](https://en.wikipedia.org/wiki/Line_search) 방법을 활용한, backtracking line search나 golden section search 방법 등이 있습니다. 이와 관련해서는 아래 [^]을 확인하시면 됩니다.
 
 [^참고문헌]: [https://darkpgmr.tistory.com/149?category=761008](https://darkpgmr.tistory.com/149?category=761008)
 
@@ -94,9 +100,9 @@ gradient descent가 quadratic 형태의 문제를 최소화하는데에 특화�
 
 ## Newton's method in calculus
 
-미적분학에서 뉴턴법과 최적화이론에서 뉴턴법은 조금은 다른 의미를 가집니다. 먼저 일반적인 뉴턴법은 테일러 급수를 활용해서 함수의 근(root)을 찾을 때 사용하는 최적화 방식입니다. 다시 말해, 미분가능한 연속함수가 x축과 만나는 지점을 찾는 과정이라고 말할 수 있습니다. 일반적으로는 <b>[^Newton-Raphson method]</b>로 구분하여 수치해석분야에서 칭하는 것으로 알고 있습니다. 이 경우 Grandient descent와 동일하게 일계도함수까지만 활용합니다. 
+미적분학에서 뉴턴법과 최적화이론에서 뉴턴법은 조금은 다른 의미를 가집니다. 먼저 일반적인 뉴턴법은 테일러 급수를 활용해서 함수의 근(root)을 찾을 때 사용하는 최적화 방식입니다. 다시 말해, 미분가능한 연속함수가 x축과 만나는 지점을 찾는 과정이라고 말할 수 있습니다. 일반적으로는 <b>Newton-Raphson method[^method]</b>로 구분하여 수치해석분야에서 칭하는 것으로 알고 있습니다. 이 경우 Grandient descent와 동일하게 일계도함수까지만 활용합니다. 
 
-[^Newton-Raphson method]: 이 경우 함수의 근을 구하는데 필요한 계산의 시간복잡도는 ![](http://en.citizendium.org/images/math/6/c/7/6c7d9a3052a770665f8b76fc684661a6.png)라고 합니다. 
+[^method]: 이 경우 함수의 근을 구하는데 필요한 계산의 시간복잡도는 ![](http://en.citizendium.org/images/math/6/c/7/6c7d9a3052a770665f8b76fc684661a6.png)라고 합니다. 
 
 ![](https://wikimedia.org/api/rest_v1/media/math/render/svg/710c11b9ec4568d1cfff49b7c7d41e0a7829a736)
 
@@ -136,8 +142,6 @@ gradient descent가 quadratic 형태의 문제를 최소화하는데에 특화�
 ![](https://www.researchgate.net/profile/Razvan_Pascanu/publication/263011979/figure/fig1/AS:614085020352522@1523420686891/Behaviors-of-different-optimization-methods-near-a-saddle-point-for-a-classical-saddle.png)
 
 마찬가지로 이 때에도 이차미분을 실행하며, 변수가 여러 개이기 때문에 편미분을 해줍니다. 이때 다변수 함수의 이차미분 결과를 가리켜서 <b>[Hessian matrix](https://en.wikipedia.org/wiki/Hessian_matrix)</b>라고 부릅니다.
-
-![](https://wikimedia.org/api/rest_v1/media/math/render/svg/614e3ddb8ba19b38bbfd8f554816904573aa65aa)
 
 ![](https://wikimedia.org/api/rest_v1/media/math/render/svg/e6955a47cee964faf7ebbc3ee7a2b28e39596413)
 
@@ -182,6 +186,7 @@ non-linear least square와 동일하게 일반적인 선형회귀에서도 다�
 이 경우 행렬 P는 간단한 연산을 통해서 다음과 같음을 보일 수 있습니다. 자세한 과정은 [위키피디아](https://en.wikipedia.org/wiki/Non-linear_least_squares#Theory)에 나와있습니다.
 
 ![](https://wikimedia.org/api/rest_v1/media/math/render/svg/783ba4185fe29fb6253ff5dd87db3c30476752be)
+
 ![](https://t1.daumcdn.net/cfile/tistory/2761244D517F2D5228)
 
 대표적으로 내가 가지고 있는 데이터가 원모양을 띄고 있다고 가정하고, 이 주어진 데이터를 바탕으로 원의 중심을 찾는 과정을 생각해보겠습니다. 원에 식을 세울 수 있지만 이는 알다시피 루트안에 제곱꼴로 들어간 수식이기 때문에 위에서처럼 closed form으로 답이 존재하지 않습니다. 따라서 이 대신에, gauss-newton method를 활용해서 잔차의 제곱을 줄여나갈 수 있습니다. 이 때에 내가 해줘야할 일은, 원의 중심점 (a, b)와 원의 반지름, r을 적당히 잡아주는 일만 하면 됩니다. 자세한 내용은 아래 추천자료 1번에 첨부하였습니다.
