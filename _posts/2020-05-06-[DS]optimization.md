@@ -13,7 +13,7 @@ sitemap :
 
 # Optimization
 
-문제를 해결하거나 관심있는 모수를 추정할 때, 통계적 분석을 크게 필요로 하지 않는 경우가 꽤 많습니다. 예를 들어 손글씨를 디지털 텍스트로 변환하는 문제는 모로 가든 "정확하게" 맞추기만 하면 되는 문제이지, 작동원리라든가 추정에 필요한 모수의 성질은 큰 관심을 가지지 않습니다. 뿐만 아니라 linear regression을 제외한 많은 경우, solution의 closed form이 존재하지 않습니다. 이 경우 결국 최선은 상황에 맞는 목적함수를 세우고 이를 <b>최적화</b>하는 일에 있습니다.
+때로는 모수에 대한 통계적 분석이 크게 필요하지 않는 문제들이 꽤 많습니다. 예를 들어 손글씨를 디지털 텍스트로 변환하는 문제는 모로 가든 "정확하게" 맞추기만 하면 되는 문제이지, 작동원리라든가 추정에 필요한 모수의 성질은 큰 관심을 가지지 않습니다. 뿐만 아니라 linear regression을 제외한 많은 경우, solution의 closed form이 존재하지 않습니다. 이 경우 결국 최선은 상황에 맞는 목적함수를 세우고 이를 <b>최적화</b>하는 일에 있습니다.
 
 대부분 목적함수는 에러/비용이거나 정확도/이윤입니다. 이 경우 최적화는 각각 maximize 혹은 minimize가 됩니다. 그리고 두 문제는 부호를 바꿔주기만 하면 완전히 같은 상황으로 볼 수 있습니다. 물론 GAN과 같이 두 개의 서로 다른 모델을 동시에 학습하는 경우, 최적화는 minimax가 됩니다. 하지만 이 경우에도 결국 Jensen-Shannon divergence를 최소화하는 문제로 치환해서 푼다는 것을 [지난 포스팅](https://haehwan.github.io/posts/DS-GAN/)에서 확인한 바있습니다.
 
@@ -21,20 +21,33 @@ sitemap :
 
 <br>
 
-# Notation
-- 다변수 함수: 함수값이 하나의 실수값으로 나오는 함수.
-- 다변수 벡터함수 : 함수값이 벡터형태로 나오는 함수.
-- Gradient : 다변수 함수에 대한 일차 미분
-- Hessian : 다변수 함수에 대한 이차 미분
-- Jacobian : 다변수 벡터 함수에 대한 일차 미분
+# 
+| 다변수 함수 | 함수값이 하나의 실수값으로 나오는 함수 |
+| 다변수 벡터함수| 함수값이 벡터형태로 나오는 함수|
 
-보통 최적화를 해야할 목적함수는 하나의 식으로 나오기 때문에 대다수 최적화 문제는 다변수 함수에 국한된 알고리즘과 관련이 깊습니다. 그러나, 함수식이 여러개인 다변수 벡터함수도 중요합니다. 이는 회귀식과 관련이 있기 때문입니다. 회귀를 하는 것은 자신이 설정한 모델에 주어진 데이터들을 최대한 잘 피팅하는 일이고 이 때의 목적은 잔차들의 합을 최소화하는 것입니다. 다만 이 합을 구하기 위해서 함수값들이 벡터로 나올 뿐이기 때문에 다변수 벡터함수가 등장할 뿐입니다. 만약 linear regression과 같이 closed form이 존재하는 경우가 아니라면, 결국 이 때에도 근사적으로 최적화하는 방법이 중요해집니다. 잠시 뒤에, Gauss-Newton method에서 다루겠습니다.
+보통 최적화를 해야할 목적함수는 비용이나 에러와 같은 하나의 실수값으로 나옵니다. 따라서 대다수 최적화 문제는 다변수 함수와 관련되어 있고, 알고리즘도 마찬가지입니다. 그러나 함수식이 여러개인 다변수 벡터함수도 중요합니다. 이는 <b>regression</b>과 관련이 깊습니다.
 
-같은 의미로, 최적화와 주로 관련된 것은, Gradient와 Hessian이지만, 방정식의 해를 풀 때에는 Jacobian도 중요합니다. 깊게는 다루지 않겠지만, Jacobian과 Hessian은 모두 메트릭스 형태입니다. 차이점은 전자가 여러 함수들을 각각의 변수들로 한 번 편미분했다라고 하면, 후자는 하나의 함수를 각각의 변수들로 두 번씩 편미분했다는 차이가 있습니다. 전자는 일반적으로 non-symmetric하지만, 후자는 이차미분이 가능하다는 연속성이 미분 순서와 무관하다는 <b>[^Schwarz's theorem]</b>으로인해 대칭행렬입니다.
+회귀란, 주어진 데이터들을 자신이 설정한 모델에 최대한 잘 피팅하는 일입니다. 이 때 기준이 되는 목적함수는 잔차라고 할 수 있으며, 데이터의 갯수만큼 함수식이 등장하게 됩니다. 따라서 이러한 경우에는 다변수 벡터함수의 최적화가 필요합니다. 
 
-[^Schwarz's theorem]: ![](https://wikimedia.org/api/rest_v1/media/math/render/svg/95a77cd12b3aecb529136f302305f28abff19977)
+![](https://wikimedia.org/api/rest_v1/media/math/render/svg/9b3de8a1cc1db3c24c82167fd4ce377b50c7d118)
 
-![](https://wikimedia.org/api/rest_v1/media/math/render/svg/d632a346cd0677aef80d9fa32f476a5b5bf4dc58)
+| Gradient| 다변수 함수에 대한 일차 미분|
+| Hessian| 다변수 함수에 대한 이차 미분|
+| Jacobian| 다변수 벡터 함수에 대한 일차 미분|
+
+|![](https://www.value-at-risk.net/wp-content/uploads/formulas/formula_2_6.png)|
+|:--:| 
+|*왼쪽: gradient.     오른쪽: Hessian*|
+
+|![](https://www.value-at-risk.net/wp-content/uploads/formulas/formula_2_7.png)|
+|:--:| 
+|*Jacobian*|
+
+마찬가지의 이유로 Gradient와 Hessian은 비용이나 에러와 같이 하나의 값으로 값이 나오는 목적함수를 최적화할 때 등장합니다. 반면에 Jacobian은 종속변수와 설명변수 간의 관계식을 설정하는 회귀에서 주로 등장하게 됩니다. Jacobian과 Hessian은 모두 메트릭스 형태입니다. 차이점은 전자가 여러 함수들을 각각의 변수들로 한 번 편미분했다라고 하면, 후자는 하나의 함수를 각각의 변수들로 두 번씩 편미분했다는 차이가 있습니다. 전자는 일반적으로 non-symmetric하지만, 후자는 이차미분이 가능하다는 연속성이 미분 순서와 무관하다는 <b>Schwarz's [^theorem]</b>으로인해 대칭행렬입니다.
+
+[^theorem]: ![](https://wikimedia.org/api/rest_v1/media/math/render/svg/95a77cd12b3aecb529136f302305f28abff19977)
+
+
 
 <br>
 
@@ -58,7 +71,7 @@ sitemap :
 
 물론 이를 위한 해결방법이 많이 연구되었습니다. 대표적으로 [line search](https://en.wikipedia.org/wiki/Line_search) 방법을 활용한, backtracking line search나 golden section search 방법 등이 있습니다. 이와 관련해서는 아래 [^참고문헌]을 확인하시면 됩니다.
 
-[^refer]: [https://darkpgmr.tistory.com/149?category=761008](https://darkpgmr.tistory.com/149?category=761008)
+[^참고문헌]: [https://darkpgmr.tistory.com/149?category=761008](https://darkpgmr.tistory.com/149?category=761008)
 
 ## algorithm for the numerical solution
 
@@ -83,7 +96,7 @@ gradient descent가 quadratic 형태의 문제를 최소화하는데에 특화�
 
 미적분학에서 뉴턴법과 최적화이론에서 뉴턴법은 조금은 다른 의미를 가집니다. 먼저 일반적인 뉴턴법은 테일러 급수를 활용해서 함수의 근(root)을 찾을 때 사용하는 최적화 방식입니다. 다시 말해, 미분가능한 연속함수가 x축과 만나는 지점을 찾는 과정이라고 말할 수 있습니다. 일반적으로는 <b>[^Newton-Raphson method]</b>로 구분하여 수치해석분야에서 칭하는 것으로 알고 있습니다. 이 경우 Grandient descent와 동일하게 일계도함수까지만 활용합니다. 
 
-[^TC]: 이 경우 함수의 근을 구하는데 필요한 계산의 시간복잡도는 ![](http://en.citizendium.org/images/math/6/c/7/6c7d9a3052a770665f8b76fc684661a6.png)라고 합니다. 
+[^Newton-Raphson method]: 이 경우 함수의 근을 구하는데 필요한 계산의 시간복잡도는 ![](http://en.citizendium.org/images/math/6/c/7/6c7d9a3052a770665f8b76fc684661a6.png)라고 합니다. 
 
 ![](https://wikimedia.org/api/rest_v1/media/math/render/svg/710c11b9ec4568d1cfff49b7c7d41e0a7829a736)
 
@@ -94,8 +107,6 @@ gradient descent가 quadratic 형태의 문제를 최소화하는데에 특화�
 함수의 최솟값을 찾아야하는 최적화 이론에서는 살짝 다르게 적용합니다. 원함수를 0으로 만드는 값을 찾는 것이 아니라, 기울기를 0으로 만드는 값을 찾는 것으로 바꿔주면 됩니다. 어떠한 minimum 값이든 반드시 기울기가 0이라는 점을 이용한 것에 불과합니다. 다시 말해, 미적분학의 뉴턴법을 한번씩 더 미분해줌으로써 간단히 해결해줍니다.
 
 ![](https://wikimedia.org/api/rest_v1/media/math/render/svg/90e32b708ca17d5659fdc482fe3c9f88996361ba)
-
-![](https://www.researchgate.net/profile/Martin_Siggel/publication/263553090/figure/fig2/AS:669437170552833@1536617667054/Illustration-of-Newtons-method-in-optimization-Figure-a-compares-the-convergence-of.png)
 
 | ![image_caption](https://www.researchgate.net/profile/Martin_Siggel/publication/263553090/figure/fig2/AS:669437170552833@1536617667054/Illustration-of-Newtons-method-in-optimization-Figure-a-compares-the-convergence-of.png) | 
 |:--:| 
@@ -158,6 +169,8 @@ non-linear least square와 동일하게 일반적인 선형회귀에서도 다�
 
 중요한 것은 잔차를 모수로 나눈 값을 구할 수 있느냐의 문제입니다. 일반적인 선형회귀식에서는 미분을 하고나면, p개의 모수 갯수만큼 p개의 연립방정식이 만들어집니다. 따라서 closed form이 존재하여 답을 구할 수가 있습니다.
 
+## Non-linear regression
+
 하지만 만약 내가 피팅하려고 하는 모델이 선형식이 아니라면 이를 구할 수 있는 방법이 묘연합니다. 이 경우에는 아까 사용했던 netwon method in calculus를 활용합니다. 
 
 ![](https://t1.daumcdn.net/cfile/tistory/13310338517C59CC2B)
@@ -168,11 +181,21 @@ non-linear least square와 동일하게 일반적인 선형회귀에서도 다�
 
 이 경우 행렬 P는 간단한 연산을 통해서 다음과 같음을 보일 수 있습니다. 자세한 과정은 [위키피디아](https://en.wikipedia.org/wiki/Non-linear_least_squares#Theory)에 나와있습니다.
 
+![](https://wikimedia.org/api/rest_v1/media/math/render/svg/783ba4185fe29fb6253ff5dd87db3c30476752be)
 ![](https://t1.daumcdn.net/cfile/tistory/2761244D517F2D5228)
 
 대표적으로 내가 가지고 있는 데이터가 원모양을 띄고 있다고 가정하고, 이 주어진 데이터를 바탕으로 원의 중심을 찾는 과정을 생각해보겠습니다. 원에 식을 세울 수 있지만 이는 알다시피 루트안에 제곱꼴로 들어간 수식이기 때문에 위에서처럼 closed form으로 답이 존재하지 않습니다. 따라서 이 대신에, gauss-newton method를 활용해서 잔차의 제곱을 줄여나갈 수 있습니다. 이 때에 내가 해줘야할 일은, 원의 중심점 (a, b)와 원의 반지름, r을 적당히 잡아주는 일만 하면 됩니다. 자세한 내용은 아래 추천자료 1번에 첨부하였습니다.
 
 앞에서 gauss-newton method가 일종의 non-linear한 폼이나 closed form으로 해가 존재하지 않는 경우에만 쓴다고 이야기한게 아닌가 모르겠습니다. 이 방법은 당연히 linear한 경우에도 활용할 수 있습니다. 굳이 근사를 하는 이유는 우리가 가지고 있는 행렬 A가 너무 크거나, sparse해서 분해하기 쉽지 않을 때가 있을 것입니다. 이럴 때에도 근사를 위한 좋은 알고리즘으로 작동할 수 있습니다. 
+
+<br>
+
+# Levenberg-Marquardt
+앞서서 Newton's method에 비해서 Gradient descent는 수렴값 근처에서는 늦더라도, 적당한 step size 아래에서 반드시 최소화가 되는 방향으로 이동한다고 말한 바 있습니다. 반면에 Newton's method는 수렴값 근처에서는 빠르게 움직인다고해도, 초기값을 잘못 잡으면 오히려 local maximum 값으로 이동할 가능성이 존재했습니다.
+
+Levenberg-Marquardt 알고리즘(LMA, damped least-squares)은 gradient method 방법과 newton's method 방법을 적절하게 섞음으로써 두 알고리즘의 장점을 합친 것으로 이해할 수 있습니다. 수렴값과 현재 위치가 멀때는 gradient descent 방법을 사용하지만, 수렴값 근처에서는 newton's method를 사용합니다. 두 알고리즘의 장점을 골라서 가지고 있는 탓에 실질적으로 가장 많이 쓰이는 알고리즘입니다. 물론, 가우스 뉴턴 방법과 동일하게 non-linear least squares 문제에서만 사용할 수 있습니다. 구체적인 수식은 다음과 같습니다. 
+
+![](https://wikimedia.org/api/rest_v1/media/math/render/svg/0e6830c7a066472f8ee31ad9a72f0a41476c7d4e)
 
 
 
