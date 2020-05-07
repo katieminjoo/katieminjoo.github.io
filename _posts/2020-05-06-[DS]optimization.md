@@ -21,7 +21,8 @@ sitemap :
 
 <br>
 
-# 
+# basic setups
+
 | 다변수 함수 | 함수값이 하나의 실수값으로 나오는 함수 |
 | 다변수 벡터함수| 함수값이 벡터형태로 나오는 함수|
 
@@ -29,7 +30,9 @@ sitemap :
 
 회귀란, 주어진 데이터들을 자신이 설정한 모델에 최대한 잘 피팅하는 일입니다. 이 때 기준이 되는 목적함수는 잔차라고 할 수 있으며, 데이터의 갯수만큼 함수식이 등장하게 됩니다. 따라서 이러한 경우에는 다변수 벡터함수의 최적화가 필요합니다. 
 
-![](https://wikimedia.org/api/rest_v1/media/math/render/svg/9b3de8a1cc1db3c24c82167fd4ce377b50c7d118)
+|![](https://wikimedia.org/api/rest_v1/media/math/render/svg/9b3de8a1cc1db3c24c82167fd4ce377b50c7d118)|
+|:--:|
+| *위의 문제는 7개의 함수식을 푸는 문제와 동일합니다.* |
 
 | Gradient| 다변수 함수에 대한 일차 미분|
 | Hessian| 다변수 함수에 대한 이차 미분|
@@ -75,9 +78,9 @@ sitemap :
 
 두 문제 모두, 비용함수의 곡률과 관련이 되있습니다. 곡률이 큰 함수라면, minimum 근처에서 수렴하기 어렵기 때문에 step-size가 커져야할 것입니다. 반대로 작은 함수라면 큰 step-size가 발산을 일으킬 수도 있기 때문에 조심해야합니다. 물론 이러한 논의는 가능한 모든 범위 안에서의 목적함수 모양을 모두 알고 있다는 가정 하에서 적절한 step-size를 추정하는 일이 될 것입니다. 결국 하이퍼파라미터를 사용자가 정해야한다는 점에는 여전히 큰 단점을 가지고 있는 것은 분명합니다.
 
-물론 이를 위한 해결방법이 많이 연구되었습니다. 대표적으로 [line search](https://en.wikipedia.org/wiki/Line_search) 방법을 활용한, backtracking line search나 golden section search 방법 등이 있습니다. 이와 관련해서는 아래 [^]을 확인하시면 됩니다.
+물론 이를 위한 해결방법이 많이 연구되었습니다. 대표적으로 [line search](https://en.wikipedia.org/wiki/Line_search) 방법을 활용한, backtracking line search나 golden section search 방법 등이 있습니다. 이와 관련해서는 아래 [^ref]을 확인하시면 됩니다.
 
-[^참고문헌]: [https://darkpgmr.tistory.com/149?category=761008](https://darkpgmr.tistory.com/149?category=761008)
+[^ref]: [https://darkpgmr.tistory.com/149?category=761008](https://darkpgmr.tistory.com/149?category=761008)
 
 ## algorithm for the numerical solution
 
@@ -89,7 +92,7 @@ gradient descent가 quadratic 형태의 문제를 최소화하는데에 특화�
 
 ![](https://wikimedia.org/api/rest_v1/media/math/render/svg/2599e3eaffe3318e4a39ba37380b4b033ba3e552)
 
-하지만 실질적으로 어떤 방정식의 근을 찾기 위한 알고리즘으로는 conjugate gradient method를 많이 사용합니다. 위의 식에서 $$A$$가 positive-definite하고 symmetric을 만족할 때, 미분을 하지 않고 반복시행으로 해를 구하는 방식입니다. 
+하지만 실질적으로 어떤 방정식의 근을 찾기 위한 알고리즘으로는 <b>conjugate gradient method</b>를 많이 사용합니다. 위의 식에서 $$A$$가 positive-definite하고 symmetric을 만족할 때, 미분을 하지 않고 반복시행으로 해를 구하는 방식입니다. 
 
 역행렬을 구하는 직접적인 계산이 어렵거나, 이를 위한 여러 분해법들을 적용하기에 가지고 있는 $$A$$가 너무 sparse한 경우에 주로 활용됩니다. 자세한 예시는 [위키피디아](https://en.wikipedia.org/wiki/Conjugate_gradient_method#Numerical_example)의 예시로 대체하는게 제일 좋을 것 같습니다.
 
@@ -171,7 +174,9 @@ non-linear least square와 동일하게 일반적인 선형회귀에서도 다�
 
 연립방정식인 이유는 위의 식이 모수의 갯수만큼 존재하기 때문입니다. 자연스럽게 다변수 벡터 함수식이 나오게 된 것이죠.
 
-중요한 것은 잔차를 모수로 나눈 값을 구할 수 있느냐의 문제입니다. 일반적인 선형회귀식에서는 미분을 하고나면, p개의 모수 갯수만큼 p개의 연립방정식이 만들어집니다. 따라서 closed form이 존재하여 답을 구할 수가 있습니다.
+중요한 것은 잔차를 모수로 나눈 값을 구할 수 있느냐의 문제입니다. 일반적인 선형회귀식에서는 미분을 하고나면, p개의 모수 갯수만큼 p개의 연립방정식이 만들어집니다. 따라서 closed form이 존재하여 답을 구할 수가 있습니다. 하지만 미분을 하고나서도 변수의 갯수가 함수식보다 많거나 기타 등등의 이유로 해결이 되지 않는 경우가 많습니다. 이럴 때에 Gauss-Newton method를 활용해서 근사적으로 값들을 찾아나가게 됩니다.
+
+조금더 구체적으로 찾아가는 과정은 밑에서 LMA 이야기를 하면서 진행하겠습니다.
 
 ## Non-linear regression
 
@@ -196,13 +201,35 @@ non-linear least square와 동일하게 일반적인 선형회귀에서도 다�
 <br>
 
 # Levenberg-Marquardt
-앞서서 Newton's method에 비해서 Gradient descent는 수렴값 근처에서는 늦더라도, 적당한 step size 아래에서 반드시 최소화가 되는 방향으로 이동한다고 말한 바 있습니다. 반면에 Newton's method는 수렴값 근처에서는 빠르게 움직인다고해도, 초기값을 잘못 잡으면 오히려 local maximum 값으로 이동할 가능성이 존재했습니다.
+앞서서 Gradient descent는 항상 올바른 방향으로 내려가더라도 수렴값 근처에서는 굉장히 늦어진다고 했습니다. 반면에 Newton's method는 수렴값 근처에서는 빠르게 움직이지만, 초기값을 잘못 잡으면 오히려 local maximum 값으로 이동할 가능성이 존재했습니다.
 
-Levenberg-Marquardt 알고리즘(LMA, damped least-squares)은 gradient method 방법과 newton's method 방법을 적절하게 섞음으로써 두 알고리즘의 장점을 합친 것으로 이해할 수 있습니다. 수렴값과 현재 위치가 멀때는 gradient descent 방법을 사용하지만, 수렴값 근처에서는 newton's method를 사용합니다. 두 알고리즘의 장점을 골라서 가지고 있는 탓에 실질적으로 가장 많이 쓰이는 알고리즘입니다. 물론, 가우스 뉴턴 방법과 동일하게 non-linear least squares 문제에서만 사용할 수 있습니다. 구체적인 수식은 다음과 같습니다. 
+Levenberg-Marquardt 알고리즘(LMA, damped least-squares)은 gradient method 방법과 (gauss) newton's method 방법을 적절하게 섞음으로써 두 알고리즘의 장점을 합친 것으로 이해할 수 있습니다. 수렴값과 현재 위치가 멀때는 gradient descent 방법을 사용하지만, 수렴값 근처에서는 newton's method를 사용합니다. 두 알고리즘의 장점을 골라서 가지고 있는 탓에 실질적으로 가장 많이 쓰이는 알고리즘입니다. 물론, 가우스 뉴턴 방법과 동일하게 non-linear least squares 문제에서만 사용할 수 있습니다. 구체적인 수식은 다음과 같습니다. 
 
 ![](https://wikimedia.org/api/rest_v1/media/math/render/svg/0e6830c7a066472f8ee31ad9a72f0a41476c7d4e)
 
+여기에서 $$\lambda$$를 일컬어, damping parameter라고도 부릅니다. 만약 이 값이 커지면, gradient descent 방법에 가깝고, 작으면 Gauss-newton 방법에 가까워진다고 할 수 있습니다. 즉 이 damping 변수가 처음에는 컸다가 값이 개선됨에 따라 점차 작아짐으로써 두 모델의 장점을 취하는 형태입니다. 물론 처음보다 값이 개선되지 않으면 오히려 변수값이 커지기도 합니다. 
 
+조금 더 자세히 살펴보면 다음과 같습니다. 먼저 반복을 취할 때마다, 모수 $$\beta$$는 새로운 추정치, $$\beta + \sigma$$로 이동할 것입니다. 이 때 변화량은 [linearization](https://en.wikipedia.org/wiki/Gradient#Linear_approximation_to_a_function)(gradient descent)으로 추정합니다.
+
+![](https://wikimedia.org/api/rest_v1/media/math/render/svg/428fa8f867b807a63b5b20b0ffbf5144a30a42d2)
+
+즉, 이 때 위의 식에서 $$J_i$$는 기존의 $$x$$와 $$\beta$$에 관한 식을 $$\beta$$로 편미분한 자코비안으로 이해하면 됩니다. 이러한 1회 반복을 n차례 반복하되, 가지고 있는 데이터의 갯수가 m개 이므로 아래의 수식을 최소화하는 값을 찾는 것이 목표가 됩니다.
+
+![](https://wikimedia.org/api/rest_v1/media/math/render/svg/6e25768636e7ae5b26d0937c3dfbd68e93f296d7)
+
+수식을 벡터 노테이션으로 바꾼 다음에 자코비안으로 미분을 해주면 아래와 같습니다.
+
+![](https://wikimedia.org/api/rest_v1/media/math/render/svg/7bdfaf3c5eb5647e7be6004e8f5e751b74b770ff)
+
+![](https://wikimedia.org/api/rest_v1/media/math/render/svg/d10c1953686875476646a1d58403b1a14bf3ab37)
+
+사실 여기까지는 앞서 보았던 Gauss newton method와 동일합니다. 여기에서 LMA가 추가하는 것은 "damped" 변수를 추가하는 것입니다. 
+
+![](https://wikimedia.org/api/rest_v1/media/math/render/svg/de95bef27493cc5fddb18a6667d3bfbb1d37f02d)
+
+앞서서, $$\lambda$$ 값이 작으면 GN 방법에 가깝다고 한 것을 확인할 수 있습니다. GN과 GD 방법들이 수렴값 근처에서 어떻게 속도차이가 나는가를 다시 생각해본다면, 이제 $$\lambda$$가 어떻게 변화하는 변수인지 이해할 수 있습니다. 만약 기준이 되는 잔차합, S 값이 개선이 되고 있다면, 큰 $$\lambda$$값을 유지합니다. 그러다가 개선폭 정도가 완화되면 작은 $$\lambda$$ 값으로 바꿔서 GN 방식으로 접근한다고 해석할 수 있겠습니다. 
+
+## advantages
 
 
 <br>  
