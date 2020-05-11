@@ -13,11 +13,11 @@ sitemap :
 
 # Optimization
 
-때로는 모수에 대한 통계적 분석이 크게 필요하지 않는 문제들이 꽤 많습니다. 예를 들어 손글씨를 디지털 텍스트로 변환하는 문제는 모로 가든 "정확하게" 맞추기만 하면 되는 문제이지, 작동원리라든가 추정에 필요한 모수의 성질은 큰 관심을 가지지 않습니다. 뿐만 아니라 linear regression을 제외한 많은 경우, solution의 closed form이 존재하지 않습니다. 이 경우 결국 최선은 상황에 맞는 목적함수를 세우고 이를 <b>최적화</b>하는 일에 있습니다.
+모수에 대한 통계적 분석이 크게 필요하지 않을 때가 많습니다. 예를 들어 손글씨를 디지털 텍스트로 변환하는 문제는 모로 가든 "정확하게" 맞추기만 하면 되는 문제입니다. 작동원리라든가 추정한 모수의 성질은 중요하지가 않습니다. 비단 이런 상황뿐만 아니라도 최적화는 중요합니다. linear regression이나 log-likelihood solution의 closed form이 존재하지 않을 때에는 결국 최적화 방법으로 구해야하기 때문입니다.
 
-대부분 목적함수는 에러/비용이거나 정확도/이윤입니다. 이 경우 최적화는 각각 maximize 혹은 minimize가 됩니다. 그리고 두 문제는 부호를 바꿔주기만 하면 완전히 같은 상황으로 볼 수 있습니다. 물론 GAN과 같이 두 개의 서로 다른 모델을 동시에 학습하는 경우, 최적화는 minimax가 됩니다. 하지만 이 경우에도 결국 Jensen-Shannon divergence를 최소화하는 문제로 치환해서 푼다는 것을 [지난 포스팅](https://haehwan.github.io/posts/DS-GAN/)에서 확인한 바있습니다.
+상황이 무엇이든, 결국 목적함수를 세우고 이를 최적화한다는 공통의 과정이 있습니다. 이 때 목적함수는 주로 에러/비용이거나 정확도/이윤입니다. 각각의 경우 이를 maximize 혹은 minimize해줌으로써 원하는 결과를 얻습니다. 물론 generative adversary network와 같이 최적화가 minimax로 들어가는 경우도 있습니다. 이는 GAN이 서로 다른 두 모델을 동시에 학습하기 때문인데, [지난 포스팅](https://haehwan.github.io/posts/DS-GAN/)에서 사실 이 조차도 결국 Jensen-Shannon divergence를 최소화하는 문제로 치환해서 푼다는 것을 확인한 바있습니다. 결과적으로 대다수 최적화 문제는 최댓값을 찾거나 최솟값을 찾는 형태입니다. 그리고 두 문제가 사실 부호를 바꿔주기만 하면 완전히 같은 상황으로 볼 수 있습니다.
 
-결론적으로, 대다수 문제에서 minimize를 통한 최적화가 얼마나 빨리, 얼마나 정확히 이뤄지는가가 핵심이라고 할 수 있습니다. 오늘은 이러한 알고리즘들 중에서 몇 가지를 소개하려고 합니다.
+따라서 어떤 알고리즘이 minimize를 빨리 그리고 정확히 할 수 있는가를 이해하는 것은 매우 중요합니다. 오늘은 이러한 알고리즘들 중에서 몇 가지를 소개하려고 합니다.
 
 <br>
 
@@ -241,8 +241,9 @@ Levenberg-Marquardt 알고리즘(LMA, damped least-squares)은 gradient method �
 ## 추천자료 / 참고자료
 1. [Applications of the Gauss-Newton Method](https://ccrma.stanford.edu/~wherman/tulane/gauss_newton.pdf)  
 
-2. [한국어자료](https://darkpgmr.tistory.com/58)
+2. [convex optimization: Machine Learning](http://www.stat.cmu.edu/~ryantibs/convexopt/)
 
+3. [한국어자료](https://darkpgmr.tistory.com/58)
 ## 각주
 
 
