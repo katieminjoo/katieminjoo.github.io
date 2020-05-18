@@ -1,6 +1,6 @@
 ---
 title: <i class="far fa-chart-bar"> [Paper review] NIPS 2016 Tutorial:Generative Adversarial Networks</i>
-date: 2020-04-14 10:21:00 +0800
+date: 2020-04-15 10:21:00 +0800
 categories: [Data Science, Machine Learning]
 tags: [Machine Learning, generative model, VAE, GAN, PixelCNN]
 toc: true
@@ -46,6 +46,7 @@ generative model이란, 입력받은 데이터와 유사한 새로운 데이터 
 |![](https://wiki.math.uwaterloo.ca/statwiki/images/thumb/a/a5/cond_imagenet.png/750px-cond_imagenet.png)|
 |:--:|
 |*pixelCNN*[^ref2]|
+
 [^ref2]: 출처 : [위키](https://wiki.math.uwaterloo.ca/statwiki/index.php?title=STAT946F17/Conditional_Image_Generation_with_PixelCNN_Decoders)
 
 PixelCNN은 mle를 계산할 수 있기 위해서, 몇 가지 가정을 합니다. 예를 들어, 이미지에는 픽셀 값들 사이에 일정한 순서가 존재하고 이를 바탕으로 mle를 이전 픽셀 값들을 조건으로 하는 i번째 조건부 확률의 곱으로 표현가능하다고 생각합니다. 그리고 이를 위해서 masked convolutional layers 등을 사용합니다. 자세한 내용은 [이곳] (https://towardsdatascience.com/autoregressive-models-pixelcnn-e30734ede0c1)에서 확인할 수 있습니다.
