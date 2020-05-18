@@ -90,7 +90,7 @@ VI란, 이상적인 확률분포를 모르기 때문에 이를 추정하기 위�
 |:--:|
 |*VAE : Model Specification*[^jin]|
 
-[^jin]: (손진원 선배님)[https://jinwonsohn.github.io/lecture/2020/01/10/Bayesian-Inference.html]
+[^jin]: [손진원 선배님 자료](https://jinwonsohn.github.io/lecture/2020/01/10/Bayesian-Inference.html)
 
 
 ## Implicit density
