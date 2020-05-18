@@ -16,7 +16,7 @@ sitemap :
 
 generative model이란, 입력받은 데이터와 유사한 새로운 데이터 샘플들을 생성(generate)해내는 모델입니다. 아래와 같이, 이미지 데이터를 입력받으면 이와 유사한 이미지들을 추출해내는 것이 가장 대표적인 예시입니다. 
 
-|![](/assets/img/post/[DS]Generative/[1]intro.png)|
+|![](/assets/img/post/[DS]Generative/[1] intro.png)|
 |:--:|
 |*generative model 예시*[^refer]|
 
