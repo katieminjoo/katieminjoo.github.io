@@ -72,7 +72,7 @@ PixelCNN은 mle를 계산할 수 있기 위해서, 몇 가지 가정을 합니�
 
 [^ref4]: [출처](https://lilianweng.github.io/lil-log/2018/08/12/from-autoencoder-to-beta-vae.html)
 
-VAE는 이러한 autoencoder에서 code <b>"z"의 분포를 구하는 과정</b>으로 이해할 수 있습니다. 이렇게되면 관심을 가지게 되는 모수는 더 이상 $$\theta$$가 아니라 새로운 변수(latent variable, z)가 됩니다. 구체적으로, encoding model에서는 $$P_{\theta}(z|x)$$를, decoding model에서는 $$P_{\theta}(x|z)$$를 구성하게 됩니다.[^latent] 
+VAE는 이러한 autoencoder에서 code <b>"z"의 분포를 구하는 과정</b>으로 이해할 수 있습니다. 이렇게되면 관심을 가지게 되는 모수는 더 이상 $$\theta$$가 아니라 새로운 변수(latent variable, z)가 됩니다.[^latent] 구체적으로, encoding model에서는 $$P_{\theta}(z|x)$$를, decoding model에서는 $$P_{\theta}(x|z)$$를 구성하게 됩니다. 
 
 
 [^latent]: 이는 latent variable model과 연관지어 생각해볼 수 있습니다. latent variable model은 쉽게 다룰 수 있는 새로운 변수를 추가함으로써 우리가 관심있어하는 분포를 찾아내는 방법입니다. 대표적으로 GMM과 LDA 등이 이를 활용한 사례라고 할 수 있습니다.
