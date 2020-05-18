@@ -70,7 +70,7 @@ PixelCNN은 mle를 계산할 수 있기 위해서, 몇 가지 가정을 합니�
 |:--:|
 |*autoencoder*[^ref4]|
 
-[^ref4]: (출처)[https://lilianweng.github.io/lil-log/2018/08/12/from-autoencoder-to-beta-vae.html]
+[^ref4]: [출처](https://lilianweng.github.io/lil-log/2018/08/12/from-autoencoder-to-beta-vae.html)
 
 VAE는 이러한 autoencoder에서 code <b>"z"의 분포를 구하는 과정</b>으로 이해할 수 있습니다. 이렇게되면 관심을 가지게 되는 모수는 더 이상 $$\theta$$가 아니라 새로운 변수(latent variable, z)가 됩니다. 구체적으로, encoding model에서는 $$P_{\theta}(z|x)$$를, decoding model에서는 $$P_{\theta}(x|z)$$를 구성하게 됩니다.[^latent] 
 
