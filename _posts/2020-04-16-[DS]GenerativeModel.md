@@ -101,6 +101,7 @@ VI란, 이상적인 확률분포를 모르기 때문에 이를 추정하기 위�
  물론 의미있는 설명이 되려면, 단 두 개의 숫자만 필요하던 앞의 예시와 달리, 훨씬 많은 샘플들이 필요하기 때문에 비효율적이라고 할 수 있습니다. 하지만 대부분 generative model은 1차원의 데이터가 아닌 3차원 이상의 데이터들을 많이 다룹니다. 이처럼 데이터가 복잡해질 수록, tractable한 분포를 계속 고집하는 것이 틀릴 수가 있습니다. 그렇기 때문에 계속해서 새로운 변수들을 뽑아낼 수 있는 분포, $$P_{model}$$을 가지고 있는 것이 때로는, $$P_{model}$$을 수식으로 정의내리거나 이를 계산할 수 있는가에 대한 여부를 따지는 것보다 더 중요할 수 있습니다. 
 
 가장 대표적인 Implicit density가 그 유명한 <b>Generative Adversarial Networks(GAN)</b>입니다. 이에 대한 내용은 아예 다른 포스트에서 자세히 다루도록 하겠습니다.
+
 |![](https://neurohive.io/wp-content/uploads/2018/07/non-existing-celebrities-generated-with-an-evolving-GAN-network.jpg)|
 |:--:|
 |*Generative Adversarial Networks로 생성해낸 인물 사진*|
