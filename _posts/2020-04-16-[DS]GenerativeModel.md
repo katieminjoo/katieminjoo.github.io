@@ -114,24 +114,30 @@ VI란, 이상적인 확률분포를 모르기 때문에 이를 추정하기 위�
 다시 돌아와서, <b>[NIPS 2016 Tutorial:Generative Adversarial Networks](https://arxiv.org/pdf/1701.00160.pdf)</b>의 이야기를 이어가려고 합니다. 이 곳에서는 특히 implicit density가 중요한 이유에 대해서 좋은 아이디어를 많이 언급하고 있습니다. 요약하면 데이터를 generate하는 것만 가능할지라도, 다음과 같은 이유로 매우 중요하다고 할 수 있습니다.
 
 1. high-dimensional probability distribution
+
 high-dimensional probability distribution은 많은 응용수학과 공학에서 매우 중요한 주제입니다. generative model을 학습시키고 샘플링하는 일이 이런 고차원 확률분포에 대한 검정을 해줄 수 있습니다.
 
 2. reinforcement learining
+
 generative model은 특히 모델 기반의 강화학습에 큰 도움을 줄 수 있습니다. 예를 들어, 시계열 데이터에 대한 generative model은 가능한 결과값들을 시뮬레이션함으로써 조건부 기대분포를 구하는데 활용될 수 있습니다.
 
 3. semi-supervised learning
+
 최근 딥러닝 알고리즘이 잘 작동하기 위해서는 기본적으로 라벨링이 되어 있는 트레이닝셋이 존재해야합니다. 이 때문에 실질적으로 적용가능한 경우는 많지 않을 수 있습니다. 하지만 generative model은 결측치가 있는 데이터로 학습이 가능하기 때문에, 만약 input 데이터가 결측치를 가지고 있더라도 예측을 해낼 수가 있습니다. 이 때문에 generative model을 잘 활용하면, semi-supervised learning이 가능해집니다.
 
 4. multi-modal outputs
+
 전통적인 머신러닝에서는 하나의 인풋에 대해서 하나의 결과값이 나오게끔 학습합니다. 하지만 하나의 인풋에 대한 정답이 반드시 하나만 존재하지 않는 경우도 많습니다. 대표적으로 동영상에서 다음 장면을 예측하는 일은 여러 개의 복수 정답이 존재하는 문제입니다. 이처럼 multi-modal한 결과값을 다루기에 generative model, 특히 GAN이 잘 작동합니다.
 
 ![](/assets/img/post/[DS]Generative/video frame.png)
 
 5. realitic generation of samples
+
 마지막으로 실제로 어떤 분포로부터 샘플을 만들어내는 일이 필요한 경우가 굉장히 많습니다. 대표적으로 single image super-resolution이 있습니다.
 
 ***
 ***
+
 # 각주 및 추천자료
 
 ## 추천자료 
