@@ -72,15 +72,21 @@ PixelCNN은 mle를 계산할 수 있기 위해서, 몇 가지 가정을 합니�
 
 [^ref4]: [출처](https://lilianweng.github.io/lil-log/2018/08/12/from-autoencoder-to-beta-vae.html)
 
-VAE는 이러한 autoencoder에서 code <b>"z"의 분포를 구하는 과정</b>으로 이해할 수 있습니다. 이렇게되면 관심을 가지게 되는 모수는 더 이상 $$\theta$$가 아니라 새로운 변수(latent variable, z)가 됩니다.[^latent] 구체적으로, encoding model에서는 $$P_{\theta}(z|x)$$를, decoding model에서는 $$P_{\theta}(x|z)$$를 구성하게 됩니다. 
+VAE는 이러한 autoencoder에서 code <b>"z"의 분포를 구하는 과정</b>으로 이해할 수 있습니다.
+
+이렇게되면 관심을 가지게 되는 모수는 더 이상 $$\theta$$가 아니라 새로운 변수(latent variable, z)가 됩니다.[^latent] 구체적으로, encoding model에서는 $$P_{\theta}(z|x)$$를, decoding model에서는 $$P_{\theta}(x|z)$$를 구성하게 됩니다. 
 
 
 [^latent]: 이는 latent variable model과 연관지어 생각해볼 수 있습니다. latent variable model은 쉽게 다룰 수 있는 새로운 변수를 추가함으로써 우리가 관심있어하는 분포를 찾아내는 방법입니다. 대표적으로 GMM과 LDA 등이 이를 활용한 사례라고 할 수 있습니다.
 
 
-베이즈 관점에서 $$P_{\theta}(z|x)$$는 posterior 분포라고 부릅니다. 문제는 이를 구하는 것이 매우 어렵다는 점입니다. 베이즈 정리에 따르면, $$P_{\theta}(z|x) = P_{\theta}(x|z)P_{\theta}(z)/P_{\theta}(x)$$입니다. 하지만 분모의 $$P_{\theta}(x)$$를 계산하기가 불가능할 뿐만 아니라 애당초 latent distribution, $$P(z)$$를 알지 못하는 상황이기 때문에 z에 대해 적분을 할 수가 없는 상황입니다. 이러한 문제를 해결하기 위해서, <b>variational inference</b>를 사용합니다.
+베이즈 관점에서 $$P_{\theta}(z|x)$$는 posterior 분포라고 부릅니다. 문제는 이를 구하는 것이 매우 어렵다는 점입니다.
 
-VI란, 이상적인 확률분포를 모르기 때문에 이를 추정하기 위해서 다루기 쉬운 분포($$q_{\Phi}(z|x)$$)를 근사하여 대신 사용하는 방법론입니다. VI를 사용하면 큰 장점이 있는데, 결국 likelihood를 최대화하는 문제가 <b>closed form으로 구해지는 함수식을 최소화</b>하는 최적화 문제와 같아진다는 점입니다. 이렇게 되면, 함수식이 아무리 복잡할지라도, neural network를 통해서 수렴해갈 수 있기 때문에 문제가 해결이 되는 것입니다.[^proof] 이번 글에서는 언급하지 않았지만, nn을 사용하기 위해서 reparameterization trick을 활용한다는 점도 중요한 특징 중 하나입니다.
+베이즈 정리에 따르면, $$P_{\theta}(z|x) = P_{\theta}(x|z)P_{\theta}(z)/P_{\theta}(x)$$입니다. 하지만 분모의 $$P_{\theta}(x)$$를 계산하기가 불가능할 뿐만 아니라 애당초 latent distribution, $$P(z)$$를 알지 못하는 상황이기 때문에 z에 대해 적분을 할 수가 없는 상황입니다. 이러한 문제를 해결하기 위해서, <b>variational inference</b>를 사용합니다.
+
+VI란, 이상적인 확률분포를 모르기 때문에 이를 추정하기 위해서 다루기 쉬운 분포($$q_{\Phi}(z|x)$$)를 근사하여 대신 사용하는 방법론입니다.
+
+VI를 사용하면 큰 장점이 있는데, 결국 likelihood를 최대화하는 문제가 <b>closed form으로 구해지는 함수식을 최소화</b>하는 최적화 문제와 같아진다는 점입니다. 이렇게 되면, 함수식이 아무리 복잡할지라도, neural network를 통해서 수렴해갈 수 있기 때문에 문제가 해결이 되는 것입니다.[^proof] 이번 글에서는 언급하지 않았지만, nn을 사용하기 위해서 reparameterization trick을 활용한다는 점도 중요한 특징 중 하나입니다.
 
 [^proof]: 이를 증명하기 위한 약간의 수학적 증명은, VAE를 중점적으로 다룰 때에 따로 소개하도록 하겠습니다. 중요한 것은 MLE의 ELBO를 구하고 이 식이 closed form으로 구해지기 때문에, -ELBO를 비용함수로 gradient descent방법을 적용한다는 점입니다.
 
