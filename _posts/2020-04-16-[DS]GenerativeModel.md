@@ -76,15 +76,17 @@ VAE는 이러한 autoencoder에서 code <b>"z"의 분포를 구하는 과정</b>
 
 이렇게되면 관심을 가지게 되는 모수는 더 이상 $$\theta$$가 아니라 새로운 변수(latent variable, z)가 됩니다.[^latent]
 
-구체적으로, encoding model에서는 $$P_{\theta}(z|x)$$를, decoding model에서는 $$P_{\theta}(x|z)$$를 구성하게 됩니다. 
-
-
 [^latent]: 이는 latent variable model과 연관지어 생각해볼 수 있습니다. latent variable model은 쉽게 다룰 수 있는 새로운 변수를 추가함으로써 우리가 관심있어하는 분포를 찾아내는 방법입니다. 대표적으로 GMM과 LDA 등이 이를 활용한 사례라고 할 수 있습니다.
 
+구체적으로, encoding model에서는 $$P_{\theta}(z|x)$$를, decoding model에서는 $$P_{\theta}(x|z)$$를 구성하게 됩니다. 
 
 베이즈 관점에서 $$P_{\theta}(z|x)$$는 posterior 분포라고 부릅니다. 문제는 이를 구하는 것이 매우 어렵다는 점입니다.
 
-베이즈 정리에 따르면, $$P_{\theta}(z|x) = P_{\theta}(x|z)P_{\theta}(z)/P_{\theta}(x)$$입니다. 하지만 분모의 $$P_{\theta}(x)$$를 계산하기가 불가능할 뿐만 아니라 애당초 latent distribution, $$P(z)$$를 알지 못하는 상황이기 때문에 z에 대해 적분을 할 수가 없는 상황입니다. 이러한 문제를 해결하기 위해서, <b>variational inference</b>를 사용합니다.
+베이즈 정리에 따르면, $$P_{\theta}(z|x) = P_{\theta}(x|z)P_{\theta}(z)/P_{\theta}(x)$$입니다.
+
+하지만 분모의 $$P_{\theta}(x)$$를 계산하기가 불가능할 뿐만 아니라 애당초 latent distribution, $$P(z)$$를 알지 못하는 상황이기 때문에 z에 대해 적분을 할 수가 없는 상황입니다.
+
+이러한 문제를 해결하기 위해서, <b>variational inference</b>를 사용합니다.
 
 VI란, 이상적인 확률분포를 모르기 때문에 이를 추정하기 위해서 다루기 쉬운 분포($$q_{\Phi}(z|x)$$)를 근사하여 대신 사용하는 방법론입니다.
 
