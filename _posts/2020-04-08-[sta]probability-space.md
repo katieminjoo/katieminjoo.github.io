@@ -5,9 +5,11 @@ categories: [Statistics, Probability Space]
 tags: [Probability Space]
 toc: true
 comments: true
-sitemap :
-  changefreq : daily
-  priority : 1.0
+sitemap:
+  changefreq: daily
+  priority: 1.0
+seo:
+  date_modified: 2020-04-08 15:40:35 +0900
 ---
 <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
 

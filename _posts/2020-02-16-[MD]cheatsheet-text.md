@@ -6,10 +6,10 @@ tags: [github pages, markdown, tutorial]
 toc: true
 comments: true
 seo:
-  date_modified: 2020-02-23 20:12:32 +0900
-sitemap :
-  changefreq : daily
-  priority : 1.0
+  date_modified: 2020-05-18 16:44:33 +0900
+sitemap:
+  changefreq: daily
+  priority: 1.0
 ---
 
 본 글에서는 자주 쓰지만, 쉽게 외워지지 않는 마크다운 사용법들을 적어놨습니다. 많은 분들에게 도움이 되면 좋을 것 같습니다.  

@@ -6,6 +6,8 @@ categories: [Statistics, Encoding]
 tags: [Target Encoding]
 toc: true
 comments: true
+seo:
+  date_modified: 2020-03-05 12:37:37 +0900
 ---
 
 ***  

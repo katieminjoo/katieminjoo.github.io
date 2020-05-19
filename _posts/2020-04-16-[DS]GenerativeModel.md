@@ -1,13 +1,16 @@
 ---
-title: <i class="far fa-chart-bar"> [Paper review] NIPS 2016 Tutorial:Generative Adversarial Networks</i>
+title: <i class="far fa-chart-bar"> [Paper review] NIPS 2016 Tutorial:Generative Adversarial
+  Networks</i>
 date: 2020-04-16 10:21:00 +0800
 categories: [Data Science, Machine Learning]
 tags: [Machine Learning, generative model, VAE, GAN, PixelCNN]
 toc: true
 comments: true
-sitemap :
-  changefreq : daily
-  priority : 1.0
+sitemap:
+  changefreq: daily
+  priority: 1.0
+seo:
+  date_modified: 2020-05-18 21:45:54 +0900
 ---
 
 <b>NIPS</b>(Neural Information Processing Systems)는 AI 연구자들에게 가장 각광받는 행사로, 그 해의 의미가 큰 논문을 발표하고 의견을 나누는 행사입니다. 2016년에는 이안 굿펠로우가 자신이 2014년에 소개한 GAN에 관하여 발표를 진행했었습니다. 이 글에서는 arXiv에 제출된 <b>[NIPS 2016 Tutorial:Generative Adversarial Networks](https://arxiv.org/pdf/1701.00160.pdf)</b> 글을 리뷰합니다. 특히 그 중에서도 generative model에 관해서 중점적으로 다뤄보고자 합니다.

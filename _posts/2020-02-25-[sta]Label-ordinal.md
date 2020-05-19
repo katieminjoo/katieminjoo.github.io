@@ -7,7 +7,7 @@ tags: [Ordinal Encoding, Label Encoding]
 toc: true
 comments: true
 seo:
-  date_modified: 2020-02-25 15:57:11 +0900
+  date_modified: 2020-03-04 18:47:37 +0900
 ---
 
 ***  
