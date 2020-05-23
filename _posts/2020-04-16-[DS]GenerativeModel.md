@@ -1,6 +1,5 @@
 ---
-title: <i class="far fa-chart-bar"> [Paper review] NIPS 2016 Tutorial:Generative Adversarial
-  Networks</i>
+title: <i class="far fa-chart-bar"> Generative Models</i>
 date: 2020-04-16 10:21:00 +0800
 categories: [Data Science, Machine Learning]
 tags: [Machine Learning, generative model, VAE, GAN, PixelCNN]
