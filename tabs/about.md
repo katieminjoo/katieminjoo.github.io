@@ -2,9 +2,10 @@
 title: About Minjoo Kim (in preparation)
 ---
 
-![image3](/assets/img/sample/avatar.jpg)
+![image3](/assets/img/sample/angie.png)
 
-I would like to introduce myself and share what I have studied through this website.
+Hey this is Katie!
+Welcome to my github blog!
 
 My specialty has grown up with learning and applying statistical methodologies to solving real-world issues including finance, medicine, and society. Specifically, I have found solutions for the issues by harnessing the methods in the fields of statistical learning models and Bayesian statistics. In this website, you can find relevant articles written in Korean or English. 
 
