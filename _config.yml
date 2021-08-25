@@ -1,30 +1,30 @@
-title: Haehwan Lee
+title: Katie Minjoo Kim
 
-tagline: Statistics, Data Science
+tagline: Data Science
 
 description: >-
-  2020년 2월 처음 개설한 깃헙블로그입니다.
+  안녕하세요. 제 깃헙블로그에 오신걸 환영합니다!
   
-url: 'https://haehwan.github.io'
+url: 'https://katieminjoo.github.io'
 
-author: Lee HaeHwan
+author: Katie Minjoo Kim
 
 avatar: /assets/img/sample/round_avatar.png
 
 github:
-  username: HaeHwan
+  username: katieminjoo
 
 social:
-  name: haehwan lee                  # it will shows as the copyright owner in Footer
-  email: 0210hwan@gamil.com             # change to your email address
+  name: Katie Minjoo Kim               # it will shows as the copyright owner in Footer
+  email: katie.minjoo@gmail.com             # change to your email address
   links:
     # The first element serves as the copyright owner's link
-    - https://github.com/haehwan       # change to your github homepage
+    - https://github.com/katieminjoo       # change to your github homepage
     # Uncomment below to add more social links
     # - https://www.facebook.com/username
-    - https://www.linkedin.com/in/hae-hwan-lee-b90aa8166/
+    # - https://www.linkedin.com/in/hae-hwan-lee-b90aa8166/
 
-google_site_verification: google_meta_tag_verification # change to your verification string
+# google_site_verification: google_meta_tag_verification # change to your verification string
 #Google Analytics and Webmaster Tools
 #Google Analytics UA and Webmaster Tool verification tags can be entered under owner in _config.yml.
 #For more information on obtaining these meta tags check Google Webmaster Tools and Bing Webmaster Tools support.
@@ -48,12 +48,12 @@ google_analytics:
   proxy_url: ''
 #Google Analytics tracking ID (get one here for free: https://marketingplatform.google.com/about/analytics/)
 
-disqus:
-  comments: true  # boolean type, the global switch for posts comments.
-  shortname: 'haehwan'    # Fill with your Disqus shortname. › https://help.disqus.com/en/articles/1717111-what-s-a-shortname
+# disqus:
+#   comments: true  # boolean type, the global switch for posts comments.
+#   shortname: 'haehwan'    # Fill with your Disqus shortname. › https://help.disqus.com/en/articles/1717111-what-s-a-shortname
 
 # The year your website first ran.
-first_run: 2020
+first_run: 2021
 
 
 # Prefer color scheme setting, available values:
@@ -65,7 +65,7 @@ first_run: 2020
 #
 #     dark   - Use the dark color scheme
 #
-theme_mode: dual
+theme_mode: light
 
 # boolean type, global switch for ToC in posts.
 toc: true
