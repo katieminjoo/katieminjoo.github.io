@@ -1,5 +1,5 @@
 ---
-title: About HaeHwan Lee (in preparation)
+title: About Minjoo Kim (in preparation)
 ---
 
 ![image3](/assets/img/sample/avatar.jpg)
