@@ -17,7 +17,7 @@ github:
 social:
   name: Katie Minjoo Kim               # it will shows as the copyright owner in Footer
   email: katie.minjoo@gmail.com             # change to your email address
-  links:
+  links: 
     # The first element serves as the copyright owner's link
     - https://github.com/katieminjoo       # change to your github homepage
     # Uncomment below to add more social links
@@ -65,7 +65,7 @@ first_run: 2021
 #
 #     dark   - Use the dark color scheme
 #
-theme_mode: light
+theme_mode: dual
 
 # boolean type, global switch for ToC in posts.
 toc: true
