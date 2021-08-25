@@ -2,7 +2,7 @@
 title: About Katie Minjoo Kim (in preparation)
 ---
 
-![](assets/img/sample/minjoo.png){:height="200px" width="200px"}
+![](/assets/img/sample/minjoo.png){:height="200px" width="200px"}
 
 Hey this is Katie Minjoo.  
 Welcome to my github blog!
