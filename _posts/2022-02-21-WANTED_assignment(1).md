@@ -1,7 +1,7 @@
 ---
 title: <i class="far fa-chart-bar"> WANTED_assignment(1) </i>
 date: 2022-02-21 14:00:00 +0800
-categories: [WANTED_PreOnboarding]
+categories: [2022, wanted_ai ml]
 tags: [deeplearning]
 toc: true
 comments: true
