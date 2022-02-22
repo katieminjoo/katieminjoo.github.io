@@ -1,7 +1,7 @@
 ---
 title: <i class="far fa-chart-bar"> WANTED_assignment(1) </i>
 date: 2022-02-21 14:00:00 +0800
-categories: [2022, wanted_ai ml]
+categories: [wanted-pre-onboarding-ai]
 tags: [deeplearning]
 toc: true
 comments: true
@@ -11,7 +11,7 @@ sitemap:
 ---
 
 
-### Paperswithcode([https://paperswithcode.com/area/natural-language-processing](https://paperswithcode.com/area/natural-language-processing))에서 NLP sub task 중에 2개를 선택하여 본인 블로그에 정리해보세요. task 별로 아래 3가지 항목에 대해서 정리하세요.
+## Paperswithcode([https://paperswithcode.com/area/natural-language-processing](https://paperswithcode.com/area/natural-language-processing))에서 NLP sub task 중에 2개를 선택하여 본인 블로그에 정리해보세요. task 별로 아래 3가지 항목에 대해서 정리하세요.
 
 1. ****Medical Named Entity Recognition****
     
