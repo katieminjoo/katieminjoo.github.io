@@ -1,7 +1,7 @@
 ---
-title: <i class="far fa-chart-bar"> WANTED_assignment(1) </i>
-date: 2022-02-21 14:00:00 +0800
-categories: [wanted-pre-onboarding-ai]
+title: <i class="far fa-chart-bar"> RoBERTa </i>
+date: 2022-07-20 19:00:00 +0800
+categories: [Deeplearning, NLP]
 tags: [deeplearning]
 toc: true
 comments: true
