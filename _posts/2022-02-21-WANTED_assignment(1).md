@@ -10,85 +10,54 @@ sitemap:
   priority: 1.0
 ---
 
+# RoBERTa
 
-## Paperswithcode([https://paperswithcode.com/area/natural-language-processing](https://paperswithcode.com/area/natural-language-processing))에서 NLP sub task 중에 2개를 선택하여 본인 블로그에 정리해보세요. task 별로 아래 3가지 항목에 대해서 정리하세요.
+> *Facebook AI Research (FAIR), 2019)*
 
-1. ****Medical Named Entity Recognition****
-    
-    - task가 해결하고자 하는 문제가 무엇인가?
-    
-      - locate and classify named entities from unstructured natural language (especially in biomedical domain)
-    
-    - 데이터 소개(대표적인 데이터 1개)
-    
-      - task를 해결하기 위해 사용할 수 있는데 데이터가 무엇인가?
-    
-        ShARe/CLEF eHealth corpus
-    
-       - 데이터 구조는 어떻게 생겼는가?
-    
-        The dataset consists of deidentified clinical free-text notes from the MIMIC II database, version 2.5
-    
-        An unannotated clinical report dataset > each note was annotated by two professional coders trained for this task.
-    
-        and is evaluated on their abillity to automatically identify the boundaries of disorder named entities in the text.
-    
-        >> following disorder mentions are named entities.
-        
-        - Congenital Abnormality
-        - Acquired Abnormality
-        - Injury or Poisoning
-        - Pathologic Function
-        - Disease or Syndrome
-        - Mental or Behavioral Dysfunction
-        - Cell or Molecular Dysfunction
-        - Experimental Model of Disease
-        - Anatomical Abnormality
-        - Neoplastic Process
-        - Signs and Symptoms
-    
-        <data format>
-    
-        report name || annotation type || cui || char start || char end
-        
-        08100-027513-DISCHARGE_SUMMARY.txt||Disease_Disorder||c0332799||459||473
-        
-    - SOTA 모델 소개(대표적인 모델 1개)
-    
-      - task의 SOTA 모델은 무엇인가?
-    
-        ****BioELECTRA****
-    
-      - 해당 모델 논문의 요약에서 주요 키워드는 무엇인가?
-    
-        electra, discriminator, generator, encoder of the transformer, 
-    
-2. ****Few-shot NER****
-    
-    - task가 해결하고자 하는 문제가 무엇인가?
-    
-    Current approaches collect existing supervised NER datasets and reorganize them into the few-shot setting for empirical study. These strategies conventionally aim to recognize coarse-grained entity types with few examples, while in practice, most unseen entity types are fine-grained.
-    
-    so.. it is more focused on ‘fine-grained’ ner.
-    
-    - 데이터 소개(대표적인 데이터 1개)
-    
-    ****Few-NERD****
-    
-    - 데이터 구조는 어떻게 생겼는가?
-    
-     — a large-scaled human-annotated few-shot NER dataset with a hierarchy of 8 coarse-grained and 66 fine-grained entity types. 
-    
-    — it consists of 188,238 sentences from wikipedia and 4,601,160 words.
-    
-    — it is the first few-shot NER dataset and the largest humancrafted NER dataset.
-    
-    - SOTA 모델 소개(대표적인 모델 1개)
-    
-    - task의 SOTA 모델은 무엇인가?
-    
-    **ProtoBERT**
-    
-    - 해당 모델 논문의 요약에서 주요 키워드는 무엇인가?
-    
-    NER, few-shot, annotation, fine-grained
+**(Robustly optimized BERT approach)**
+
+![](/assets/img/post/roberta/Untitled.png)
+
+# The difference with BERT
+
+It shows the impact of many key hyperparameters and training data size with the thought of Bert was undertrained
+
+# Points
+
+### 1. Bigger on everything
+
+- including Batch size, Epochs, Data (requires more time, resources, and computing power)
+- BookCorpus + English Wikipedia (16GB), CC-News crawled from CommonCrawl News data (76GB), OpenWebText (38GB), STORIES (31GB)
+- Training a model with large mini-batches improves the perplexity of MLM objective, likewise, it is easier to parallelize via distributed data-parallel training.
+
+### 2. No NSP
+
+- when it comes to model training phase of just a sentence, NSP can degrade a performance of the model
+
+### 3. Dynamic Masking
+
+- BERT uses Static Masking. In MLM training objective, BERT performs masking only once during data preprocessing which means same input masks are fed to the model on every single epoch.
+- RoBERTa changes the masked token in every training epochs
+- To avoid using the same mask for every epoch, training data was duplicated 10 times. If the masking is performed every time a sequence is fed to the model, the model sees different versions of the same sentence with masks on different positions.
+
+### 4. Traning on Longer Sequence
+
+### 5. Larger Byte-level BPE
+
+- Byte-Pair Encoding (BPE) is a hybrid between character and word-level representations, which solely relies on subword units. These subword units can be extracted by performing a statistical analysis of training dataset. Generally, the BPE vocabulary size range from 10K -100K subword units.
+- BERT uses a character level BPE vocabulary size of 30K which is learned after preprocessing with heuristic tokenization rules.
+- RoBERTa uses the encoding method discussed in the paper by [Radford et al. (2019)](https://www.techbooky.com/wp-content/uploads/2019/02/Better-Language-Models-and-Their-Implications.pdf). Here BPE subword vocabulary is reduced to 50K (still bigger than BERT’s vocab size) units with the capability to encode any text without any unknown tokens and no need of preprocessing or tokenization rules. Using this encoding degraded the performance of end-task performance in some cases. Still, this method was used for encoding as it is a universal encoding scheme which doesn't need any preprocessing and tokenization rules.
+
+# Pretrained model in Korean
+
+[klue/roberta-large · Hugging Face](https://huggingface.co/klue/roberta-large)
+
+***
+
+## References
+
+[https://towardsdatascience.com/robustly-optimized-bert-pretraining-approaches-537dc66522dd](https://towardsdatascience.com/robustly-optimized-bert-pretraining-approaches-537dc66522dd)
+
+[https://arxiv.org/abs/1907.11692](https://arxiv.org/abs/1907.11692)
+
+[https://medium.com/analytics-vidhya/evolving-with-bert-introduction-to-roberta-5174ec0e7c82](https://medium.com/analytics-vidhya/evolving-with-bert-introduction-to-roberta-5174ec0e7c82)
