@@ -1,8 +1,8 @@
 ---
-title: <i class="far fa-chart-bar">Recommender System (1) Intro</i>
-date: 2024-08-17 01:00:00 +0800
-categories: [MachineLearning, RecommenderSystem]
-tags: [recommendersystem]
+title: <i class="far fa-chart-bar"> Recommender System (1) Intro </i>
+date: 2022-07-22 18:00:00 +0800
+categories: [MachineLearning]
+tags: []
 toc: true
 comments: true
 published: true
@@ -10,7 +10,6 @@ sitemap:
   changefreq: daily
   priority: 1.0
 ---
-
 # What is Recommender System?
 
 A recommendation system is a machine learning algorithm, often associated with artificial intelligence, that leverages large datasets to provide personalized suggestions to users. By analyzing past behaviors, preferences, and patterns—such as purchase history, search activity, and demographic information—these systems predict consumer interests with a high degree of accuracy. Recommender systems are widely used across various online platforms, including e-commerce, social media, and entertainment, to enhance user engagement, satisfaction, and retention. They play a critical role in helping users navigate the overwhelming amount of available content, driving both user satisfaction and revenue for businesses.
