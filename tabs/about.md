@@ -18,7 +18,7 @@ Feel free to explore my small world !
 - NER
 
 ## Education
-+ Kookmin University
+
 > Bachelor of Arts in Economics and Commerce
 
 + Yonsei University
