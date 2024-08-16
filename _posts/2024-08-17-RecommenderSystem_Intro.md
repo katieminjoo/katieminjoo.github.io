@@ -1,6 +1,6 @@
 ---
 title: <i class="far fa-chart-bar"> Recommender System (1) Intro </i>
-date: 2022-08-17 00:00:00 +0800
+date: 2024-08-17 00:00:00 +0900
 categories: [MachineLearning, RecommenderSystem]
 tags: [machinelearning]
 toc: true
