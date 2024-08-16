@@ -1,8 +1,8 @@
 ---
 title: <i class="far fa-chart-bar"> Recommender System (1) Intro </i>
-date: 2022-07-22 18:00:00 +0800
-categories: [MachineLearning]
-tags: []
+date: 2024-08-17 00:00:00 +0800
+categories: [MachineLearning, RecommenderSystem]
+tags: [machinelearning]
 toc: true
 comments: true
 published: true
