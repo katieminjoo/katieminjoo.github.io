@@ -24,6 +24,23 @@ body {
 
 /*--- sidebar layout ---*/
 
+// #sidebar {
+//   padding-left: 0;
+//   padding-right: 0;
+//   position: fixed;
+//   top: 0;
+//   left: 0;
+//   height: 100%;
+//   overflow-y: auto;
+//   width: 260px;
+//   z-index: 99;
+//   -webkit-transition: transform 0.4s ease;
+//   transition: transform 0.4s ease;
+//   background: rgb(30, 107, 42);
+//   background: var(--sidebar-bg,
+//     radial-gradient(circle, rgba(42, 30, 107, 1) 0%, rgba(35, 37, 46, 1) 100%));
+// }
+
 #sidebar {
   padding-left: 0;
   padding-right: 0;
@@ -36,10 +53,9 @@ body {
   z-index: 99;
   -webkit-transition: transform 0.4s ease;
   transition: transform 0.4s ease;
-  background: rgb(30, 107, 42);
-  background: var(--sidebar-bg,
-    radial-gradient(circle, rgba(42, 30, 107, 1) 0%, rgba(35, 37, 46, 1) 100%));
+  background: #2d2d2d; /* Original Chirpy gray or whatever the original is */
 }
+
 
 #sidebar a {
   color: rgba(255, 255, 255, 0.5);
