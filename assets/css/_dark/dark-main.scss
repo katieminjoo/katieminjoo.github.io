@@ -79,19 +79,30 @@
     border-color: var(--main-border);
   }
 
-  .categories .list-group-item:last-child {
-    border-bottom-color: var(--card-bg);
+  .categories {
+    --tag-border: rgb(59, 79, 88);
+    --tag-shadow: rgb(32, 33, 33);
+    --categories-hover-bg: rgb(73, 75, 76);
+    --timeline-node-bg: rgb(150, 152, 156);
+  
+    .list-group-item:last-child {
+      border-bottom-color: var(--card-bg);
+    }
   }
 
-  /* tags */
-  --tag-border: rgb(59, 79, 88);
-  --tag-shadow: rgb(32, 33, 33);
+  // .categories .list-group-item:last-child {
+  //   border-bottom-color: var(--card-bg);
+  // }
 
-  /* categories */
-  --categories-hover-bg: rgb(73, 75, 76);
+  // /* tags */
+  // --tag-border: rgb(59, 79, 88);
+  // --tag-shadow: rgb(32, 33, 33);
 
-  /* archives */
-  --timeline-node-bg: rgb(150, 152, 156);
+  // /* categories */
+  // --categories-hover-bg: rgb(73, 75, 76);
+
+  // /* archives */
+  // --timeline-node-bg: rgb(150, 152, 156);
 
   #archives li:nth-child(odd) {
     background-image: linear-gradient(to left,
