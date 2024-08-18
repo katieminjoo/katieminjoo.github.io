@@ -33,7 +33,7 @@ So these days, we prefer those two methods in the below!
 
 
 # 1. Content-based Filtering
-![image.png](/assets/img/post/Recommender%20System%20(2)%20Types%2032dd76d684124531bcff74603f6100a3/IMG_0008.png)
+![IMG_0008.png](/assets/img/post/Recommender%20System%20(2)%20Types%2032dd76d684124531bcff74603f6100a3/IMG_0008.png)
 (drawing by ME ✍️🎨)
 
 This method focuses on the attributes of **the items themselves**. ( Don’t need any other user information) If you like a particular type of music, a content-based system will recommend similar songs or artists based on the characteristics of the music you've enjoyed in the past.
