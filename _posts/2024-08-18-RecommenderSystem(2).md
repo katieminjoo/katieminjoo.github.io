@@ -11,8 +11,6 @@ sitemap:
   priority: 1.0
 ---
 
-# Recommender System (2) Types
-
 So we have talked about the introduction of Recommender Systems. We are going to deal with types of recommender(recommendation) systems and how we are going to handle some chanllenges and what to consider more about the recommender system!
 
 # **Types of Recommendation Systems**
@@ -21,7 +19,7 @@ There are mainly 3 types of recommendation systems, each using different approac
 
 ![IMG_0005.PNG](/assets/img/post/Recommender%20System%20(2)%20Types%2032dd76d684124531bcff74603f6100a3/IMG_0005.png)
 
-## (0. Demographic Filtering)
+# (0. Demographic Filtering)
 
 Shortly, It stereotypes every person into specific category according to each user’s information(age, sex, occupation, hobby, etc.)
 
@@ -33,9 +31,10 @@ We can classify ever user into more diverse groups so that every group can have 
 
 So these days, we prefer those two methods in the below!
 
-## 1. Content-based Filtering
 
-![image.png](/assets/img/post/Recommender%20System%20(2)%20Types%2032dd76d684124531bcff74603f6100a3/image.png)
+# 1. Content-based Filtering
+![image.png](/assets/img/post/Recommender%20System%20(2)%20Types%2032dd76d684124531bcff74603f6100a3/IMG_0008.png)
+(drawing by ME ✍️🎨)
 
 This method focuses on the attributes of **the items themselves**. ( Don’t need any other user information) If you like a particular type of music, a content-based system will recommend similar songs or artists based on the characteristics of the music you've enjoyed in the past.
 
@@ -45,12 +44,9 @@ To train a Machine Learning model with this approach we can use a [**k-NN model
 
 The **advantage** of this approach is that items metadata are known in advance, so we can also apply it to [Cold-Start scenarios](/assets/img/post/https://en.wikipedia.org/wiki/Cold_start_(recommender_systems)) where a new item or user is added to the platform and we don’t have user-item interactions to train our model.
 
-The **disadvantages** are that we don’t use the full set of known user-item interactions (each user is treated independently), and that we need to know metadata information for each item and user. no diversity ! always get the similar taste of what user’s been explored.
-
-## 2. Collaborative Filtering
-
-![image.png](/assets/img/post/Recommender%20System%20(2)%20Types%2032dd76d684124531bcff74603f6100a3/image%201.png)
-
+The **disadvantages** are that we don’t use the full set of known user-item interactions (each user is treated independently), and that we need to know metadata information for each item and user. no diversity ! always get the similar taste of what user’s been explored.    
+   
+# 2. Collaborative Filtering
 This approach makes recommendations based on the preferences of **users who have similar tastes**.
 
 For instance, if you and another user have both enjoyed the same movies in the past, a collaborative filtering system might recommend a movie to you that the other user liked but you haven't seen yet.
@@ -67,7 +63,7 @@ The user-based one and the item-based one.
 
 ![image.png](/assets/img/post/Recommender%20System%20(2)%20Types%2032dd76d684124531bcff74603f6100a3/image%203.png)
 
-## 2-1-1. User-based Collaborative Filtering
+# 2-1-1. User-based Collaborative Filtering
 
 User-based method needs matrix with users on the rows and items on the columns.
 
@@ -79,7 +75,7 @@ So It’s about sharing their taste of item between two close friends who has sa
 
 This will be a great method for systems where users occupy a large portion of the platform such as SNS.
 
-## 2-1-2. Item-based Collaborative Filtering
+# 2-1-2. Item-based Collaborative Filtering
 
 On the other hand, Item-based method needs matrix with items on the rows and the users on the columns.
 
@@ -91,7 +87,7 @@ If you look at the right image, A,C,D Users chose item#4 choose item#2 this time
 
 *different between content-based and item-based : content based goes with just only the features of item itself, but item-based is attached with many users’.
 
-### [ User-based and Item-based Collaborative Filtering ]
+# [ User-based and Item-based Collaborative Filtering ]
 
 - when there’s more users than items, go with the user-based method and vice-versa.
     
@@ -104,7 +100,7 @@ If you look at the right image, A,C,D Users chose item#4 choose item#2 this time
 - It’s broadly said that item-based collaborative filtering is more precise and likely used than user-based one since having similar taste doesn’t exactly mean that you like similar things.
 - Item-based method can be explained with the similarity of other items but the user-based one can’t be precisely explained
 
-### There are some challenges in using memory-based collaborative Filtering tho!
+## There are some challenges in using memory-based collaborative Filtering tho!
 
 1. **Sparsity**: In most real-world scenarios, the user-item matrix is highly sparse because users typically interact with only a small subset of all available items. This sparsity makes it challenging to generate accurate recommendations.
 → To fill in missing values and uncover significant patterns from a small number of user-product interactions, dealing with data sparsity necessitates the use of sophisticated methods like matrix factorizing and data imputation.
@@ -120,7 +116,7 @@ If you look at the right image, A,C,D Users chose item#4 choose item#2 this time
     → Incorporating diversity-aware recommendation techniques, such as variation-aware collaborative filtering or hybrid methods, can help broaden the range of recommendations and introduce unpredictability into the system.
     
 
-## 2-2. (Model based) Latent factor Collaborative Filtering
+# 2-2. (Model based) Latent factor Collaborative Filtering
 
 ![image.png](/assets/img/post/Recommender%20System%20(2)%20Types%2032dd76d684124531bcff74603f6100a3/image%205.png)
 
@@ -135,11 +131,10 @@ The biggest advantage of using this method is it helps to reduce the computing p
 Matrix Factorization
 - SVD(Singular Value Decomposition), ALS(Alterning Least Square)
 
-## 3. Hybrid Filtering (Collaborative Filtering + Content-based)
+# 3. Hybrid Filtering (Collaborative Filtering + Content-based)
 
-maybe we should do another post about this model based method and the hybrid method later since it gets too long,,,🤔
-
-### CODE
+maybe we should do another post about this model based method and the hybrid method later since it gets too long,,,🤔   
+## CODE
   
 ---
 
