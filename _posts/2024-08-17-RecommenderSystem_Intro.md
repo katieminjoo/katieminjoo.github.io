@@ -49,7 +49,11 @@ For example, a streaming service might use your viewing history (implicit data) 
 
 By leveraging both types of data, recommender systems can create a more holistic view of a user’s preferences, leading to more personalized and relevant suggestions.
 
-Once we have collected all the implicit and explicit data, we need Rating Matrix!
+
+
+
+
+Once we have collected all the implicit and explicit data, we can make user-item matrix!
 
 A **user-item matrix** (also known as a **user-item interaction matrix** or **utility matrix**) is a fundamental concept in recommender systems, representing the relationship between users and items. It is a two-dimensional matrix where:
 
@@ -64,15 +68,7 @@ When explicit ratings are not available, the matrix might reflect implicit feedb
 
 ![image.png](/assets/img/post/RecommenderSystem(1)Intro/image1.png)
 
-### There are some challenges using the rating matrix!
-
-1. **Sparsity**: In most real-world scenarios, the user-item matrix is highly sparse because users typically interact with only a small subset of all available items. This sparsity makes it challenging to generate accurate recommendations.
-2. **Cold Start Problem**: When new users or items are introduced, they have little to no interaction data, making it difficult to recommend items for these new users or to recommend the new items to existing users.
-
-However this matrix is very important in those two methods that we are going to talk about.
-
-- **User-Based Collaborative Filtering**: The algorithm looks for users who have similar preferences (i.e., similar rows in the matrix) and recommends items that similar users liked but the current user hasn't interacted with.
-- **Item-Based Collaborative Filtering**: The algorithm identifies items that are similar (i.e., similar columns in the matrix) and recommends items that are similar to those the user has interacted with.
+we are going to talk about how we can utilize this user-item matrix in the next post!!
 
 ---
 ## References
