@@ -1,6 +1,6 @@
 ---
 title: <i class="far fa-chart-bar"> Gradient Tape(2) Example </i>
-date: 2024-08-20 00:00:00 +0900
+date: 2024-08-23 00:00:00 +0900
 categories: [DeepLearning]
 tags: [deeplearning, tensorflow]
 toc: true
