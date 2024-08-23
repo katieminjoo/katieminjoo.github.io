@@ -10,8 +10,13 @@ sitemap:
   changefreq: daily
   priority: 1.0
 ---
+This is the combination version of 
+[TensorFlow 2 quickstart for experts](https://www.tensorflow.org/tutorials/quickstart/advanced) & 
+[Migrate early stopping](https://www.tensorflow.org/guide/migrate/early_stopping) from the official document from Tensorflow!  
+(These two codes work well individually, but if you try to combine them and run them as one, it might be a bit confusing. They are fundamentally similar, but there are slight differences in how the loss is updated and in the variable names. I’ve combined these two codes so that they can run together seamlessly.)
 
-Here is an example of how you might use model.fit to train a model:
+
+## Here is an example of how you might use model.fit to train a model, very simple and clear!
 ```
 # Define the model
 model = MyModel()
@@ -27,7 +32,7 @@ y = np.random.rand(64, 1)
 model.fit(x, y, epochs=10, batch_size=32)
 ```
 
-And Let’s deep dive into how we can customize the training loop, with a reference to [Tensorflow documentation](https://www.tensorflow.org/tutorials/quickstart/advanced). 
+And Let’s deep dive into how we can customize the training loop! 
 
 Basic code goes like this.
 
@@ -128,16 +133,21 @@ loss_object = tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True)
 optimizer = tf.keras.optimizers.Adam()
 ```
 
-## Choose metrics to evaluate the model's loss and accuracy. These metrics will aggregate the values over the epochs and display the final results.
+## Choose metrics to evaluate the model's loss and accuracy. These metrics will aggregate the values over the epochs and display the final results.  
+
+(This is the part where I've made some changes to the code. The first implementation used the mean metric, while the second used SparseCategoricalCrossentropy directly as the metric. I've included a brief explanation of these metrics below, just in case you're having trouble finding information on the official website!)
+* tf.keras.metrics.Mean  
+: Averages any numeric values passed to it, often used to compute the average loss across batches.
+
+* tf.keras.metrics.SparseCategoricalCrossentropy  
+: Specifically computes the sparse categorical cross-entropy loss, suitable for classification tasks with integer labels.
 
 ```
-train_loss = tf.keras.metrics.Mean(name='train_loss')
+train_loss_metric = tf.keras.metrics.SparseCategoricalCrossentropy()
+train_acc_metric = tf.keras.metrics.SparseCategoricalAccuracy()
 
-train_accuracy = tf.keras.metrics.SparseCategoricalAccuracy(name='train_accuracy')
-
-test_loss = tf.keras.metrics.Mean(name='test_loss')
-
-test_accuracy = tf.keras.metrics.SparseCategoricalAccuracy(name='test_accuracy')
+val_loss_metric = tf.keras.metrics.SparseCategoricalCrossentropy()
+val_acc_metric = tf.keras.metrics.SparseCategoricalAccuracy()
 ```
 
 ## Finally, let's define the training and testing functions, and then proceed to train the model on the dataset!
@@ -151,72 +161,126 @@ TensorFlow provides the `tf.GradientTape` API for automatic differentiation, whi
 TensorFlow then uses reverse mode differentiation to compute the gradients of the operations "recorded" on the tape.
 
 ```
-def train_step(images, labels):
+@tf.function
+def train_step(x, y):
+  # apply GradientTape for differentiation
+  with tf.GradientTape() as tape:
 
-    # apply GradientTape for differentiation
-    with tf.GradientTape() as tape:
+      # 1. Prediction
+      logits = model(x, training=True)
 
-        # 1. Prediction
-        predictions = model(images)
+      # 2. Calculate loss (between truth ground and prediction)
+      loss_value = loss_object(y, logits)
 
-        # 2. Calculate loss (between truth ground and prediction)
-        loss = loss_object(labels, predictions)
+  # 3. Calculate Gradients
+  grads = tape.gradient(loss_value, model.trainable_weights)
 
-# 3. Calculate Gradients
-gradients = tape.gradient(loss, model.trainable_variables)
+  # 4. Update weights through Backpropagation
+  optimizer.apply_gradients(zip(grads, model.trainable_weights))
+  
+  # Update loss and accuracy
+  train_acc_metric.update_state(y, logits)
+  train_loss_metric.update_state(y, logits)
+  
+  # the reason why we return the loss_value
+  # is to check if the loss gets smaller after every batches, epochs
+  return loss_value
 
-# 4. Update weights through Backpropagation
-optimizer.apply_gradients(zip(gradients, model.trainable_variables))
+@tf.function
+def test_step(x, y):
 
-# Update loss and accuracy
-train_loss(loss)
-train_accuracy(labels, predictions)
+  # 1. Prediction
+  logits = model(x, training=False)
+
+  # 2. No gradients caluculation and backpropagation in test step.
+
+  # 3. Update Loss and Accuracy
+  val_acc_metric.update_state(y, logits)
+  val_loss_metric.update_state(y, logits)
 ```
 
+## ver 01. Just Train
 ```
-def test_step(images, labels):
+EPOCHS = 5
 
-    # 1. Prediction
-    predictions = model(images)
+for epoch in range(EPOCHS):
+  # Reset the metrics at the start of the next epoch
+  train_loss_metric.reset_state()
+  train_acc_metric.reset_state()
+  val_loss_metric.reset_state()
+  val_acc_metric.reset_state()
 
-    # 2. Calculate loss
-    loss = loss_object(labels, predictions)
+  for images, labels in train_ds:
+    train_step(images, labels)
 
-    # 3. No gradients caluculation and backpropagation in test step.
-    # 4. Update Loss and Accuracy
 
-    test_loss(loss)
-    test_accuracy(labels, predictions)
+  for test_images, test_labels in test_ds:
+    test_step(test_images, test_labels)
+
+  print(
+    f'Epoch {epoch + 1}, '
+    f'Loss: {train_loss_metric.result():0.2f}, '
+    f'Accuracy: {train_acc_metric.result() * 100:0.2f}, '
+    f'Test Loss: {val_loss_metric.result():0.2f}, '
+    f'Test Accuracy: {val_acc_metric.result() * 100:0.2f}'
+  )
+
 ```
+![image.png](/assets/img/post/GradientTape(2)Example/image01.png)
 
+## ver 02. Add EarlyStopping
+**CAUTION !! make sure use the method `reset_state()`, not `reset_states()`.**  
+I used the code from an official document example from tensorflow.
+But you'll encounter the AttributeError when you follow the instruction from the tensorflow document.
+The correct method to reset the state of a metric in TensorFlow is reset_state(), not reset_states(). By changing the method name, the code should now execute without the AttributeError!!
 ```
-epochs = 5
+#new ver
+import time
+
+epochs = 100
+patience = 5
+wait = 0
+best = float('inf')
 
 for epoch in range(epochs):
+    print("\nStart of epoch %d" % (epoch,))
+    start_time = time.time()
 
-    # Reset the metrics at the start of the next epoch
-    train_loss.reset_state()
-    train_accuracy.reset_state()
-    test_loss.reset_state()
-    test_accuracy.reset_state()
+    for step, (x_batch_train, y_batch_train) in enumerate(train_ds):
+      # calculate loss_value every batch
+      loss_value = train_step(x_batch_train, y_batch_train)
+      if step % 200 == 0:
+        print("Training loss at step %d: %.4f" % (step, loss_value.numpy()))
+        print("Seen so far: %s samples" % ((step + 1) * 128))
+    # Report acc, loss per epoch
+    train_acc = train_acc_metric.result()
+    train_loss = train_loss_metric.result()
+    train_acc_metric.reset_state()
+    train_loss_metric.reset_state()
+    print("Training acc over epoch: %.4f" % (train_acc.numpy()))
 
-    for images, labels in train_ds:
-        train_step(images, labels)
+    for x_batch_val, y_batch_val in test_ds:
+      # calculate loss_value every batch
+      test_step(x_batch_val, y_batch_val)
+    # Report acc, loss per epoch
+    val_acc = val_acc_metric.result()
+    val_loss = val_loss_metric.result()
+    val_acc_metric.reset_state()
+    val_loss_metric.reset_state()
+    print("Validation acc: %.4f" % (float(val_acc),))
+    print("Time taken: %.2fs" % (time.time() - start_time))
 
-    for test_images, test_labels in test_ds:
-        test_step(images, labels)
-
-    print(
-    f’Epoch {epoch + 1}, '
-    f'Loss: {train_loss.result():0.2f}, '
-    f'Accuracy: {train_accuracy.result() * 100:0.2f}, '
-    f'Test Loss: {test_loss.result():0.2f}, '
-    f'Test Accuracy: {test_accuracy.result() * 100:0.2f}'
-    )
-
+    # The early stopping strategy: stop the training if `val_loss` does not
+    # decrease over a certain number of epochs.
+    wait += 1
+    if val_loss < best:
+      best = val_loss
+      wait = 0
+    if wait >= patience:
+      break
 ```
 
-![image.png](/assets/img/post/GradientTape(2)Example/image01.png)
+
 
 ---
 ## reference
@@ -224,3 +288,5 @@ for epoch in range(epochs):
 [https://teddylee777.github.io/tensorflow/gradient-tape/](https://teddylee777.github.io/tensorflow/gradient-tape/)
 
 [https://www.tensorflow.org/tutorials/quickstart/advanced](https://www.tensorflow.org/tutorials/quickstart/advanced)
+
+[https://www.tensorflow.org/guide/migrate/early_stopping](https://www.tensorflow.org/guide/migrate/early_stopping)
