@@ -10,7 +10,7 @@ sitemap:
   changefreq: daily
   priority: 1.0
 ---
-This is the combination version of 
+> This is the combination version of 
 [TensorFlow 2 quickstart for experts](https://www.tensorflow.org/tutorials/quickstart/advanced) & 
 [Migrate early stopping](https://www.tensorflow.org/guide/migrate/early_stopping) from the official document from Tensorflow!  
 (These two codes work well individually, but if you try to combine them and run them as one, it might be a bit confusing. They are fundamentally similar, but there are slight differences in how the loss is updated and in the variable names. I’ve combined these two codes so that they can run together seamlessly.)
@@ -53,7 +53,9 @@ It’s easy to load sample datasets from the module, tf.keras.datasets !
 
 In this module, we have 8 accessible dataset modules which combines
 
-### **Modules**
+<details>
+<summary>Modules</summary>
+<div markdown="1">       
 
 [boston_housing](https://www.tensorflow.org/api_docs/python/tf/keras/datasets/boston_housing) module: DO NOT EDIT.
 
@@ -70,6 +72,9 @@ In this module, we have 8 accessible dataset modules which combines
 [mnist](https://www.tensorflow.org/api_docs/python/tf/keras/datasets/mnist) module: DO NOT EDIT.
 
 [reuters](https://www.tensorflow.org/api_docs/python/tf/keras/datasets/reuters) module: DO NOT EDIT.
+
+</div>
+</details> 
 
 We can easily obtain splitted x,y, train, test data through load_data() function.
 
@@ -135,11 +140,10 @@ optimizer = tf.keras.optimizers.Adam()
 
 ## Choose metrics to evaluate the model's loss and accuracy. These metrics will aggregate the values over the epochs and display the final results.  
 
-(This is the part where I've made some changes to the code. The first implementation used the mean metric, while the second used SparseCategoricalCrossentropy directly as the metric. I've included a brief explanation of these metrics below, just in case you're having trouble finding information on the official website!)
-* tf.keras.metrics.Mean  
+*(This is the part where I've made some changes to the code. The first implementation used the mean metric, while the second used SparseCategoricalCrossentropy directly as the metric. I've included a brief explanation of these metrics below, just in case you're having trouble finding information on the official website!)*
+>* tf.keras.metrics.Mean  
 : Averages any numeric values passed to it, often used to compute the average loss across batches.
-
-* tf.keras.metrics.SparseCategoricalCrossentropy  
+>* tf.keras.metrics.SparseCategoricalCrossentropy  
 : Specifically computes the sparse categorical cross-entropy loss, suitable for classification tasks with integer labels.
 
 ```
@@ -154,11 +158,11 @@ val_acc_metric = tf.keras.metrics.SparseCategoricalAccuracy()
 
 **GradientTape**
 
-TensorFlow provides the `tf.GradientTape` API for automatic differentiation, which involves computing the gradients of operations with respect to input variables.
+>TensorFlow provides the `tf.GradientTape` API for automatic differentiation, which involves computing the gradients of operations with respect to input variables.
 
-`tf.GradientTape` "records" all operations executed within its context on a "tape."
+>`tf.GradientTape` "records" all operations executed within its context on a "tape."
 
-TensorFlow then uses reverse mode differentiation to compute the gradients of the operations "recorded" on the tape.
+>TensorFlow then uses reverse mode differentiation to compute the gradients of the operations "recorded" on the tape.
 
 ```
 @tf.function
