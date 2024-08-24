@@ -75,4 +75,4 @@ we are going to talk about how we can utilize this user-item matrix in the next 
 
 [https://towardsdatascience.com/recommender-systems-a-complete-guide-to-machine-learning-models-96d3f94ea748](https://towardsdatascience.com/recommender-systems-a-complete-guide-to-machine-learning-models-96d3f94ea748)
 
-[https://www.nvidia.com/en-us/glossary/recommendation-system/#:~:text=A recommendation system](https://www.nvidia.com/en-us/glossary/recommendation-system/#:~:text=A%20recommendation%20system%20) (or%20recommender,exponentially%20growing%20number%20of%20options.
+[https://www.nvidia.com/en-us/glossary/recommendation-system/#:~:text=A recommendation system](https://www.nvidia.com/en-us/glossary/recommendation-system/#:~:text=A%20recommendation%20system%20)
