@@ -36,4 +36,4 @@ So what do we have in Model-based Collaborative Filtering?
 
 [Ch 06-3. Latent Factor Model, Matrix Factorization](https://velog.io/@hyxxnii/Ch-06-3.-Latent-Factor-Model-Matrix-Factorization)
 
-# Hybrid Filtering
+# Hybrid Filtering.
