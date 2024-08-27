@@ -1,5 +1,5 @@
 ---
-title: <i class="far fa-chart-bar"> Recommender System (3)Types </i>
+title: <i class="far fa-chart-bar"> Recommender System (3) Types </i>
 date: 2024-08-24 15:00:00 +0900
 categories: [MachineLearning, RecommenderSystem]
 tags: [machinelearning]
