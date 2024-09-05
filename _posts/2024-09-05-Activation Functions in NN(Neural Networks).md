@@ -13,8 +13,7 @@ sitemap:
 ## What is activation Function?
 
 Basically it converts all the sum of inputs into output. It’s like a convert machine which helps to describe data with nonlinearity
-
-[https://lh7-rt.googleusercontent.com/docsz/AD_4nXdv81N9o3hzl9pmGlGViNmr7a2uEbxxf_Mxv7qroZbjYkhqO-2DdeqX8ExG98tEKuYPijiX_InlA5QGWwzlN4oObjoYk2VxLeIARqAicqoAo931yOnuICZL-sjtYC3VVn8V1RuLPX6k5A78y1iz6meRFgnB?key=HXuWbznUo3eoIGhGB3eU2A](https://lh7-rt.googleusercontent.com/docsz/AD_4nXdv81N9o3hzl9pmGlGViNmr7a2uEbxxf_Mxv7qroZbjYkhqO-2DdeqX8ExG98tEKuYPijiX_InlA5QGWwzlN4oObjoYk2VxLeIARqAicqoAo931yOnuICZL-sjtYC3VVn8V1RuLPX6k5A78y1iz6meRFgnB?key=HXuWbznUo3eoIGhGB3eU2A)
+![](/assets/img/post/ActivationFunctions/image.png)
 
 ## Why do we use it?
 
@@ -31,11 +30,11 @@ The Nonlinear Activation functions are the most used activation functions that m
 
 And there are 6 mostly used Activation Function from sigmoid to Relu. Let’s dig in!
 
-[https://lh7-rt.googleusercontent.com/docsz/AD_4nXfzJTkuTbmc-HyuvoxGx2UUT7XOkvg3k-LWVbHrymuw1sD1h69zEr00ftyU_faeffvHPKKuxk6Om-oJYzy9wpcgvoXx773YQEF64PTLV2J0sbro2wugBeWM3Bcg7Xhpnk8bz_UuxEIXH4OWrbIZ8IR9NXiv?key=HXuWbznUo3eoIGhGB3eU2A](https://lh7-rt.googleusercontent.com/docsz/AD_4nXfzJTkuTbmc-HyuvoxGx2UUT7XOkvg3k-LWVbHrymuw1sD1h69zEr00ftyU_faeffvHPKKuxk6Om-oJYzy9wpcgvoXx773YQEF64PTLV2J0sbro2wugBeWM3Bcg7Xhpnk8bz_UuxEIXH4OWrbIZ8IR9NXiv?key=HXuWbznUo3eoIGhGB3eU2A)
+![](/assets/img/post/ActivationFunctions/image01.png)
 
 ## 1. Sigmoid Function
 
-[https://lh7-rt.googleusercontent.com/docsz/AD_4nXdFNRl2RVU_uKmSUNknipYd3-MKvIRqUbanJzj-v82LxdD6jX0wpMCPqZpIWzUTYffL07leFgrBvzwWUGoxIWcxDCOzxFBuB67VmuX2jPZoe0-lW2NPRYWML0EZEg42nWWfwzFI-aTvJf_C8CZdKcvfbUNB?key=HXuWbznUo3eoIGhGB3eU2A](https://lh7-rt.googleusercontent.com/docsz/AD_4nXdFNRl2RVU_uKmSUNknipYd3-MKvIRqUbanJzj-v82LxdD6jX0wpMCPqZpIWzUTYffL07leFgrBvzwWUGoxIWcxDCOzxFBuB67VmuX2jPZoe0-lW2NPRYWML0EZEg42nWWfwzFI-aTvJf_C8CZdKcvfbUNB?key=HXuWbznUo3eoIGhGB3eU2A)
+![](/assets/img/post/ActivationFunctions/image02.png)
 
 Is it especially used for models where we have to predict the probability as an output. (Because probability of anything exists only between the range of 0 and 1!)
 
@@ -55,7 +54,7 @@ Softmax Function is a more generalized logistic activation function which is use
 
 ## 2. Tanh / Hyperbolic Tangent Activation Function
 
-[https://lh7-rt.googleusercontent.com/docsz/AD_4nXfYy2GTmxp9hGuJQwa36b1nzgBUWtpKMW-LG1zZBbHaRNaeYvwDSoWryf7b1_PFZzxjnOK9_fPr4U4ZM0dXOVUon1UPPTmNd60jrmaBnCFtFdvLQ93ikZS8uJ-5V0Us4TwfdgFTldTZrpOojsNRziS--HY?key=HXuWbznUo3eoIGhGB3eU2A](https://lh7-rt.googleusercontent.com/docsz/AD_4nXfYy2GTmxp9hGuJQwa36b1nzgBUWtpKMW-LG1zZBbHaRNaeYvwDSoWryf7b1_PFZzxjnOK9_fPr4U4ZM0dXOVUon1UPPTmNd60jrmaBnCFtFdvLQ93ikZS8uJ-5V0Us4TwfdgFTldTZrpOojsNRziS--HY?key=HXuWbznUo3eoIGhGB3eU2A)
+![](/assets/img/post/ActivationFunctions/image03.png)
 
 Tanh is also like logistic sigmoid but the range of it is different.
 
@@ -69,7 +68,7 @@ This is also mainly used to classify between two classes.
 
 ## 3. ReLU (Rectified Linear Unit) Activation Function
 
-[https://lh7-rt.googleusercontent.com/docsz/AD_4nXdm02fwz-0sQ6UqFZSbr0DtJxhjHX7XnTvNolJ8-wyxTkpBARx3HXDqtG6NgZBVADIE3b-jJ_4yqNPtwwsBE0ef10Ap2WmS9A9u_g1v8FsAi7dmwQ3nF_kroLQH06xeVFH_0x3hUXb_e1c7IB6u-mQnB4Q?key=HXuWbznUo3eoIGhGB3eU2A](https://lh7-rt.googleusercontent.com/docsz/AD_4nXdm02fwz-0sQ6UqFZSbr0DtJxhjHX7XnTvNolJ8-wyxTkpBARx3HXDqtG6NgZBVADIE3b-jJ_4yqNPtwwsBE0ef10Ap2WmS9A9u_g1v8FsAi7dmwQ3nF_kroLQH06xeVFH_0x3hUXb_e1c7IB6u-mQnB4Q?key=HXuWbznUo3eoIGhGB3eU2A)
+![](/assets/img/post/ActivationFunctions/image04.png)
 
 It is the most used activation function in the world right now!
 
