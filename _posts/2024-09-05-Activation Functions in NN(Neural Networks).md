@@ -10,12 +10,6 @@ sitemap:
   changefreq: daily
   priority: 1.0
 ---
-# Activation Functions in NN(Neural Networks)
-
-Planned: 2024/09/05 → 2024/09/06
-Status: Writing
-Sort: DL
-
 # What is activation Function?
 
 Basically it converts all the sum of inputs into output. It’s like a convert machine which helps to describe data with nonlinearity
