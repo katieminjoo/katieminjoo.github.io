@@ -25,7 +25,8 @@ The Nonlinear Activation functions are the most used activation functions that m
     
     Linear Activation function : Impossible to execute backpropagation
     
-    - when the function is defined as c(x), even though we put bunch of hidden layers on top of each layers, the output will be always c`(x)
+    - when the function is defined as c(x), even though we put bunch of hidden layers on top of each layers, the output will be always c`(x), which is a linear formation.Then there’s no use of using deep neural network.
+
 - With Activation func : nonlinear & complex prediction available
 
 And there are 6 mostly used Activation Function from sigmoid to Relu. Let’s dig in!
