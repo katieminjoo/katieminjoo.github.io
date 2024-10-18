@@ -15,6 +15,7 @@ sitemap:
 1. First, check if your data follows a normal distribution.
 For this part, you can perform a Shapiro-Wilk test to check the normality of each group.  
 you can use shapiro from scipy.stats just like the below code example.
+
 ```
 from scipy.stats import shapiro
 
@@ -29,6 +30,7 @@ elif **p-value <= 0.05**, your data *does not follow a normal distribution*.
 
 
 2-1. If both groups pass the normality test, you can proceed with an Independent t-test to compare the means of the two groups. (code example below.)
+
 ```
 from scipy import stats
 
@@ -36,6 +38,7 @@ from scipy import stats
 t_stat, p_value = stats.ttest_ind(group1, group2)
 print(f"t-statistic: {t_stat}, p-value: {p_value}")
 ```
+
 >**t-statistic**: This is the value of the t-test statistic that indicates the size of the difference between the group means relative to the variance in the data.  
 **p-value**: This tells you whether the difference is statistically significant. If the **p-value ≤ 0.05**, the difference is considered statistically significant, and the means are likely different.
 
@@ -53,6 +56,7 @@ from scipy.stats import mannwhitneyu
 stat, p_value = mannwhitneyu(group1, group2)
 print(f'Mann-Whitney U: Statistics={stat}, p-value={p_value}')
 ```
+
 >and we can interpret this test with   
 If the p-value ≤ 0.05, you can reject the null hypothesis and conclude that the two groups are statistically different.  
 If the p-value > 0.05, there is no statistically significant difference between the two groups. The difference could be due to random variation rather than a true underlying difference between the groups.  
