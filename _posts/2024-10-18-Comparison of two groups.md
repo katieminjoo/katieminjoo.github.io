@@ -1,5 +1,5 @@
 ---
-title: <i class="far fa-chart-bar"> A Comprehensive Approach to Comparing Two Independent Groups Statistically : When to Use t-Tests and Mann-Whitney U Tests</i>
+title: <i class="far fa-chart-bar"> A Comprehensive Approach to Comparing Two Independent Groups Statistically_When to Use t-Tests and Mann-Whitney U Tests</i>
 date: 2024-10-18 16:00:00 +0900
 categories: [MachineLearning]
 tags: [machinelearning]
