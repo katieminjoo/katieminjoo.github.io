@@ -12,7 +12,7 @@ sitemap:
 ---
 Bagging and Boosting are two popular ensemble learning techniques used in MachineLearning to improve the performance of models by combining multiple weaker models (often called weak learners) to create a stronger, more accurate model.
 
-## 1. Bagging (Bootstrap Aggregating)
+# 1. Bagging (Bootstrap Aggregating)
 Bagging is a technique where multiple models are trained independently and in parallel.  
 Each model is trained on a different random subset of the training data(created by bootstrapping, which means sampling with replacement). The idea is to reduce variance by averaging the predictions from multiple models.
 
@@ -30,7 +30,7 @@ An ensemble of decision trees, where each tree is trained on a different random 
 ### Disadvantage
 : Since models are trained independently, bagging might not always perform well with models that rely on sequential learning.
 
-## 1. Boosting
+# 2. Boosting
 : Boosting is a technique where multiple models are trained sequentially. Each new model tries to correct the errors made by the previous models. The idea is to **boost** the performance of the overall model by focusing on the mistakes of earlier models.
 : The samples that are incorrectly predicted in one iteration will have higher weight in the next one. Thus, isolated and mislabelled points tend to strongly force the classifier to create complicated hypothesis to fit them, which we will call overfitting. 
 
@@ -51,7 +51,7 @@ An ensemble of decision trees, where each tree is trained on a different random 
 : Boosting can be **prone to overfitting**, especially if not carefully managed.
 
 ---
-## Key Differences between Bagging and Boosting
+# Key Differences between Bagging and Boosting
 | Feature  |      Bagging    |  Boosting |
 |:----------:|:----------------:|:----------:|
 | Training |  Models are trained independently and in **parallel** | Models are trained **sequentially**, each trying to correct errors of the previous one |
