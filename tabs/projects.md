@@ -13,44 +13,42 @@ theme: jekyll-theme-dinky
 
 ## Design
 ***
-The project aims to create personalized pet emojis using EfficientDet for expression detection and StarGAN v2 for image generation, allowing users to quickly turn dog photos into corresponding emojis based on detected emotions (anger, happiness, sadness, yawning).
+This project focuses on creating personalized pet emojis by detecting dog expressions with EfficientDet and generating corresponding emojis with StarGAN v2. This allows users to quickly transform dog photos into expressive emojis based on detected emotions (anger, happiness, sadness, and yawning).
 
 ## Data
 ***
-* Crawled about 5,000 pictures of dog pictures with keywords of [‘anger’, ‘happiness’, ‘sadness’, ‘yawning’].
-* Made an annotation of dog face for every 400 pictures for each emotion. (Includes only when it's a front face, actual picture without duplication.)
-* Cropped only the face part when it's at least 100 pixels for the width and height.
+* **Dataset**: Collected approximately 5,000 dog photos using emotion-based keywords [‘anger’, ‘happiness’, ‘sadness’, ‘yawning’].  
+* **Annotation**: Annotated 400 images per emotion for front-facing dog faces, ensuring unique images without duplicates.  
+* **Image Preprocessing**: Cropped images to focus on dog faces, with a minimum resolution of 100x100 pixels for both width and height.
 
 ## Main model / Technique
 ***
 **`Object Detection`**  
-We used [EfficientDet](https://arxiv.org/abs/1911.09070) which is an object detection network based on EfficientNet -> Less Parameters, but better accuracy  
+[EfficientDet](https://arxiv.org/abs/1911.09070) was chosen as the object detection model for its accuracy and parameter efficiency, leveraging the EfficientNet backbone.  
 ![ef](/assets/img/project/starganv2/Efficientdet_architecture.png){:width="600px"}
 
 **`Image Generation`**  
-We used [Starganv2](https://openaccess.thecvf.com/content_CVPR_2020/papers/Choi_StarGAN_v2_Diverse_Image_Synthesis_for_Multiple_Domains_CVPR_2020_paper.pdf) which can perform image-to-image translations for multiple domains using only a single model since we have 4 different domains that we want to transform from one to another.  
+[StarGAN_v2](https://openaccess.thecvf.com/content_CVPR_2020/papers/Choi_StarGAN_v2_Diverse_Image_Synthesis_for_Multiple_Domains_CVPR_2020_paper.pdf) was used for image-to-image translation across multiple domains, which allowed transformations among four target expressions.  
 ![ef](/assets/img/project/starganv2/stargan.png){:width="500px"}
 
 
 ## Consideration
 ***
 ![ef](/assets/img/project/starganv2/Stargan_v01.png){:width="400px"}  
-This is the result after the image generation with Starganv2.
+Here is the result after image generation using StarGAN v2.
 
 ![ef](/assets/img/project/starganv2/Stargan_problem.png){:width="400px"}  
-But we did have problems here. We want the breed and the color of the dog doesn't change. But when the model refers the domain image, that also got the color and the appearance of the dog.
-but we want the breed and the color stays and only the facial expression changes.
+While StarGAN v2 produced varied expressions, a challenge arose: the model also altered the dog’s breed and color based on the reference domain image.
 
-So we added HistogramLoss to ensure the color and the breed stays same even after the image generation.
-[HistoGAN](https://arxiv.org/abs/2011.11731)  
+To preserve the breed and color while altering only the facial expression, we integrated Histogram Loss from and color in the generated images.
+[HistoGAN](https://arxiv.org/abs/2011.11731), which ensured consistent breed 
 
 ![ef](/assets/img/project/starganv2/Problem_solved.png){:width="400px"}  
-After we added HistogramLoss, we got the result which has the breed and the color same.  
+After adding Histogram Loss, the results maintained the original breed and color, with only the facial expression changing.
 
-
-## More Idea !
+## Future Ideas
 ***
-Maybe we can try auto annotation tool such as CVAT
+Considering using an auto-annotation tool, such as CVAT, to improve annotation efficiency and accuracy.
 
 
 
@@ -100,6 +98,6 @@ We used [Neo4j](https://neo4j-contrib.github.io/py2neo/) to build a Knowledge Gr
 ***
 ![ef](/assets/img/project/KDI/KG_example.png){:width="500px"}
 
-## More Idea !
+## Future Ideas
 ***
 
