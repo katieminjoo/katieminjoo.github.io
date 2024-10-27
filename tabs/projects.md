@@ -9,7 +9,7 @@ theme: jekyll-theme-dinky
 >`Image Generation`  
 >`Object Detection`  
 
-![ef](/assets/img/project/starganv2/Stargan_v02.png){:width="400px"}
+![ef](/assets/img/project/starganv2/Stargan_v02.png){:width="500px"}
 
 ## Design
 ***
@@ -25,7 +25,7 @@ This project focuses on creating personalized pet emojis by detecting dog expres
 ***
 **`Object Detection`**  
 [EfficientDet](https://arxiv.org/abs/1911.09070) was chosen as the object detection model for its accuracy and parameter efficiency, leveraging the EfficientNet backbone.  
-![ef](/assets/img/project/starganv2/Efficientdet_architecture.png){:width="600px"}
+![ef](/assets/img/project/starganv2/Efficientdet_architecture.png){:width="700px"}
 
 **`Image Generation`**  
 [StarGAN_v2](https://openaccess.thecvf.com/content_CVPR_2020/papers/Choi_StarGAN_v2_Diverse_Image_Synthesis_for_Multiple_Domains_CVPR_2020_paper.pdf) was used for image-to-image translation across multiple domains, which allowed transformations among four target expressions.  
@@ -34,16 +34,16 @@ This project focuses on creating personalized pet emojis by detecting dog expres
 
 ## Consideration
 ***
-![ef](/assets/img/project/starganv2/Stargan_v01.png){:width="400px"}  
+![ef](/assets/img/project/starganv2/Stargan_v01.png){:width="500px"}  
 Here is the result after image generation using StarGAN v2.
 
-![ef](/assets/img/project/starganv2/Stargan_problem.png){:width="400px"}  
+![ef](/assets/img/project/starganv2/Stargan_problem.png){:width="300px"}  
 While StarGAN v2 produced varied expressions, a challenge arose: the model also altered the dog’s breed and color based on the reference domain image.
 
 To preserve the breed and color while altering only the facial expression, we integrated Histogram Loss from and color in the generated images.
 [HistoGAN](https://arxiv.org/abs/2011.11731), which ensured consistent breed 
 
-![ef](/assets/img/project/starganv2/Problem_solved.png){:width="400px"}  
+![ef](/assets/img/project/starganv2/Problem_solved.png){:width="300px"}  
 After adding Histogram Loss, the results maintained the original breed and color, with only the facial expression changing.
 
 ## Future Ideas
