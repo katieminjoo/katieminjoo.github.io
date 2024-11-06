@@ -26,12 +26,12 @@ FN TN
 * FN means the model predicts negative in a false way. (So the real value here is Positive)
 * TN means the model predicts negative in a true way. (Got the answer)
 
-## Accuracy (image)
+# Accuracy (image)
 Accuracy is a metric of (TP + TN) / (TP + FP + FN + TN). it means from the whole case, we want to see how correctly the model predicts.
 But this metric often get influenced by the ratio of classes of data sample. Especially imbalanced dataset.
 For example, let's say 99% of data is consisted of negative value. Then if the model predicts everything as negative, we still get 99% of Accuracy even though the model can't really classify negative and positive value.
 
-## Precision & Recall
+# Precision & Recall
 That's why we have to look at Precision and Recall, and there's a lot in it. Because they are the trade-offs relationship.
 and we have to decide where to focus on between precision and recall. once we decide it, we can adjust the threshold to make precision bigger and recall smaller or vice versa.
 
@@ -46,7 +46,7 @@ TP / (TP + FN)
 = ( the actual positive sample from the samples that model predicts as positive) / ACTUAL POSITIVE SAMPLES
 This metric focuses on lessen FN which is the model predicts the actual true as negative. (0으로 잘못 예측한 건)
 
-## Trade-off and Example
+# Trade-off and Example
 
 ### Case 1 : High precision and Low Recall
 - 무조건 적합한 자만 받고 싶을 때, 부적합한 케이스까지 끌어왔다가는 오히려 비용이 많이 들거나 문제가 생길 때. 몇개 놓치는게 큰 문제가 아닐때. 알짜배기를 놓칠 수도 있지만 부적합한 건은 최대한 걸러낼 수 있음. 놓치는 것보다 부적합 건을 거르는 것이 더 중요할 때.
@@ -102,22 +102,25 @@ while we're gonna prioritizing precision, it's still valuable to look at the PR-
 2. Set Threshold : The PR curve shows how precision and recall changes at different threshold levels. we can identify threshold points where precision is maximized while recall remains at an acceptable level. This allows us to fine-tune the threshold to achieve the best trade-off according to our priority for precision/recall.
 
 ----
-## Example
+# Example
 when one of the case dominate the dataset. when imbalanced.
 we better look at precision, recall and f1 rather than accuracy.
  
 Loan Approval / Rejection case.
 
 ### Precision
-- If avoiding bad loans is a top priority(to reduce financial risk)
-- when approving unqualified applicants cost a lot we'd not want to accept unqualified applicants.
+- When the priority is risk minimization (avoiding defaults and reducing financial loss)
+- when approving unqualified applicants cost a lot, we'd not want to accept unqualified applicants.
+- Then a higher precision and lower recall can be justifiable. A conservative threshold (like 0.90) helps ensure that only highly likely successful applicants are approved, aligning with a risk-averse approach.
 - 완벽히 깔끔한 신용등급 사람들만 허용
 - 신용등급 애매한 사람들을 받음으로써 오는 피해가 더 클 경우
 
 ### Recall
+- If the priority is capturing more successful applicants to maximize the loan protfolio's profitability and retain customers
 - If maximizing approval of qualified applicants is more important
 - if it's crucial to catch as many positive cases as possible, even if it means allowing some not sure applicants. in other words, if missing qualified applicants is more harmful, then recall will be more important. 
 - 회원을 잃는 것이 더 손해일 때
 - 조금 더 여유롭게 수용
 
+We have to decide the prioritization
 Often, a balanced approach with F1-score can be useful to capture both precision and recall, especially if both outcomes (false positives and false negatives) are costly but not equally impactful.
