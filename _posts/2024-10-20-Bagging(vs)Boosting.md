@@ -52,14 +52,14 @@ An ensemble of decision trees, where each tree is trained on a different random 
 
 ---
 # Key Differences between Bagging and Boosting
-| Feature            | Bagging                                            | Boosting                                                     |
-|--------------------|----------------------------------------------------|--------------------------------------------------------------|
-| Training           | Models are trained independently and in **parallel** | Models are trained **sequentially**, each trying to correct errors of the previous one |
-| Goal               | Reduce **Variance** (to prevent Overfitting)       | Reduce **Bias** (to improve Accuracy)                        |
-| Data Sampling      | **Bootstrapping** (random sampling with replacement) | Adjusts **weights** on each sample, focusing on difficult cases |
-| Combining Models   | Averaging (for regression), voting (classification) | Weighted combination of all models                           |
-| Algorithms         | Random Forests                                     | AdaBoost, Gradient Boosting, XGBoost                        |
 
+| Feature           | Bagging                                               | Boosting                                                       |
+|-------------------|-------------------------------------------------------|----------------------------------------------------------------|
+| Training          | Models are trained independently and in **parallel**   | Models are trained **sequentially**, each trying to correct errors of the previous one |
+| Goal              | Reduce **Variance** (to prevent overfitting)           | Reduce **Bias** (to improve accuracy)                           |
+| Data Sampling     | **Bootstrapping** (random sampling with replacement)   | Adjusts **weights** on each sample, focusing on difficult cases |
+| Combining Models  | Averaging (for regression), voting (for classification)| Weighted combination of all models                              |
+| Algorithms        | Random Forests                                        | AdaBoost, Gradient Boosting, XGBoost                            |
 
 > ### Bagging focuses on **stability** by reducing overfitting.
 > ### Boosting focuses on **accuracy** by correcting errors sequentially.
