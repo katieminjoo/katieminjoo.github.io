@@ -61,5 +61,6 @@ An ensemble of decision trees, where each tree is trained on a different random 
 | Combining Models  | Averaging (for regression), voting (for classification)| Weighted combination of all models                              |
 | Algorithms        | Random Forests                                        | AdaBoost, Gradient Boosting, XGBoost                            |
 
-> ### Bagging focuses on **stability** by reducing overfitting.
-> ### Boosting focuses on **accuracy** by correcting errors sequentially.
+
+### Bagging focuses on **stability** by reducing overfitting.
+### Boosting focuses on **accuracy** by correcting errors sequentially.
