@@ -1,5 +1,5 @@
 ---
-title: Precision and Recall in Classification Tasks
+title: Precision and Recall in Classification Tasks (KOR)
 date: 2024-11-06 17:30:00 +0900
 categories: [Machine Learning]
 tags: [machinelearning]
@@ -13,34 +13,39 @@ sitemap:
 
 In classification tasks, several evaluation metrics are commonly used, including *Accuracy, Precision, Recall, and F1 Score*. These metrics are based on the **Confusion Matrix**, which forms the foundation for calculating them.
 
-> (In a confusion matrix, the first part—True (T) or False (F)—indicates whether the model's prediction is correct. The second part—Positive (P) or Negative (N)—represents the actual prediction value.)
+> (In a confusion matrix, the first part—True (T) or False (F)—indicates whether the model's prediction is correct. The second part—Positive (P) or Negative (N)—represents the actual prediction value.) T로 시작하는 것이 맞게 예측한부분 (T/F 는 맞게 예측했는지, 틀리게 예측했는지), Positive/Negative 는 예측한 클래스이다.
 
 |  | Predicted Positive | Predicted Negative |
 |---|---------------------|---------------------|
 | **Actual Positive** | TP (True Positive) | FN (False Negative) |
 | **Actual Negative** | FP (False Positive) | TN (True Negative) |
 
-- **TP (True Positive)**: Model correctly predicts the positive class.
-- **FP (False Positive)**: Model incorrectly predicts positive for a negative instance.
-- **FN (False Negative)**: Model incorrectly predicts negative for a positive instance.
-- **TN (True Negative)**: Model correctly predicts the negative class.
+- **TP (True Positive)**: positive를 positive로 제대로 예측
+- **FP (False Positive)**: Positive 로 예측했지만 틀렸다는 것. (실제 답 : Negative)
+- **FN (False Negative)**: Negative 로 예측했지만 틀렸다는 것. (실제 답 : Positive)
+- **TN (True Negative)**: Negative 를 Negative 로 제대로 예측
 
 ---
 
 ## 1. Accuracy
 **Formula**: (TP + TN) / (TP + FP + FN + TN)  
-Accuracy measures the proportion of correct predictions out of the total cases. However, accuracy can be heavily influenced by the class balance in the dataset. For example, if 99% of cases are negative, a model that always predicts "negative" would still achieve 99% accuracy, even though it lacks predictive power.
+Accuracy measures the proportion of correct predictions out of the total cases. However, accuracy can be heavily influenced by the class balance in the dataset. For example, if 99% of cases are negative, a model that always predicts "negative" would still achieve 99% accuracy, even though it lacks predictive power.  
+모든 TP + FP + FN + TN 중 정확하게 분류한 data sample 의 개수를 분자로 두는 지표이다. 하지만 이 accuracy는 class별 data sample 비율에 영향을 많이 받는다.
+가령 Negative가 99%로 이루어져있을 경우, 모두 negative 로 분류하더라도 99%의 놀라운 정확도를 보일 수 있다. 즉, accuracy는 불균형 데이터의 영향을 많이 받는다.
 
 ## 2. Precision & Recall
-To address class imbalance, **Precision** and **Recall** provide a more nuanced view. These metrics have a trade-off relationship, and it’s essential to decide whether to focus on precision or recall, adjusting thresholds accordingly to emphasize one over the other.
+To address class imbalance, **Precision** and **Recall** provide a more nuanced view. These metrics have a trade-off relationship, and it’s essential to decide whether to focus on precision or recall, adjusting thresholds accordingly to emphasize one over the other.  
+두 평가지표 Precision, Recall 모두 positive 로 예측한 샘플에 대한 평가지표
 
 ### Precision
 **Formula**: TP / (TP + FP)  
-Precision measures the proportion of true positive predictions out of all positive predictions. This metric emphasizes reducing FP, which are instances incorrectly classified as positive.
+Precision measures the proportion of true positive predictions out of all positive predictions. This metric emphasizes reducing FP, which are instances incorrectly classified as positive.  
+1로 예측한 샘플 중 1로 맞게 예측한 비율. 즉, FP (1로 잘못 예측한 건)을 줄이는데 초점을 둔다.
 
 ### Recall
 **Formula**: TP / (TP + FN)  
-Recall measures the proportion of true positive predictions out of all actual positive cases. This metric emphasizes reducing FN, which are positive cases missed by the model.
+Recall measures the proportion of true positive predictions out of all actual positive cases. This metric emphasizes reducing FN, which are positive cases missed by the model.  
+실제 1 중 1로 맞게 예측된 샘플의 비율로 FN (0으로 잘못 예측한 건)을 줄이는데 초점을 둔다.
 
 ---
 
@@ -58,6 +63,7 @@ Recall measures the proportion of true positive predictions out of all actual po
 - This approach minimizes false negatives and is beneficial in cases where missing positive cases is more detrimental.
 - High recall means the model captures most qualified applicants, which can increase revenue or improve customer satisfaction.
 - **Business Implication**: If the cost of missing qualified applicants is high, prioritizing recall ensures that most eligible applicants are approved, even if some unqualified ones slip through.
+- 일단은 가능한 모든 case 를 받고싶을 때. 일말의 가능성이 보이는 케이스까지 전부 끌어모아서 직접 확인해야할 때. 하나라도 놓쳤다가는 큰일날때. 놓치느니 부적합 건이 함께 들어오는게 낫다.
 
 ---
 
@@ -92,9 +98,12 @@ When class imbalance is present, it’s more effective to look at precision, rec
 ## Precision
 - Prioritize precision if the goal is risk minimization (avoiding defaults and reducing financial loss).
 - High precision ensures that only highly likely successful applicants are approved, aligning with a conservative approach.
+- 완벽히 깔끔한 신용등급 사람들만 허용, 신용등급 애매한 사람들을 받음으로써 오는 피해가 더 클 경우
+
 
 ## Recall
 - Prioritize recall if capturing as many qualified applicants as possible is crucial to maximize profitability and retain customers.
 - High recall ensures that most eligible applicants are approved, reducing the chance of missing potentially successful applications.
+- 회원을 잃는 것이 더 손해일 때, 조금 더 여유롭게 수용
 
 In many cases, a balanced approach with F1-score can be useful to capture both precision and recall, especially when both false positives and false negatives are costly but not equally impactful.
