@@ -14,7 +14,7 @@ sitemap:
 It is different from feature extraction or dimensionality reduction.  
 It mostly acts as a filter, muting out features that aren't useful in addition to your existing features.  
 
-## The objective and importance of feature selection
+# The objective and importance of feature selection
 
 1. Improved Model Performance  
 : Selecting only the most relevant features enhances model accuracy and efficiency, improving the prediction performance of the predictors
@@ -30,7 +30,7 @@ It mostly acts as a filter, muting out features that aren't useful in addition t
 
 # Feature Selection Techniques (Supervised)
 ## 1. Filter Methods
-`statistical method` `without modelling`  
+`statistical method` `without modelling` `Target and individual feature` 
 
 Filter methods evaluate feature relevance by applying statistical techniques to measure the relationship between each feature and the target variable **individually**. 
 There are lots of techniques to try filter methods but common techniques here include the chi-square test(categorical), Information gain,Variance thresholding and Correlation coefficients.  
@@ -51,14 +51,10 @@ Often used as a preliminary step, especially with high-dimensional data, to redu
 #### Limitations
 Variance thresholding does not consider the relationship between features and the target variable. Features with low variance but strong predictive power may still be eliminated, so it’s best to use it as an initial filter.
 
-> 시작할 때 너무 분산이 낮은 칼럼은 모델에 영향을 거의 주지않을 가능성이 크기때문에 필터링하고 시작하기 좋음.
-
-
 ### (2) Correlation Coefficient
 #### Types
 * Pearson's correlation  
 Measures linear relationships between continuous variables.
-
 * Spearman's rank correlation  
 A non-parametric measure for ranked or ordinal data, which works well for monotonic relationships.
 * Kendall's Tau  
@@ -75,7 +71,7 @@ High correlations with the target variable indicate potential importance.
 High correlated features might indicate redundancy, so we might keep one and drop the others to avoid multicollinearity.
 
 #### Limitations
-Correlation measures linear relationship, so it may not caspture non-linear dependencies. better to combine with other techniques to capture more complex patterns.  
+Correlation measures linear relationship, so it may not capture non-linear dependencies. better to combine with other techniques to capture more complex patterns.  
 
 
 ### (3) Mutual Information  
@@ -92,17 +88,27 @@ High MI -> more contribution to predict the target
 #### Limitations
 MI can be computationally intensive for large datasets, as it requires calculating the information gain for each feature individually. Additionally, MI does not account for inter-feature relationships, so it’s often used in conjunction with methods that do.
 
-## Summary of three methods
-1. Variance Thresholding  
-Quick initial filter, best for eliminating features with very low or no variance.
-2. Correlation Coefficient  
-Identifies linear relationships; helps prioritize predictive features and remove redundant ones.
-3. Mutual Informations  
-Captures non-linear relationships with the target; useful for detecting features that add unique information to the model.
+### Summary of three filter methods
+1. **Variance Thresholding**  
+Quick initial filter, best for eliminating features with very low or no variance.  
+분산이 낮은 피처는 모델에 영향을 거의 주지않을 가능성이 크기때문에 초기 피처 필터링 방법으로 선호됨.  
+2. **Correlation Coefficient**  
+Identifies linear relationships; helps prioritize predictive features and remove redundant ones. 
+선형 관계만 측정 가능하며 피처와 타겟 간의 상관관계만 고려.  
+빠르고 간단하며 1차 필터로 유용하게 사용 가능하고 해석이 용이함.   
+타겟과 Correlation 높은 것은 남기되 변수들끼리의 Correlation 이 높은 쌍 중 하나의 변수를 지움. (다중공선성 제거를 위해)
+3. **Mutual Informations**  
+Captures non-linear relationships with the target; useful for detecting features that add unique information to the model.  
+두 변수 간의 상호 의존성을 측정하는 방법으로, 한 변수의 값을 알 때 다른 변수에 대한 불확실성을 얼마나 줄일 수 있는지를 나타냄.  
+비선형관계도 잘 잡아냄.  
+범주형 데이터, 연속형 데이터 모두 적용 가능.  
+특정 ML 모델에 의존하지않음.  
+피처들 간의 복잡한 상호작용 반영 X. 피처와 타겟과의 정보량을 기준으로 선택이 이루어짐.  
+두 변수의 엔트로피(불확실성)를 이용해 계산되며 Mutual Information 값이 높을수록 해당 피처가 타깃에 중요한 정보를 많이 제공한다고 해석할 수 있음.
 
 
 ## 2. Wrapper Methods
-`Find the optimal combination` `Model-Dependent Evaluation`  
+`Find the optimal combination` `Model-Dependent Evaluation`  `not in the training phase but outside of model` `Iteratively`
 Wrapper methods search for the **optimal combination** of features by training models with various feature **subsets** using a specific ml algorithm to evaluate feature importance.
 **They wrap the feature selection process around the model training and evaluate the model's performance to determine the optimal subset of features.**  
 Wrapper method follows a greedy search approach by evaluating all the possible combinations of features against the evaluation criterion.  
