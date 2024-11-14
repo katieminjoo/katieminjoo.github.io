@@ -1,8 +1,8 @@
 ---
 title: Installing LightGBM on an M1 Mac
 date: 2024-11-09 17:30:00 +0900
-categories: [Machine Learning]
-tags: [machinelearning]
+categories: [Tips]
+tags: [python]
 toc: true
 comments: true
 published: true

@@ -1,8 +1,8 @@
 ---
 title: <i class="far fa-chart-bar">Finding the closest Datetime in a DataFrame with Python</i>
 date: 2024-10-25 17:30:00 +0900
-categories: [MachineLearning]
-tags: [machinelearning]
+categories: [Pandas]
+tags: [python]
 toc: true
 comments: true
 published: true
