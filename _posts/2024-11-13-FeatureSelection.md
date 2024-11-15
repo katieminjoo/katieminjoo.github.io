@@ -31,7 +31,7 @@ It mostly acts as a filter, muting out features that aren't useful in addition t
 # Feature Selection Techniques (Supervised)
 ## 1. Filter Methods
 `statistical method` `without modelling` `Target and individual feature` 
-
+![img](/assets/img/post/featureselection/IMG_0022.png)
 Filter methods evaluate feature relevance by applying statistical techniques to measure the relationship between each feature and the target variable **individually**. 
 There are lots of techniques to try filter methods but common techniques here include the chi-square test(categorical), Information gain,Variance thresholding and Correlation coefficients.  
 
@@ -108,7 +108,8 @@ Captures non-linear relationships with the target; useful for detecting features
 
 
 ## 2. Wrapper Methods
-`Find the optimal combination` `Model-Dependent Evaluation`  `not in the training phase but outside of model` `Iteratively`
+`Find the optimal combination` `Model-Dependent Evaluation`  `not in the training phase but outside of model` `Iteratively`  
+![img](/assets/img/post/featureselection/IMG_0023.png)  
 Wrapper methods search for the **optimal combination** of features by training models with various feature **subsets** using a specific ml algorithm to evaluate feature importance.
 **They wrap the feature selection process around the model training and evaluate the model's performance to determine the optimal subset of features.**  
 Wrapper method follows a greedy search approach by evaluating all the possible combinations of features against the evaluation criterion.  
@@ -129,7 +130,7 @@ A popular wrapper method where a model is trained, and features are ranked based
 
 ## 3. Embedded Methods
 `Model-integrated Selection` `features selected during training phase` `Efficiency`   
-
+![img](/assets/img/post/featureselection/IMG_0024.png)  
 Embedded methods are techniques where the feature selection process is **integrated directly within the training** of a model. Unlike filter methods (which are model-independent) and wrapper methods (which evaluate multiple models on different feature subsets), embedded methods select features based on the **contribution of each feature to the model’s performance as the model is being trained**.  
 Feature selection is built into the model training itself, like penalizing less important features with L1 Regularization.  
 Model decides important features depending on how large coefficient and feature importance.  
