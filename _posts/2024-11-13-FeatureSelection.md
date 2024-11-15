@@ -31,7 +31,7 @@ It mostly acts as a filter, muting out features that aren't useful in addition t
 # Feature Selection Techniques (Supervised)
 ## 1. Filter Methods
 `statistical method` `without modelling` `Target and individual feature` 
-![img0](/assets/img/post/featureselection/IMG_0022.png)
+![](/assets/img/post/featureselection/IMG_0022.png)  
 Filter methods evaluate feature relevance by applying statistical techniques to measure the relationship between each feature and the target variable **individually**. 
 There are lots of techniques to try filter methods but common techniques here include the chi-square test(categorical), Information gain,Variance thresholding and Correlation coefficients.  
 
@@ -109,7 +109,7 @@ Captures non-linear relationships with the target; useful for detecting features
 
 ## 2. Wrapper Methods
 `Find the optimal combination` `Model-Dependent Evaluation`  `not in the training phase but outside of model` `Iteratively`  
-![img1](/assets/img/post/featureselection/IMG_0023.png)  
+![img4](/assets/img/post/featureselection/IMG_0023.png)  
 Wrapper methods search for the **optimal combination** of features by training models with various feature **subsets** using a specific ml algorithm to evaluate feature importance.
 **They wrap the feature selection process around the model training and evaluate the model's performance to determine the optimal subset of features.**  
 Wrapper method follows a greedy search approach by evaluating all the possible combinations of features against the evaluation criterion.  
