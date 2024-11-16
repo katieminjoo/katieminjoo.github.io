@@ -59,7 +59,7 @@ in this case, there should be columns named 'measure_1', 'measure_2', ... since 
 `i` is the new column name that will identify each rows.  
 `j` is the new column that will contain the values.  
 
-ex) if there was this row with the column name 'measure_pink' and if the value was 7, then we give stubnames as stubnames, color as i, since it seems like letters after '_' refers color palettes. and then let's say 7 is the count number that we got from somewhere, then j should be 'count'.
+ex) For example, if there is a row with the column name 'measure_pink' and the value is 7, we set stubnames as 'measure' and i as 'color', since the letters after '_' appear to refer to color palettes. Then, assuming 7 represents the count obtained from some source, j should be set to 'count'.
 
 ## 3. stack()
 `column to index`
