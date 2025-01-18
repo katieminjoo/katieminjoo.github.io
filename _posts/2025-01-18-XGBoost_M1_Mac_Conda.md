@@ -60,10 +60,10 @@ These libraries are essential for enabling OpenMP support on macOS.
 ---
 
 ### **3. Install XGBoost**
-After installing OpenMP, use `pip` to install XGBoost in your Conda environment:
+After installing OpenMP, use `conda`, not pip to install XGBoost in your Conda environment:
 
 ```bash
-pip install xgboost
+conda install xgboost
 ```
 
 This command installs the latest version of XGBoost compatible with your Python environment.
