@@ -1,5 +1,5 @@
 ---
-title: Resolving XGBoost Installation Issues on M1 Mac with Conda Virtual Environment
+title: Resolving XGBoost Installation Issues on M1 Mac with Conda Virtual Environment ! 
 date: 2025-01-18 19:30:00 +0900
 categories: [Tips]
 tags: [python, jupyter, anaconda, vscode]
