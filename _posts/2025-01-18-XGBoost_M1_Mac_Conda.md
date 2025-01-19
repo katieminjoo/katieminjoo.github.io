@@ -1,5 +1,5 @@
 ---
-title: How to add a Conda environment as a kernel in Jupyter Notebook
+title: Resolving XGBoost Installation Issues on M1 Mac with Conda Virtual Environment
 date: 2025-01-18 19:30:00 +0900
 categories: [Tips]
 tags: [python, jupyter, anaconda, vscode]
@@ -10,8 +10,6 @@ sitemap:
   changefreq: daily
   priority: 1.0
 ---
-# Resolving XGBoost Installation Issues on M1 Mac with Conda Virtual Environment
-
 If you're working on an M1 Mac and trying to run XGBoost within a Conda virtual environment, you may encounter issues like `libxgboost.dylib` failing to load due to missing dependencies such as OpenMP. This is a common problem when setting up XGBoost on macOS, particularly on M1 chips, because XGBoost requires OpenMP for multithreading support.
 
 In this post, I'll guide you through the steps to resolve this issue and get XGBoost running smoothly.
