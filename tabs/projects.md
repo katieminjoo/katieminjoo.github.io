@@ -3,6 +3,7 @@ title: Projects
 theme: jekyll-theme-dinky
 ---
 
+<!-- project 1 -->
 <details style="padding: 10px;">
 <summary style="cursor: pointer; font-size: 1.5em; font-weight: bold;">
 Location Optimization Project for Battery Swapping Stations
@@ -78,68 +79,83 @@ We trained an XGBoost model to predict battery swap counts per grid using spatia
 </div>
 </details>
 
-<details style="font-size: 1.0em; padding: 10px;">
-<summary style="cursor: pointer; font-size: 1.5em; font-weight: bold;">Synthesis of animal facial expressions using StarGAN_v2</summary>
-<div markdown="1" style="margin-top: 10px;">
+<!-- project 2 -->
+<details style="padding: 10px;">
+<summary style="cursor: pointer; font-size: 1.5em; font-weight: bold;">
+Dog Facial Expression Synthesis with Identity Preservation using StarGAN_v2
+</summary>
+<div markdown="1" style="margin-top: 10px; font-size: 1em;">
 
-# Synthesis of animal facial expressions using Stargan-v2
+# Dog Facial Expression Synthesis with Identity Preservation using StarGAN_v2
 [LINK](https://github.com/katieminjoo/stargan-v2)
 
 >`Image Generation`  
 >`Object Detection`  
+>`GAN Fine-tuning`  
+>`Feature Preservation`
 
 ![ef](/assets/img/project/starganv2/Stargan_v02.png){:width="500px"}
 
 ## Design
 ***
-This project focuses on creating personalized pet emojis by detecting dog expressions with EfficientDet and generating corresponding emojis with StarGAN v2. This allows users to quickly transform dog photos into expressive emojis based on detected emotions (anger, happiness, sadness, and yawning).
+This two-step pipeline detects a dog's facial expression using object detection and synthesizes expressive, emoji-like images using StarGAN v2.  
+The goal was to convert pet photos into four emotions — anger, happiness, sadness, and yawning — while preserving their identity.
 
 ## Data
 ***
-* **Dataset**: Collected approximately 5,000 dog photos using emotion-based keywords [‘anger’, ‘happiness’, ‘sadness’, ‘yawning’].  
-* **Annotation**: Annotated 400 images per emotion for front-facing dog faces, ensuring unique images without duplicates.  
-* **Image Preprocessing**: Cropped images to focus on dog faces, with a minimum resolution of 100x100 pixels for both width and height.
+- **Dataset**: ~5,000 dog images collected via emotion-related keyword search  
+- **Annotation**: 400 manually labeled images per emotion, filtered to exclude duplicates  
+- **Preprocessing**: Cropped to frontal dog faces with a minimum resolution of 100×100 pixels
 
-## Main model / Technique
+## Main Model / Technique
 ***
 **`Object Detection`**  
-[EfficientDet](https://arxiv.org/abs/1911.09070) was chosen as the object detection model for its accuracy and parameter efficiency, leveraging the EfficientNet backbone.  
+We used [EfficientDet](https://arxiv.org/abs/1911.09070) for lightweight and accurate detection of dog faces.  
 ![ef](/assets/img/project/starganv2/Efficientdet_architecture.png){:width="700px"}
 
 **`Image Generation`**  
-[StarGAN_v2](https://openaccess.thecvf.com/content_CVPR_2020/papers/Choi_StarGAN_v2_Diverse_Image_Synthesis_for_Multiple_Domains_CVPR_2020_paper.pdf) was used for image-to-image translation across multiple domains, which allowed transformations among four target expressions.  
+We applied [StarGAN_v2](https://openaccess.thecvf.com/content_CVPR_2020/papers/Choi_StarGAN_v2_Diverse_Image_Synthesis_for_Multiple_Domains_CVPR_2020_paper.pdf) to translate detected dog faces into the target emotion domains.  
 ![ef](/assets/img/project/starganv2/stargan.png){:width="500px"}
-
 
 ## Consideration
 ***
-![ef](/assets/img/project/starganv2/Stargan_v01.png){:width="500px"}  
-Here is the result after image generation using StarGAN v2.
+While StarGAN v2 successfully generated diverse expressions, it introduced unwanted changes to fur color and breed appearance due to entangled domain features.  
+To address this, we integrated **Histogram Loss** inspired by [HistoGAN](https://arxiv.org/abs/2011.11731), which helped decouple identity from expression.
 
-![ef](/assets/img/project/starganv2/Stargan_problem.png){:width="300px"}  
-While StarGAN v2 produced varied expressions, a challenge arose: the model also altered the dog’s breed and color based on the reference domain image.
+- Before (color drift):
+  ![ef](/assets/img/project/starganv2/Stargan_problem.png){:width="300px"}
+- After Histogram Loss (color preserved):
+  ![ef](/assets/img/project/starganv2/Problem_solved.png){:width="300px"}
 
-To preserve the breed and color while altering only the facial expression, we integrated Histogram Loss from and color in the generated images.
-[HistoGAN](https://arxiv.org/abs/2011.11731), which ensured consistent breed 
+This fine-tuning preserved fur color and breed, which was especially important for user personalization.
 
-![ef](/assets/img/project/starganv2/Problem_solved.png){:width="300px"}  
-After adding Histogram Loss, the results maintained the original breed and color, with only the facial expression changing.
+> This challenge highlighted a common issue in image-to-image translation:  
+> the entanglement between domain-specific attributes (emotion) and instance-level features (identity).
+
+## Result
+***
+After integrating Histogram Loss, we observed a clear improvement — the dog's color remained consistent while only the facial expression changed.  
+Previously, results often altered the fur tone (e.g. turning a white dog brown), which broke the sense of identity.  
+This update led to **more realistic and personalized outputs**, enabling pet owners to create emoji-style versions of their actual pets.
 
 ## Future Ideas
 ***
-Considering using an auto-annotation tool, such as CVAT, to improve annotation efficiency and accuracy.
-
+- Quantitatively evaluate outputs using emotion classification models or user surveys  
+- Scale up annotation using auto-labeling tools such as CVAT  
+- Fine-tune on a wider variety of breeds and emotional cues  
+- Explore integration into a mobile or web-based personalization tool
 
 </div>
 </details>
 
-<details style="padding: 10px;">
+<!-- project 3 old ver -->
+<!-- <details style="padding: 10px;">
 <summary style="cursor: pointer; font-size: 1.5em; font-weight: bold;">Establishment of Knowledge Graphs using LLM</summary>
 <div markdown="1" style="margin-top: 10px; font-size: 1em;">
 
 # Establishment of Knowledge Graphs using LLM
 <!-- [LINK](https://github.com/katieminjoo/stargan-v2) -->
-
+<!-- 
 >`LLM`  
 >`Knowledge Graph (KG)`  
 >`Named Entity Recognition (NER)`  
@@ -188,10 +204,98 @@ We used [Neo4j](https://neo4j-contrib.github.io/py2neo/) to build a Knowledge Gr
 ***
 Considering using a better version of NER model such as GliNER
 </div>
+</details> -->
+
+<!-- Project 3 -->
+<details style="padding: 10px;">
+<summary style="cursor: pointer; font-size: 1.5em; font-weight: bold;">
+Policy Knowledge Graph Construction from Korean Development Reports Using BERT and R-BERT
+</summary>
+<div markdown="1" style="margin-top: 10px; font-size: 1em;">
+
+# Policy Knowledge Graph Construction from Korean Development Reports Using BERT and R-BERT
+
+>`NLP`  
+>`Named Entity Recognition (NER)`  
+>`Relation Extraction (RE)`  
+>`Knowledge Graph`  
+>`Neo4j`  
+![ef](/assets/img/project/KDI/KG_overall.png){:width="500px"}
+## Design
+***
+Developed an NLP pipeline that automatically extracts entities and relations from Korean development policy reports (e.g. Korean Economic Development History, KSP reports) and builds a structured, searchable knowledge graph using Neo4j.  
+The project aimed to improve the usability of government reports and enable policy analysts to trace entities, institutions, and policies over time.
+
+## Data & Preprocessing
+***
+- **Documents**:  
+  - Korean Economic Development History (331 pages)  
+  - 137 Modularization Reports  
+  - 19 KSP Policy Advisory Reports  
+- **Additional data**: SCOPUS abstract API used to supplement rare tag categories
+- **Preprocessing techniques**:
+  - PDF to text using Apache Tika
+  - Coreference resolution using Stanford CoreNLP (ML-based model)
+  - Manual BIO2 tagging using [TextAE](https://textae.github.io/) for NER and relation tagging
+  - Filtering out inconsistent terminology or extremely rare entity types for model stability
+
+## Main Models & Techniques
+***
+**`Named Entity Recognition (NER)`**  
+- Model: BERT + CRF  
+- Tagging: BIO2 scheme  
+- Entity types: Institution, Region, Structure, Year, Policy, Event, Term (7 total)  
+- Achieved up to **F1 score: 0.87** after tuning  
+- CRF enabled valid BIO structure learning (e.g. avoiding I-tags without B-prefix)
+
+**`Relation Extraction (RE)`**  
+- Model: [R-BERT](https://arxiv.org/abs/1905.08284) (fine-tuned on custom dataset in [Semeval-2010 task](https://arxiv.org/abs/1911.10422) 8 format)  
+- Defined 9 relation types: e.g. Product-Producer, Cause-Effect, Entity-Origin (bidirectional)  
+- **F1 score: 0.90** on test set
+
+**`Knowledge Graph (KG)`**  
+- Database: [Neo4j](https://neo4j-contrib.github.io/py2neo/) using py2neo  
+- Standardized relation directions for consistent KG structure  
+- Enforced uniqueness constraints on node names to avoid duplication  
+- Final output: **13,341 entities** and **15,823 relations** integrated into a live KG
+
+## Result
+***
+![ef](/assets/img/project/KDI/KG_example.png){:width="500px"}
+- Successfully constructed an interactive KG representing Korea’s development experiences
+- Enabled entity-based queries (via Cypher) and visual exploration (via Neo4j Bloom)
+- Example use cases:
+  - “Incheon Airport” node connects to institutions (e.g. MOLIT), events (e.g. IMF Crisis), and policies
+  - Entity timelines trace policy evolution by year or topic
+- Used internally by KDI analysts for case study identification and cross-policy tracing
+
+## Challenges & Considerations
+***
+- Data sparsity in certain entity/relation classes; addressed with SCOPUS abstracts
+- Inconsistent PDF formatting required manual parsing and filtering
+- Ambiguity in defining domain-specific entity/relation types (e.g. “Term” vs “Policy”)
+- Learned the importance of preprocessing and class balance through ablation testing
+
+## Team Collaboration
+***
+- Conducted in a team of 6 researchers, with subteams for NER, RE, and KG
+- Led coordination and tracking through Slack and Notion (calendar, to-do DB, document embeds)
+- Weekly meetings to align on progress and resolve modeling challenges
+- Team structure (2 members per subtask) enabled parallel experimentation and fast iteration
+
+## Reflection
+***
+- This was my first hands-on application of NLP theory to a real-world document corpus  
+- Reinforced the importance of preprocessing and annotation in applied NLP  
+- NER and RE can unlock scalable knowledge extraction from government documents  
+- Knowledge Graphs are powerful tools not just for search, but for surfacing hidden policy patterns  
+- I’m excited to explore their potential across other domains like healthcare or education
+
+</div>
 </details>
 
-
-<details style="padding: 10px;">
+<!-- Project 4 old -->
+<!-- <details style="padding: 10px;">
 <summary style="cursor: pointer; font-size: 1.5em; font-weight: bold;">Anomaly Detection for Welding Defect Identification</summary>
 <div markdown="1" style="margin-top: 10px; font-size: 1em;">
 
@@ -229,8 +333,64 @@ In AI-based time-series anomaly detection research for automated monitoring, one
 Led the end-to-end deployment process, including model development, real-time prediction, and UI integration, successfully implementing a real-time defect detection monitoring system in production environments.  
 <!-- ![ef](/assets/img/project/KDI/KG_example.png){:width="500px"} -->
 
+<!-- ## Future Ideas
+***
+
+</div>
+</details> -->
+
+<!-- Project 4 -->
+<details style="padding: 10px;">
+<summary style="cursor: pointer; font-size: 1.5em; font-weight: bold;">Anomaly Detection for Welding Defect Identification</summary>
+<div markdown="1" style="margin-top: 10px; font-size: 1em;">
+
+# Anomaly Detection for Welding Defect Identification
+
+>`Anomaly Detection`  
+>`Feature Engineering`  
+>`Sensor Data Analysis`
+
+![ef](/assets/img/project/Anomaly/AnomalyDetection.png){:width="600px"}
+
+## Design
+***
+Built an end-to-end anomaly detection system to identify welding defects during battery manufacturing. Emphasis was placed on optimizing feature extraction from time-series sensor data and using both traditional and deep learning models for robust detection.
+
+The goal was not to maximize traditional accuracy metrics but to detect as close to **99% of actual defects** as possible in a real-time production setting.
+
+## Data
+***
+* **Source**: Time-series sensor data collected from laser welding equipment in production lines.
+* **Preprocessing**: Applied Short-Time Fourier Transform (STFT) to convert raw signals into time-frequency representations for image-based classification.
+
+## Main Models / Techniques
+***
+* **Isolation Forest**  
+* **Local Outlier Factor (LOF)**  
+* **Support Vector Machine (SVM)**  
+* **1D-CNN using STFT image input**  
+* **STFT / FFT**  
+
+These models were compared in terms of their ability to detect anomalous patterns in sensor behavior, with CNN delivering robust performance when trained on STFT-transformed inputs.
+
+## Consideration
+***
+One of the most critical and challenging aspects of this project was **threshold tuning**. Determining the optimal cutoff for anomaly scores is essential for balancing false positives and false negatives in production environments. Fixed thresholds often led to either high false alarms or missed defects.
+
+This required deep collaboration with field engineers who operated and maintained the welding equipment. Their domain knowledge helped define operationally viable and interpretable thresholds, integrating human expertise into model decisions.
+
+## Result
+***
+* Successfully implemented a real-time defect detection monitoring system in the production environment.
+* The system was able to detect **up to 99% of defective cases**, greatly improving quality assurance compared to the previous manual method.
+* Model predictions were integrated into a dashboard UI for live monitoring by on-site teams.
+* Due to the lack of labeled data, traditional accuracy, precision, or recall metrics were not the main focus; instead, the primary success metric was the proportion of actual welding defects that could be flagged and intercepted early.
+
 ## Future Ideas
 ***
+* Automate and personalize thresholding methods using adaptive techniques.
+* Explore ensemble detection frameworks that blend unsupervised and supervised signals.
+* Collect more labeled data over time to enable more structured evaluation and model comparison.
 
 </div>
 </details>
