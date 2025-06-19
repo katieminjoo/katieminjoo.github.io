@@ -398,8 +398,8 @@ This required deep collaboration with field engineers who operated and maintaine
 </details>
 
 
-
-<details style="padding: 10px;">
+<!-- Project 5 Old ver -->
+<!-- <details style="padding: 10px;">
 <summary style="cursor: pointer; font-size: 1.5em; font-weight: bold;">
 Time Series Regression for Electrode Surface Temperature Optimization</summary>
 <div markdown="1" style="margin-top: 10px; font-size: 1em;">
@@ -409,7 +409,6 @@ Time Series Regression for Electrode Surface Temperature Optimization</summary>
 >`Regression Modeling`  
 >`Customized Deep Learning`   
 
-<!-- ![ef](/assets/img/project/Anomaly/AnomalyDetection.png){:width="600px"} -->
 
 ## Design
 ***
@@ -439,10 +438,96 @@ This project allowed me to experiment extensively with different modeling and da
 ***
 - Successfully implemented the solution at the Ultium Cells plant (GM-LG joint venture) in Ohio, USA, achieving a significant increase in target temperature accuracy from 50% to 95%.
 - Conducted ongoing remote monitoring and troubleshooting to fine-tune the model, leading to an estimated annual cost savings of $100,000.
-<!-- ![ef](/assets/img/project/KDI/KG_example.png){:width="500px"} -->
 
+</div>
+</details> -->
+
+<!-- Project 5 new -->
+<details style="padding: 10px;">
+<summary style="cursor: pointer; font-size: 1.5em; font-weight: bold;">
+Time Series Regression for Electrode Surface Temperature Optimization</summary>
+<div markdown="1" style="margin-top: 10px; font-size: 1em;">
+
+# Time Series Regression for Electrode Surface Temperature Optimization
+
+>`Regression Modeling`  
+>`Customized Deep Learning`   
+
+## Objective
+***
+The drying process in electrode manufacturing had long relied on a rule-based system that struggled to accommodate variations in real-world process conditions.  
+Sometimes the heating was too aggressive, resulting in overheating; other times, it wasn’t enough—leading to persistent low temperatures. Engineers had to monitor every cycle and manually adjust inputs depending on factors like idle time or ambient conditions.
+
+To solve this, we aimed to develop and deploy a machine learning model that dynamically adapts to changing production conditions and intelligently controls the heating process—minimizing both overheating and inefficiency.
+
+## Data
+***
+- Time-series sensor data collected during the drying process  
+- Data granularity: millisecond intervals  
+- Preprocessing included downsampling, normalization, and control point alignment
+
+## Model & Techniques
+***
+- LSTM  
+- 1D-CNN  
+- Attention Mechanisms  
+
+We selected these architectures due to the inherently sequential and process-oriented nature of the data. Since heating decisions depend on how the process unfolds over time, temporal modeling was key.
+
+For example:  
+- 1D-CNN captured localized signal patterns efficiently.  
+- LSTM handled longer-term dependencies.  
+- Attention allowed the model to dynamically focus on crucial time slices and features related to surface temperature dynamics.
+
+## Modeling Strategy
+***
+Rather than using a fixed dataset format, we iterated on how the data should be structured to highlight the most informative points:
+- Separated features by importance and fed them into separate streams  
+- Combined lower-priority features into the first LSTM layer and concatenated high-priority inputs later  
+- Optimized model structure through experimental stacking and architectural tuning
+
+## System Comparison
+***
+| Aspect                | Rule-based Control System         | ML-based Predictive System            |
+|-----------------------|------------------------------------|----------------------------------------|
+| Control Method        | Static thresholds                  | Dynamic adjustment via real-time data |
+| Thresholds            | Manual tuning                      | Model-optimized thresholds             |
+| Human Intervention    | Frequent operator input            | Fully automated operation              |
+| Drying Consistency    | Inconsistent drying results        | Adaptive and consistent drying         |
+| Defect Risk           | High                               | Minimized temperature deviation        |
+
+## Result
+***
+- Deployed at Ultium Cells Plant (GM–LG joint venture) in Ohio, USA  
+- Improved target surface temperature accuracy from ~50% to ~95%  
+- Replaced manual rule-based system with adaptive predictive control  
+- Reduced operator intervention and improved system responsiveness
+
+![temperature_accuracy_improvement](sandbox:/mnt/data/temperature_accuracy_improvement.png?_chatgptios_conversationID=685186c2-b5f8-8013-92f9-c1717b1a8989&_chatgptios_messageID=e873e905-7c59-4fec-8aa9-01f8ffa0e590)
+
+![1dcnn_prediction_curve](sandbox:/mnt/data/1dcnn_prediction_curve.png?_chatgptios_conversationID=685186c2-b5f8-8013-92f9-c1717b1a8989&_chatgptios_messageID=e873e905-7c59-4fec-8aa9-01f8ffa0e590)
+
+![feature_correlation_improvement](sandbox:/mnt/data/feature_correlation_improvement.png?_chatgptios_conversationID=685186c2-b5f8-8013-92f9-c1717b1a8989&_chatgptios_messageID=e873e905-7c59-4fec-8aa9-01f8ffa0e590)
+
+## Field Feedback
+***
+On-site engineers reported a significant reduction in manual tasks.  
+Previously, operators had to supervise and adjust machine settings depending on idle time or abnormal conditions.  
+With the new model, machines auto-adjusted to varying conditions while maintaining consistent results—earning strong positive feedback from the team.
+
+## Business Impact
+***
+- Real-time optimization of the drying process  
+- Estimated $100,000 in annual savings  
+- Increased product consistency and reduced defect-related waste
+
+## Reflections
+***
+This project helped me understand the importance of:
+- Designing domain-specific representations for sensor data  
+- Capturing temporal dynamics in manufacturing pipelines  
+- Building modular architectures for experimentation  
+- Maintaining close collaboration with engineers for real-world deployment feasibility
 
 </div>
 </details>
-
-
