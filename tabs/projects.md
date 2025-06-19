@@ -16,6 +16,8 @@ Location Optimization Project for Battery Swapping Stations
 >`XGBoost Regression`  
 >`Map Visualization`
 
+![map sample](/assets/img/project/bss/bss_map_sample.png){:width="500px"}
+
 ## Design
 ***
 This project aimed to support location planning for expanding battery swapping stations (BSS) beyond Seoul using data-driven analysis.  
@@ -55,8 +57,6 @@ We trained an XGBoost model to predict battery swap counts per grid using spatia
 - I played a central role in communicating between our modeling team and the counterpart business team, ensuring alignment and clarity at every step.
 - The final interactive HTML-based map was handed off to the stakeholder team, who used it to determine the **priority order for station installation** in new regions.
 - According to internal reports, the installation followed our model's recommendation, though validation will require post-installation data over several months.
-
-![map sample](/assets/img/project/bss/bss_map_sample.png){:width="600px"}
 
 ## Result
 ***
