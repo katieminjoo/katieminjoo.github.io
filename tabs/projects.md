@@ -361,7 +361,9 @@ The goal was not to maximize traditional accuracy metrics but to detect as close
 ## Data
 ***
 * **Source**: Time-series sensor data collected from laser welding equipment in production lines.
-* **Preprocessing**: Applied Short-Time Fourier Transform (STFT) to convert raw signals into time-frequency representations for image-based classification.
+* **Preprocessing**: Applied Short-Time Fourier Transform (STFT) to convert raw signals into time-frequency representations for image-based classification.  
+![STFT Example](/assets/img/project/Anomaly/stft_welding_example.png){:width="500px"}
+> The image shows an example of a time-series sensor signal (top) and its corresponding STFT (Short-Time Fourier Transform) representation (bottom). The STFT transforms the raw signal into a time-frequency domain image, enabling the model to capture frequency patterns over time. This was particularly useful for identifying subtle anomalies in the welding process.
 
 ## Main Models / Techniques
 ***
