@@ -475,6 +475,8 @@ To solve this, we aimed to develop and deploy a machine learning model that dyna
 We selected these architectures due to the inherently sequential and process-oriented nature of the data. Since heating decisions depend on how the process unfolds over time, temporal modeling was key.
 
 For example:  
+![diagram](/assets/img/project/electrode/A_flowchart_diagram_illustrates_the_architecture_o.png){:width="500px"}
+
 - 1D-CNN captured localized signal patterns efficiently.  
 - LSTM handled longer-term dependencies.  
 - Attention allowed the model to dynamically focus on crucial time slices and features related to surface temperature dynamics.
@@ -488,6 +490,7 @@ Rather than using a fixed dataset format, we iterated on how the data should be 
 
 ## System Comparison
 ***
+
 | Aspect                | Rule-based Control System         | ML-based Predictive System            |
 |-----------------------|------------------------------------|----------------------------------------|
 | Control Method        | Static thresholds                  | Dynamic adjustment via real-time data |
@@ -500,14 +503,10 @@ Rather than using a fixed dataset format, we iterated on how the data should be 
 ***
 - Deployed at Ultium Cells Plant (GM–LG joint venture) in Ohio, USA  
 - Improved target surface temperature accuracy from ~50% to ~95%  
+![temperature_accuracy_improvement](/assets/img/project/electrode/temperature_accuracy_improvement.png){:width="500px"}
 - Replaced manual rule-based system with adaptive predictive control  
 - Reduced operator intervention and improved system responsiveness
 
-![temperature_accuracy_improvement](sandbox:/mnt/data/temperature_accuracy_improvement.png?_chatgptios_conversationID=685186c2-b5f8-8013-92f9-c1717b1a8989&_chatgptios_messageID=e873e905-7c59-4fec-8aa9-01f8ffa0e590)
-
-![1dcnn_prediction_curve](sandbox:/mnt/data/1dcnn_prediction_curve.png?_chatgptios_conversationID=685186c2-b5f8-8013-92f9-c1717b1a8989&_chatgptios_messageID=e873e905-7c59-4fec-8aa9-01f8ffa0e590)
-
-![feature_correlation_improvement](sandbox:/mnt/data/feature_correlation_improvement.png?_chatgptios_conversationID=685186c2-b5f8-8013-92f9-c1717b1a8989&_chatgptios_messageID=e873e905-7c59-4fec-8aa9-01f8ffa0e590)
 
 ## Field Feedback
 ***
