@@ -1,12 +1,12 @@
 ---
-title: About Katie Minjoo Kim (in preparation)
+title: About Katie Minjoo Kim
 ---
 
-![](/assets/img/sample/minjoo.png){:height="200px" width="200px"}
+![](/assets/img/sample/profile.png){:height="200px" width="200px"}
 
-Hey this is Minjoo Kim. (You can call me Katie.)  
+Hey this is Katie Minjoo Kim.
 Welcome to my github blog!  
-I am currently work as a data scientist in Seoul, Korea.
+I am a data scientist in London, UK.
 
 This is my little archive of studying data science!  
 I love to take a deeper look into various data. 
@@ -24,5 +24,4 @@ Feel free to explore my small world !
 
 
 ## Contact Information
-+ minjoo.kim@lgensol.com
 + katie.minjoo@gmail.com
